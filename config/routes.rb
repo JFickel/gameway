@@ -2,7 +2,7 @@ Gameway::Application.routes.draw do
   devise_for :users
 
   resources :users
-  root to: "static_pages#welcome"
+  root to: "home#index"
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"

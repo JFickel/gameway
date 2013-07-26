@@ -12,7 +12,11 @@ gem 'haml-rails'
 # Use devise for authentication
 gem 'devise'
 
+# Postgres for heroku
 gem 'pg'
+
+# Use rails admin for back-end
+gem 'rails_admin'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

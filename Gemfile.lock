@@ -45,7 +45,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     database_cleaner (1.0.1)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     devise (3.0.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -62,6 +69,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
     font-awesome-rails (3.2.1.2)
       railties (>= 3.2, < 5.0)
     haml (4.0.3)
@@ -71,7 +80,9 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    hashie (2.0.5)
     hike (1.2.3)
+    httpauth (0.2.0)
     i18n (0.6.4)
     jbuilder (1.4.2)
       activesupport (>= 3.0.0)
@@ -83,6 +94,8 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -95,9 +108,27 @@ GEM
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.7)
+    multipart-post (1.2.0)
     nested_form (0.3.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
+    omniauth-twitch_oauth2 (0.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -199,6 +230,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
+  debugger
   devise
   factory_girl_rails
   faker
@@ -206,6 +238,9 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  omniauth
+  omniauth-facebook
+  omniauth-twitch_oauth2
   pg
   rails (= 4.0.0)
   rails_admin

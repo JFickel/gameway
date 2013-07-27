@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :authentication_keys => [:login],
-         :omniauthable
+         :omniauthable, :validatable, :authentication_keys => [:login]
 
   attr_accessor :login
   validates :first_name, :last_name, presence: true

@@ -15,6 +15,11 @@ gem 'devise'
 # Postgres for heroku
 gem 'pg'
 
+# Using FB and twitch omniauth
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitch_oauth2'
+
 # Use rails admin for back-end
 gem 'rails_admin'
 
@@ -62,4 +67,4 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]

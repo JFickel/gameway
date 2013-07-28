@@ -222,16 +222,16 @@ Devise.setup do |config|
   case Rails.env
     when "testing"
       config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4'
-      config.omniauth :twitch, 'ID', 'SEKRET'
+      config.omniauth :twitch_oauth2, 'kwh498lg2c4p659yx8ng713d00q3rjp', 'qybsv292kc6ovfoedtdl9noktll4za3'
     when "development"
       config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4'
-      config.omniauth :twitch, 'ID', 'SEKRET'
+      config.omniauth :twitch_oauth2, 'kwh498lg2c4p659yx8ng713d00q3rjp', 'qybsv292kc6ovfoedtdl9noktll4za3'
     when "staging"
       config.omniauth :facebook, '204433513051829', 'a3e4f74c477e56910b5a516349d26b1d'
-      config.omniauth :twitch, 'ID', 'SEKRET'
+      config.omniauth :twitch_oauth2, 'nan2jfbfe0mhllncuwfj43mhf2qarxv', 'sfijlq686xnwa7qpfis1b8ydptxrpwd'
     when "production"
       config.omniauth :facebook, '620221738012501', '68323d68ce7b4a89a964babdb1efcb29'
-      config.omniauth :twitch, 'ID', 'SEKRET'
+      config.omniauth :twitch_oauth2, 'l0dvrdx50eq84u4j2oi0rw02dy2a8d', 'fil1w6uvi5jzb5w6ppzc3cskrymnzjy'
   end
 
   # ==> Warden configuration

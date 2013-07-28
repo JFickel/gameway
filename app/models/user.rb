@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
-         :omniauthable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :omniauthable, :validatable,
+         :omniauth_providers => [:facebook, :twitch_oauth2], :authentication_keys => [:login]
 
   attr_accessor :login
   validates :first_name, :last_name, presence: true

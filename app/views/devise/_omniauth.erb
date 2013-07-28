@@ -2,6 +2,7 @@
   <div class="omniauth_providers">
     <%- resource_class.omniauth_providers.each do |provider| %>
       <%= link_to image_tag('providers/32px/facebook.png', :height => 32, :width => 32), omniauth_authorize_path(resource_name, provider) if provider == :facebook %>
+      <%= link_to image_tag('http://ttv-api.s3.amazonaws.com/assets/connect_dark.png'), omniauth_authorize_path(resource_name, provider) if provider == :twitch_oauth2 %>
     <% end -%>
   </div>
 <% end -%>

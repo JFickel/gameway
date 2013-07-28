@@ -23,15 +23,16 @@ class User < ActiveRecord::Base
 
     user = if (omniauth_info.email.present?)
              User.find_by_email(omniauth_info.email)
-           elsif (omniauth_info.nickname.present?)
-             User.find_by_twitter_username(omniauth_info.nickname)
+           # elsif (omniauth_info.nickname.present?)
+             # User.find_by_twitter_username(omniauth_info.nickname)
            end
 
     unless user # Create a user with a stub password.
       user = User.new(
         :email => omniauth_info.email,
-        :name => omniauth_info.name,
-        :twitter_username => omniauth_info.nickname
+        :first_name => omniauth_info.first_name,
+        :username => omniauth_info.nickname
+    #     :twitter_username => omniauth_info.nickname
       )
     end
     user

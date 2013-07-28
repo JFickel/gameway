@@ -222,12 +222,16 @@ Devise.setup do |config|
   case Rails.env
     when "testing"
       config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4'
+      config.omniauth :twitch, 'ID', 'SEKRET'
     when "development"
       config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4'
+      config.omniauth :twitch, 'ID', 'SEKRET'
     when "staging"
       config.omniauth :facebook, '204433513051829', 'a3e4f74c477e56910b5a516349d26b1d'
+      config.omniauth :twitch, 'ID', 'SEKRET'
     when "production"
       config.omniauth :facebook, '620221738012501', '68323d68ce7b4a89a964babdb1efcb29'
+      config.omniauth :twitch, 'ID', 'SEKRET'
   end
 
   # ==> Warden configuration

@@ -1,5 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def twitch
+  def twitch_oauth2
     login_omniauth_user "Twitch"
   end
 

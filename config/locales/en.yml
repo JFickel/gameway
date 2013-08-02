@@ -36,6 +36,7 @@ en:
     signup: "Signup"
     remember_me: "Remember Me"
     password: "Password"
+    username_or_email: "Username or Email"
     email: "Email"
     other_providers: "Other Providers"
     sign_in: "Sign in"

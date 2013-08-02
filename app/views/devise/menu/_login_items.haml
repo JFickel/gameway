@@ -1,15 +1,15 @@
 - if user_signed_in?
-  = link_to('Logout', destroy_user_session_path, :method => :delete)
+  .groups= I18n.t("navigation.groups")
+  .tournaments= I18n.t("navigation.tournaments")
+  .logout_link= link_to('Logout', destroy_user_session_path, :method => :delete)
 - else
   = form_tag user_session_path do
-    %div Username or Email
-    = text_field_tag 'user[login]'
-    %div Password
-    = password_field_tag 'user[password]'
-    %div
-    = check_box_tag 'user[remember_me]'
-    %div
-    = label_tag 'user[remember_me]', 'Remember me'
-    %button Sign in
-    %div
-    = link_to "Forgot your password?", new_password_path('user')
+    .login_elements
+      .login_username= I18n.t("users.username_or_email")
+      .login_username_field= text_field_tag 'user[login]'
+      .login_password= I18n.t("users.password")
+      .login_password_field= password_field_tag 'user[password]'
+      .login_remember_me_box= check_box_tag 'user[remember_me]'
+      .login_remember_me_label= label_tag 'user[remember_me]', I18n.t("users.remember_me")
+      %button.sign_in.btn.btn-primary= I18n.t("users.sign_in")
+      .forgot_password= link_to "Forgot your password?", new_password_path('user')

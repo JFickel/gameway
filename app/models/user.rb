@@ -41,9 +41,10 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     if ((omniauth_data = session["devise.omniauth_data"].info) rescue nil)
       replaced = {}
-      replaced[:name] = omniauth_data.name if omniauth_data.name.present?
+      replaced[:first_name] = omniauth_data.first_name if omniauth_data.first_name.present?
+      replaced[:last_name] = omniauth_data.last_name if omniauth_data.last_name.present?
       replaced[:email] = omniauth_data.email if omniauth_data.email.present?
-      replaced[:twitter_username] = omniauth_data.nickname if omniauth_data.nickname.present?
+      replaced[:username] = omniauth_data.nickname if omniauth_data.nickname.present?
       params.merge!(replaced)
     end
     super

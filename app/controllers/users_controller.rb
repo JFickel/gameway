@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :configure_permitted_parameters
   def edit
   end
 

@@ -1,9 +1,7 @@
 - unless current_user
   = render 'devise/registrations/new'
-
-%h1 real-time analytics go here
-
-
-
-
-
+- else
+  %h2= "Username: #{current_user.username}"
+  %h2= "First name: #{current_user.first_name}"
+  %h2= "Last name: #{current_user.last_name}"
+  %h2= "Email: #{current_user.email}"

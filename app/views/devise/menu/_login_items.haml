@@ -1,7 +1,8 @@
 - if user_signed_in?
   .groups= I18n.t("navigation.groups")
   .tournaments= I18n.t("navigation.tournaments")
-  .logout_link= link_to('Logout', destroy_user_session_path, :method => :delete)
+  .edit_user_link= link_to(I18n.t("users.edit_profile"), edit_user_path(current_user))
+  .logout_link= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
 - else
   = form_tag user_session_path do
     .login_elements

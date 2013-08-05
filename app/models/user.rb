@@ -6,8 +6,11 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :omniauthable, :validatable,
          :omniauth_providers => [:facebook, :twitch_oauth2], :authentication_keys => [:login]
 
+  has_many :group_members
+  has_many :groups, through: :group_members
+
   attr_accessor :login
-  validates :first_name, :last_name, presence: true
+  validates :username, presence: true
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -20,7 +23,6 @@ class User < ActiveRecord::Base
 
   def self.find_for_omniauth(omniauth_response, signed_in_resource=nil)
     omniauth_info = omniauth_response.info
-
     user = if (omniauth_info.email.present?)
              User.find_by_email(omniauth_info.email)
            # elsif (omniauth_info.nickname.present?)
@@ -32,13 +34,28 @@ class User < ActiveRecord::Base
         :email => omniauth_info.email,
         :first_name => omniauth_info.first_name,
         :username => omniauth_info.nickname
-    #     :twitter_username => omniauth_info.nickname
+        # :twitter_username => omniauth_info.nickname
+
+        # Is this where I would create find or create groups by school?
       )
     end
     user
+
+    # facebook
+    # omniauth_response.credentials.token
+    # returns access token
+    # omniauth_response.extra.raw_info.education.last.school.name
+    # => "University of Illinois Urbana-Champaign"
+    # omniauth_response.extra.raw_info.education.last.type
+    # => "College"
+    # how do I find fb friends as they sign up?
+
   end
 
+
+
   def self.new_with_session(params, session)
+    debugger
     if ((omniauth_data = session["devise.omniauth_data"].info) rescue nil)
       replaced = {}
       replaced[:first_name] = omniauth_data.first_name if omniauth_data.first_name.present?

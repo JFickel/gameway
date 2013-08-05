@@ -1,34 +1,24 @@
 class UsersController < ApplicationController
-  # def google_oauth2
-  #   login_omniauth_user "Google"
-  # end
+  before_filter :configure_permitted_parameters
+  def edit
+  end
 
-  # def facebook
-  #   login_omniauth_user "Facebook"
-  # end
-
-  # def twitter
-  #   login_omniauth_user "Twitter"
-  # end
+  def update
+    user_params
+    user = User.find(current_user)
+    if user.update_attributes(params[:user])
+      redirect_to root_path
+    else
+      flash[:errors] = user.errors.full_messages
+      redirect_to request.referrer
+    end
+  end
 
   private
 
   def user_params
-    params.require(:user).permit(:login, :username,
-      :email, :password, :password_confirmation,
-      :remember_me)
+    params.require(:user).permit(:login, :username, :first_name, :last_name,
+    :email, :password, :password_confirmation, :remember_me)
   end
 
-  # def login_omniauth_user(service)
-  #   @user = User.find_for_omniauth(request.env["omniauth.auth"], current_user)
-
-  #   if @user.persisted?
-  #     flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => service
-  #     sign_in_and_redirect @user, :event => :authentication
-  #   else
-  #     flash[:notice] = I18n.t("users.finish_signup")
-  #     session["devise.omniauth_data"] = request.env["omniauth.auth"].except("extra")
-  #     redirect_to new_user_registration_url
-  #   end
-  # end
 end

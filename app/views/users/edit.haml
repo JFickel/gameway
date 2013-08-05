@@ -1,0 +1,20 @@
+%h1 Edit user profile
+
+= form_for current_user do |f|
+  %h2= I18n.t("users.personal_information")
+  .edit_username= f.label :username, I18n.t("users.username")
+  = f.text_field :username
+  .edit_first_name= f.label :first_name, I18n.t("users.first_name")
+  = f.text_field :first_name
+  .edit_last_name= f.label :last_name, I18n.t("users.last_name")
+  = f.text_field :last_name
+
+  %h2= I18n.t("users.providers")
+  .add_facebook= link_to(I18n.t("providers.facebook"), "#")
+  .add_twitch= link_to(I18n.t("providers.twitch"), "#")
+
+  %h2= I18n.t("users.game_accounts")
+  .add_sc2_account= link_to(I18n.t("games.sc2"), "#")
+
+  = f.submit
+

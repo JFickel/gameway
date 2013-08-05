@@ -10,7 +10,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 
 # Use devise for authentication
-gem 'devise'
+gem 'devise', branch: 'rails4'
 
 # Postgres for heroku
 gem 'pg'
@@ -43,6 +43,8 @@ gem 'jbuilder', '~> 1.2'
 
 # gem 'bootstrap-sass', git: 'git://github.com/intridea/bootstrap-sass.git', branch: '3.0.0-wip'
 
+# Use facebook library to add high schools, colleges, friends
+gem "koala"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

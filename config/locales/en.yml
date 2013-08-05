@@ -28,6 +28,8 @@ en:
   providers:
     facebook: "Facebook"
     twitch: "Twitch"
+  games:
+    sc2: "Starcraft 2"
   users:
     admin: "Admin"
     edit_profile: "Edit Profile"
@@ -37,7 +39,13 @@ en:
     remember_me: "Remember Me"
     password: "Password"
     username_or_email: "Username or Email"
+    username: "Username"
+    first_name: "First Name"
+    last_name: "Last Name"
     email: "Email"
+    personal_information: "Personal Information"
+    providers: "Providers"
+    game_accounts: "Game Accounts"
     other_providers: "Other Providers"
     sign_in: "Sign in"
     sign_in_with: "Sign in with %{provider}"

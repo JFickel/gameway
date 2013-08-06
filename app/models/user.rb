@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :group_members
   has_many :groups, through: :group_members
+  after_create :add_groups
 
   attr_accessor :login
   validates :username, presence: true
@@ -30,14 +31,18 @@ class User < ActiveRecord::Base
            end
 
     unless user # Create a user with a stub password.
-      user = User.new(
-        :email => omniauth_info.email,
-        :first_name => omniauth_info.first_name,
-        :username => omniauth_info.nickname
-        # :twitter_username => omniauth_info.nickname
-
-        # Is this where I would create find or create groups by school?
-      )
+      user = User.new(:email => omniauth_info.email,
+                      :first_name => omniauth_info.first_name,
+                      :username => omniauth_info.nickname)
+      if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
+        omniauth_response.extra.raw_info.education.each do |education|
+          group = Group.find_or_create_by(name: education.school.name, kind: education.type)
+          debugger
+          if !group.group_members.where(user_id: user.id).exists?
+            GroupMember.create(user_id: user.id)
+          end
+        end
+      end
     end
     user
 
@@ -52,10 +57,11 @@ class User < ActiveRecord::Base
 
   end
 
+  def add_groups
+  end
 
 
   def self.new_with_session(params, session)
-    debugger
     if ((omniauth_data = session["devise.omniauth_data"].info) rescue nil)
       replaced = {}
       replaced[:first_name] = omniauth_data.first_name if omniauth_data.first_name.present?

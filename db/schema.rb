@@ -24,11 +24,6 @@ ActiveRecord::Schema.define(version: 20130804194434) do
     t.string  "token_secret"
   end
 
-  create_table "game_accounts", force: true do |t|
-    t.integer "game_id"
-    t.integer "user_id"
-  end
-
   create_table "group_members", force: true do |t|
     t.integer "user_id"
     t.integer "group_id"
@@ -36,7 +31,7 @@ ActiveRecord::Schema.define(version: 20130804194434) do
 
   create_table "groups", force: true do |t|
     t.string "name"
-    t.string "type"
+    t.string "kind"
   end
 
   create_table "rails_admin_histories", force: true do |t|

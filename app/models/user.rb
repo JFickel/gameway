@@ -34,10 +34,13 @@ class User < ActiveRecord::Base
       user = User.new(:email => omniauth_info.email,
                       :first_name => omniauth_info.first_name,
                       :username => omniauth_info.nickname)
+
+
+
+      ### I need this to be in an after_create callback, but I need the omniauth_response. wat do?
       if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
         omniauth_response.extra.raw_info.education.each do |education|
           group = Group.find_or_create_by(name: education.school.name, kind: education.type)
-          debugger
           if !group.group_members.where(user_id: user.id).exists?
             GroupMember.create(user_id: user.id)
           end

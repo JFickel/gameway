@@ -46,6 +46,9 @@ gem 'jbuilder', '~> 1.2'
 # Use facebook library to add high schools, colleges, friends
 gem "koala"
 
+# Use my sc2 gem
+gem 'starcraft2'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

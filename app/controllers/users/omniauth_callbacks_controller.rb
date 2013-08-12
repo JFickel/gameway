@@ -10,7 +10,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def login_omniauth_user(service)
-    @user = User.find_for_omniauth(request.env["omniauth.auth"], current_user)
+    omniauth_response = request.env["omniauth.auth"]
+    @user = User.find_for_omniauth(omniauth_response, current_user)
+
+    ### Probably a shitty idea to put this stuff in sessions?
+    # if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
+    #   session[:education] = omniauth_response.extra.raw_info.education.each.with_object([]) do |education,obj|
+    #     obj << [education.school.name, education.type]
+    #   end
+    # end
+
 
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => service

@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :group_members
   has_many :groups, through: :group_members
-  after_create :add_groups
 
   attr_accessor :login
   validates :username, presence: true
@@ -35,16 +34,17 @@ class User < ActiveRecord::Base
                       :first_name => omniauth_info.first_name,
                       :username => omniauth_info.nickname)
 
-
-
-      ### I need this to be in an after_create callback, but I need the omniauth_response. wat do?
+      ### I need this logic to persist into the create user action somehow
       if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
-        omniauth_response.extra.raw_info.education.each do |education|
-          group = Group.find_or_create_by(name: education.school.name, kind: education.type)
-          if !group.group_members.where(user_id: user.id).exists?
-            GroupMember.create(user_id: user.id)
-          end
-        end
+        # omniauth_response.extra.raw_info.education.each do |education|
+        #   group = Group.find_by(name: education.school.name, kind: education.type)
+        #   if !group
+        #     new_group = user.groups.build(name: education.school.name, kind: education.type)
+        #     new_group.group_members.build(user_id: user.id)
+        #   elsif group && !group.group_members.where(user_id: user.id).exists?
+        #     group.group_members.build(user_id: user.id)
+        #   end
+        # end
       end
     end
     user
@@ -59,10 +59,6 @@ class User < ActiveRecord::Base
     # how do I find fb friends as they sign up?
 
   end
-
-  def add_groups
-  end
-
 
   def self.new_with_session(params, session)
     if ((omniauth_data = session["devise.omniauth_data"].info) rescue nil)

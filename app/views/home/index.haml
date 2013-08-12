@@ -5,3 +5,8 @@
   %h2= "First name: #{current_user.first_name}"
   %h2= "Last name: #{current_user.last_name}"
   %h2= "Email: #{current_user.email}"
+  %h3= "Groups:"
+  - current_user.groups.each do |group|
+    .group
+      .group_name= "#{group.name}"
+      .group_kind= "#{group.kind}"

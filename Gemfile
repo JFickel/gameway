@@ -63,6 +63,7 @@ group :development, :test do
   gem 'database_cleaner'
   # gem 'capybara-webkit'
   gem 'launchy'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password

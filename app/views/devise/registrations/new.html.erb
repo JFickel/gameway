@@ -37,6 +37,9 @@
         <%# end -%>
       </div>
     </div>
+    <% @user.groups.each do |group| %>
+      <%= hidden_field_tag "user[group_ids][]", group.id %>
+    <% end %>
   </fieldset>
   <div class="form-actions">
     <%= render 'devise/omniauth' %>

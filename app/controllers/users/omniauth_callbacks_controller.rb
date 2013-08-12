@@ -1,3 +1,4 @@
+require 'find_user_for_omniauth'
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitch_oauth2
     login_omniauth_user "Twitch"
@@ -11,7 +12,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def login_omniauth_user(service)
     omniauth_response = request.env["omniauth.auth"]
-    @user = User.find_for_omniauth(omniauth_response, current_user)
+    # @user = User.find_for_omniauth(omniauth_response, current_user)
+    @user = FindUserForOmniauth.call(omniauth_response)
 
     ### Probably a shitty idea to put this stuff in sessions?
     # if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
@@ -27,7 +29,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       flash[:notice] = I18n.t("users.finish_signup")
       session["devise.omniauth_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to new_user_registration_url
+      render template: 'devise/registrations/new'
     end
   end
 end

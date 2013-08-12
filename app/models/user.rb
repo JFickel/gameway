@@ -21,44 +21,47 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_omniauth(omniauth_response, signed_in_resource=nil)
-    omniauth_info = omniauth_response.info
-    user = if (omniauth_info.email.present?)
-             User.find_by_email(omniauth_info.email)
-           # elsif (omniauth_info.nickname.present?)
-             # User.find_by_twitter_username(omniauth_info.nickname)
-           end
+  # def self.find_for_omniauth(omniauth_response, signed_in_resource=nil)
+  #   FindUserForOmniauth.call(omniauth_response)
 
-    unless user # Create a user with a stub password.
-      user = User.new(:email => omniauth_info.email,
-                      :first_name => omniauth_info.first_name,
-                      :username => omniauth_info.nickname)
 
-      ### I need this logic to persist into the create user action somehow
-      if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
-        # omniauth_response.extra.raw_info.education.each do |education|
-        #   group = Group.find_by(name: education.school.name, kind: education.type)
-        #   if !group
-        #     new_group = user.groups.build(name: education.school.name, kind: education.type)
-        #     new_group.group_members.build(user_id: user.id)
-        #   elsif group && !group.group_members.where(user_id: user.id).exists?
-        #     group.group_members.build(user_id: user.id)
-        #   end
-        # end
-      end
-    end
-    user
+  #   # omniauth_info = omniauth_response.info
+  #   # user = if (omniauth_info.email.present?)
+  #   #          User.find_by_email(omniauth_info.email)
+  #   #        # elsif (omniauth_info.nickname.present?)
+  #   #          # User.find_by_twitter_username(omniauth_info.nickname)
+  #   #        end
 
-    # facebook
-    # omniauth_response.credentials.token
-    # returns access token
-    # omniauth_response.extra.raw_info.education.last.school.name
-    # => "University of Illinois Urbana-Champaign"
-    # omniauth_response.extra.raw_info.education.last.type
-    # => "College"
-    # how do I find fb friends as they sign up?
+  #   # unless user # Create a user with a stub password.
+  #   #   user = User.new(:email => omniauth_info.email,
+  #   #                   :first_name => omniauth_info.first_name,
+  #   #                   :username => omniauth_info.nickname)
 
-  end
+  #   #   ### I need this logic to persist into the create user action somehow
+  #   #   if omniauth_response.try(:extra).try(:raw_info).try(:education).present?
+  #   #     omniauth_response.extra.raw_info.education.each do |education|
+  #   #       group = Group.find_by(name: education.school.name, kind: education.type)
+  #   #       if !group
+  #   #         new_group = user.groups.build(name: education.school.name, kind: education.type)
+  #   #         new_group.group_members.build(user_id: user.id)
+  #   #       elsif group && !group.group_members.where(user_id: user.id).exists?
+  #   #         group.group_members.build(user_id: user.id)
+  #   #       end
+  #   #     end
+  #   #   end
+  #   # end
+  #   # user
+
+  #   # facebook
+  #   # omniauth_response.credentials.token
+  #   # returns access token
+  #   # omniauth_response.extra.raw_info.education.last.school.name
+  #   # => "University of Illinois Urbana-Champaign"
+  #   # omniauth_response.extra.raw_info.education.last.type
+  #   # => "College"
+  #   # how do I find fb friends as they sign up?
+
+  # end
 
   def self.new_with_session(params, session)
     if ((omniauth_data = session["devise.omniauth_data"].info) rescue nil)

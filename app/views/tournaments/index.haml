@@ -1,0 +1,4 @@
+%h2= I18n.t("tournaments.title")
+= link_to I18n.t("tournaments.create"), new_tournament_path
+- @tournaments.each do |tournament|
+  = tournament

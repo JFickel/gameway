@@ -1,6 +1,6 @@
 - if user_signed_in?
   .groups= I18n.t("navigation.groups")
-  .tournaments= I18n.t("navigation.tournaments")
+  .tournaments= link_to I18n.t("navigation.tournaments"), tournaments_path
   .edit_user_link= link_to(I18n.t("users.edit_profile"), edit_user_path(current_user))
   .logout_link= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
 - else

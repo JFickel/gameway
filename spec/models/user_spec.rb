@@ -10,7 +10,6 @@ describe User do
   end
 
   it "is invalid without a firstname" do
-    contact = FactoryGirl.build(:contact, firstname: nil) expect(contact).to have(1).errors_on(:firstname)
   end
 
   it "should store a first name" do

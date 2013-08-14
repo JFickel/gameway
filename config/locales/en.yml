@@ -25,6 +25,13 @@ en:
   navigation:
     groups: "Groups"
     tournaments: "Tournaments"
+  model:
+    create: "Create"
+    delete: "Delete"
+    update: "Update"
+  tournaments:
+    title: "Tournaments"
+    create: "Create Tournament"
   providers:
     facebook: "Facebook"
     twitch: "Twitch"

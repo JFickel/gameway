@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :group_members
   has_many :groups, through: :group_members
 
+  has_many :tournaments
+
   attr_accessor :login
   validates :username, presence: true
 

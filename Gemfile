@@ -15,6 +15,7 @@ gem 'devise', branch: 'rails4'
 # Postgres for heroku
 gem 'pg'
 
+
 # Using FB and twitch omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -64,6 +65,9 @@ group :development, :test do
   # gem 'capybara-webkit'
   gem 'launchy'
   gem 'pry-rails'
+
+  # Test coverage analysis
+  gem 'simplecov'
 end
 
 # Use ActiveModel has_secure_password

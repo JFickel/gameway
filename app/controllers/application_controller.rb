@@ -5,11 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  config.to_prepare do
-    Devise::SessionsController.skip_before_filter :authenticate_user, only: [:new]
-    Devise::RegistrationsController.skip_before_filter :authenticate_user, only: [:new]
-  end
-
   def after_sign_up_path_for(resource)
     redirect_to edit_user_path(current_user)
   end

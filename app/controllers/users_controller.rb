@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    user_params
     user = User.find(current_user)
-    if user.update_attributes(params[:user])
+    if user.update_attributes(user_params)
       redirect_to root_path
     else
       flash[:errors] = user.errors.full_messages

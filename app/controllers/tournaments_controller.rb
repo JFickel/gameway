@@ -10,12 +10,17 @@ class TournamentsController < ApplicationController
 
   def create
     tournament = Tournament.new(tournament_params)
+    tournament.user_id = current_user.id
     if tournament.save
       redirect_to tournaments_path
     else
       flash[:errors] = user.errors.full_messages
       redirect_to new_tournament_path
     end
+  end
+
+  def show
+    @tournament = Tournament.find(params[:id])
   end
 
   private

@@ -1,9 +1,21 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jamesfickel/Desktop/projects/gameway/app/models/tournament.rb": [
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/tournament_member.rb": [
         1,
         1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/models/tournament_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/user_spec.rb": [
@@ -11,6 +23,8 @@
         null,
         1,
         4,
+        2,
+        2,
         2,
         2,
         2,
@@ -31,6 +45,6 @@
         null
       ]
     },
-    "timestamp": 1376623979
+    "timestamp": 1378336719
   }
 }

@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+t = Tournament.create(title: "Open Starcraft 2 College Tournament",
+                  game: "Starcraft 2: Heart of the Swarm",
+                  start_time: Time.now + 45.seconds,
+                  user_id: 1)
+
+10.times do |i|
+  u = User.create(username: "test.username#{i}",
+              first_name: "first#{i}",
+              last_name: "last#{i}",
+              email: "example#{i}@example.com",
+              password: "password")
+  t.tournament_members << TournamentMember.new(user_id: u.id)
+end

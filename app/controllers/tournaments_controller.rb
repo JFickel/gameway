@@ -14,13 +14,14 @@ class TournamentsController < ApplicationController
     if tournament.save
       redirect_to tournaments_path
     else
-      flash[:errors] = user.errors.full_messages
+      flash[:alert] = user.errors.full_messages
       redirect_to new_tournament_path
     end
   end
 
   def show
     @tournament = Tournament.find(params[:id])
+    @tournament_member = TournamentMember.new
   end
 
   private

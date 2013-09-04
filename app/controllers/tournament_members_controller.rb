@@ -1,12 +1,12 @@
 class TournamentMembersController < ApplicationController
   def create
-    tm = TournamentMember.new(tournament_member_params)
-    tm.user_id = current_user.id
-    if tm.save
+    member = TournamentMember.new(tournament_member_params)
+    member.user_id = current_user.id
+    if member.save
       flash[:notice] = "Successfully signed up for tournament!"
       redirect_to request.referer
     else
-      flash[:errors] = tm.errors.full_messages
+      flash[:alert] = member.errors.full_messages
       redirect_to request.referer
     end
   end
@@ -14,6 +14,6 @@ class TournamentMembersController < ApplicationController
   private
 
   def tournament_member_params
-    params.permit(:tournament_id)
+    params.require(:tournament_member).permit(:tournament_id)
   end
 end

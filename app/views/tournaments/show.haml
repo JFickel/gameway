@@ -5,14 +5,17 @@
   = @tournament.game
   .start_time
   = @tournament.start_time
+.owner
   .owner_id
-  User Id:
-  = @tournament.user_id
+  Owner:
+  = @tournament.owner.username
+  - if @tournament.owner == current_user
+    = link_to "Manual Start", "#"
   .sign_up
   Sign up for dis tournament!
-  = form_tag('/tournament_members', method: 'post') do
-    = hidden_field_tag :tournament_id, @tournament.id
-    = submit_tag('Sign up')
+  = form_for @tournament_member do |f|
+    = f.hidden_field :tournament_id, value: @tournament.id
+    = f.submit('Sign up')
 
 .tournament_members
   - @tournament.users.each do |u|

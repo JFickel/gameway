@@ -5,6 +5,8 @@ describe User do
   it { should validate_presence_of(:email)}
   it { should validate_presence_of(:password)}
   it { should have_many(:tournaments)}
+  it { should have_many(:tournament_members)}
+  it { should have_many(:owned_tournaments)}
 
   it 'should have a valid factory' do
     expect(user).to be_valid

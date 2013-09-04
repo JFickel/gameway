@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :group_members
   has_many :groups, through: :group_members
 
-  has_many :tournaments
+  has_many :owned_tournaments, foreign_key: 'user_id', class_name: Tournament
+  has_many :tournament_members
+  has_many :tournaments, through: :tournament_members
 
   attr_accessor :login
   validates :username, presence: true

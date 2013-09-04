@@ -10,3 +10,13 @@
   = @tournament.user_id
   .sign_up
   Sign up for dis tournament!
+  = form_tag('/tournament_members', method: 'post') do
+    = hidden_field_tag :tournament_id, @tournament.id
+    = submit_tag('Sign up')
+
+.tournament_members
+  - @tournament.users.each do |u|
+    .username
+    = u.username
+    .email
+    = u.email

@@ -4,7 +4,9 @@ Gameway::Application.routes.draw do
 
   resources :users
   resources :tournaments
+  resources :tournament_members
   root to: "home#index"
+
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"

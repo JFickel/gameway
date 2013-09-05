@@ -13,6 +13,7 @@ class Tournament < ActiveRecord::Base
     end
     self.bracket = Array.new(slots)
     initialize_bracket
+    self.save
   end
 
   def initialize_bracket

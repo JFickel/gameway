@@ -24,6 +24,14 @@ class TournamentsController < ApplicationController
     @tournament_member = TournamentMember.new
   end
 
+  def update
+    tournament = Tournament.find(params[:id])
+    if params[:start]
+      tournament.start
+    end
+    redirect_to request.referer
+  end
+
   private
 
   def tournament_params

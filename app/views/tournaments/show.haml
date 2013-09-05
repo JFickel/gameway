@@ -10,7 +10,7 @@
   Owner:
   = @tournament.owner.username
   - if @tournament.owner == current_user
-    = link_to "Manual Start", "#"
+    = button_to "Manual Start", tournament_path(@tournament, start: true), method: :put
   .sign_up
   Sign up for dis tournament!
   = form_for @tournament_member do |f|
@@ -23,3 +23,6 @@
     = u.username
     .email
     = u.email
+
+.bracket
+  = @tournament.bracket

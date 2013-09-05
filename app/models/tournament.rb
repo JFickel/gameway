@@ -25,7 +25,7 @@ class Tournament < ActiveRecord::Base
     filter_slots = tournament_members.count - after_filter_slots
     initial_round_size = filter_slots * 2
     self.bracket[0..initial_round_size-1] = tournament_members.first(initial_round_size)
-    skip = (2**rounds) - 1 + filter_slots
-    self.bracket[skip..(after_filter_slots - filter_slots)] = tournament_members[initial_round_size-1..-1]
+    skip = (2**rounds) + filter_slots
+    self.bracket[skip..(after_filter_slots - filter_slots)] = tournament_members[initial_round_size..-1]
   end
 end

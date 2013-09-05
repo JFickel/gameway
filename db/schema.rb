@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20130903234905) do
     t.string   "title"
     t.string   "game"
     t.datetime "start_time"
+    t.text     "bracket"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -24,5 +24,9 @@
     .email
     = u.email
 
+.bracket_data
+  = @tournament.bracket.map {|a| a.map {|i| i.id if i.class == TournamentMember } }.to_json
+
 .bracket
-  = @tournament.bracket
+  .bracket_headers
+

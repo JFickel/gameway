@@ -1,16 +1,10 @@
-- if user_signed_in?
-  .groups= I18n.t("navigation.groups")
-  .tournaments= link_to I18n.t("navigation.tournaments"), tournaments_path
-  .edit_user_link= link_to(I18n.t("users.edit_profile"), edit_user_path(current_user))
-  .logout_link= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
-- else
-  = form_tag user_session_path do
-    .login_elements
-      .login_username= I18n.t("users.username_or_email")
-      .login_username_field= text_field_tag 'user[login]'
-      .login_password= I18n.t("users.password")
-      .login_password_field= password_field_tag 'user[password]'
-      .login_remember_me_box= check_box_tag 'user[remember_me]'
-      .login_remember_me_label= label_tag 'user[remember_me]', I18n.t("users.remember_me")
-      %button.sign_in.btn.btn-primary= I18n.t("users.sign_in")
-      .forgot_password= link_to "Forgot your password?", new_password_path('user')
+= form_tag user_session_path do
+  .login_elements
+    .login_username= I18n.t("users.username_or_email")
+    .login_username_field= text_field_tag 'user[login]'
+    .login_password= I18n.t("users.password")
+    .login_password_field= password_field_tag 'user[password]'
+    .login_remember_me_box= check_box_tag 'user[remember_me]'
+    .login_remember_me_label= label_tag 'user[remember_me]', I18n.t("users.remember_me")
+    %button.sign_in.btn.btn-primary= I18n.t("users.sign_in")
+    .forgot_password= link_to "Forgot your password?", new_password_path('user')

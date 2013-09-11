@@ -3,6 +3,7 @@ Gameway::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
 
   resources :users
+  resources :groups
   resources :tournaments
   resources :tournament_members
   root to: "home#index"

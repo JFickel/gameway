@@ -21,11 +21,24 @@ $ ->
 
   console.log $('.bracket').children()
 
-
   $.each bracket, (bracket_index, bracket_value) ->
     $('.bracket').append("<div class='round #{bracket_value.length}'></div>")
     $.each bracket_value, (array_index, array_value) ->
       $(".round.#{bracket_value.length}").append "<div class=slot>#{array_value}</div>"
+
+  advance = (current_position) ->
+    return [current_position[0] + 1, Math.floor(current_position[1]/2)]
+
+  currentUserId = parseInt($('.current_user_id').text())
+
+  $.each bracket, (bracketIndex, bracketValue) ->
+    $.each bracketValue, (arrayIndex, arrayValue) ->
+      if arrayValue == currentUserId
+        window.currentUserPosition = [bracketIndex, arrayIndex]
+
+  console.log currentUserPosition
+
+
 
 
 

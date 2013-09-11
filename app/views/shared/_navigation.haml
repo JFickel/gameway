@@ -1,3 +1,9 @@
 %ul.nav
   %h1.logo= link_to("gameway", root_path)
-  = render 'devise/menu/login_items'
+  - if user_signed_in?
+    .groups= link_to I18n.t("navigation.groups"), groups_path
+    .tournaments= link_to I18n.t("navigation.tournaments"), tournaments_path
+    .edit_user_link= link_to(I18n.t("users.edit_profile"), edit_user_path(current_user))
+    .logout_link= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
+  - else
+    = render 'devise/menu/login_items'

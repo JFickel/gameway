@@ -27,6 +27,9 @@
 .bracket_data
   = @tournament.bracket.map {|a| a.map {|i| i.id if i.class == TournamentMember } }.to_json
 
+.current_user_id
+  = current_user.id
+
 .bracket
   .bracket_headers
 

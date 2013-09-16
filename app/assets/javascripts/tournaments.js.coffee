@@ -21,13 +21,24 @@ $ ->
 
   console.log $('.bracket').children()
 
+  output = ""
   $.each bracket, (bracket_index, bracket_value) ->
-    $('.bracket').append("<div class='round #{bracket_value.length}'></div>")
+    output += "<ul class='round round-#{bracket_value.length}'>"
     $.each bracket_value, (array_index, array_value) ->
-      $(".round.#{bracket_value.length}").append "<div class=slot>#{array_value}</div>"
+      if array_index % 2 == 0
+        output_class = ""
+        if array_index == 0
+          output_class = " first"
+        output += "<li class='pair#{array_index/2}#{output_class}'>"
+      output += "<div class='slot'>#{array_value}</div>"
+      if array_index % 2 == 1
+        output += "</li>"
+    output += "</ul>"
+    $(".bracket").append output
+    output = ""
 
-  advance = (current_position) ->
-    return [current_position[0] + 1, Math.floor(current_position[1]/2)]
+  advance = (currentPosition) ->
+    return [currentPosition[0] + 1, Math.floor(currentPosition[1]/2)]
 
   currentUserId = parseInt($('.current_user_id').text())
 
@@ -37,8 +48,21 @@ $ ->
         window.currentUserPosition = [bracketIndex, arrayIndex]
 
   console.log currentUserPosition
+  console.log currentUserId
 
+  isEven = (n) ->
+    return true if n % 2 == 0
 
+  if isEven(currentUserPosition[1])
+    window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] + 1]
+  else
+    window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] - 1]
+
+  currentOpponentId = bracket[currentOpponentPosition[0]][currentOpponentPosition[1]]
+
+  console.log currentOpponentPosition
+  console.log currentOpponentId
+  console.log advance([0,3])
 
 
 

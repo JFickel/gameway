@@ -21,7 +21,7 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
-    @tournament_member = TournamentMember.new
+    @tournament_membership = TournamentMembership.new
   end
 
   def update

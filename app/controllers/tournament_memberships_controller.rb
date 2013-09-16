@@ -1,6 +1,6 @@
-class TournamentMembersController < ApplicationController
+class TournamentMembershipsController < ApplicationController
   def create
-    member = TournamentMember.new(tournament_member_params)
+    member = TournamentMembership.new(tournament_membership_params)
     member.user_id = current_user.id
     if member.save
       flash[:notice] = "Successfully signed up for tournament!"
@@ -13,7 +13,7 @@ class TournamentMembersController < ApplicationController
 
   private
 
-  def tournament_member_params
-    params.require(:tournament_member).permit(:tournament_id)
+  def tournament_membership_params
+    params.require(:tournament_membership).permit(:tournament_id)
   end
 end

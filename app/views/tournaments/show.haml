@@ -13,7 +13,7 @@
     = button_to "Manual Start", tournament_path(@tournament, start: true), method: :put
   .sign_up
   Sign up for dis tournament!
-  = form_for @tournament_member do |f|
+  = form_for @tournament_membership do |f|
     = f.hidden_field :tournament_id, value: @tournament.id
     = f.submit('Sign up')
 
@@ -25,9 +25,15 @@
     = u.email
 
 .bracket_data
-  = @tournament.bracket.map {|a| a.map {|i| i.id if i.class == TournamentMember } }.to_json
+  - if @tournament.started?
+    = @tournament.matches
+
+.bracket_crap
+  BRACKET:
+  = @tournament.bracket.map {|round| round.map {|match| match.users.map {|user| user.username } if match != nil }}.to_json
 
 .current_user_id
+  CURR USER:
   = current_user.id
 
 .bracket

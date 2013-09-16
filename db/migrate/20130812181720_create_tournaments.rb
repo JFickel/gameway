@@ -6,6 +6,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.datetime :start_time
       t.text :bracket
       t.belongs_to :user
+      t.boolean :started
       t.timestamps
     end
   end

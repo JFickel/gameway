@@ -16,5 +16,5 @@ t = Tournament.create(title: "Open Starcraft 2 College Tournament",
               last_name: "last#{i}",
               email: "example#{i}@example.com",
               password: "password")
-  t.tournament_members << TournamentMember.new(user_id: u.id)
+  t.tournament_memberships << TournamentMembership.new(user_id: u.id)
 end

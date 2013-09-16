@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903234905) do
+ActiveRecord::Schema.define(version: 20130915203218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 20130903234905) do
     t.string "kind"
   end
 
+  create_table "matches", force: true do |t|
+    t.integer  "tournament_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
     t.string   "username"
@@ -47,7 +53,19 @@ ActiveRecord::Schema.define(version: 20130903234905) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
-  create_table "tournament_members", force: true do |t|
+  create_table "team_showings", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "match_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tournament_memberships", force: true do |t|
     t.integer  "tournament_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -60,6 +78,14 @@ ActiveRecord::Schema.define(version: 20130903234905) do
     t.datetime "start_time"
     t.text     "bracket"
     t.integer  "user_id"
+    t.boolean  "started"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_showings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "match_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

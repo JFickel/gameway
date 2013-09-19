@@ -29,14 +29,14 @@ $ ->
         output_class = " first"
       output += "<li class='pair#{array_index/2}#{output_class}'>"
       console.log array_value
-      if bracket_value.length == 1
+      if bracket_index == bracket.length - 1
         output += "<div> Winner </div>"
-      else if bracket_value.length == 2
+      else if bracket_value.length == 1
         output += "<div> Finals </div>"
-      else if bracket_value.length == 4
+      else if bracket_value.length == 2
         output += "<div> Semi-Finals </div>"
       else
-        output += "<div> Ro#{bracket_value.length} Match #{array_index+1} </div>"
+        output += "<div> Ro#{bracket_value.length*2} Match #{array_index+1} </div>"
       if array_value != null
         $.each array_value, (user_index, user_value) ->
           output += "<div class='slot'>#{user_value}</div>"

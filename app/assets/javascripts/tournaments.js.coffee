@@ -23,16 +23,24 @@ $ ->
 
   output = ""
   $.each bracket, (bracket_index, bracket_value) ->
-    output += "<ul class='round round-#{bracket_value.length}'>"
+    output += "<ul class='round round-#{bracket_value.length*2}'>"
     $.each bracket_value, (array_index, array_value) ->
-      if array_index % 2 == 0
-        output_class = ""
-        if array_index == 0
-          output_class = " first"
-        output += "<li class='pair#{array_index/2}#{output_class}'>"
-      output += "<div class='slot'>#{array_value}</div>"
-      if array_index % 2 == 1
-        output += "</li>"
+      if array_index == 0
+        output_class = " first"
+      output += "<li class='pair#{array_index/2}#{output_class}'>"
+      console.log array_value
+      if bracket_value.length == 1
+        output += "<div> Winner </div>"
+      else if bracket_value.length == 2
+        output += "<div> Finals </div>"
+      else if bracket_value.length == 4
+        output += "<div> Semi-Finals </div>"
+      else
+        output += "<div> Ro#{bracket_value.length} Match #{array_index+1} </div>"
+      if array_value != null
+        $.each array_value, (user_index, user_value) ->
+          output += "<div class='slot'>#{user_value}</div>"
+      output += "</li>"
     output += "</ul>"
     $(".bracket").append output
     output = ""

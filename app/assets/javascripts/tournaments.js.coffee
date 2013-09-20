@@ -8,27 +8,16 @@ $ ->
   log2 = (val) ->
     Math.log(val) / Math.log 2
 
-  console.log bracket
-  $.each bracket, (i, val) ->
-    if val.length == 1
-      $('.bracket_headers').append "<th>--- Winner ---</th>"
-    else if val.length == 2
-      $('.bracket_headers').append "<th>--- Finals ---</th>"
-    else if val.length == 4
-      $('.bracket_headers').append "<th>--- Semi-Finals ---</th>"
-    else
-      $('.bracket_headers').append "<th>--- Round of #{val.length} ---</th>"
-
-  console.log $('.bracket').children()
-
   output = ""
   $.each bracket, (bracket_index, bracket_value) ->
-    output += "<ul class='round round-#{bracket_value.length*2}'>"
+    if bracket_index == bracket.length-1
+      output += "<ul class='round winner'>"
+    else
+      output += "<ul class='round round-#{bracket_value.length*2}'>"
     $.each bracket_value, (array_index, array_value) ->
       if array_index == 0
         output_class = " first"
       output += "<li class='pair#{array_index/2}#{output_class}'>"
-      console.log array_value
       if bracket_index == bracket.length - 1
         output += "<div> Winner </div>"
       else if bracket_value.length == 1
@@ -45,32 +34,52 @@ $ ->
     $(".bracket").append output
     output = ""
 
-  advance = (currentPosition) ->
-    return [currentPosition[0] + 1, Math.floor(currentPosition[1]/2)]
 
-  currentUserId = parseInt($('.current_user_id').text())
+  pairHeight = 50
+  pairPadding = [10, 35]
+  pairWidth = 100
+  pairBorder = 1
 
-  $.each bracket, (bracketIndex, bracketValue) ->
-    $.each bracketValue, (arrayIndex, arrayValue) ->
-      if arrayValue == currentUserId
-        window.currentUserPosition = [bracketIndex, arrayIndex]
+  pairTotalHeight = pairHeight + (2*pairPadding[0]) + 2*pairBorder
 
-  console.log currentUserPosition
-  console.log currentUserId
+  $.each bracket, (bracket_index, bracket_value) ->
+    marginTop = (Math.pow(2, bracket_index-1)*pairTotalHeight) - pairTotalHeight/2
+    marginBottom = 2*marginTop
+    if bracket_index == bracket.length - 1
+      marginTop = (Math.pow(2, bracket_index-2)*pairTotalHeight) - pairTotalHeight/2
+      marginBottom = 2*marginTop
+      $(".winner").css('margin-top', "#{marginTop}px")
+    else
+      $(".round-#{bracket_value.length*2}").css('margin-top', "#{marginTop}px")
 
-  isEven = (n) ->
-    return true if n % 2 == 0
 
-  if isEven(currentUserPosition[1])
-    window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] + 1]
-  else
-    window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] - 1]
 
-  currentOpponentId = bracket[currentOpponentPosition[0]][currentOpponentPosition[1]]
+  # advance = (currentPosition) ->
+  #   return [currentPosition[0] + 1, Math.floor(currentPosition[1]/2)]
 
-  console.log currentOpponentPosition
-  console.log currentOpponentId
-  console.log advance([0,3])
+  # currentUserId = parseInt($('.current_user_id').text())
+
+  # $.each bracket, (bracketIndex, bracketValue) ->
+  #   $.each bracketValue, (arrayIndex, arrayValue) ->
+  #     if arrayValue == currentUserId
+  #       window.currentUserPosition = [bracketIndex, arrayIndex]
+
+  # console.log currentUserPosition
+  # console.log currentUserId
+
+  # isEven = (n) ->
+  #   return true if n % 2 == 0
+
+  # if isEven(currentUserPosition[1])
+  #   window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] + 1]
+  # else
+  #   window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] - 1]
+
+  # currentOpponentId = bracket[currentOpponentPosition[0]][currentOpponentPosition[1]]
+
+  # console.log currentOpponentPosition
+  # console.log currentOpponentId
+  # console.log advance([0,3])
 
 
 

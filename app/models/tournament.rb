@@ -42,4 +42,7 @@ class Tournament < ActiveRecord::Base
                                               self.matches << m
                                             end
   end
+
+  def advance
+  end
 end

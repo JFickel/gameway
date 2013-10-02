@@ -17,7 +17,8 @@ $ ->
     $.each bracket_value, (array_index, array_value) ->
       if array_index == 0
         output_class = " first"
-      output += "<li class='pair#{array_index/2}#{output_class}'>"
+      output += "<li class='#{output_class}'>"
+      output += "<div class='match'>"
       if bracket_index == bracket.length - 1
         output += "<div> Winner </div>"
       else if bracket_value.length == 1
@@ -29,6 +30,7 @@ $ ->
       if array_value != null
         $.each array_value, (user_index, user_value) ->
           output += "<div class='slot'>#{user_value}</div>"
+      output += "</div>"
       output += "</li>"
     output += "</ul>"
     $(".bracket").append output
@@ -38,11 +40,16 @@ $ ->
   pairHeight = 50
   pairPadding = [10, 35]
   pairWidth = 100
-  pairBorder = 1
+  pairBorder = 0
 
   pairTotalHeight = pairHeight + (2*pairPadding[0]) + 2*pairBorder
 
   $.each bracket, (bracket_index, bracket_value) ->
+    if bracket_index == 0
+      $(".round-#{bracket_value.length*2} li").css('border-top', "0px")
+      $(".round-#{bracket_value.length*2} li.first").css('border-top', "1px solid black")
+
+
     marginTop = (Math.pow(2, bracket_index-1)*pairTotalHeight) - pairTotalHeight/2
     marginBottom = 2*marginTop
     if bracket_index == bracket.length - 1
@@ -51,6 +58,25 @@ $ ->
       $(".winner").css('margin-top', "#{marginTop}px")
     else
       $(".round-#{bracket_value.length*2}").css('margin-top', "#{marginTop}px")
+      $(".round-#{bracket_value.length*2} li").css('margin-bottom', "#{marginBottom}px")
+
+    if bracket_index > 1 && bracket_index != bracket.length - 1
+      correctedHeight = (Math.pow(2, bracket_index-1)*50)
+      correctedPadding = (Math.pow(2, bracket_index-1)*10)
+      console.log bracket_index
+      if bracket_index-2 > 0
+        marginTop -= Math.pow(2, bracket_index-3)*pairTotalHeight
+        marginBottom -= Math.pow(2, bracket_index-3)*pairTotalHeight*2
+
+
+      marginTop -= pairTotalHeight/2
+      marginBottom -= pairTotalHeight
+      $(".round-#{bracket_value.length*2}").css('margin-top', "#{marginTop}px")
+      $(".round-#{bracket_value.length*2} li").css('margin-bottom', "#{marginBottom}px")
+
+      $(".round-#{bracket_value.length*2} li").css('height', "#{correctedHeight}px")
+      $(".round-#{bracket_value.length*2} li").css('padding', "#{correctedPadding}px 35px")
+
 
 
 

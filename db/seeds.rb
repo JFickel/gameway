@@ -10,7 +10,7 @@ t = Tournament.create(title: "Open Starcraft 2 College Tournament",
                   start_time: Time.now + 45.seconds,
                   user_id: 1)
 
-30.times do |i|
+128.times do |i|
   u = User.create(username: "test.username#{i}",
               first_name: "first#{i}",
               last_name: "last#{i}",

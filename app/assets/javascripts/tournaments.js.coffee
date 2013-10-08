@@ -29,7 +29,7 @@ $ ->
         output += "<div> Ro#{bracket_value.length*2} Match #{array_index+1} </div>"
       if array_value != null
         $.each array_value, (user_index, user_value) ->
-          output += "<div class='slot'>#{user_value}</div>"
+          output += "<button class='slot'>#{user_value}</div>"
       output += "</div>"
       output += "</li>"
     output += "</ul>"
@@ -40,13 +40,13 @@ $ ->
   pairHeight = 50
   pairPadding = [10, 35]
   pairWidth = 100
-  pairBorder = 0
+  pairBorder = 1
 
   pairTotalHeight = pairHeight + (2*pairPadding[0]) + 2*pairBorder
 
   $.each bracket, (bracket_index, bracket_value) ->
     if bracket_index == 0
-      $(".round-#{bracket_value.length*2} li").css('border-top', "0px")
+      $(".round-#{bracket_value.length*2} li").css('border-top', "1px solid white")
       $(".round-#{bracket_value.length*2} li.first").css('border-top', "1px solid black")
 
 
@@ -62,15 +62,17 @@ $ ->
 
     if bracket_index > 1 && bracket_index != bracket.length - 1
       correctedHeight = (Math.pow(2, bracket_index-1)*50)
-      correctedPadding = (Math.pow(2, bracket_index-1)*10)
       console.log bracket_index
-      if bracket_index-2 > 0
-        marginTop -= Math.pow(2, bracket_index-3)*pairTotalHeight
-        marginBottom -= Math.pow(2, bracket_index-3)*pairTotalHeight*2
+      correctedPadding = (Math.pow(2, bracket_index-1)*10)+(Math.pow(2, bracket_index-1)-1)
+      console.log correctedHeight
+      console.log correctedPadding
+      if bracket_index-1 > 0
+        marginTop = Math.pow(2, bracket_index-2)*pairTotalHeight
+        marginBottom = Math.pow(2, bracket_index-2)*pairTotalHeight*2
 
+      # marginTop -= pairTotalHeight/2
+      # marginBottom -= pairTotalHeight
 
-      marginTop -= pairTotalHeight/2
-      marginBottom -= pairTotalHeight
       $(".round-#{bracket_value.length*2}").css('margin-top', "#{marginTop}px")
       $(".round-#{bracket_value.length*2} li").css('margin-bottom', "#{marginBottom}px")
 

@@ -26,6 +26,9 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
+    if params[:position]
+      tournament.advance(params[:position].map{|e| e.to_i })
+    end
     if params[:start]
       tournament.start
     end

@@ -31,13 +31,15 @@
   - if @tournament.started?
     = @tournament.bracket.map {|round| round.map {|match| match.users.map {|user| user.username } if match != nil }}.to_json
 
-.bracket_crap
-  BRACKET:
-
 .current_user_id
   CURR USER:
   = current_user.id
 
+.update_path
+  = request.env["REQUEST_URI"]
+
+
 .bracket
-  .bracket_headers
+
+
 

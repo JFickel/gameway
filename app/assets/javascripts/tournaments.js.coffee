@@ -4,6 +4,7 @@
 $ ->
   $('.bracket_data').hide()
   bracket = JSON.parse($('.bracket_data').text())
+  console.log bracket
 
   log2 = (val) ->
     Math.log(val) / Math.log 2
@@ -29,7 +30,7 @@ $ ->
         output += "<div> Ro#{bracket_value.length*2} Match #{array_index+1} </div>"
       if array_value != null
         $.each array_value, (user_index, user_value) ->
-          output += "<button class='slot'>#{user_value}</div>"
+          output += "<button class='slot' data-position='[#{bracket_index},#{array_index},#{user_index}]'>#{user_value}</div>"
       output += "</div>"
       output += "</li>"
     output += "</ul>"
@@ -79,7 +80,14 @@ $ ->
       $(".round-#{bracket_value.length*2} li").css('height', "#{correctedHeight}px")
       $(".round-#{bracket_value.length*2} li").css('padding', "#{correctedPadding}px 35px")
 
-
+  $('.bracket').on('click', 'button.slot', () ->
+    $.ajax(
+      method: 'PUT'
+      url: $('.update_path').text()
+      data:
+        position: $(this).data('position')
+    )
+  )
 
 
   # advance = (currentPosition) ->

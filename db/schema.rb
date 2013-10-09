@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20130915203218) do
   create_table "user_showings", force: true do |t|
     t.integer  "user_id"
     t.integer  "match_id"
+    t.boolean  "top"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

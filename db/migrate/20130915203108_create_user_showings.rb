@@ -3,6 +3,7 @@ class CreateUserShowings < ActiveRecord::Migration
     create_table :user_showings do |t|
       t.belongs_to :user
       t.belongs_to :match
+      t.boolean :top
       t.timestamps
     end
   end

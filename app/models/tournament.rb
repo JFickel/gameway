@@ -30,19 +30,20 @@ class Tournament < ActiveRecord::Base
 
     self.bracket[0][0..((initial_round_size/2)-1)] =  tournament_memberships.first(initial_round_size).each_slice(2).with_object([]) do |pair,obj|
                                                         m = Match.create
-                                                        m.user_showings.push(UserShowing.new(user_id: pair[0].user_id), UserShowing.new(user_id: pair[1].user_id))
+                                                        m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
                                                         obj << m
                                                         self.matches << m
                                                       end
 
     self.bracket[1][(filter_slots/2)..-1] = tournament_memberships[initial_round_size..-1].each_slice(2).with_object([]) do |pair,obj|
                                               m = Match.create
-                                              m.user_showings.push UserShowing.new(user_id: pair[0].user_id), UserShowing.new(user_id: pair[1].user_id)
+                                              m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
                                               obj << m
                                               self.matches << m
                                             end
   end
 
-  def advance
+  def advance position
+
   end
 end

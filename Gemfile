@@ -15,7 +15,6 @@ gem 'devise', branch: 'rails4'
 # Postgres for heroku
 gem 'pg'
 
-
 # Using FB and twitch omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -39,7 +38,9 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
-gem 'rails_12factor', group: :production
+group :production, :staging do
+  gem 'rails_12factor'
+end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

@@ -17,11 +17,6 @@ class FindUserForOmniauth
   end
 
   def find!
-    puts omniauth_info.inspect
-    puts "HELLO"
-    puts omniauth_info.email
-    puts "HELLO"
-    puts omniauth_education_info.inspect
     @user = User.find_by_email(omniauth_info.email) and return @user
 
     @user = User.new(

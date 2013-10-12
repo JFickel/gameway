@@ -37,13 +37,46 @@ class Tournament < ActiveRecord::Base
 
     self.bracket[1][(filter_slots/2)..-1] = tournament_memberships[initial_round_size..-1].each_slice(2).with_object([]) do |pair,obj|
                                               m = Match.create
-                                              m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+                                              unless pair.length == 1
+                                                m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+                                              else
+                                                m.user_showings.push UserShowing.new(user_id: pair[0].user_id)
+                                              end
                                               obj << m
                                               self.matches << m
                                             end
   end
 
   def advance position
+    ## Find the correct match
+    match = self.bracket[position[0]][position[1]]
 
+    ## Find the user depending on whether he's on top of the pair or not
+    if position[2] == 1
+      us = match.user_showings.find {|us| us.top == nil }
+      user = User.find(us.user_id)
+    else
+      us = match.user_showings.find {|us| us.top == true }
+      user = User.find(us.user_id)
+    end
+
+    ## Create a new user showing and place him on top if his index is even
+    if position[0][1].even?
+      new_showing = UserShowing.new(user: user, top: true)
+    else
+      new_showing = UserShowing.new(user: user)
+    end
+
+    ## Place the new user showing the correct position
+    new_match = self.bracket[position[0]+1][position[0][1]/2]
+    if new_match.nil?
+      m = Match.create
+      m.user_showings.push new_showing
+      self.bracket[position[0]+1][position[0][1]/2] = m
+      self.matches << m
+    else
+      new_match.user_showings.push new_showing
+    end
+    self.save
   end
 end

@@ -82,47 +82,10 @@ $ ->
 
   $('.bracket').on('click', 'button.slot', () ->
     $.ajax(
-      method: 'PUT'
+      type: 'PUT'
       url: $('.update_path').text()
       data:
         position: $(this).data('position')
     )
   )
-
-
-  # advance = (currentPosition) ->
-  #   return [currentPosition[0] + 1, Math.floor(currentPosition[1]/2)]
-
-  # currentUserId = parseInt($('.current_user_id').text())
-
-  # $.each bracket, (bracketIndex, bracketValue) ->
-  #   $.each bracketValue, (arrayIndex, arrayValue) ->
-  #     if arrayValue == currentUserId
-  #       window.currentUserPosition = [bracketIndex, arrayIndex]
-
-  # console.log currentUserPosition
-  # console.log currentUserId
-
-  # isEven = (n) ->
-  #   return true if n % 2 == 0
-
-  # if isEven(currentUserPosition[1])
-  #   window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] + 1]
-  # else
-  #   window.currentOpponentPosition = [currentUserPosition[0], currentUserPosition[1] - 1]
-
-  # currentOpponentId = bracket[currentOpponentPosition[0]][currentOpponentPosition[1]]
-
-  # console.log currentOpponentPosition
-  # console.log currentOpponentId
-  # console.log advance([0,3])
-
-
-
-
-
-
-
-
-
 

@@ -26,13 +26,17 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
-    if params[:position]
-      tournament.advance(params[:position].map{|e| e.to_i })
-    end
+
     if params[:start]
       tournament.start
+    elsif params[:position]
+      tournament.advance(params[:position].map{|e| e.to_i })
     end
-    redirect_to request.referer
+
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.json { render :json => tournament.bracket.map {|round| round.map {|match| match.users.map {|user| user.username } if match != nil }}.to_json }
+    end
   end
 
   private

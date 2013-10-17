@@ -1,10 +1,14 @@
 = form_tag user_session_path do
-  .login_elements
-    .login_username= I18n.t("users.username_or_email")
-    .login_username_field= text_field_tag 'user[login]'
-    .login_password= I18n.t("users.password")
-    .login_password_field= password_field_tag 'user[password]'
-    .login_remember_me_box= check_box_tag 'user[remember_me]'
-    .login_remember_me_label= label_tag 'user[remember_me]', I18n.t("users.remember_me")
-    %button.sign_in.btn.btn-primary= I18n.t("users.sign_in")
-    .forgot_password= link_to "Forgot your password?", new_password_path('user')
+  %ul.login_elements
+    %li
+      %ul.first-tier
+        %li= text_field_tag 'user[login]', nil, placeholder: I18n.t("users.username_or_email"), class: 'signin-input'
+        %li= password_field_tag 'user[password]', nil, placeholder: I18n.t("users.password"), class: 'signin-input'
+        %li
+          %button.signin-btn= I18n.t("users.sign_in")
+    %li
+      %ul.second-tier
+        / %li= label_tag 'user[remember_me]', I18n.t("users.remember_me")
+        / %li= check_box_tag 'user[remember_me]'
+        %li= link_to "Forgot your password?", new_password_path('user')
+

@@ -1,6 +1,6 @@
 $ ->
   $('.bracket_data').hide()
-  bracket = JSON.parse($('.bracket_data').text())
+  bracketJSON = JSON.parse($('.bracket_data').text())
 
   renderBracket = (bracket) ->
     output = ""
@@ -68,7 +68,7 @@ $ ->
         $(".round-#{bracket_value.length*2} li").css('height', "#{correctedHeight}px")
         $(".round-#{bracket_value.length*2} li").css('padding', "#{correctedPadding}px 35px")
 
-  renderBracket(bracket)
+  renderBracket(bracketJSON)
 
   $('.bracket').on('click', 'button.slot', () ->
     $.ajax(

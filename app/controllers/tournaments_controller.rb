@@ -35,7 +35,7 @@ class TournamentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to request.referer }
-      format.json { render :json => tournament.bracket.map {|round| round.map {|match| match.users.map {|user| user.username } if match != nil }}.to_json }
+      format.json { render :json => tournament.bracket.map {|round| round.map {|match| match.user_showings.sort_by {|us| us.top ? 0 : 1 }.map {|us| us.user.username } if match != nil }}.to_json }
     end
   end
 

@@ -61,18 +61,18 @@ class Tournament < ActiveRecord::Base
     end
 
     ## Create a new user showing and place him on top if his index is even
-    if position[0][1].even?
+    if position[1].even?
       new_showing = UserShowing.new(user: user, top: true)
     else
       new_showing = UserShowing.new(user: user)
     end
 
     ## Place the new user showing the correct position
-    new_match = self.bracket[position[0]+1][position[0][1]/2]
+    new_match = self.bracket[position[0]+1][position[1]/2]
     if new_match.nil?
       m = Match.create
       m.user_showings.push new_showing
-      self.bracket[position[0]+1][position[0][1]/2] = m
+      self.bracket[position[0]+1][position[1]/2] = m
       self.matches << m
     else
       new_match.user_showings.push new_showing

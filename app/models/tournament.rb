@@ -35,16 +35,28 @@ class Tournament < ActiveRecord::Base
                                                         self.matches << m
                                                       end
 
-    self.bracket[1][(filter_slots/2)..-1] = tournament_memberships[initial_round_size..-1].each_slice(2).with_object([]) do |pair,obj|
-                                              m = Match.create
-                                              unless pair.length == 1
-                                                m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
-                                              else
-                                                m.user_showings.push UserShowing.new(user_id: pair[0].user_id)
-                                              end
-                                              obj << m
-                                              self.matches << m
-                                            end
+    if tournament_memberships[initial_round_size..-1].length.odd?
+      after_filter_round = []
+      m = Match.create
+      m.user_showings.push UserShowing.new(user_id: tournament_memberships[initial_round_size..-1].first.user_id)
+      after_filter_round << m
+      self.matches << m
+
+      tournament_memberships[initial_round_size+1..-1].each_slice(2) do |pair|
+        m = Match.create
+        m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+        after_filter_round << m
+        self.matches << m
+      end
+      self.bracket[1][(filter_slots/2)..-1] = after_filter_round
+    else
+      self.bracket[1][(filter_slots/2)..-1] = tournament_memberships[initial_round_size..-1].each_slice(2).with_object([]) do |pair,obj|
+        m = Match.create
+        m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+        obj << m
+        self.matches << m
+      end
+    end
   end
 
   def advance position

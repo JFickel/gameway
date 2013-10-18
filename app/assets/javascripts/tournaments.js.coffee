@@ -84,7 +84,7 @@ $ ->
   )
 
   $('.bracket').on('click', '.delete-slot', () ->
-    if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('destroy')[0]+1} Match-#{$(this).data('destroy')[1]+1} #{$(this).data('username')}"
+    if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('destroy')[0]+1} Match-#{$(this).data('destroy')[1]+1} #{$(this).data('username')}. This action is NOT reversible."
       $.ajax(
         type: 'PUT'
         url: $('.update_path').text()

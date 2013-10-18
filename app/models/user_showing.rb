@@ -18,7 +18,7 @@ class UserShowing < ActiveRecord::Base
   end
 
   def cannot_advance_both_players_from_the_same_match
-    if UserShowing.where(user_id: user_id).last.match.user_showings.select {|last_us| match.user_showings.any? { |us| last_us.user_id == us.user_id }  }.length > 0
+    if !UserShowing.where(user_id: user_id).last.nil? && UserShowing.where(user_id: user_id).last.match.user_showings.select {|last_us| match.user_showings.any? { |us| last_us.user_id == us.user_id }  }.length > 0
       errors.add(:user_showing, "can't have both players from the same previous match advance")
     end
   end

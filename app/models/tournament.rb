@@ -79,4 +79,20 @@ class Tournament < ActiveRecord::Base
     end
     self.save
   end
+
+  def destroy position
+    match = self.bracket[position[0]][position[1]]
+
+    if position[2] == 1
+      us = match.user_showings.find {|us| us.top == nil }
+    else
+      us = match.user_showings.find {|us| us.top == true }
+    end
+
+    if match.user_showings.count == 1
+      us = match.user_showings.first
+    end
+
+    us.destroy
+  end
 end

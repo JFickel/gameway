@@ -31,7 +31,11 @@ class TournamentsController < ApplicationController
       tournament.start
     elsif params[:position]
       tournament.advance(params[:position].map{|e| e.to_i })
+    elsif params[:destroy]
+      tournament.destroy(params[:destroy].map{|e| e.to_i })
     end
+
+    tournament = Tournament.find(params[:id])
 
     respond_to do |format|
       format.html { redirect_to request.referer }

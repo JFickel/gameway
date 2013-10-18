@@ -24,7 +24,7 @@ $ ->
           output += "<div> Ro#{bracket_value.length*2} Match #{array_index+1} </div>"
         if array_value != null
           $.each array_value, (user_index, user_value) ->
-            output += "<button class='slot' data-position='[#{bracket_index},#{array_index},#{user_index}]'>#{user_value}</div>"
+            output += "<a class='delete-slot' data-destroy='[#{bracket_index},#{array_index},#{user_index}]' data-username='#{user_value}'>x</a><button class='slot' data-position='[#{bracket_index},#{array_index},#{user_index}]'>#{user_value}</div>"
         output += "</div>"
         output += "</li>"
       output += "</ul>"
@@ -81,6 +81,21 @@ $ ->
         $('.bracket').empty()
         renderBracket(data)
     )
+  )
+
+  $('.bracket').on('click', '.delete-slot', () ->
+    if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('destroy')[0]+1} Match-#{$(this).data('destroy')[1]+1} #{$(this).data('username')}"
+      $.ajax(
+        type: 'PUT'
+        url: $('.update_path').text()
+        dataType: 'json'
+        data:
+          destroy: $(this).data('destroy')
+        success: (data) ->
+          console.log data
+          $('.bracket').empty()
+          renderBracket(data)
+      )
   )
 
   # log2 = (val) ->

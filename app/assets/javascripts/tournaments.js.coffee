@@ -98,5 +98,7 @@ $ ->
       )
   )
 
-  # log2 = (val) ->
-  #   Math.log(val) / Math.log 2
+  $('.tournament_members').hide()
+  $('.update_path').hide()
+  $('.matches').hide()
+

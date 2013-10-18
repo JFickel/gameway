@@ -1,12 +1,17 @@
 - unless current_user
   = render 'devise/registrations/new'
 - else
-  %h2= "Username: #{current_user.username}"
-  %h2= "First name: #{current_user.first_name}"
-  %h2= "Last name: #{current_user.last_name}"
-  %h2= "Email: #{current_user.email}"
-  %h3= "Groups:"
-  - current_user.groups.each do |group|
-    .group
-      .group_name= "#{group.name}"
-      .group_kind= "#{group.kind}"
+  %h2= "Welcome #{current_user.first_name} #{current_user.last_name}!"
+  %h3= "You are logged in as #{current_user.username}"
+  .user-panel
+    .user-groups
+      %h2= "Your Groups"
+      - current_user.groups.each do |group|
+        %h3= link_to group.name, group_path(group)
+        %h4= group.kind
+
+    .user-teams
+      %h2= "Your Teams"
+      - current_user.teams.each do |team|
+        %h3= link_to team.name, team_path(group)
+

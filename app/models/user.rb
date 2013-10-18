@@ -6,8 +6,11 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :omniauthable, :validatable,
          :omniauth_providers => [:facebook, :twitch_oauth2], :authentication_keys => [:login]
 
-  has_many :group_members
-  has_many :groups, through: :group_members
+  has_many :group_memberships
+  has_many :groups, through: :group_memberships
+
+  has_many :team_memberships
+  has_many :teams, through: :team_memberships
 
   has_many :owned_tournaments, foreign_key: 'user_id', class_name: Tournament
   has_many :tournament_memberships

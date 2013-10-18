@@ -3,8 +3,9 @@
   - if user_signed_in?
     %ul.nav-links
       %li= link_to I18n.t("navigation.tournaments"), tournaments_path
+      %li= link_to I18n.t("navigation.teams"), teams_path
       %li= link_to I18n.t("navigation.groups"), groups_path
-      %li= link_to(I18n.t("users.edit_profile"), edit_user_path(current_user))
+      %li= link_to(I18n.t("users.settings"), edit_user_path(current_user))
       %li= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
   - else
     = render 'devise/menu/login_items'

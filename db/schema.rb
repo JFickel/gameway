@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915203218) do
+ActiveRecord::Schema.define(version: 20131018114325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130915203218) do
     t.string  "token_secret"
   end
 
-  create_table "group_members", force: true do |t|
+  create_table "group_memberships", force: true do |t|
     t.integer "user_id"
     t.integer "group_id"
   end
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(version: 20130915203218) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "team_memberships", force: true do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
 
   create_table "team_showings", force: true do |t|
     t.integer  "team_id"

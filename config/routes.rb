@@ -6,6 +6,7 @@ Gameway::Application.routes.draw do
   resources :groups
   resources :tournaments
   resources :tournament_memberships
+  resources :teams
   root to: "home#index"
 
 

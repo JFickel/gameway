@@ -25,6 +25,7 @@ en:
   navigation:
     groups: "Groups"
     tournaments: "Tournaments"
+    teams: "Teams"
   model:
     create: "Create"
     delete: "Delete"
@@ -39,7 +40,7 @@ en:
     sc2: "Starcraft 2"
   users:
     admin: "Admin"
-    edit_profile: "Edit Profile"
+    settings: "Settings"
     logout: "Logout"
     login: "Login"
     signup: "Sign Up"

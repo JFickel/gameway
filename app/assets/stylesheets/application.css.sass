@@ -10,6 +10,15 @@ html
 .nav
   float: left
   width: 100%
+  a
+    text-decoration: none
+    color: darkslateblue
+    &:visited
+      color: darkslateblue
+    &:hover
+      color: darkorange
+    &:active
+      color: darkorange
   h1.logo
     margin-top: 0
     float: left
@@ -23,6 +32,7 @@ html
     padding-top: 0.5%
     width: 80%
     margin-right: 2%
+
     li
       float: left
       margin-left: 4%
@@ -114,15 +124,7 @@ html
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
 
-a
-  text-decoration: none
-  color: darkslateblue
-  &:visited
-    color: darkslateblue
-  &:hover
-    color: darkorange
-  &:active
-    color: darkorange
+
 
 .signup-btn
   width: 60%

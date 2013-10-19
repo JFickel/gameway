@@ -30,6 +30,8 @@ en:
     create: "Create"
     delete: "Delete"
     update: "Update"
+  teams:
+    create: "Create Team"
   tournaments:
     title: "Tournaments"
     create: "Create Tournament"

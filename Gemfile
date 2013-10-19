@@ -26,6 +26,7 @@ gem 'rails_admin'
 # Use carrierwave for images
 gem 'fog'
 gem 'carrierwave'
+gem 'rmagick'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

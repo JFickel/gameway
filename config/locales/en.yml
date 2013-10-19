@@ -10,6 +10,7 @@ en:
     delete: "Delete"
     update: "Update"
   groups:
+    members: "Members"
     listing: "All Groups"
   teams:
     listing: "All Teams"
@@ -64,13 +65,13 @@ en:
     change_password: "Change Password"
     password_reset: "Password Reset"
     unlock_account: "Unlock My Account"
-    hi: "Hello %{user}"
+    logged_in: "You are logged in as"
     locked_due_to_attempts: "Your account has been locked due to an excessive number of login attempts."
     click_to_unlock: "Click the link below to unlock your account"
     someone_requested: "Someone has requested a link to change your password. You can do this through the link below."
     didnt_request: "If you didn't request this, please ignore this email."
     email_wont_change_until: "Your password won't change until you access the link above and create a new password."
-    welcome: "Welcome %{user}"
+    welcome: "Welcome %{name}!"
     confirm_with_link: "You can confirm your account through the link below"
     confirm_my_account: "Confirm My Account"
     finish_signup: "Please finish the signup process below."

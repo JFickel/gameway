@@ -1,28 +1,6 @@
-== README
+== Gameway
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a prototype for a gaming website idea that I've had for a while. The goals are:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* allow users to easily create gaming tournaments, supporting both individual-play and team-play.
+* users can create gaming groups and teams that are intended to replace club/team/community gaming sites in their current form, and so they will need evented calendars, blogs and twitter/youtube integration

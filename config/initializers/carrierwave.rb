@@ -7,12 +7,12 @@ CarrierWave.configure do |config|
   }
   case Rails.env
     when "testing"
-      config.fog_directory = 'gameway_development'
+      config.fog_directory = 'gameway-development'
     when "development"
-      config.fog_directory = 'gameway_development'
+      config.fog_directory = 'gameway-development'
     when "staging"
-      config.fog_directory = 'gameway_staging'
+      config.fog_directory = 'gameway-staging'
     when "production"
-      config.fog_directory = 'gameway_production'
+      config.fog_directory = 'gameway-production'
   end
 end

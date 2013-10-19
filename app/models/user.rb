@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :user_showings
   has_many :matches, through: :user_showings
 
+  mount_uploader :avatar, AvatarUploader
+
   attr_accessor :login
   validates :username, presence: true
 

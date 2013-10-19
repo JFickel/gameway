@@ -14,7 +14,7 @@
     .user-teams
       %h2= "Your Teams"
       - if current_user.teams.empty?
-        .no-teams= "It looks like you don't belong to any teams yet. You can create your own or search through the team listings."
+        %p= I18n.t("teams.no_teams")
       - current_user.teams.each do |team|
         %h3= link_to team.name, team_path(group)
 

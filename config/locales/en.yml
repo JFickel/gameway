@@ -30,10 +30,14 @@ en:
     create: "Create"
     delete: "Delete"
     update: "Update"
+  groups:
+    listing: "All Groups"
   teams:
     create_disclaimer: "Team name must be 3-24 characters in length."
     form: "Create a Team"
     create: "Create Team"
+    name: "Team Name"
+    no_teams: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
     title: "Tournaments"
     create: "Create Tournament"

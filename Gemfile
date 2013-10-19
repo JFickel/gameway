@@ -23,6 +23,10 @@ gem 'omniauth-twitch_oauth2'
 # Use rails admin for back-end
 gem 'rails_admin'
 
+# Use carrierwave for images
+gem 'fog'
+gem 'carrierwave'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

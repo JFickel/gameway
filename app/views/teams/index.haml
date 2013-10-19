@@ -1,3 +1,5 @@
 = link_to I18n.t("teams.create"), new_team_path, :class => 'create-team'
 
-= render partial: 'team', collection: @teams
+.team-listing
+  %h2= I18n.t("teams.listing")
+  = render partial: 'team', collection: @teams

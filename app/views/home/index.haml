@@ -1,8 +1,9 @@
 - unless current_user
   = render 'devise/registrations/new'
 - else
-  %h2= "Welcome #{current_user.first_name} #{current_user.last_name}!"
-  %h3= "You are logged in as #{current_user.username}"
+  .welcome
+    %h2= "Welcome #{current_user.first_name} #{current_user.last_name}!"
+    %h3= "You are logged in as #{current_user.username}"
   .user-panel
     .user-groups
       %h2= "Your Groups"
@@ -12,6 +13,8 @@
 
     .user-teams
       %h2= "Your Teams"
+      - if current_user.teams.empty?
+        .no-teams= "It looks like you don't belong to any teams yet. You can create your own or search through the team listings."
       - current_user.teams.each do |team|
         %h3= link_to team.name, team_path(group)
 

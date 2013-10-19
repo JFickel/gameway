@@ -31,6 +31,7 @@ en:
     delete: "Delete"
     update: "Update"
   teams:
+    create_disclaimer: "Team name must be 3-24 characters in length."
     form: "Create a Team"
     create: "Create Team"
   tournaments:

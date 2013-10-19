@@ -22,9 +22,23 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
+  def update
+    team = Team.find(params[:id])
+    if team.update_attributes(team_params)
+      if team_params[:avatar]
+        redirect_to request.referer
+      else
+        redirect_to team_path(team)
+      end
+    else
+      flash[:alert] = team.errors.full_messages
+      redirect_to request.referrer
+    end
+  end
+
   private
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :avatar)
   end
 end

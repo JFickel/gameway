@@ -1,1 +1,8 @@
 %h2= @team.name
+
+= image_tag(@team.avatar.display.url, class: 'avatar')
+
+= form_for @team do |f|
+  = f.file_field :avatar
+  = f.submit
+

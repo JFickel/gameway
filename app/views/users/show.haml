@@ -1,3 +1,7 @@
 %h1= @user.username
 %h2= "#{@user.first_name} #{@user.last_name}"
 = image_tag(@user.avatar.display.url, class: 'avatar')
+
+= form_for @user do |f|
+  = f.file_field :avatar
+  = f.submit

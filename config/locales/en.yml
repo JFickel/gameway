@@ -31,6 +31,7 @@ en:
     delete: "Delete"
     update: "Update"
   teams:
+    form: "Create a Team"
     create: "Create Team"
   tournaments:
     title: "Tournaments"

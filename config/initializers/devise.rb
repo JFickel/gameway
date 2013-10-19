@@ -221,17 +221,17 @@ Devise.setup do |config|
   # up on your models and hooks.
   case Rails.env
     when "testing"
-      config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4', scope: 'email,user_education_history'
-      config.omniauth :twitch_oauth2, 'kwh498lg2c4p659yx8ng713d00q3rjp', 'qybsv292kc6ovfoedtdl9noktll4za3'
+      config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET'], scope: 'email,user_education_history'
+      config.omniauth :twitch_oauth2, ENV['TWITCH_ID'], ENV['TWITCH_SECRET']
     when "development"
-      config.omniauth :facebook, '485007038250279', 'b8206f5ecd5a658e208e42c4ce6911b4', scope: 'email,user_education_history'
-      config.omniauth :twitch_oauth2, 'kwh498lg2c4p659yx8ng713d00q3rjp', 'qybsv292kc6ovfoedtdl9noktll4za3'
+      config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET'], scope: 'email,user_education_history'
+      config.omniauth :twitch_oauth2, ENV['TWITCH_ID'], ENV['TWITCH_SECRET']
     when "staging"
-      config.omniauth :facebook, '204433513051829', 'a3e4f74c477e56910b5a516349d26b1d', scope: 'email,user_education_history'
-      config.omniauth :twitch_oauth2, 'nan2jfbfe0mhllncuwfj43mhf2qarxv', 'sycrixwmzuh20k3xbw1v9tts0gfutjf'
+      config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET'], scope: 'email,user_education_history'
+      config.omniauth :twitch_oauth2, ENV['TWITCH_ID'], ENV['TWITCH_SECRET']
     when "production"
-      config.omniauth :facebook, '620221738012501', '68323d68ce7b4a89a964babdb1efcb29', scope: 'email,user_education_history'
-      config.omniauth :twitch_oauth2, 'l0dvrdx50eq84u4j2oi0rw02dy2a8d', 'fil1w6uvi5jzb5w6ppzc3cskrymnzjy'
+      config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET'], scope: 'email,user_education_history'
+      config.omniauth :twitch_oauth2, ENV['TWITCH_ID'], ENV['TWITCH_SECRET']
   end
 
   # ==> Warden configuration

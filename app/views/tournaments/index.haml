@@ -1,8 +1,8 @@
-%h2= I18n.t("tournaments.title")
-= link_to I18n.t("tournaments.create"), new_tournament_path
-%br
-%br
-%br
-- @tournaments.each do |tournament|
-  .tournament
-  = link_to tournament.title, tournament_path(tournament)
+.tournaments
+
+  = link_to I18n.t("tournaments.create"), new_tournament_path, class: 'create-tournament-btn'
+
+  .tournament-listing
+    %h2= I18n.t("tournaments.listing")
+    - @tournaments.each do |tournament|
+      %h3= link_to tournament.title, tournament_path(tournament)

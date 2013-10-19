@@ -5,6 +5,14 @@
     %h2= "Welcome #{current_user.first_name} #{current_user.last_name}!"
     %h3= "You are logged in as #{current_user.username}"
   .user-panel
+    .user-tournaments
+      %h2= "Your Tournaments"
+      - if current_user.tournaments.empty?
+        %p= I18n.t("tournaments.none")
+      - else
+        - current_user.tournaments.each do |tournament|
+          %h3= link_to tournament.title, tournament_path(tournament)
+
     .user-groups
       %h2= "Your Groups"
       - current_user.groups.each do |group|
@@ -14,7 +22,8 @@
     .user-teams
       %h2= "Your Teams"
       - if current_user.teams.empty?
-        %p= I18n.t("teams.no_teams")
-      - current_user.teams.each do |team|
-        %h3= link_to team.name, team_path(group)
+        %p= I18n.t("teams.none")
+      - else
+        - current_user.teams.each do |team|
+          %h3= link_to team.name, team_path(group)
 

@@ -38,10 +38,12 @@ en:
     form: "Create a Team"
     create: "Create Team"
     name: "Team Name"
-    no_teams: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
+    none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    listing: "All Tournaments"
     title: "Tournaments"
     create: "Create Tournament"
+    none: "It looks like you don't belong to any tournaments yet. You can create your own or search through the tournament listings and find one to join."
   providers:
     facebook: "Facebook"
     twitch: "Twitch"

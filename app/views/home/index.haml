@@ -1,6 +1,5 @@
 - unless current_user
   .features
-    %h2= 'How It Works'
     %ul
       %li
         %h3= I18n.t('home.connect')
@@ -22,11 +21,17 @@
   .user-panel
     .user-tournaments
       %h2= "Your Tournaments"
-      - if current_user.tournaments.empty?
+      - if current_user.all_tournaments.empty?
         %p= I18n.t("tournaments.none")
       - else
-        - current_user.tournaments.each do |tournament|
+        - current_user.all_tournaments.each do |tournament|
           %h3= link_to tournament.title, tournament_path(tournament)
+          - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
+            %h4= I18n.t("tournaments.owner_and_participant")
+          - elsif current_user == tournament.owner
+            %h4= I18n.t("tournaments.owner")
+          - elsif current_user.tournaments.include? tournament
+            %h4= I18n.t("tournaments.participant")
 
     .user-groups
       %h2= "Your Groups"
@@ -40,5 +45,10 @@
         %p= I18n.t("teams.none")
       - else
         - current_user.teams.each do |team|
-          %h3= link_to team.name, team_path(group)
+          %h3= link_to team.name, team_path(team)
+          - if current_user == team.leader
+            %h4= I18n.t("teams.leader")
+          - else
+            %h4= I18n.t("teams.leader")
+
 

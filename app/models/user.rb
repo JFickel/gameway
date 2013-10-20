@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :tournaments, through: :tournament_memberships
   has_many :user_showings
   has_many :matches, through: :user_showings
+  has_many :administrator_roles
+  has_many :administered_tournaments, through: :administrator_roles
 
   mount_uploader :avatar, AvatarUploader
 
@@ -43,5 +45,9 @@ class User < ActiveRecord::Base
       params.merge!(replaced)
     end
     super
+  end
+
+  def all_tournaments
+    (self.owned_tournaments + self.tournaments).uniq
   end
 end

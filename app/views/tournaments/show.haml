@@ -1,16 +1,12 @@
-.tournament_show
-  .title
-  = @tournament.title
-  .game
-  = @tournament.game
-  .start_time
-  = @tournament.starts_on
+.tournament-banner
+  %h2= @tournament.title
+  %h3= @tournament.game
+  %h3= @tournament.starts_on
 
 .sign_up
-  Sign up for dis tournament!
   = form_for @tournament_membership do |f|
     = f.hidden_field :tournament_id, value: @tournament.id
-    = f.submit('Sign up')
+    = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
 
 .owner
   %h3= I18n.t('tournaments.owner')

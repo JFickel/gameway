@@ -92,7 +92,7 @@ class Tournament < ActiveRecord::Base
     self.save
   end
 
-  def destroy position
+  def delete_slot position
     match = self.bracket[position[0]][position[1]]
 
     if position[2] == 1

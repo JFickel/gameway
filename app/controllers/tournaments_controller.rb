@@ -32,7 +32,7 @@ class TournamentsController < ApplicationController
     elsif params[:position]
       tournament.advance(params[:position].map{|e| e.to_i })
     elsif params[:destroy]
-      tournament.destroy(params[:destroy].map{|e| e.to_i })
+      tournament.delete_slot(params[:delete_slot].map{|e| e.to_i })
     end
 
     tournament = Tournament.find(params[:id])
@@ -46,6 +46,6 @@ class TournamentsController < ApplicationController
   private
 
   def tournament_params
-    params.require(:tournament).permit(:title, :game, :start_time)
+    params.require(:tournament).permit(:title, :game, :starts_on)
   end
 end

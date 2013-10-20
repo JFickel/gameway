@@ -2,7 +2,10 @@
 
 = image_tag(@team.avatar.display.url, class: 'avatar')
 
-= form_for @team do |f|
-  = f.file_field :avatar
-  = f.submit
+.team-change-display
+  %div= I18n.t('teams.change_display')
+  = form_for @team do |f|
+    = f.file_field :avatar, class: 'file-field'
+    = f.submit I18n.t('model.update'), class: 'update-display'
+
 

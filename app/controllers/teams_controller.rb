@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
   def create
     team = Team.new(name: team_params[:name].split.map(&:capitalize).join(' '))
     team.team_memberships << TeamMembership.new(user_id: current_user)
+    team.leader = current_user
     if team.save
       redirect_to team_path(team)
     else

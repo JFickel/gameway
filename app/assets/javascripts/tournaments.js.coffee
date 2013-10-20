@@ -1,5 +1,8 @@
 $ ->
   $('.bracket_data').hide()
+  $('.tournament_members').hide()
+  $('.update_path').hide()
+  $('.matches').hide()
   bracketJSON = JSON.parse($('.bracket_data').text())
 
   renderBracket = (bracket) ->
@@ -98,7 +101,4 @@ $ ->
       )
   )
 
-  $('.tournament_members').hide()
-  $('.update_path').hide()
-  $('.matches').hide()
 

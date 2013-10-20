@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :group_memberships
   has_many :groups, through: :group_memberships
 
+  has_many :team_leaderships, foreign_key: 'user_id', class_name: Team
   has_many :team_memberships
   has_many :teams, through: :team_memberships
 

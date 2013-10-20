@@ -13,6 +13,7 @@ en:
     members: "Members"
     listing: "All Groups"
   teams:
+    change_display: "Change display picture"
     listing: "All Teams"
     create_disclaimer: "Team name must be 3-24 characters in length."
     form: "Create a Team"
@@ -30,6 +31,7 @@ en:
   games:
     sc2: "Starcraft 2"
   users:
+    change_display: "Change your display picture"
     admin: "Admin"
     settings: "Settings"
     logout: "Logout"

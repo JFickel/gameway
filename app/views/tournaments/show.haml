@@ -8,34 +8,30 @@
     = f.hidden_field :tournament_id, value: @tournament.id
     = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
 
+- if @owner == current_user
+  .owner-panel
+    %h3= 'Owner Panel'
+    = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
+    .add-moderator
+      %h4= I18n.t('tournaments.add_moderator')
+      = form_for @moderator_role do |f|
+        = f.hidden_field :tournament_id, value: @tournament.id
+        = f.select :user_id, User.all.map {|u| [u.username, u.id]}
+        = f.submit
+
 .owner
   %h3= I18n.t('tournaments.owner')
   %h4= link_to "#{@owner.username} - #{@owner.first_name} #{@owner.last_name}", user_path(@owner)
-
-  - if @owner == current_user
-    .owner-panel
-      = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
-      .add-moderator
-        %h4= I18n.t('tournaments.add_moderator')
-        = form_for @moderator_role do |f|
-          = f.hidden_field :tournament_id, value: @tournament.id
-          = f.select :user_id, User.all.map {|u| [u.username, u.id]}
-          = f.submit
-
 
 .moderators
   %h3= I18n.t('tournaments.moderators')
   - @tournament.moderators.each do |mod|
     %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
 
-
-
-.tournament_members
-  - @tournament.users.each do |u|
-    .username
-    = u.username
-    .email
-    = u.email
+.participants
+  %h3= I18n.t('tournaments.participants')
+  - @tournament.users.each do |p|
+    %h4= link_to "#{p.username} - #{p.first_name} #{p.last_name}", user_path(p)
 
 .matches
   = @tournament.matches

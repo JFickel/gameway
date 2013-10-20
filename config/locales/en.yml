@@ -32,6 +32,7 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    participants: "Participants"
     enter: "Enter Tournament"
     add_moderator: "Add Moderator"
     manual_start: "Manual Start"

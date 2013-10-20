@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-t = Tournament.create(title: "Open Starcraft 2 College Tournament",
+t = Tournament.create(title: "Collegiate Gaming League Starcraft 2 Open",
                   game: "Starcraft 2: Heart of the Swarm",
                   starts_on: Date.current + 45.seconds,
                   user_id: 1)

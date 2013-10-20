@@ -1,7 +1,20 @@
 - unless current_user
+  .features
+    %h2= 'How It Works'
+    %ul
+      %li
+        %h3= I18n.t('home.connect')
+        %p= I18n.t('home.connect_description')
+      %li
+        %h3= I18n.t('home.create')
+        %p= I18n.t('home.create_description')
+      %li
+        %h3= I18n.t('home.compete')
+        %p= I18n.t('home.compete_description')
+
   = render 'devise/registrations/new'
 - else
-  .welcome
+  .user-welcome
     %h2= I18n.t('users.welcome', name: "#{current_user.first_name} #{current_user.last_name}")
     %h3
       = I18n.t('users.logged_in')

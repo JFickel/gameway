@@ -9,6 +9,14 @@ en:
     create: "Create"
     delete: "Delete"
     update: "Update"
+  home:
+    connect: 'Connect'
+    connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'
+    create: 'Create'
+    create_description: 'Build a home page for your gaming community. Set up a calendar for your gaming team. Gain a following.'
+    compete: 'Compete'
+    compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
+
   groups:
     join: "Join Group"
     members: "Members"

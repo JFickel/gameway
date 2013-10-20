@@ -8,4 +8,14 @@
     = f.file_field :avatar, class: 'file-field'
     = f.submit I18n.t('model.update'), class: 'update-display'
 
+.team-members
+  %h3= I18n.t('teams.members')
+  %ul
+    %li
+      %h4
+        = "#{I18n.t('teams.leader')}:"
+        = link_to "#{@leader.username} - #{@leader.first_name} #{@leader.last_name}", user_path(@leader)
 
+  - @members.each do |member|
+    %li
+      %h4= link_to "#{member.username} - #{member.first_name} #{member.last_name}", user_path(member)

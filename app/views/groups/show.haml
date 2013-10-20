@@ -2,6 +2,6 @@
 %h2= @group.kind
 
 .group-members
-  %h2= I18n.t('groups.members')
+  %h3= I18n.t('groups.members')
   - @group.users.each do |user|
-    %h3= link_to "#{user.username} - #{user.first_name} #{user.last_name}", user_path(user)
+    %h4= link_to "#{user.username} - #{user.first_name} #{user.last_name}", user_path(user)

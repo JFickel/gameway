@@ -13,6 +13,8 @@ en:
     members: "Members"
     listing: "All Groups"
   teams:
+    leader: "Leader"
+    members: "Team Members"
     change_display: "Change display picture"
     listing: "All Teams"
     create_disclaimer: "Team name must be 3-24 characters in length."

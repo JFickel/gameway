@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 t = Tournament.create(title: "Open Starcraft 2 College Tournament",
                   game: "Starcraft 2: Heart of the Swarm",
-                  start_time: Time.now + 45.seconds,
+                  starts_on: Date.current + 45.seconds,
                   user_id: 1)
 
 58.times do |i|

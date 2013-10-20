@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20131019143051) do
   create_table "tournaments", force: true do |t|
     t.string   "title"
     t.string   "game"
-    t.datetime "start_time"
+    t.datetime "starts_on"
     t.text     "bracket"
     t.integer  "user_id"
     t.boolean  "started"

@@ -290,6 +290,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails
   koala
   launchy
   omniauth

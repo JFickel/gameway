@@ -1,10 +1,8 @@
 %h2= I18n.t("tournaments.create")
 = form_for @tournament do |f|
-  .tournament_title= f.label :title, "Title"
-  = f.text_field :title
-  .tournament_game= f.label :game, "Game"
-  = f.text_field :game
-  .tournament_start= f.label :start_time, "Start Time"
-  = f.datetime_select :start_time
-  .tournament_create= f.submit "Create", :disable_with => 'Creating...'
+  = f.text_field :title, placeholder: 'Title', class: 'tournament-input'
+  = f.text_field :game, placeholder: 'Game', class: 'tournament-input'
+  = f.text_field :starts_on, placeholder: 'Start Date', class: 'tournament-input'
+
+  = f.submit 'Create', :disable_with => 'Creating...', class: 'tournament-submit'
 

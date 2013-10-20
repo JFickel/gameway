@@ -3,7 +3,7 @@ class CreateTournaments < ActiveRecord::Migration
     create_table :tournaments do |t|
       t.string :title
       t.string :game
-      t.datetime :start_time
+      t.datetime :starts_on
       t.text :bracket
       t.belongs_to :user
       t.boolean :started

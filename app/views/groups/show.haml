@@ -1,3 +1,8 @@
+- unless current_user.groups.include? @group
+  = form_for @group_membership do |f|
+    = f.hidden_field :group_id, value: @group.id
+    = f.submit I18n.t("groups.join"), class: 'join-group-btn'
+
 %h1= @group.name
 %h2= @group.kind
 

@@ -10,6 +10,7 @@ en:
     delete: "Delete"
     update: "Update"
   groups:
+    join: "Join Group"
     members: "Members"
     listing: "All Groups"
   teams:

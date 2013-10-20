@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group_membership = GroupMembership.new
     @group = Group.find_by(id: group_params)
   end
 

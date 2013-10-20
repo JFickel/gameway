@@ -4,9 +4,13 @@ Gameway::Application.routes.draw do
 
   resources :users
   resources :groups
+  resources :group_memberships
+
   resources :tournaments
   resources :tournament_memberships
+
   resources :teams
+  resources :team_memberships
   root to: "home#index"
 
 

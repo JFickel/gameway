@@ -1,4 +1,4 @@
-class AdministratorRole < ActiveRecord::Base
+class ModeratorRole < ActiveRecord::Base
   belongs_to :user
   belongs_to :tournament
 end

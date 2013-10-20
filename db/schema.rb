@@ -16,11 +16,6 @@ ActiveRecord::Schema.define(version: 20131020093958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "administrator_roles", force: true do |t|
-    t.integer "tournament_id"
-    t.integer "user_id"
-  end
-
   create_table "authentications", force: true do |t|
     t.integer "user_id"
     t.string  "provider"
@@ -43,6 +38,11 @@ ActiveRecord::Schema.define(version: 20131020093958) do
     t.integer  "tournament_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "moderator_roles", force: true do |t|
+    t.integer "tournament_id"
+    t.integer "user_id"
   end
 
   create_table "rails_admin_histories", force: true do |t|

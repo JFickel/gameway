@@ -22,7 +22,7 @@ class TournamentsController < ApplicationController
   def show
     @tournament = Tournament.find(params[:id])
     @owner = @tournament.owner
-    @administrator_role = AdministratorRole.new
+    @moderator_role = ModeratorRole.new
     @tournament_membership = TournamentMembership.new
   end
 

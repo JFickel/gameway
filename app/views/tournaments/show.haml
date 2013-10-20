@@ -19,18 +19,18 @@
   - if @owner == current_user
     .owner-panel
       = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
-      .add-administrator
-        %h4= I18n.t('tournaments.add_administrator')
-        = form_for @administrator_role do |f|
+      .add-moderator
+        %h4= I18n.t('tournaments.add_moderator')
+        = form_for @moderator_role do |f|
           = f.hidden_field :tournament_id, value: @tournament.id
-          = f.select :user_id, User.pluck(:username)
+          = f.select :user_id, User.all.map {|u| [u.username, u.id]}
           = f.submit
 
 
-.administrators
-  %h3= I18n.t('tournaments.administrators')
-  - @tournament.administrators.each do |admin|
-    %h4= link_to "#{admin.username} - #{admin.first_name} #{admin.last_name}", user_path(admin)
+.moderators
+  %h3= I18n.t('tournaments.moderators')
+  - @tournament.moderators.each do |mod|
+    %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
 
 
 

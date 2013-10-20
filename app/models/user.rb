@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   has_many :tournaments, through: :tournament_memberships
   has_many :user_showings
   has_many :matches, through: :user_showings
-  has_many :administrator_roles
-  has_many :administered_tournaments, through: :administrator_roles, source: :tournament
+  has_many :moderator_roles
+  has_many :moderated_tournaments, through: :moderator_roles, source: :tournament
 
   mount_uploader :avatar, AvatarUploader
 

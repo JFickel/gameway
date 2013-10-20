@@ -8,7 +8,7 @@ Gameway::Application.routes.draw do
 
   resources :tournaments
   resources :tournament_memberships
-  resources :administrator_roles
+  resources :moderator_roles
 
   resources :teams
   resources :team_memberships

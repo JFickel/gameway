@@ -32,6 +32,9 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    add_administrator: "Add Administrator"
+    manual_start: "Manual Start"
+    administrators: "Administrators"
     owner_and_participant: "Owner and Participant"
     participant: "Participant"
     owner: "Owner"
@@ -45,6 +48,7 @@ en:
   games:
     sc2: "Starcraft 2"
   users:
+    user: "User"
     change_display: "Change your display picture"
     admin: "Admin"
     settings: "Settings"

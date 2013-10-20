@@ -5,17 +5,34 @@
   = @tournament.game
   .start_time
   = @tournament.starts_on
-.owner
-  .owner_id
-  Owner:
-  = @tournament.owner.username
-  - if @tournament.owner == current_user
-    = button_to "Manual Start", tournament_path(@tournament, start: true), method: :put
-  .sign_up
+
+.sign_up
   Sign up for dis tournament!
   = form_for @tournament_membership do |f|
     = f.hidden_field :tournament_id, value: @tournament.id
     = f.submit('Sign up')
+
+.owner
+  %h3= I18n.t('tournaments.owner')
+  %h4= link_to "#{@owner.username} - #{@owner.first_name} #{@owner.last_name}", user_path(@owner)
+
+  - if @owner == current_user
+    .owner-panel
+      = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
+      .add-administrator
+        %h4= I18n.t('tournaments.add_administrator')
+        = form_for @administrator_role do |f|
+          = f.hidden_field :tournament_id, value: @tournament.id
+          = f.select :user_id, User.pluck(:username)
+          = f.submit
+
+
+.administrators
+  %h3= I18n.t('tournaments.administrators')
+  - @tournament.administrators.each do |admin|
+    %h4= link_to "#{admin.username} - #{admin.first_name} #{admin.last_name}", user_path(admin)
+
+
 
 .tournament_members
   - @tournament.users.each do |u|

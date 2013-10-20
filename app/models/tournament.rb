@@ -4,7 +4,7 @@ class Tournament < ActiveRecord::Base
   has_many :users, through: :tournament_memberships
   has_many :matches
   has_many :administrator_roles
-  has_many :administrators, through: :administrator_roles
+  has_many :administrators, through: :administrator_roles, source: :user
   serialize :bracket
 
   def start

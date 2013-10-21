@@ -1,6 +1,6 @@
 .new-team
   %h2= I18n.t("teams.form")
-  %p= I18n.t("teams.create_disclaimer")
+  %p= I18n.t("teams.length_disclaimer")
   = form_for @team, html: {class: 'new-team-form'} do |f|
     = f.text_field :name, placeholder: I18n.t("teams.name"), class: 'new-team-input'
     = f.submit "Create", :disable_with => 'Creating...', class: 'new-team-btn'

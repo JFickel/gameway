@@ -17,16 +17,20 @@ en:
     compete: 'Compete'
     compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
   groups:
+    name: "Group Name"
+    form: "Create a Group"
+    create: "Create Group"
     join: "Join Group"
     members: "Members"
     listing: "All Groups"
+    control_disclaimer: "Groups are open-ended which means anyone can join. Groups are controlled by member consensus."
   teams:
     leader: "Leader"
     members: "Team Members"
     member: "Member"
     change_display: "Change display picture"
     listing: "All Teams"
-    create_disclaimer: "Team name must be 3-24 characters in length."
+    length_disclaimer: "Team name must be 3-24 characters in length."
     form: "Create a Team"
     create: "Create Team"
     name: "Team Name"

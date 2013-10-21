@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 20131020093958) do
   create_table "tournaments", force: true do |t|
     t.string   "title"
     t.string   "game"
+    t.text     "description"
+    t.text     "rules"
     t.datetime "starts_on"
     t.text     "bracket"
     t.integer  "user_id"

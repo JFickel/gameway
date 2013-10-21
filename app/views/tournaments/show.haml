@@ -2,6 +2,8 @@
   %h2= @tournament.title
   %h3= @tournament.game
   %h3= @tournament.starts_on
+  %h3= I18n.t('tournaments.description')
+  %p= @tournament.description
 
 .sign_up
   = form_for @tournament_membership do |f|

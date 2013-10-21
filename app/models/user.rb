@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :omniauthable, :validatable,
          :omniauth_providers => [:facebook, :twitch_oauth2], :authentication_keys => [:login]
 
+  has_one :starcraft2_account
+
   has_many :group_memberships
   has_many :groups, through: :group_memberships
 

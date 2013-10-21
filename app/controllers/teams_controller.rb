@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.new(name: team_params[:name].split.map(&:capitalize).join(' '))
+    team = Team.new(name: team_params[:name])
     team.team_memberships << TeamMembership.new(user_id: current_user.id)
     team.leader = current_user
     if team.save

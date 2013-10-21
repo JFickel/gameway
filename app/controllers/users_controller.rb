@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   def edit
+    unless current_user.starcraft2_account
+      @starcraft2_account = Starcraft2Account.new
+    else
+      @starcraft2_account = current_user.starcraft2_account
+    end
   end
 
   def update

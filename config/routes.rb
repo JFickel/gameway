@@ -5,6 +5,7 @@ Gameway::Application.routes.draw do
   resources :users
   resources :groups
   resources :group_memberships
+  resources :starcraft2_accounts
 
   resources :tournaments
   resources :tournament_memberships

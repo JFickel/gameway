@@ -36,6 +36,7 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    description: "Description"
     participants: "Participants"
     enter: "Enter Tournament"
     add_moderator: "Add Moderator"
@@ -53,7 +54,9 @@ en:
     twitch: "Twitch"
   games:
     sc2: "Starcraft 2"
+    sc2_url: "Starcraft 2 Profile URL"
   users:
+    edit: "Edit User"
     user: "User"
     change_display: "Change your display picture"
     admin: "Admin"

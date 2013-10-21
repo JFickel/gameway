@@ -4,8 +4,9 @@ describe User do
   let(:user) { FactoryGirl.create(:user) }
   it { should validate_presence_of(:email)}
   it { should validate_presence_of(:password)}
+  it { should validate_presence_of(:username)}
   it { should have_many(:tournaments)}
-  it { should have_many(:tournament_members)}
+  it { should have_many(:tournament_memberships)}
   it { should have_many(:owned_tournaments)}
 
   it 'should have a valid factory' do

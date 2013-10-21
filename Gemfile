@@ -76,6 +76,10 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
 
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+
   # Test coverage analysis
   gem 'simplecov'
 end

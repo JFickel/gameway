@@ -6,6 +6,11 @@ class TournamentsController < ApplicationController
     else
       @tournaments = Tournament.all
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @tournaments.map {|t| t.title } }
+    end
   end
 
   def new

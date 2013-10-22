@@ -1,7 +1,11 @@
 class TournamentsController < ApplicationController
   before_action :tournament_params, only: [:create]
   def index
-    @tournaments = Tournament.all
+    if params[:query].present?
+      @tournaments = Tournament.text_search(params[:query])
+    else
+      @tournaments = Tournament.all
+    end
   end
 
   def new

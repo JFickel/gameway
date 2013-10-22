@@ -2,6 +2,10 @@
 
   = link_to I18n.t("tournaments.create"), new_tournament_path, class: 'create-tournament-btn'
 
+  = form_tag tournaments_path, method: :get, class: 'tournament-search' do
+    = text_field_tag :query, params[:query], placeholder: 'Find a Tournament'
+    = submit_tag "Search", name: nil, class: 'tournament-search-btn'
+
   .tournament-listing
     %h2= I18n.t("tournaments.listing")
     - @tournaments.each do |tournament|

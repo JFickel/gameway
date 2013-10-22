@@ -150,12 +150,6 @@
         1,
         null
       ],
-      "/Users/jamesfickel/Desktop/projects/gameway/app/models/team_membership.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/group_membership.rb": [
         1,
         1,
@@ -164,8 +158,14 @@
         null,
         null,
         null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/team_membership.rb": [
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1382351409
+    "timestamp": 1382406027
   }
 }

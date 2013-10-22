@@ -7,6 +7,11 @@ class Tournament < ActiveRecord::Base
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
 
+  include PgSearch
+  pg_search_scope :text_search,
+                  against: {title: 'A', description: 'B'},
+                  using: { tsearch: { prefix: true }}
+
   def start
     rounds = Math.log2(tournament_memberships.count).ceil
     matches = [[nil]]

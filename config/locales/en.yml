@@ -17,6 +17,7 @@ en:
     compete: 'Compete'
     compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
   groups:
+    find: "Find a Group"
     name: "Group Name"
     form: "Create a Group"
     create: "Create Group"
@@ -25,6 +26,7 @@ en:
     listing: "All Groups"
     control_disclaimer: "Groups are open-ended which means anyone can join. Groups are controlled by member consensus."
   teams:
+    find: "Find a Team"
     leader: "Leader"
     members: "Team Members"
     member: "Member"
@@ -36,8 +38,10 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    find: "Find a Tournament"
     description: "Description"
     participants: "Participants"
+    participant_listing: "Participant Listing"
     enter: "Enter Tournament"
     add_moderator: "Add Moderator"
     manual_start: "Manual Start"

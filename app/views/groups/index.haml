@@ -1,6 +1,12 @@
-= link_to I18n.t("groups.create"), new_group_path, :class => 'create-group-btn'
+.groups
+  = link_to I18n.t("groups.create"), new_group_path, :class => 'create-group-btn'
 
-%h2= I18n.t("groups.listing")
+  = form_tag groups_path, method: :get, class: 'group-search' do
+    = text_field_tag :query, params[:query], placeholder: I18n.t('groups.find')
+    = submit_tag "Search", name: nil, class: 'group-search-btn'
 
-.group-listing
-  = render partial: 'group', collection: @groups
+
+  %h2= I18n.t("groups.listing")
+
+  .group-listing
+    = render partial: 'group', collection: @groups

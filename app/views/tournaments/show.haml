@@ -30,6 +30,9 @@
   - @tournament.moderators.each do |mod|
     %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
 
+.participant-count
+  %h3= "#{@tournament.tournament_memberships.count} #{I18n.t('tournaments.participants')}"
+
 .participants
   %h3= I18n.t('tournaments.participants')
   - @tournament.users.each do |p|

@@ -1,6 +1,10 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    if params[:query].present?
+      @teams = Team.text_search(params[:query])
+    else
+      @teams = Team.all
+    end
   end
 
   def new

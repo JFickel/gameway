@@ -3,7 +3,7 @@
   = link_to I18n.t("tournaments.create"), new_tournament_path, class: 'create-tournament-btn'
 
   = form_tag tournaments_path, method: :get, class: 'tournament-search' do
-    = text_field_tag :query, params[:query], placeholder: 'Find a Tournament'
+    = text_field_tag :query, params[:query], placeholder: I18n.t('tournaments.find')
     = submit_tag "Search", name: nil, class: 'tournament-search-btn'
 
   .tournament-listing

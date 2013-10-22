@@ -5,4 +5,11 @@ class Team < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3, maximum: 24 }, uniqueness: { case_sensitive: false }
 
   mount_uploader :avatar, AvatarUploader
+
+  include PgSearch
+  pg_search_scope :text_search,
+                  against: :name,
+                  using: { tsearch: { prefix: true }}
+
+
 end

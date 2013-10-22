@@ -1,5 +1,10 @@
-= link_to I18n.t("teams.create"), new_team_path, :class => 'create-team-btn'
+.teams
+  = link_to I18n.t("teams.create"), new_team_path, :class => 'create-team-btn'
 
-.team-listing
-  %h2= I18n.t("teams.listing")
-  = render partial: 'team', collection: @teams
+  = form_tag teams_path, method: :get, class: 'team-search' do
+    = text_field_tag :query, params[:query], placeholder: I18n.t('teams.find')
+    = submit_tag "Search", name: nil, class: 'team-search-btn'
+
+  .team-listing
+    %h2= I18n.t("teams.listing")
+    = render partial: 'team', collection: @teams

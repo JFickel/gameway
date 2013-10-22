@@ -13,7 +13,7 @@ class Tournament < ActiveRecord::Base
                   using: { tsearch: { prefix: true }}
 
   def start
-    rounds = Math.log2(tournament_memberships.count).ceil
+    rounds = calculate_rounds
     matches = [[nil]]
     rounds.times do |i|
       i += 1
@@ -25,39 +25,57 @@ class Tournament < ActiveRecord::Base
     self.save
   end
 
+  def calculate_rounds
+    Math.log2(tournament_memberships.count).ceil
+  end
+
+  def calculate_filtered_round_size(rounds)
+    2**(rounds - 1)
+  end
+
+  def calculate_number_of_filter_pairs(filtered_round_size)
+    tournament_memberships.count - filtered_round_size
+  end
+
+  def add_filled_matches_to_filter_round(filter_slots)
+    tournament_memberships.first(filter_slots).each_slice(2).with_object([]) do |pair,obj|
+      m = Match.create
+      m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
+      obj << m
+      self.matches << m
+    end
+  end
+
   def initialize_bracket
     ## Takes the number of rounds and finds how many slots are contested
     ## for the round following the "filter" round. It then takes these contested
     ## slots, multiplies them by two and shoves that amount of players into
     ## the "filter" round. The remainder get moved into the end of the next round.
-    rounds = Math.log2(tournament_memberships.count).ceil
-    after_filter_slots = 2**(rounds - 1)
-    filter_slots = tournament_memberships.count - after_filter_slots
-    initial_round_size = filter_slots*2
+    rounds = calculate_rounds
+    filtered_round_size = calculate_filtered_round_size(rounds)
+    filter_pairs = calculate_number_of_filter_pairs(filtered_round_size)
+    filter_slots = filter_pairs*2
 
-    self.bracket[0][0..((initial_round_size/2)-1)] =  tournament_memberships.first(initial_round_size).each_slice(2).with_object([]) do |pair,obj|
-                                                        m = Match.create
-                                                        m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
-                                                        obj << m
-                                                        self.matches << m
-                                                      end
+    self.bracket[0][0..((filter_slots/2)-1)] = add_filled_matches_to_filter_round(filter_slots)
 
-    if tournament_memberships[initial_round_size..-1].length.odd?
+    ### Refactor this:
+
+    if tournament_memberships[filter_slots..-1].length.odd?
       after_filter_round = []
       m = Match.create
-      m.user_showings.push UserShowing.new(user_id: tournament_memberships[initial_round_size..-1].first.user_id)
+      m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
       after_filter_round << m
       self.matches << m
 
-      tournament_memberships[initial_round_size+1..-1].each_slice(2) do |pair|
+      tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
         m = Match.create
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         after_filter_round << m
         self.matches << m
       end
-      self.bracket[1][(filter_slots/2)..-1] = after_filter_round
+      self.bracket[1][(filter_pairs/2)..-1] = after_filter_round
     else
-      self.bracket[1][(filter_slots/2)..-1] = tournament_memberships[initial_round_size..-1].each_slice(2).with_object([]) do |pair,obj|
+      self.bracket[1][(filter_pairs/2)..-1] = tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair,obj|
         m = Match.create
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         obj << m

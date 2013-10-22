@@ -3,6 +3,7 @@ class Tournament < ActiveRecord::Base
   has_many :tournament_memberships
   has_many :users, through: :tournament_memberships
   has_many :matches
+  has_many :user_showings, through: :matches
   has_many :moderator_roles
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
@@ -13,16 +14,21 @@ class Tournament < ActiveRecord::Base
                   using: { tsearch: { prefix: true }}
 
   def start
+    reset_bracket
     rounds = calculate_rounds
-    matches = [[nil]]
+    self.bracket = [[nil]]
     rounds.times do |i|
-      i += 1
-      matches.unshift(Array.new((2**i)/2))
+      self.bracket.unshift(Array.new((2**(i+1))/2))
     end
-    self.bracket = matches
     initialize_bracket
     self.started = true
     self.save
+  end
+
+  def reset_bracket
+    self.user_showings.each(&:destroy)
+    self.matches.destroy_all
+    self.bracket = nil
   end
 
   def calculate_rounds

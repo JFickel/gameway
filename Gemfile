@@ -81,6 +81,8 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
 
+  gem 'better_errors' # go to /__better_errors to see the last error
+
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'guard-spork'

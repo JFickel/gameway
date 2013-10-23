@@ -5,6 +5,11 @@ class GroupsController < ApplicationController
     else
       @groups = Group.all
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @groups.map {|g| "#{g.name} - #{g.kind}" } }
+    end
   end
 
   def show

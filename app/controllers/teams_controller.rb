@@ -5,6 +5,11 @@ class TeamsController < ApplicationController
     else
       @teams = Team.all
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @teams.map {|t| t.name } }
+    end
   end
 
   def new

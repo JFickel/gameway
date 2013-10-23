@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20131021072622) do
     t.string   "game"
     t.text     "description"
     t.text     "rules"
-    t.datetime "starts_on"
+    t.datetime "starts_at"
     t.text     "bracket"
     t.integer  "user_id"
     t.boolean  "started"

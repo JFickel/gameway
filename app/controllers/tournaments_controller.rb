@@ -19,6 +19,7 @@ class TournamentsController < ApplicationController
 
   def create
     tournament = Tournament.new(tournament_params)
+    tournament.set_starts_at
     tournament.user_id = current_user.id
     if tournament.save
       redirect_to tournaments_path
@@ -33,6 +34,11 @@ class TournamentsController < ApplicationController
     @owner = @tournament.owner
     @moderator_role = ModeratorRole.new
     @tournament_membership = TournamentMembership.new
+  end
+
+  def edit
+    @tournament = Tournament.find(params[:id])
+
   end
 
   def update
@@ -57,6 +63,6 @@ class TournamentsController < ApplicationController
   private
 
   def tournament_params
-    params.require(:tournament).permit(:title, :game, :starts_on, :description, :rules)
+    params.require(:tournament).permit(:title, :game, :starts_at, :description, :rules, :start_date, :start_hour, :start_minute, :start_period)
   end
 end

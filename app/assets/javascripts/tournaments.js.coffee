@@ -1,5 +1,5 @@
 $ ->
-  $('#tournament_starts_on').datepicker
+  $('#tournament_start_date').datepicker
     dateFormat: 'yy-mm-dd'
   $('.bracket_data').hide()
   $('.update_path').hide()

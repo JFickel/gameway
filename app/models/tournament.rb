@@ -13,6 +13,12 @@ class Tournament < ActiveRecord::Base
                   against: {title: 'A', description: 'B'},
                   using: { tsearch: { prefix: true }}
 
+  attr_accessor :start_date, :start_hour, :start_minute, :start_period
+
+  def set_starts_at
+    self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
+  end
+
   def start
     reset_bracket
     rounds = calculate_rounds

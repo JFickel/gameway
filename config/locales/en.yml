@@ -38,6 +38,7 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    edit: "Edit Tournament"
     find: "Find a Tournament"
     description: "Description"
     participants: "Participants"
@@ -108,6 +109,10 @@ en:
     confirm_with_link: "You can confirm your account through the link below"
     confirm_my_account: "Confirm My Account"
     finish_signup: "Please finish the signup process below."
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
   errors:
     messages:
       carrierwave_processing_error: "Cannot resize image."

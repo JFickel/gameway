@@ -37,6 +37,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+# Use detect_timezone_rails to detect a user's computer time through JavaScript
+gem 'detect_timezone_rails'
+
 # Use PostgreSQL's full text search
 gem 'pg_search'
 

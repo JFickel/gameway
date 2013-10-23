@@ -5,7 +5,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.string :game
       t.text :description
       t.text :rules
-      t.datetime :starts_on
+      t.datetime :starts_at
       t.text :bracket
       t.belongs_to :user
       t.boolean :started

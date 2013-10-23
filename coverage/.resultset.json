@@ -1,6 +1,25 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/group_membership.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/models/group_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        null
+      ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/group.rb": [
         1,
         1,
@@ -30,11 +49,25 @@
         1,
         null
       ],
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/models/moderator_role_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/moderator_role.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/starcraft2_account_spec.rb": [
         1,
         null,
         1,
-        1,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/starcraft2_account.rb": [
@@ -46,7 +79,8 @@
         1,
         null,
         1,
-        1,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/team_showing.rb": [
@@ -95,13 +129,16 @@
         2,
         2,
         2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/user_showing_spec.rb": [
         1,
         null,
         1,
-        1,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/user_showing.rb": [
@@ -113,20 +150,20 @@
         null,
         null,
         1,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
+        2,
         0,
         null,
         null,
         null,
         1,
+        2,
         0,
-        0,
+        null,
+        null,
+        null,
+        1,
+        2,
+        2,
         null,
         null,
         null
@@ -171,19 +208,12 @@
         null,
         null
       ],
-      "/Users/jamesfickel/Desktop/projects/gameway/app/models/moderator_role.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/jamesfickel/Desktop/projects/gameway/app/models/group_membership.rb": [
-        1,
-        1,
-        1,
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/team_membership_spec.rb": [
         1,
         null,
-        null,
+        1,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/team_membership.rb": [
@@ -193,6 +223,6 @@
         null
       ]
     },
-    "timestamp": 1382491283
+    "timestamp": 1382492478
   }
 }

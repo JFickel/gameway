@@ -1,5 +1,6 @@
 require 'spec_helper'
 
-describe Starcraft2Account do
+describe TeamMembership do
+  it { should belong_to(:team)}
   it { should belong_to(:user)}
 end

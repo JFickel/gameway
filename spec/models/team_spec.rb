@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Team do
   it { should have_many(:team_memberships)}
   it { should have_many(:users).through(:team_memberships)}
-  it { should belong_to(:leader)}
+  it { should belong_to(:leader)} # class_name(:user)?
 
   it { should validate_presence_of(:name)}
   it { should ensure_length_of(:name).is_at_least(3).is_at_most(24)}

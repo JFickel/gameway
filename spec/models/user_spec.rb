@@ -7,19 +7,19 @@ describe User do
   it { should validate_presence_of(:username)}
 
   it { should have_many(:group_memberships)}
-  it { should have_many(:groups)}
+  it { should have_many(:groups).through(:group_memberships)}
 
   it { should have_many(:team_leaderships)}
   it { should have_many(:team_memberships)}
-  it { should have_many(:teams)}
+  it { should have_many(:teams).through(:team_memberships)}
 
   it { should have_many(:owned_tournaments)}
   it { should have_many(:tournament_memberships)}
-  it { should have_many(:tournaments)}
+  it { should have_many(:tournaments).through(:tournament_memberships)}
   it { should have_many(:user_showings)}
-  it { should have_many(:matches)}
+  it { should have_many(:matches).through(:user_showings)}
   it { should have_many(:moderator_roles)}
-  it { should have_many(:moderated_tournaments)}
+  it { should have_many(:moderated_tournaments).through(:moderator_roles)}
 
 
   it 'should have a valid factory' do

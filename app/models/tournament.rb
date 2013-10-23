@@ -15,21 +15,40 @@ class Tournament < ActiveRecord::Base
 
   attr_accessor :start_date, :start_hour, :start_minute, :start_period
 
-  validate :hour_parameters, :minute_parameters
+  validate :hour_is_in_range, :minute_is_in_range, :numeric_presence_of_hour, :numeric_presence_of_minute, :presence_of_date
+  after_save :set_starts_at
 
   def set_starts_at
     self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
   end
 
-  def hour_parameters
+  def presence_of_date
+    unless start_date
+      errors.add(:tournament, 'date is not present')
+    end
+  end
+
+  def hour_is_in_range
     if start_hour.to_i < 1 || start_hour.to_i > 12
       errors.add(:tournament, 'hour entered is invalid')
     end
   end
 
-  def minute_parameters
+  def minute_is_in_range
     if start_minute.to_i < 0 || start_minute.to_i > 59
       errors.add(:tournament, 'minute entered is invalid')
+    end
+  end
+
+  def numeric_presence_of_hour
+    if !start_hour.match(/\A[+-]?\d+\Z/)
+      errors.add(:tournament, 'hour is not present or is not numeric')
+    end
+  end
+
+  def numeric_presence_of_minute
+    if !start_hour.match(/\A[+-]?\d+\Z/)
+      errors.add(:tournament, 'minute is not present or is not numeric')
     end
   end
 

@@ -61,6 +61,7 @@ en:
     sc2: "Starcraft 2"
     sc2_url: "Starcraft 2 Profile URL"
   users:
+    find: "Find User"
     edit: "Edit User"
     user: "User"
     change_display: "Change your display picture"

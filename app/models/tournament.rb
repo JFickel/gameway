@@ -23,7 +23,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def presence_of_date
-    unless start_date
+    unless start_date.present?
       errors.add(:tournament, 'date is not present')
     end
   end

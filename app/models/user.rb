@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
   attr_accessor :login
   validates :username, presence: true
 
+  include PgSearch
+  pg_search_scope :text_search,
+                  against: {username: 'A', first_name: 'B', last_name: 'C'},
+                  using: { tsearch: { prefix: true }}
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

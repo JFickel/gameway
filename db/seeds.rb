@@ -5,9 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-t = Tournament.create(title: "Team Liquid October Invitational",
+sc2 = Tournament.create(title: "Team Liquid October Invitational",
                   game: "Starcraft 2: Heart of the Swarm",
-                  starts_at: DateTime.current + 45.seconds,
+                  start_date: "2013-11-15",
+                  start_hour: "3",
+                  start_minute: "30",
+                  start_period: "pm",
                   user_id: 1,
                   description: 'Some of the biggest names in Starcraft 2 come to compete in this monthly tournament held by Team Liquid.')
 
@@ -17,5 +20,38 @@ t = Tournament.create(title: "Team Liquid October Invitational",
               last_name: "last#{i}",
               email: "example#{i}@example.com",
               password: "password")
-  t.tournament_memberships << TournamentMembership.new(user_id: u.id)
+  sc2.tournament_memberships << TournamentMembership.new(user_id: u.id)
 end
+
+lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
+                        game: 'League of Legends',
+                        start_date: "2013-11-15",
+                        start_hour: "7",
+                        start_minute: "00",
+                        start_period: "pm",
+                        user_id: 2,
+                        description: '16 teams from Texas compete in the third Lone Star Clash put on by TeSPA')
+
+16.times do |i|
+  lol.tournament_memberships << TournamentMembership.new(user_id: i+3)
+end
+
+cloud9 = Team.create(name: 'Cloud 9')
+hai = User.create(username: "hai",
+                  first_name: "Hai",
+                  last_name: "Lam",
+                  email: "hai@example.com",
+                  password: "password")
+meteos = User.create(username: "meteos",
+                    first_name: "Will",
+                    last_name: "Hartman",
+                    email: "meteos@example.com",
+                    password: "password")
+balls = User.create(username: "balls",
+                    first_name: "An",
+                    last_name: "Van Lee",
+                    email: "balls@example.com",
+                    password: "password")
+cloud9.leader = hai
+cloud9.users.push hai, meteos, balls
+cloud9.save

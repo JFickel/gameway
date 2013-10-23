@@ -4,10 +4,15 @@ $ ->
     remote: "#{document.URL}?query=%QUERY"
 
   $('.team-search #query').typeahead
-    name: 'tournaments'
+    name: 'teams'
     remote: "#{document.URL}?query=%QUERY"
 
   $('.group-search #query').typeahead
-    name: 'tournaments'
+    name: 'groups'
     remote: "#{document.URL}?query=%QUERY"
 
+  $('.moderator-role-search #query').typeahead
+    name: 'users'
+    remote: "http://#{location.host}/moderator_roles?query=%QUERY"
+
+console.log "http://#{location.host}/moderator_roles?query=%QUERY"

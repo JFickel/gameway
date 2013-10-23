@@ -1,4 +1,15 @@
 class ModeratorRolesController < ApplicationController
+  def index
+    if params[:query].present?
+      @users = User.text_search(params[:query])
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @users.map {|u| "#{u.username} - #{u.first_name} #{u.last_name}"} }
+    end
+  end
+
   def create
     mod_role = ModeratorRole.new(moderator_role_params)
     if mod_role.save

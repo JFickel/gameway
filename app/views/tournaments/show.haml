@@ -16,10 +16,12 @@
     = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
     .add-moderator
       %h4= I18n.t('tournaments.add_moderator')
-      = form_for @moderator_role do |f|
-        = f.hidden_field :tournament_id, value: @tournament.id
-        = f.select :user_id, User.all.map {|u| [u.username, u.id]}
-        = f.submit
+
+      = form_tag moderator_roles_path, method: :post, class: 'moderator-role-search' do
+        = text_field_tag :query, nil, placeholder: I18n.t('users.find'), class: 'search-input'
+        = submit_tag "Add Moderator", name: nil, class: 'tournament-search-btn'
+
+
 
 .owner
   %h3= I18n.t('tournaments.owner')

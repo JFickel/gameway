@@ -13,6 +13,8 @@
     = f.label :last_name, I18n.t("users.last_name")
     = f.text_field :last_name, class: 'update-user-input'
 
+    = image_tag(current_user.avatar.display.url, class: 'avatar')
+
     = f.label :last_name, I18n.t("users.change_display")
     = f.file_field :avatar, class: 'file-field'
 

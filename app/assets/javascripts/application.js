@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require twitter/typeahead.min
+//= require detect_timezone
+//= require jquery.detect_timezone
 //= require_tree .

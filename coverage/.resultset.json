@@ -1,6 +1,25 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/group.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/models/match_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/match.rb": [
         1,
         null,
@@ -40,14 +59,22 @@
         1,
         null,
         1,
-        1,
+        2,
+        2,
+        2,
+        null,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/tournament_membership_spec.rb": [
         1,
         null,
         1,
-        1,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/tournament_membership.rb": [
@@ -166,6 +193,6 @@
         null
       ]
     },
-    "timestamp": 1382406027
+    "timestamp": 1382491283
   }
 }

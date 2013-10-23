@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 t = Tournament.create(title: "Team Liquid October Invitational",
                   game: "Starcraft 2: Heart of the Swarm",
-                  starts_at: Date.current + 45.seconds,
+                  starts_at: DateTime.current + 45.seconds,
                   user_id: 1,
                   description: 'Some of the biggest names in Starcraft 2 come to compete in this monthly tournament held by Team Liquid.')
 

@@ -16,4 +16,5 @@
 //= require twitter/typeahead.min
 //= require detect_timezone
 //= require jquery.detect_timezone
+//= require hogan.js
 //= require_tree .

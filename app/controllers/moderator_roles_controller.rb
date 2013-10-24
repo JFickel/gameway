@@ -6,7 +6,7 @@ class ModeratorRolesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @users.map {|u| ["#{u.username} - #{u.first_name} #{u.last_name}", u.id]} }
+      format.json { render :json => @users }
     end
   end
 

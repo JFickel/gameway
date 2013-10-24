@@ -9,6 +9,9 @@ gem 'sass-rails', '~> 4.0.0'
 # Use typeahead.js for autocomplete
 gem 'twitter-typeahead-rails'
 
+# Use Hogan for typeahead templates
+gem 'hogan_assets'
+
 # Use Haml for html
 gem 'haml-rails'
 

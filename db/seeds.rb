@@ -53,5 +53,5 @@ balls = User.create(username: "balls",
                     email: "balls@example.com",
                     password: "password")
 cloud9.leader = hai
-cloud9.users.push hai, meteos, balls
+cloud9.users.push hai, meteos, balls, User.first
 cloud9.save

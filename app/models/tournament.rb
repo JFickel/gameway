@@ -1,4 +1,9 @@
 class Tournament < ActiveRecord::Base
+  include PgSearch
+  include ActiveModel::Validations
+
+  attr_accessor :start_date, :start_hour, :start_minute, :start_period
+
   belongs_to :owner, foreign_key: 'user_id', class_name: User
   has_many :tournament_memberships
   has_many :users, through: :tournament_memberships
@@ -8,56 +13,20 @@ class Tournament < ActiveRecord::Base
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
 
-  include PgSearch
   pg_search_scope :text_search,
                   against: {title: 'A', description: 'B'},
                   using: { tsearch: { prefix: true }}
 
-  attr_accessor :start_date, :start_hour, :start_minute, :start_period
-
-  validate :hour_is_in_range, :minute_is_in_range, :numeric_presence_of_hour, :numeric_presence_of_minute, :presence_of_date, on: :create
-  validate :hour_is_in_range, :numeric_presence_of_hour, on: :update, if: :time_present?
-  validate :minute_is_in_range, :numeric_presence_of_minute, on: :update, if: :time_present?
-  validate :presence_of_date, on: :update, if: :time_present?
-
-  before_save :set_starts_at, if: :time_present?
+  validates_with TimeValidator, on: :create
+  validates_with TimeValidator, on: :update, if: :time_parameters?
+  before_save :set_starts_at, if: :time_parameters?
 
   def set_starts_at
     self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
   end
 
-  def time_present?
+  def time_parameters?
     start_hour.present? || start_minute.present? || start_date.present?
-  end
-
-  def presence_of_date
-    unless start_date.present?
-      errors.add(:tournament, 'date is not present')
-    end
-  end
-
-  def hour_is_in_range
-    if start_hour.to_i < 1 || start_hour.to_i > 12
-      errors.add(:tournament, 'hour entered is invalid')
-    end
-  end
-
-  def minute_is_in_range
-    if start_minute.to_i < 0 || start_minute.to_i > 59
-      errors.add(:tournament, 'minute entered is invalid')
-    end
-  end
-
-  def numeric_presence_of_hour
-    if !start_hour.match(/\A[+-]?\d+\Z/)
-      errors.add(:tournament, 'hour is not present or is not numeric')
-    end
-  end
-
-  def numeric_presence_of_minute
-    if !start_hour.match(/\A[+-]?\d+\Z/)
-      errors.add(:tournament, 'minute is not present or is not numeric')
-    end
   end
 
   def start

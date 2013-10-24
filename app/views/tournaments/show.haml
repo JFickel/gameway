@@ -57,6 +57,4 @@
 
 .bracket
 
-.bracket_shit
-  / = @tournament.bracket.map { |round| round.map { |match| match.user_showings if match != nil} }
-  = @tournament.bracket.map {|round| round.map {|match| match.user_showings.sort_by {|us| us.top ? 0 : 1 }.map {|us| us.user.username } if match != nil }}.to_json
+

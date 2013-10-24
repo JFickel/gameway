@@ -2,7 +2,7 @@ class Tournament < ActiveRecord::Base
   belongs_to :owner, foreign_key: 'user_id', class_name: User
   has_many :tournament_memberships
   has_many :users, through: :tournament_memberships
-  has_many :matches
+  has_many :matches, inverse_of: :tournament
   has_many :user_showings, through: :matches
   has_many :moderator_roles
   has_many :moderators, through: :moderator_roles, source: :user
@@ -93,9 +93,10 @@ class Tournament < ActiveRecord::Base
   def add_filled_matches_to_filter_round(filter_slots)
     tournament_memberships.first(filter_slots).each_slice(2).with_object([]) do |pair,obj|
       m = Match.new
+      self.matches << m
+
       m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
       obj << m
-      self.matches << m
     end
   end
 
@@ -116,23 +117,26 @@ class Tournament < ActiveRecord::Base
     if tournament_memberships[filter_slots..-1].length.odd?
       after_filter_round = []
       m = Match.new
+      self.matches << m
+
       m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
       after_filter_round << m
-      self.matches << m
 
       tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
         m = Match.new
+        self.matches << m
+
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         after_filter_round << m
-        self.matches << m
       end
       self.bracket[1][(filter_pairs/2)..-1] = after_filter_round
     else
       self.bracket[1][(filter_pairs/2)..-1] = tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair,obj|
         m = Match.new
+        self.matches << m
+
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         obj << m
-        self.matches << m
       end
     end
   end
@@ -152,15 +156,16 @@ class Tournament < ActiveRecord::Base
     end
 
     ## Create a new user showing and place him on top if his index is even
-    new_showing = UserShowing.new(user: user, top: position[1].even?)
+    new_showing = UserShowing.new(user: user, top: (position[1].even? ? true : nil) )
 
     ## Place the new user showing the correct position
     new_match = self.bracket[position[0]+1][position[1]/2]
     if new_match.nil?
       m = Match.create
+      self.matches << m
+
       m.user_showings.push new_showing
       self.bracket[position[0]+1][position[1]/2] = m
-      self.matches << m
     else
       new_match.user_showings.push new_showing
     end

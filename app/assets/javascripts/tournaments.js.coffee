@@ -158,8 +158,9 @@ $ ->
       data:
         position: $(this).data('position')
       success: (data) ->
+        console.log data
         $('.bracket').empty()
-        renderModeratorBracket(data)
+        renderModeratorBracket(data.tournament.ordered_bracket)
     )
   )
 
@@ -174,7 +175,7 @@ $ ->
         success: (data) ->
           console.log data
           $('.bracket').empty()
-          renderModeratorBracket(data)
+          renderModeratorBracket(data.tournament.ordered_bracket)
       )
   )
 

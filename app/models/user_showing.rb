@@ -24,13 +24,14 @@ class UserShowing < ActiveRecord::Base
   end
 
   def any_last_match_us_uids_equal_saved_us_uids_from_current_match?
+    # user_showings_from_last_match.try(:pluck, :user_id).try(:any?) { |last_match_us_uid| saved_user_showings_from_current_match.try(:map, &:user_id).try(:include?, last_match_us_uid) }
     user_showings_from_last_match.try(:pluck, :user_id).try(:any?) do |last_match_us_uid|
-      saved_user_showings_from_current_match.try(:pluck, :user_id).try(:include?, last_match_us_uid)
+      saved_user_showings_from_current_match.try(:map, &:user_id).try(:include?, last_match_us_uid)
     end
   end
 
   def user_showings_from_last_match
-    User.find(user_id).matches.where(tournament_id: match.tournament_id).last.try(:user_showings)
+    User.find(user_id).matches.where(tournament_id: match.tournament.id).last.try(:user_showings)
   end
 
   def saved_user_showings_from_current_match

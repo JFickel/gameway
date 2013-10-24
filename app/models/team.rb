@@ -11,5 +11,7 @@ class Team < ActiveRecord::Base
                   against: :name,
                   using: { tsearch: { prefix: true }}
 
+  def create_team(options)
 
+  end
 end

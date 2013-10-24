@@ -18,6 +18,9 @@ gem 'devise', branch: 'rails4'
 # Postgres for heroku
 gem 'pg'
 
+# Use ActiveModel::Serializers for JSON responses
+gem 'active_model_serializers'
+
 # Using FB and twitch omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'

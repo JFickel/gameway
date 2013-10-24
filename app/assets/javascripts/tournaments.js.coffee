@@ -5,7 +5,10 @@ $ ->
   $('.update_path').hide()
   $('.matches').hide()
   $('.moderator-status').hide()
-  bracketJSON = JSON.parse($('.bracket_data').text())
+
+  if $('.bracket_data').text() != ""
+    bracketJSON = $('.bracket_data').text() or '{}'
+
 
   renderModeratorBracket = (bracket) ->
     $('.participants').hide()
@@ -141,9 +144,9 @@ $ ->
         $(".round-#{bracket_value.length*2} li").css('height', "#{correctedHeight}px")
         $(".round-#{bracket_value.length*2} li").css('padding', "#{correctedPadding}px 35px")
 
-  if $('.moderator-status').text()
+  if $('.moderator-status').text() == "true"
     renderModeratorBracket(bracketJSON)
-  else
+  else if $('.moderator-status').text() == "false"
     renderStandardBracket(bracketJSON)
 
   $('.bracket').on('click', 'button.slot', () ->

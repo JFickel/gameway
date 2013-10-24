@@ -1,11 +1,11 @@
 class Starcraft2AccountsController < ApplicationController
   def create
     sc2_account = Starcraft2Account.new(starcraft2_account_params)
-    sc2_account.user_id = current_user.id
+    sc2_account.user_id = current_user.id ## build through user
     if sc2_account.save
       redirect_to request.referer
     else
-      flash[:alert] = user.errors.full_messages
+      flash[:alert] = user.errors.full_messages ## change alerts
       redirect_to request.referer
     end
   end

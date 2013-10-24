@@ -16,7 +16,7 @@ class Tournament < ActiveRecord::Base
   attr_accessor :start_date, :start_hour, :start_minute, :start_period
 
   validate :hour_is_in_range, :minute_is_in_range, :numeric_presence_of_hour, :numeric_presence_of_minute, :presence_of_date
-  after_save :set_starts_at
+  before_save :set_starts_at
 
   def set_starts_at
     self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
@@ -130,12 +130,13 @@ class Tournament < ActiveRecord::Base
   end
 
   def advance position
+    ## 10 lines
     ## Find the correct match
     match = self.bracket[position[0]][position[1]]
 
     ## Find the user depending on whether he's on top of the pair or not
     if position[2] == 1
-      us = match.user_showings.find {|us| us.top == nil }
+      us = match.user_showings.find {|us| us.top == nil }  ## methods
       user = User.find(us.user_id)
     else
       us = match.user_showings.find {|us| us.top == true }
@@ -143,11 +144,7 @@ class Tournament < ActiveRecord::Base
     end
 
     ## Create a new user showing and place him on top if his index is even
-    if position[1].even?
-      new_showing = UserShowing.new(user: user, top: true)
-    else
-      new_showing = UserShowing.new(user: user)
-    end
+    new_showing = UserShowing.new(user: user, top: position[1].even?)
 
     ## Place the new user showing the correct position
     new_match = self.bracket[position[0]+1][position[1]/2]

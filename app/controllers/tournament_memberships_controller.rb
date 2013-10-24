@@ -1,13 +1,10 @@
 class TournamentMembershipsController < ApplicationController
   def create
-    member = TournamentMembership.new(tournament_membership_params)
-    member.user_id = current_user.id
+    member = current_user.tournament_memberships.new(tournament_membership_params)
     if member.save
-      flash[:notice] = "Successfully signed up for tournament!"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "Successfully signed up for tournament!"
     else
-      flash[:alert] = member.errors.full_messages
-      redirect_to request.referer
+      redirect_to request.referer, alert: member.errors.full_messages
     end
   end
 

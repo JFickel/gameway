@@ -9,7 +9,7 @@ class TournamentsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @tournaments.map {|t| t.title } }
+      format.json { render :json => @tournaments.map(&:title) }
     end
   end
 
@@ -18,8 +18,7 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    tournament = Tournament.new(tournament_params)
-    tournament.user_id = current_user.id
+    tournament = current_user.tournaments.new(tournament_params)
     if tournament.save
       redirect_to tournaments_path
     else

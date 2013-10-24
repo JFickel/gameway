@@ -11,8 +11,13 @@ $ ->
     name: 'groups'
     remote: "#{document.URL}?query=%QUERY"
 
-  $('.moderator-role-search #query').typeahead
+  $('.moderator-role-search #moderator_role_query').typeahead
     name: 'users'
-    remote: "http://#{location.host}/moderator_roles?query=%QUERY"
+    remote:
+      url: "/moderator_roles?moderator_role%5Bquery%5D=%QUERY"
+      filter: (parsedResponse) ->
+        # parsedResponse[0]
+        # $('.moderator-role-search #moderator_role_user_id').val(parsedResponse[1])
+        # console.log parsedResponse
 
-console.log "http://#{location.host}/moderator_roles?query=%QUERY"
+# console.log "http://#{location.host}/moderator_roles?moderator_role%5Bquery%5D=%QUERY"

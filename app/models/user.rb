@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
                   against: {username: 'A', first_name: 'B', last_name: 'C'},
                   using: { tsearch: { prefix: true }}
 
+  def search
+    if params[:query].present?
+      @tournaments = Tournament.text_search(params[:query])
+    else
+      @tournaments = all
+    end
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -56,5 +64,9 @@ class User < ActiveRecord::Base
 
   def all_tournaments
     (self.owned_tournaments + self.tournaments).uniq
+  end
+
+  def starcraft2_account
+    super || Starcraft2Account.new
   end
 end

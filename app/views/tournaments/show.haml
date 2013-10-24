@@ -18,9 +18,9 @@
       %h4= I18n.t('tournaments.add_moderator')
 
       = form_tag moderator_roles_path, method: :post, class: 'moderator-role-search' do
-        = text_field_tag :query, nil, placeholder: I18n.t('users.find'), class: 'search-input'
+        = text_field_tag "moderator_role[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
+        = hidden_field_tag "moderator_role[user_id]"
         = submit_tag "Add Moderator", name: nil, class: 'tournament-search-btn'
-
 
 
 .owner

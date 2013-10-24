@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @teams.map {|t| t.name } }
+      format.json { render :json => @teams.map(&:name) }
     end
   end
 
@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
     team.team_memberships << TeamMembership.new(user_id: current_user.id)
     team.leader = current_user
     if team.save
-      redirect_to team_path(team)
+      redirect_to team ## kewl
     else
       flash[:alert] = team.errors.full_messages
       redirect_to new_team_path
@@ -31,7 +31,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @leader = @team.leader
-    @members = @team.users - [@leader]
+    @members = @team.users - [@leader] ## member method
   end
 
   def update

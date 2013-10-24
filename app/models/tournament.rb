@@ -15,11 +15,19 @@ class Tournament < ActiveRecord::Base
 
   attr_accessor :start_date, :start_hour, :start_minute, :start_period
 
-  validate :hour_is_in_range, :minute_is_in_range, :numeric_presence_of_hour, :numeric_presence_of_minute, :presence_of_date
-  before_save :set_starts_at
+  validate :hour_is_in_range, :minute_is_in_range, :numeric_presence_of_hour, :numeric_presence_of_minute, :presence_of_date, on: :create
+  validate :hour_is_in_range, :numeric_presence_of_hour, on: :update, if: :time_present?
+  validate :minute_is_in_range, :numeric_presence_of_minute, on: :update, if: :time_present?
+  validate :presence_of_date, on: :update, if: :time_present?
+
+  before_save :set_starts_at, if: :time_present?
 
   def set_starts_at
     self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
+  end
+
+  def time_present?
+    start_hour.present? || start_minute.present? || start_date.present?
   end
 
   def presence_of_date
@@ -84,7 +92,7 @@ class Tournament < ActiveRecord::Base
 
   def add_filled_matches_to_filter_round(filter_slots)
     tournament_memberships.first(filter_slots).each_slice(2).with_object([]) do |pair,obj|
-      m = Match.create
+      m = Match.new
       m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
       obj << m
       self.matches << m
@@ -107,13 +115,13 @@ class Tournament < ActiveRecord::Base
 
     if tournament_memberships[filter_slots..-1].length.odd?
       after_filter_round = []
-      m = Match.create
+      m = Match.new
       m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
       after_filter_round << m
       self.matches << m
 
       tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
-        m = Match.create
+        m = Match.new
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         after_filter_round << m
         self.matches << m
@@ -121,7 +129,7 @@ class Tournament < ActiveRecord::Base
       self.bracket[1][(filter_pairs/2)..-1] = after_filter_round
     else
       self.bracket[1][(filter_pairs/2)..-1] = tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair,obj|
-        m = Match.create
+        m = Match.new
         m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
         obj << m
         self.matches << m

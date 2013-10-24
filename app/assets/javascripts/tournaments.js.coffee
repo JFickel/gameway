@@ -7,7 +7,8 @@ $ ->
   $('.moderator-status').hide()
 
   if $('.bracket_data').text() != ""
-    bracketJSON = $('.bracket_data').text() or '{}'
+    bracketJSON = JSON.parse($('.bracket_data').text())
+
 
 
   renderModeratorBracket = (bracket) ->

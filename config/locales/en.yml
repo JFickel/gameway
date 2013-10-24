@@ -26,6 +26,7 @@ en:
     listing: "All Groups"
     control_disclaimer: "Groups are open-ended which means anyone can join. Groups are controlled by member consensus."
   events:
+    edit: "Edit Event"
     create: "Create an Event"
     add: "Add Event"
     events: "Events"

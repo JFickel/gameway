@@ -51,10 +51,12 @@
   = request.env["REQUEST_URI"]
 
 - if @owner == current_user || @tournament.moderators.include?(current_user)
-  .moderator-status= "true".to_json
+  .moderator-status= "true"
+- else
+  .moderator-status= "false"
 
 .bracket
 
-
-
-
+.bracket_shit
+  / = @tournament.bracket.map { |round| round.map { |match| match.user_showings if match != nil} }
+  = @tournament.bracket.map {|round| round.map {|match| match.user_showings.sort_by {|us| us.top ? 0 : 1 }.map {|us| us.user.username } if match != nil }}.to_json

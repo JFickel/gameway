@@ -3,7 +3,7 @@ class UserShowing < ActiveRecord::Base
   belongs_to :match, inverse_of: :user_showings
   validates :user_id, presence: true
   validate :maximum_of_two_user_showings_per_match, :cannot_have_two_of_the_same_user_in_single_match,
-  :cannot_advance_both_players_from_the_same_match
+  :cannot_advance_two_players_from_the_same_match
 
   def maximum_of_two_user_showings_per_match
     if match.try(:user_showings).try(:count) == 2 || match.try(:user_showings).try(:length).try(:>, 2)
@@ -17,9 +17,23 @@ class UserShowing < ActiveRecord::Base
     end
   end
 
-  def cannot_advance_both_players_from_the_same_match
-    if !UserShowing.where(user_id: user_id).last.try(:match).try(:user_showings).try(:select) {|last_us| match.try(:user_showings).try(:any?) { |us| last_us.user_id == us.user_id }  }.try(:length).try(:>, 0)
-      errors.add(:user_showing, "can't have both players from the same previous match advance")
+  def cannot_advance_two_players_from_the_same_match
+    if any_last_match_us_uids_equal_saved_us_uids_from_current_match?
+      errors.add(:user_showing, "will not allow two players from that were in the same previous match advance")
     end
+  end
+
+  def any_last_match_us_uids_equal_saved_us_uids_from_current_match?
+    user_showings_from_last_match.try(:pluck, :user_id).try(:any?) do |last_match_us_uid|
+      saved_user_showings_from_current_match.try(:pluck, :user_id).try(:include?, last_match_us_uid)
+    end
+  end
+
+  def user_showings_from_last_match
+    User.find(user_id).matches.where(tournament_id: match.tournament_id).last.try(:user_showings)
+  end
+
+  def saved_user_showings_from_current_match
+    match.user_showings.select {|us| !us.new_record?}
   end
 end

@@ -152,11 +152,12 @@ $ ->
 
   $('.bracket').on('click', 'button.slot', () ->
     $.ajax(
-      type: 'PUT'
-      url: $('.update_path').text()
+      type: 'POST'
+      url: '/slots'
       dataType: 'json'
       data:
         position: $(this).data('position')
+        id: $('.tournament_id').text()
       success: (data) ->
         console.log data
         $('.bracket').empty()
@@ -167,11 +168,12 @@ $ ->
   $('.bracket').on('click', '.delete-slot', () ->
     if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('delete-slot')[0]+1} Match-#{$(this).data('destroy')[1]+1} #{$(this).data('username')}. This action is NOT reversible."
       $.ajax(
-        type: 'PUT'
+        type: 'DELETE'
         url: $('.update_path').text()
         dataType: 'json'
         data:
           destroy: $(this).data('destroy')
+          id: $('.tournament_id').text()
         success: (data) ->
           console.log data
           $('.bracket').empty()

@@ -13,7 +13,10 @@ class Team < ActiveRecord::Base
                   against: :name,
                   using: { tsearch: { prefix: true }}
 
-  def create_team(options)
-
+  def construct(name)
+    team = Team.new(name)
+    team.team_memberships <<  TeamMembership.new(user_id: current_user.id)
+    team.leader = current_user
+    return team
   end
 end

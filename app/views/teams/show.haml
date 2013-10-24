@@ -30,7 +30,8 @@
   - @team.events.each do |event|
     %li
       %h4= event.title
-      %p= link_to I18n.t('events.edit'), edit_event_path(event), class: 'edit-team-event-btn'
+      %p= link_to I18n.t('model.edit'), edit_event_path(event), class: 'edit-team-event-btn'
+      %p= link_to I18n.t('model.delete'), edit_event_path(event), class: 'edit-team-event-btn'
       %p= event.starts_at
       %p= event.ends_at
       %p= event.description

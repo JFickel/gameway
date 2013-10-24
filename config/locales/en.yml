@@ -9,6 +9,7 @@ en:
     create: "Create"
     delete: "Delete"
     update: "Update"
+    edit: "Edit"
   home:
     connect: 'Connect'
     connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'

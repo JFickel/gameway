@@ -73,6 +73,7 @@ gem "koala"
 
 # Use my sc2 gem
 gem 'starcraft2'
+gem 'twitch'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

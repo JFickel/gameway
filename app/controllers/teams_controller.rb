@@ -17,14 +17,11 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.new(name: team_params[:name])
-    team.team_memberships << TeamMembership.new(user_id: current_user.id)
-    team.leader = current_user
+    team = Team.construct(team_params[:name])
     if team.save
-      redirect_to team ## kewl
+      redirect_to team
     else
-      flash[:alert] = team.errors.full_messages
-      redirect_to new_team_path
+      redirect_to new_team_path, alert: team.errors.full_messages
     end
   end
 
@@ -43,8 +40,7 @@ class TeamsController < ApplicationController
         redirect_to team_path(team)
       end
     else
-      flash[:alert] = team.errors.full_messages
-      redirect_to request.referrer
+      redirect_to request.referrer, alert: team.errors.full_messages
     end
   end
 

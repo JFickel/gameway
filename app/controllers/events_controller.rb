@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     elsif event.save && event.team.present?
       redirect_to event.team
     else
-      redirect_to request.referer
+      redirect_to request.referer, alert: event.errors.full_messages
     end
   end
 

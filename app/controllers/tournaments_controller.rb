@@ -41,16 +41,8 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
-
-    if params[:start]
-      tournament.start
-    elsif params[:position]
-      tournament.advance(params[:position].map{|e| e.to_i })
-    elsif params[:destroy]
-      tournament.delete_slot(params[:delete_slot].map{|e| e.to_i })
-    end
-
-    tournament = Tournament.find(params[:id])
+    tournament.start if params[:start]
+    tournament.reload
 
     respond_to do |format|
       format.html { redirect_to request.referer }

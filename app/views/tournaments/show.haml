@@ -49,6 +49,8 @@
 
 .update_path
   = request.env["REQUEST_URI"]
+.tournament_id
+  = @tournament.id
 
 - if @owner == current_user || @tournament.moderators.include?(current_user)
   .moderator-status= "true"

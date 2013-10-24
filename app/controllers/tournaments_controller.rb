@@ -9,7 +9,7 @@ class TournamentsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @tournaments.map(&:title) }
+      format.json { render :json => @tournaments }
     end
   end
 

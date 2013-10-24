@@ -6,6 +6,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def avatar_url
-    "#{object.avatar.thumb.url}"
+    "#{object.avatar.icon.url}"
   end
 end

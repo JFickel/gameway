@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @teams.map(&:name) }
+      format.json { render :json => @teams }
     end
   end
 

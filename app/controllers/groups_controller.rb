@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @groups.map {|g| "#{g.name} - #{g.kind}" } }
+      format.json { render :json => @groups }
     end
   end
 

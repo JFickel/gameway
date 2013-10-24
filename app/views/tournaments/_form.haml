@@ -5,9 +5,9 @@
 
   = f.text_field :start_date, placeholder: 'Date', value: @tournament.starts_at.try(:strftime, "%Y-%m-%d"), class: 'tournament-input-field'
 
-  = f.text_field :start_hour, placeholder: 'Hour', value: @tournament.starts_at.try(:strftime, "%l")
+  = f.text_field :start_hour, placeholder: 'Hour', value: @tournament.starts_at.try(:strftime, "%l").try(:strip)
 
-  = f.text_field :start_minute, placeholder: 'Minute', value: @tournament.starts_at.try(:min)
+  = f.text_field :start_minute, placeholder: 'Minute', value: @tournament.starts_at.try(:strftime, "%M")
 
   = f.select :start_period, [['pm', 'pm'],['am', 'am']], selected: @tournament.starts_at.try(:strftime, "%P")
 

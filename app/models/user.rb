@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   attr_accessor :login
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: { case_sensitive: true }
 
   include PgSearch
   pg_search_scope :text_search,

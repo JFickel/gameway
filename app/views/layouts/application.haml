@@ -10,5 +10,6 @@
     = render 'shared/navigation'
     %p.notice= notice
     %p.alert= alert
+    %p.devise_errors= resource.errors.full_messages if resource.errors.present?
     .container
       = yield

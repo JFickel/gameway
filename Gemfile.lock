@@ -34,6 +34,8 @@ GEM
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     builder (3.1.4)
@@ -61,6 +63,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     database_cleaner (1.1.1)
+    debug_inspector (0.0.2)
     debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -329,6 +332,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   better_errors
+  binding_of_caller
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)

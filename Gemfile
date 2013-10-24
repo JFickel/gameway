@@ -91,6 +91,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'better_errors' # go to /__better_errors to see the last error
+  gem 'binding_of_caller'
 
   gem 'guard-rspec'
   gem 'spork-rails'

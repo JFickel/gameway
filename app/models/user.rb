@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :matches, through: :user_showings
   has_many :moderator_roles
   has_many :moderated_tournaments, through: :moderator_roles, source: :tournament
+  has_many :events
 
   mount_uploader :avatar, AvatarUploader
 

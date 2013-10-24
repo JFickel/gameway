@@ -19,5 +19,17 @@
       %li
         %h4= link_to "#{member.username} - #{member.first_name} #{member.last_name}", user_path(member)
 
-.vlog
-  %iframe{width: "420", height: "315", src: "//www.youtube.com/embed/lUk8tOeLCEg?theme=light", frameborder: "0", allowfullscreen: "true"}
+
+.team-events
+  %h3= I18n.t('events.events')
+
+  - if @team.leader == current_user || @team.users.include?(current_user)
+    .event-panel
+      %h4= link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn'
+
+  - @team.events.each do |event|
+    %li
+      %h4= event.title
+      %p= event.starts_at
+      %p= event.ends_at
+      %p= event.description

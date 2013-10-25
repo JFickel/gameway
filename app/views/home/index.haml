@@ -28,16 +28,17 @@
         %p= I18n.t("tournaments.none")
       - else
         - current_user.all_tournaments.each do |tournament|
-          %h3= link_to tournament.title, tournament_path(tournament)
-          - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
-            %h4= I18n.t("tournaments.owner_and_participant")
-          - elsif current_user == tournament.owner
-            %h4= I18n.t("tournaments.owner")
-            = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
-            = link_to I18n.t("tournaments.delete"), tournament_path(tournament), method: :delete
+          .user-tournament
+            %h3= link_to tournament.title, tournament_path(tournament)
+            - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
+              %h4= I18n.t("tournaments.owner_and_participant")
+            - elsif current_user == tournament.owner
+              %h4= I18n.t("tournaments.owner")
+              = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
+              = link_to I18n.t("tournaments.delete"), tournament_path(tournament), method: :delete
 
-          - elsif current_user.tournaments.include? tournament
-            %h4= I18n.t("tournaments.participant")
+            - elsif current_user.tournaments.include? tournament
+              %h4= I18n.t("tournaments.participant")
 
     .user-teams
       %h2= "Your Teams"

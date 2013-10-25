@@ -3,7 +3,7 @@
   %h3= @tournament.game
   %h3
     = I18n.t('tournaments.starts_at')
-    = @tournament.starts_at.strftime('%l:%M%P')
+    = @tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')
   %h3= I18n.t('tournaments.description')
   %p= @tournament.description
 

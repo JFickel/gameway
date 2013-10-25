@@ -20,7 +20,8 @@
     - @group.events.each do |event|
       %li
         %h4= event.title
-        %p= event.starts_at
+        %h4= event.starts_at.strftime("%B %e, %Y")
+        %p= event.starts_at.strftime("%l:%M%P")
         %p= event.description
 
         = link_to I18n.t('model.edit'), edit_event_path(event, group_id: @group.id), class: 'edit-group-event-btn'

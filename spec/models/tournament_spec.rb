@@ -36,4 +36,10 @@ describe Tournament do
       tournament.rules.should == 'None'
     end
   end
+
+  describe '.start' do
+    it 'should return nil if bracket is not initialized' do
+      tournament.bracket.should == nil
+    end
+  end
 end

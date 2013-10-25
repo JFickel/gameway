@@ -7,6 +7,9 @@ $ ->
   $('.matches').hide()
   $('.moderator-status').hide()
 
+  $('.tournament-delete-btn').click () ->
+    return confirm("Are you sure you want to delete this tournament?")
+
   if $('.bracket_data').text() != ""
     bracketJSON = JSON.parse($('.bracket_data').text())
 

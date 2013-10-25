@@ -173,10 +173,10 @@
         2,
         2,
         2,
-        5,
+        6,
         null,
         1,
-        11,
+        12,
         null,
         null,
         null,
@@ -185,10 +185,6 @@
         null,
         null,
         1,
-        1,
-        1,
-        null,
-        null,
         1,
         1,
         null,
@@ -197,6 +193,16 @@
         1,
         null,
         null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
         1,
         1,
         null,
@@ -309,6 +315,49 @@
         null
       ]
     },
-    "timestamp": 1382664524
+    "timestamp": 1382680636
+  },
+  "Cucumber Features": {
+    "coverage": {
+      "/Users/jamesfickel/Desktop/projects/gameway/app/controllers/home_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1382681054
   }
 }

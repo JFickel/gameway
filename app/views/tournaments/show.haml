@@ -1,6 +1,7 @@
 .tournament-banner
   %h2= @tournament.title
   %h3= @tournament.game
+  %h3= "Starts in #{distance_of_time_in_words(Time.current, @tournament.starts_at)}"
   %h3
     = I18n.t('tournaments.starts_at')
     = @tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')

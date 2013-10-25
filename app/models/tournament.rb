@@ -72,11 +72,37 @@ class Tournament < ActiveRecord::Base
     end
   end
 
+  def build_filtered_round_matches_with_odd_remainder(filter_slots)
+    after_filter_round = []
+    m = Match.new
+    self.matches << m
+    m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
+    after_filter_round << m
+
+    tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
+      m = Match.new
+      self.matches << m
+      m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+      after_filter_round << m
+    end
+    return after_filter_round
+  end
+
+  def build_filtered_round_matches_with_even_remainder(filter_slots)
+    tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair, after_filter_round|
+      m = Match.new
+      self.matches << m
+
+      m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+      after_filter_round << m
+    end
+  end
+
   def initialize_bracket
     ## Takes the number of rounds and finds how many slots are contested
     ## for the round following the "filter" round. It then takes these contested
     ## slots, multiplies them by two and shoves that amount of players into
-    ## the "filter" round. The remainder get moved into the end of the next round.
+    ## the "filter" round. The remainder get moved onto the end of the next round.
     rounds = calculate_rounds
     filtered_round_size = calculate_filtered_round_size(rounds)
     filter_pairs = calculate_number_of_filter_pairs(filtered_round_size)
@@ -84,47 +110,38 @@ class Tournament < ActiveRecord::Base
 
     self.bracket[0][0..((filter_slots/2)-1)] = add_filled_matches_to_filter_round(filter_slots)
 
-    ### Refactor this:
-
     if tournament_memberships[filter_slots..-1].length.odd?
-      after_filter_round = []
-      m = Match.new
-      self.matches << m
-
-      m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
-      after_filter_round << m
-
-      tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
-        m = Match.new
-        self.matches << m
-
-        m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
-        after_filter_round << m
-      end
-      self.bracket[1][(filter_pairs/2)..-1] = after_filter_round
+      self.bracket[1][(filter_pairs/2)..-1] = build_filtered_round_matches_with_odd_remainder(filter_slots)
     else
-      self.bracket[1][(filter_pairs/2)..-1] = tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair,obj|
-        m = Match.new
-        self.matches << m
-
-        m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
-        obj << m
-      end
+      self.bracket[1][(filter_pairs/2)..-1] = build_filtered_round_matches_with_even_remainder(filter_slots)
     end
   end
 
+  def find_bottom_user(match)
+    us = match.user_showings.find {|us| us.top == nil }  ## methods
+    User.find(us.user_id)
+  end
+
+  def find_top_user(match)
+    us = match.user_showings.find {|us| us.top == true }
+    User.find(us.user_id)
+  end
+
+  def create_new_match_and_position_user(position, new_showing)
+    m = Match.create
+    self.matches << m
+
+    m.user_showings.push new_showing
+    self.bracket[position[0]+1][position[1]/2] = m
+  end
+
   def advance position
-    ## 10 lines
-    ## Find the correct match
     match = self.bracket[position[0]][position[1]]
 
-    ## Find the user depending on whether he's on top of the pair or not
     if position[2] == 1
-      us = match.user_showings.find {|us| us.top == nil }  ## methods
-      user = User.find(us.user_id)
+      user = find_bottom_user(match)
     else
-      us = match.user_showings.find {|us| us.top == true }
-      user = User.find(us.user_id)
+      user = find_top_user(match)
     end
 
     ## Create a new user showing and place him on top if his index is even
@@ -133,11 +150,7 @@ class Tournament < ActiveRecord::Base
     ## Place the new user showing the correct position
     new_match = self.bracket[position[0]+1][position[1]/2]
     if new_match.nil?
-      m = Match.create
-      self.matches << m
-
-      m.user_showings.push new_showing
-      self.bracket[position[0]+1][position[1]/2] = m
+      create_new_match_and_position_user(position, new_showing)
     else
       new_match.user_showings.push new_showing
     end
@@ -150,11 +163,7 @@ class Tournament < ActiveRecord::Base
     if position[2] == 1
       us = match.user_showings.find {|us| us.top == nil }
     else
-      us = match.user_showings.find {|us| us.top == true }
-    end
-
-    if match.user_showings.count == 1
-      us = match.user_showings.first
+      us = match.user_showings.find {|us| us.top == true } || match.user_showings.first
     end
 
     us.destroy

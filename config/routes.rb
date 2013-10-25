@@ -15,10 +15,11 @@ Gameway::Application.routes.draw do
   post 'slots', to: 'slots#create'
   delete 'slots', to: 'slots#destroy'
 
+  post 'time_zones', to: 'time_zones#create'
+
   resources :teams
   resources :team_memberships
   root to: "home#index"
-
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_timezone
 
   def after_sign_up_path_for(resource)
     redirect_to edit_user_path(current_user)
@@ -17,5 +18,11 @@ class ApplicationController < ActionController::Base
       u.slice(:username, :email, :password, :password_confirmation, :group_ids).permit!
     }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, :avatar) }
+  end
+
+  private
+
+  def set_timezone
+    Time.zone = session[:time_zone] if session[:time_zone]
   end
 end

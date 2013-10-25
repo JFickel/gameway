@@ -4,6 +4,7 @@
       %ul.first-tier
         %li= text_field_tag 'user[login]', nil, placeholder: I18n.t("users.username_or_email"), class: 'signin-input'
         %li= password_field_tag 'user[password]', nil, placeholder: I18n.t("users.password"), class: 'signin-input'
+        %li= hidden_field_tag 'user[timezone]', nil, class: 'user-timezone'
         %li
           %button.signin-btn= I18n.t("users.sign_in")
     %li

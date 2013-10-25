@@ -36,6 +36,7 @@
         <%# end -%>
       </div>
     </div>
+    <%= f.hidden_field :timezone, class: 'user-timezone' %>
   <!-- <div class="form-actions"> -->
   <%= render 'devise/omniauth' %>
   <%= f.submit I18n.t("users.signup"), :class => "signup-btn" %>

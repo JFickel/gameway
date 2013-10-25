@@ -11,5 +11,6 @@
     %p.notice= notice
     %p.alert= alert
     %p.devise_errors= resource.errors.full_messages if resource.errors.present?
+    %input{type: 'hidden', class: 'time_zone'}
     .container
       = yield

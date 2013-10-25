@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessor :login
+  attr_accessor :login, :timezone
   validates :username, presence: true, uniqueness: { case_sensitive: true }
 
   include PgSearch

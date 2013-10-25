@@ -5,10 +5,8 @@ class EventsController < ApplicationController
 
   def create
     event = current_user.events.new(event_params)
-    if event.save && event.group.present?
-      redirect_to event.group
-    elsif event.save && event.team.present?
-      redirect_to event.team
+    if event.save
+      redirect_to event.associate
     else
       redirect_to request.referer, alert: event.errors.full_messages
     end
@@ -19,9 +17,18 @@ class EventsController < ApplicationController
   end
 
   def update
+    event = Event.find(params[:id])
+    if event.update_attributes(event_params)
+      redirect_to event.associate
+    else
+      redirect_to request.referer, alert: event.errors.full_messages
+    end
   end
 
   def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    redirect_to request.referer, notice: 'Event deleted'
   end
 
   private

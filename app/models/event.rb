@@ -17,4 +17,12 @@ class Event < ActiveRecord::Base
   def time_parameters?
     start_hour.present? || start_minute.present? || start_date.present?
   end
+
+  def associate
+    if group.present?
+      group
+    elsif team.present?
+      team
+    end
+  end
 end

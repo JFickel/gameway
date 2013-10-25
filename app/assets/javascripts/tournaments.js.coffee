@@ -3,6 +3,7 @@ $ ->
     dateFormat: 'yy-mm-dd'
   $('.bracket_data').hide()
   $('.update_path').hide()
+  $('.tournament_id').hide()
   $('.matches').hide()
   $('.moderator-status').hide()
 

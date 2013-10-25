@@ -1,12 +1,42 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jamesfickel/Desktop/projects/gameway/app/models/group_membership.rb": [
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/event.rb": [
+        1,
         1,
         1,
         1,
         1,
         null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/spec/models/group_membership_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null
+      ],
+      "/Users/jamesfickel/Desktop/projects/gameway/app/models/group_membership.rb": [
+        1,
+        1,
+        1,
+        1,
         null,
         null
       ],
@@ -21,6 +51,7 @@
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/group.rb": [
+        1,
         1,
         1,
         1,
@@ -130,6 +161,34 @@
         2,
         2,
         2,
+        5,
+        null,
+        1,
+        11,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/user_showing_spec.rb": [
@@ -163,8 +222,23 @@
         null,
         1,
         2,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2,
+        0,
+        null,
+        null,
+        null,
+        1,
         2,
         null,
+        null,
+        1,
+        0,
         null,
         null
       ],
@@ -223,6 +297,6 @@
         null
       ]
     },
-    "timestamp": 1382492478
+    "timestamp": 1382659312
   }
 }

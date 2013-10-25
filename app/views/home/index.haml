@@ -30,6 +30,9 @@
             %h4= I18n.t("tournaments.owner_and_participant")
           - elsif current_user == tournament.owner
             %h4= I18n.t("tournaments.owner")
+            = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
+            = link_to I18n.t("tournaments.delete"), tournament_path(tournament), method: :delete
+
           - elsif current_user.tournaments.include? tournament
             %h4= I18n.t("tournaments.participant")
 

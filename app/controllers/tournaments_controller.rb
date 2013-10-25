@@ -36,7 +36,6 @@ class TournamentsController < ApplicationController
 
   def edit
     @tournament = Tournament.find(params[:id])
-
   end
 
   def update
@@ -45,9 +44,15 @@ class TournamentsController < ApplicationController
     tournament.reload
 
     respond_to do |format|
-      format.html { redirect_to request.referer }
+      format.html { redirect_to tournament }
       format.json { render :json => tournament }
     end
+  end
+
+  def destroy
+    tournament = Tournament.find(params[:id])
+    tournament.destroy
+    redirect_to request.referer
   end
 
   private

@@ -13,6 +13,9 @@ class Tournament < ActiveRecord::Base
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
 
+  # mode: individual, team
+  # open: boolean
+
   pg_search_scope :text_search,
                   against: {title: 'A', description: 'B'},
                   using: { tsearch: { prefix: true }}

@@ -23,15 +23,15 @@
 .team-events
   %h3= I18n.t('events.events')
 
-  - if @team.leader == current_user || @team.users.include?(current_user)
-    .event-panel
-      %h4= link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn'
+  / - if @team.leader == current_user || @team.users.include?(current_user)
+  /   .event-panel
+  %h4= link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn'
+  %ul
+    - @team.events.each do |event|
+      %li
+        %h4= event.title
+        %p= event.starts_at
+        %p= event.description
 
-  - @team.events.each do |event|
-    %li
-      %h4= event.title
-      %p= link_to I18n.t('model.edit'), edit_event_path(event, team_id: @team.id), class: 'edit-team-event-btn'
-      %p= link_to I18n.t('model.delete'), event_path(event), class: 'edit-team-event-btn', method: :delete
-      %p= event.starts_at
-      %p= event.ends_at
-      %p= event.description
+        = link_to I18n.t('model.edit'), edit_event_path(event, team_id: @team.id), class: 'edit-team-event-btn'
+        = link_to I18n.t('model.delete'), event_path(event), class: 'edit-team-event-btn', method: :delete

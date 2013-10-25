@@ -10,3 +10,19 @@
   %h3= I18n.t('groups.members')
   - @group.users.each do |user|
     %h4= link_to "#{user.username} - #{user.first_name} #{user.last_name}", user_path(user)
+
+.group-events
+  %h3= I18n.t('events.events')
+
+  %h4= link_to I18n.t('events.add'), new_event_path(group_id: @group.id), class: 'new-group-event-btn'
+
+  %ul
+    - @group.events.each do |event|
+      %li
+        %h4= event.title
+        %p= event.starts_at
+        %p= event.description
+
+        = link_to I18n.t('model.edit'), edit_event_path(event, group_id: @group.id), class: 'edit-group-event-btn'
+        = link_to I18n.t('model.delete'), event_path(event), class: 'edit-group-event-btn', method: :delete
+

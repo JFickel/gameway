@@ -21,6 +21,14 @@
         1,
         0,
         null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/spec/models/group_membership_spec.rb": [
@@ -67,7 +75,11 @@
         1,
         null,
         1,
-        1,
+        2,
+        2,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/jamesfickel/Desktop/projects/gameway/app/models/match.rb": [
@@ -297,6 +309,6 @@
         null
       ]
     },
-    "timestamp": 1382659312
+    "timestamp": 1382664524
   }
 }

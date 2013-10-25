@@ -14,27 +14,27 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-10-24T17:01:52-07:00">2013-10-24T17:01:52-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-10-24T18:28:44-07:00">2013-10-24T18:28:44-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">95.63%</span></span>
+    (<span class="covered_percent"><span class="green">93.49%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.3
+         1.33
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>22</b> files in total.
-    <b>160</b> relevant lines. 
-    <span class="green"><b>153</b> lines covered</span> and
-    <span class="red"><b>7</b> lines missed </span>
+    <b>169</b> relevant lines. 
+    <span class="green"><b>158</b> lines covered</span> and
+    <span class="red"><b>11</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,12 +52,12 @@
       
       <tr>
         <td class="strong"><a href="#28f14074f7adc81b9e01c1b884b8c87f96c51042" class="src_link" title="app/models/event.rb">app/models/event.rb</a></td>
-        <td class="yellow strong">84.62 %</td>
-        <td>20</td>
-        <td>13</td>
-        <td>11</td>
-        <td>2</td>
-        <td>0.8</td>
+        <td class="red strong">66.67 %</td>
+        <td>28</td>
+        <td>18</td>
+        <td>12</td>
+        <td>6</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
@@ -173,11 +173,11 @@
       <tr>
         <td class="strong"><a href="#c675794ba9a171460a547651b2aae6d38767de7f" class="src_link" title="spec/models/match_spec.rb">spec/models/match_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>5</td>
-        <td>3</td>
-        <td>3</td>
+        <td>9</td>
+        <td>7</td>
+        <td>7</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>1.7</td>
       </tr>
       
       <tr>
@@ -289,11 +289,11 @@
         <div class="source_table" id="28f14074f7adc81b9e01c1b884b8c87f96c51042">
   <div class="header">
     <h3>app/models/event.rb</h3>
-    <h4><span class="yellow">84.62 %</span> covered</h4>
+    <h4><span class="red">66.67 %</span> covered</h4>
     <div>
-      <b>13</b> relevant lines. 
-      <span class="green"><b>11</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>18</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
   
@@ -415,6 +415,54 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def associate</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    if group.present?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
+          
+          <code class="ruby">      group</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="24">
+          
+          
+          <code class="ruby">    elsif team.present?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">      team</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby">end</code>
@@ -1233,8 +1281,8 @@
     <h3>spec/models/match_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>3</b> relevant lines. 
-      <span class="green"><b>3</b> lines covered</span> and
+      <b>7</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1260,13 +1308,37 @@
           <code class="ruby">describe Match do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="4">
+          <span class="hits">2</span>
           
-          <code class="ruby">  pending &quot;add some examples to (or delete) #{__FILE__}&quot;</code>
+          <code class="ruby">  it { should belong_to(:tournament)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="covered" data-hits="2" data-linenumber="5">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many(:user_showings)}</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="6">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many(:users).through(:user_showings)}</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="7">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many(:team_showings)}</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="8">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  it { should have_many(:teams).through(:team_showings)}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby">end</code>

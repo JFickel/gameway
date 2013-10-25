@@ -25,7 +25,7 @@ class Tournament < ActiveRecord::Base
   before_save :set_starts_at, if: :time_parameters?
 
   def set_starts_at
-    self.starts_at = DateTime.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
+    self.starts_at = Time.zone.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
   end
 
   def time_parameters?

@@ -18,7 +18,7 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    tournament = current_user.tournaments.new(tournament_params)
+    tournament = current_user.owned_tournaments.new(tournament_params)
     if tournament.save
       redirect_to tournaments_path
     else

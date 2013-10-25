@@ -44,6 +44,7 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
   tournaments:
+    starts_at: "Tournament starts at"
     delete: "Delete Tournament"
     edit: "Edit Tournament"
     find: "Find a Tournament"

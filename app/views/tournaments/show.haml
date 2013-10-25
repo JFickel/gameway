@@ -1,7 +1,9 @@
 .tournament-banner
   %h2= @tournament.title
   %h3= @tournament.game
-  %h3= @tournament.starts_at
+  %h3
+    = I18n.t('tournaments.starts_at')
+    = @tournament.starts_at.strftime('%l:%M%P')
   %h3= I18n.t('tournaments.description')
   %p= @tournament.description
 

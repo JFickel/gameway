@@ -8,7 +8,7 @@ class SlotsController < ApplicationController
 
   def destroy
     tournament = Tournament.find(params[:id])
-    tournament.delete_slot(params[:delete_slot].map{|e| e.to_i })
+    tournament.delete_slot(params[:destroy].map{|e| e.to_i })
     tournament.reload
     render json: tournament
   end

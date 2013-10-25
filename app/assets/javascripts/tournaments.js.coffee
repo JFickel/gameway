@@ -13,6 +13,102 @@ $ ->
   if $('.bracket_data').text() != ""
     bracketJSON = JSON.parse($('.bracket_data').text())
 
+  class BracketView
+    constructor: (options) ->
+      {@moderatorStatus, @bracket, @matchHeight, @matchPadding, @matchWidth, @matchBorder}
+
+    renderBracket = ->
+      @output = ""
+      $.each @bracket, (round_index, round) ->
+        if round_index == bracket.length-1
+          @output += "<ul class='round winner'>"
+        else
+          @output += "<ul class='round round-#{round.length*2}'>"
+        $.each round, (match_index, match) ->
+          if match_index == 0
+            output_class = " first"
+          @output += "<li class='#{output_class}'>"
+          @output += "<div class='match'>"
+          @determineHeader(round_index, round)
+          if match != null
+            $.each match, (user_index, user) ->
+              if @moderatorStatus is "true"
+                @output += "<a class='delete-slot' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a><button class='slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</div>"
+              else if @moderatorStatus is "false"
+                @output += "<div class='slot-view'>#{user}</div>"
+
+          @output += "</div>"
+          @output += "</li>"
+      @output += "</ul>"
+      $(".bracket").append @output
+      @output = ""
+      @setStyles()
+
+    determineHeader = (round_index, round, match_index)->
+      if round_index == @bracket.length - 1
+        @output += "<div> Winner </div>"
+      else if round.length == 1
+        @output += "<div> Finals </div>"
+      else if round.length == 2
+        @output += "<div> Semi-Finals </div>"
+      else
+        @output += "<div> Ro#{round.length*2} Match #{match_index+1} </div>"
+
+    setStyles: ->
+      # matchHeight = 50
+      # matchPadding = [10, 35]
+      # matchWidth = 100
+      # matchBorder = 1
+
+      @matchTotalHeight = @matchHeight + (2*@matchPadding[0]) + 2*@matchBorder
+
+      $.each @bracket, (round_index, round) ->
+        if round_index == 0
+          $(".round-#{round.length*2} li").css('border-top', "1px solid white")
+          $(".round-#{round.length*2} li.first").css('border-top', "1px solid black")
+
+
+        marginTop = (Math.pow(2, round_index-1)*@matchTotalHeight) - @matchTotalHeight/2
+        marginBottom = 2*marginTop
+        if round_index == @bracket.length - 1
+          marginTop = (Math.pow(2, round_index-2)*@matchTotalHeight) - @matchTotalHeight/2
+          marginBottom = 2*marginTop
+          $(".winner").css('margin-top', "#{marginTop}px")
+        else
+          $(".round-#{round.length*2}").css('margin-top', "#{marginTop}px")
+          $(".round-#{round.length*2} li").css('margin-bottom', "#{marginBottom}px")
+
+        if round_index > 1 && round_index != @bracket.length - 1
+          correctedHeight = (Math.pow(2, round_index-1)*50)
+          correctedPadding = (Math.pow(2, round_index-1)*10)+(Math.pow(2, round_index-1)-1)
+          if round_index-1 > 0
+            marginTop = Math.pow(2, round_index-2)*@matchTotalHeight
+            marginBottom = Math.pow(2, round_index-2)*@matchTotalHeight*2
+
+          $(".round-#{round.length*2}").css('margin-top', "#{marginTop}px")
+          $(".round-#{round.length*2} li").css('margin-bottom', "#{marginBottom}px")
+
+          $(".round-#{round.length*2} li").css('height', "#{correctedHeight}px")
+          $(".round-#{round.length*2} li").css('padding', "#{correctedPadding}px 35px")
+
+  bracketView = new BracketView
+    moderatorStatus: $('.moderator-status').text()
+    bracket: bracketJSON
+    matchHeight: 50
+    matchPadding: [10, 35]
+    matchWidth: 100
+    matchBorder: 1
+
+  bracketView.renderBracket
+
+
+
+
+
+
+
+
+
 
 
   renderModeratorBracket = (bracket) ->
@@ -170,13 +266,14 @@ $ ->
   )
 
   $('.bracket').on('click', '.delete-slot', () ->
-    if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('delete-slot')[0]+1} Match-#{$(this).data('destroy')[1]+1} #{$(this).data('username')}. This action is NOT reversible."
+    debugger
+    if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('delete-slot')[0]+1} Match-#{$(this).data('delete-slot')[1]+1} #{$(this).data('username')}. This action is NOT reversible."
       $.ajax(
         type: 'DELETE'
-        url: $('.update_path').text()
+        url: '/slots'
         dataType: 'json'
         data:
-          destroy: $(this).data('destroy')
+          destroy: $(this).data('delete-slot')
           id: $('.tournament_id').text()
         success: (data) ->
           console.log data

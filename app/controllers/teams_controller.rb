@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.construct(team_params[:name])
+    team = Team.construct(name: team_params[:name], user: current_user)
     if team.save
       redirect_to team
     else

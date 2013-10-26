@@ -18,6 +18,8 @@
     %h3= 'Owner Panel'
     = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
 
+    = button_to I18n.t('tournaments.edit'), edit_tournament_path(@tournament), method: :get, class: 'edit-tournament-btn'
+
 
 .owner
   %h3= I18n.t('tournaments.owner')

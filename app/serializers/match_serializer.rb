@@ -1,6 +1,8 @@
 class MatchSerializer < ActiveModel::Serializer
   attributes :id, :user_showings
 
+  self.root = false
+
   def user_showings
     ordered_showings = object.user_showings.sort_by do |us|
       us.top ? 0 : 1

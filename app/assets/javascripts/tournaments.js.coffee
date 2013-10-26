@@ -32,15 +32,14 @@ $ ->
       self = this
       $.each @bracket, (round_index, round) ->
         output += self.determineClassRound(round_index, round, self)
-        $.each round, (match_index, matchObject) ->
+        $.each round, (match_index, match) ->
           output += "<li><div class='match'>"
           output += self.determineHeader(round_index, round, match_index, self)
-          if matchObject != null
-
-            $.each matchObject.match.user_showings, (user_showing_index, userShowingObject) ->
+          if match != null
+            $.each match.user_showings, (user_showing_index, user_showing) ->
               if self.moderatorStatus is "true"
-                output += "<div class='slot'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{userShowingObject.user_showing.username}'>x</a>"
-                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{userShowingObject.user_showing.username}</button></div>"
+                output += "<div class='slot'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
+                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
               else if self.moderatorStatus is "false"
                 output += "<div class='slot'>#{user_showing.username}</div>"
           output += "</div></li>"

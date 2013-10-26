@@ -14,7 +14,7 @@ class ModeratorRolesController < ApplicationController
     if mod_role.save
       redirect_to request.referer, notice: "Successfully created moderator for tournament!"
     else
-      redirect_to request.referer, alert: member.errors.full_messages
+      redirect_to request.referer, alert: mod_role.errors.full_messages
     end
   end
 

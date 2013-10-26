@@ -6,9 +6,24 @@
     = submit_tag "Search", name: nil, class: 'tournament-search-btn'
 
   .tournament-listing
-    %h2= I18n.t("tournaments.listing")
-    %ul
+
+    %table
+      %tr
+        %td.title-head
+          %h2= I18n.t("tournaments.listing")
+        %td.start-time-head
+          %h4= "Start Time"
+        %td
+          %h4= "Host"
+        %td
+          %h4= "Affiliates"
       - @tournaments.each do |tournament|
-        %li
-          %h3= link_to tournament.title, tournament_path(tournament)
-          %p= tournament.description
+        %tr
+          %td
+            %h3= link_to tournament.title, tournament_path(tournament)
+            %p.description= tournament.description
+          %td
+            %p.start-time= tournament.starts_at.strftime('%B %e, %Y')
+            %p.start-time= tournament.starts_at.strftime('%l:%M%P')
+          %td
+            %p.owner= tournament.owner.username

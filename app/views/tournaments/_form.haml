@@ -14,33 +14,3 @@
   = f.text_area :description, placeholder: 'Description', class: 'tournament-input-area'
 
   = f.submit class: 'tournament-submit'
-
-.existing-moderators
-  %h2= I18n.t('moderators.existing')
-
-  - @tournament.moderators.each do |mod|
-    %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
-
-
-
-.add-moderator
-  %h2= I18n.t('moderators.add')
-
-  = form_tag moderator_roles_path, method: :get, class: 'moderator-role-search' do
-    = text_field_tag "moderator_role[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
-    = hidden_field_tag "moderator_role[user_id]"
-    = submit_tag "Search", name: nil, class: 'moderator-search-btn'
-
-  %h3= I18n.t('search.results')
-
-  .mod-candidates
-
-
-
-  .mod-candidate-form
-    = form_for :moderator_role, url: moderator_roles_path do |f|
-      = f.hidden_field :user_id
-      = f.hidden_field :tournament_id
-      = f.submit nil, value: 'Add Moderator'
-
-

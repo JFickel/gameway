@@ -232,12 +232,24 @@
     border-bottom: 1px solid black
     border-left: 0px solid black
     border-right: 1px solid black
+    border-top-right-radius: 4px
+    border-bottom-right-radius: 4px
     list-style: none
     padding: 10px 35px
     height: 50px
     margin-bottom: 0px
     width: 120px
     text-align: center
+
+.round
+  .slot.highlighted
+    // box-shadow: 10px 10px 5px #888888
+    // background-color: blue
+    // background-image: linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
+    // background-image: -o-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
+    // background-image: -moz-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
+    // background-image: -webkit-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
+    // background-image: -ms-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
 
 button.advance-slot
   display: inline-block
@@ -255,9 +267,17 @@ button.advance-slot
     background-color: limegreen
     color: white
 
-.delete-slot
+.match-header
+  text-shadow: 0px 0px 1px gray
+
+
+.delete-slot-btn
+  padding-right: 3px
+  color: crimson
   &:hover
     color: red
+    font-weight: bold
+    text-shadow: 0px 0px 3px red
     cursor: pointer
 
 

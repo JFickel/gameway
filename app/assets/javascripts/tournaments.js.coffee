@@ -17,29 +17,29 @@ $ ->
     constructor: (options) ->
       {@moderatorStatus, @matchHeight, @matchPadding, @matchWidth, @matchBorder} = options
 
+    determineClassRound: (round_index, round, self) ->
+      if round_index == self.bracket.length-1
+        return "<ul class='round winner'>"
+      else
+        return "<ul class='round round-#{round.length*2}'>"
+
     renderBracket: (@bracket) ->
       $('.participants').hide()
       output = ""
       self = this
       $.each @bracket, (round_index, round) ->
-        if round_index == self.bracket.length-1
-          output += "<ul class='round winner'>"
-        else
-          output += "<ul class='round round-#{round.length*2}'>"
+        output += self.determineClassRound(round_index, round, self)
         $.each round, (match_index, match) ->
-          if match_index == 0
-            output_class = " first"
-          output += "<li class='#{output_class}'>"
-          output += "<div class='match'>"
+          output += "<li><div class='match'>"
           output += self.determineHeader(round_index, round, match_index, self)
           if match != null
             $.each match, (user_index, user) ->
               if self.moderatorStatus is "true"
-                output += "<a class='delete-slot' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a><button class='slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</div>"
+                output += "<a class='delete-slot' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a>"
+                output += "<button class='slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</div>"
               else if self.moderatorStatus is "false"
                 output += "<div class='slot-view'>#{user}</div>"
-          output += "</div>"
-          output += "</li>"
+          output += "</div></li>"
         output += "</ul>"
         $(".bracket").append output
         output = ""
@@ -61,8 +61,7 @@ $ ->
       $.each @bracket, (round_index, round) ->
         if round_index == 0
           $(".round-#{round.length*2} li").css('border-top', "1px solid white")
-          $(".round-#{round.length*2} li.first").css('border-top', "1px solid black")
-
+          $(".round-#{round.length*2} li:first-child").css('border-top', "1px solid black")
 
         marginTop = (Math.pow(2, round_index-1)*matchTotalHeight) - matchTotalHeight/2
         marginBottom = 2*marginTop
@@ -106,7 +105,6 @@ $ ->
         position: $(this).data('position')
         id: $('.tournament_id').text()
       success: (data) ->
-        console.log data
         $('.bracket').empty()
         bracketView.renderBracket(data.tournament.ordered_bracket)
     )
@@ -122,7 +120,6 @@ $ ->
           destroy: $(this).data('delete-slot')
           id: $('.tournament_id').text()
         success: (data) ->
-          console.log data
           $('.bracket').empty()
           bracketView.renderBracket(data.tournament.ordered_bracket)
       )

@@ -38,10 +38,10 @@ $ ->
           if match != null
             $.each match.user_showings, (user_showing_index, user_showing) ->
               if self.moderatorStatus is "true"
-                output += "<div class='slot'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
+                output += "<div class='slot' data-user-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
                 output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
               else if self.moderatorStatus is "false"
-                output += "<div class='slot'>#{user_showing.username}</div>"
+                output += "<div class='slot' data-user-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
           output += "</div></li>"
         output += "</ul>"
         $(".bracket").append output
@@ -99,23 +99,18 @@ $ ->
 
   bracketView.renderBracket(tournament.ordered_bracket)
 
-  $('.slot').hover(
-    () ->
-      $(this).addClass("highlighted")
+  $('.bracket').on 'mouseenter', '.slot', () ->
+    user_id = $(this).data('user-id')
+    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+      $(slot).addClass("highlighted")
 
-      username = $(this).find(".advance-slot").text()
-      $(".slot .advance-slot:contains(#{username})").addClass("highlighted")
+  $('.bracket').on 'mouseleave', '.slot', () ->
+    user_id = $(this).data('user-id')
+    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+      $(slot).removeClass("highlighted")
 
-      $.each($(".slot .advance-slot:contains(#{username})"), (ind, val) ->
-        console.log val
-      )
 
-    () ->
-      $(this).removeClass("highlighted")
-      username = $(this).find(".advance-slot").text()
-      $(".slot .advance-slot:contains(#{username})").removeClass("highlighted")
 
-  )
 
   $('.bracket').on('click', 'button.advance-slot', () ->
     $.ajax(

@@ -35,10 +35,10 @@ $ ->
           if match != null
             $.each match, (user_index, user) ->
               if self.moderatorStatus is "true"
-                output += "<a class='delete-slot' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a>"
-                output += "<button class='slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</div>"
+                output += "<div class='slot'><a class='delete-btn' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a>"
+                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</button><div>"
               else if self.moderatorStatus is "false"
-                output += "<div class='slot-view'>#{user}</div>"
+                output += "<div class='slot'>#{user}</div>"
           output += "</div></li>"
         output += "</ul>"
         $(".bracket").append output
@@ -83,8 +83,14 @@ $ ->
           $(".round-#{round.length*2}").css('margin-top', "#{marginTop}px")
           $(".round-#{round.length*2} li").css('margin-bottom', "#{marginBottom}px")
 
-          $(".round-#{round.length*2} li").css('height', "#{correctedHeight}px")
-          $(".round-#{round.length*2} li").css('padding', "#{correctedPadding}px 35px")
+          console.log "Corrected Height: #{correctedHeight}"
+          console.log "Corrected Padding: #{correctedPadding}"
+          console.log "Corrected Total: #{correctedHeight+(correctedPadding*2)}"
+          console.log "Corrected Padding Calculation: #{((correctedHeight-150)/2)+correctedPadding}"
+          console.log "Height: #{self.matchHeight}"
+
+          $(".round-#{round.length*2} li").css('height', "70px")
+          $(".round-#{round.length*2} li").css('padding', "#{((correctedHeight-70)/2)+correctedPadding}px 35px")
 
   bracketView = new BracketView
     moderatorStatus: $('.moderator-status').text()
@@ -96,7 +102,7 @@ $ ->
   bracketView.renderBracket(bracketJSON)
 
 
-  $('.bracket').on('click', 'button.slot', () ->
+  $('.bracket').on('click', 'button.advance-slot', () ->
     $.ajax(
       type: 'POST'
       url: '/slots'
@@ -110,7 +116,7 @@ $ ->
     )
   )
 
-  $('.bracket').on('click', '.delete-slot', () ->
+  $('.bracket').on('click', '.delete-btn', () ->
     if confirm "Are you sure you want to delete this slot? Round-#{$(this).data('delete-slot')[0]+1} Match-#{$(this).data('delete-slot')[1]+1} #{$(this).data('username')}. This action is NOT reversible."
       $.ajax(
         type: 'DELETE'

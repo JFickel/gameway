@@ -1,5 +1,4 @@
 $ ->
-  console.log JSON.parse($('.bracket_data').text())
   $('#tournament_start_date').datepicker
     dateFormat: 'yy-mm-dd'
   $('.bracket_data').hide()
@@ -12,7 +11,9 @@ $ ->
     return confirm("Are you sure you want to delete this tournament?")
 
   if $('.bracket_data').text() != ""
-    bracketJSON = JSON.parse($('.bracket_data').text())
+    tournamentSerializerJSON = $('.bracket_data').text()
+    tournament = JSON.parse(tournamentSerializerJSON).tournament
+
 
   class BracketView
     constructor: (options) ->
@@ -31,16 +32,17 @@ $ ->
       self = this
       $.each @bracket, (round_index, round) ->
         output += self.determineClassRound(round_index, round, self)
-        $.each round, (match_index, match) ->
+        $.each round, (match_index, matchObject) ->
           output += "<li><div class='match'>"
           output += self.determineHeader(round_index, round, match_index, self)
-          if match != null
-            $.each match, (user_index, user) ->
+          if matchObject != null
+
+            $.each matchObject.match.user_showings, (user_showing_index, userShowingObject) ->
               if self.moderatorStatus is "true"
-                output += "<div class='slot'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_index}]' data-username='#{user}'>x</a>"
-                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_index}]'>#{user}</button></div>"
+                output += "<div class='slot'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{userShowingObject.user_showing.username}'>x</a>"
+                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{userShowingObject.user_showing.username}</button></div>"
               else if self.moderatorStatus is "false"
-                output += "<div class='slot'>#{user}</div>"
+                output += "<div class='slot'>#{user_showing.username}</div>"
           output += "</div></li>"
         output += "</ul>"
         $(".bracket").append output
@@ -96,7 +98,7 @@ $ ->
     matchWidth: 100
     matchBorder: 1
 
-  bracketView.renderBracket(bracketJSON)
+  bracketView.renderBracket(tournament.ordered_bracket)
 
   $('.slot').hover(
     () ->

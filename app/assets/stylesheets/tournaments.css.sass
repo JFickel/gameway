@@ -245,6 +245,10 @@
   .slot.highlighted
     button
       box-shadow: 0px 0px 22px blue
+  .slot.delete-highlight
+    button
+      box-shadow: 0px 0px 22px red
+      color: crimson
     // box-shadow:
     // background-image: linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
     // background-image: -o-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
@@ -267,6 +271,10 @@ button.advance-slot
   &:hover
     background-color: DodgerBlue
     color: white
+  &:active
+    outline: none
+    background-color: limegreen
+
 
 .match-header
   text-shadow: 0px 0px 1px gray

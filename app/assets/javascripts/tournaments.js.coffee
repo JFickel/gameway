@@ -110,9 +110,19 @@ $ ->
       $(slot).removeClass("highlighted")
 
 
+  $('.bracket').on 'mouseenter', '.delete-slot-btn', () ->
+    $(this).parent().addClass("delete-highlight")
+    user_id = $(this).parent().data('user-id')
+    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+      $(slot).removeClass("highlighted")
+
+  $('.bracket').on 'mouseleave', '.delete-slot-btn', () ->
+    $(this).parent().removeClass("delete-highlight")
 
 
   $('.bracket').on('click', 'button.advance-slot', () ->
+    $(this).css("box-shadow", "0px 0px 30px green")
+    $(this).css("outline", "none")
     $.ajax(
       type: 'POST'
       url: '/slots'

@@ -1,8 +1,6 @@
 class ModeratorRolesController < ApplicationController
   def index
-    if moderator_role_params[:query].present?
-      @users = User.text_search(moderator_role_params[:query]) ## don't brogram for da future
-    end
+    @users = User.text_search(moderator_role_params[:query]).limit(20) ## don't brogram for da future
 
     respond_to do |format|
       format.html
@@ -11,14 +9,12 @@ class ModeratorRolesController < ApplicationController
   end
 
   def create
-    debugger
     mod_role = ModeratorRole.new(moderator_role_params)
+
     if mod_role.save
-      flash[:notice] = "Successfully created moderator for tournament!"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "Successfully created moderator for tournament!"
     else
-      flash[:alert] = member.errors.full_messages
-      redirect_to request.referer
+      redirect_to request.referer, alert: member.errors.full_messages
     end
   end
 

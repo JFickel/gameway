@@ -17,6 +17,8 @@ en:
     create_description: 'Build a home page for your gaming community. Set up a calendar for your gaming team. Gain a following.'
     compete: 'Compete'
     compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
+  search:
+    results: "Results"
   groups:
     find: "Find a Group"
     name: "Group Name"
@@ -43,6 +45,10 @@ en:
     create: "Create Team"
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
+  moderators:
+    add: "Add Moderator"
+    moderators: "Moderators"
+    existing: "Existing Moderators"
   tournaments:
     starts_at: "Tournament starts at"
     delete: "Delete Tournament"
@@ -52,9 +58,7 @@ en:
     participants: "Participants"
     participant_listing: "Participant Listing"
     enter: "Enter Tournament"
-    add_moderator: "Add Moderator"
     manual_start: "Manual Start"
-    moderators: "Moderators"
     owner_and_participant: "Owner and Participant"
     participant: "Participant"
     owner: "Owner"
@@ -69,6 +73,7 @@ en:
     sc2: "Starcraft 2"
     sc2_url: "Starcraft 2 Profile URL"
   users:
+    users: "Users"
     find: "Find User"
     edit: "Edit User"
     user: "User"

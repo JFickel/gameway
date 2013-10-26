@@ -17,13 +17,6 @@
   .owner-panel
     %h3= 'Owner Panel'
     = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
-    .add-moderator
-      %h4= I18n.t('tournaments.add_moderator')
-
-      = form_tag moderator_roles_path, method: :post, class: 'moderator-role-search' do
-        = text_field_tag "moderator_role[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
-        = hidden_field_tag "moderator_role[user_id]"
-        = submit_tag "Add Moderator", name: nil, class: 'tournament-search-btn'
 
 
 .owner
@@ -31,7 +24,7 @@
   %h4= link_to "#{@owner.username} - #{@owner.first_name} #{@owner.last_name}", user_path(@owner)
 
 .moderators
-  %h3= I18n.t('tournaments.moderators')
+  %h3= I18n.t('moderators.moderators')
   - @tournament.moderators.each do |mod|
     %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
 

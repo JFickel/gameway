@@ -10,9 +10,6 @@ $ ->
   $('.tournament-delete-btn').click () ->
     return confirm("Are you sure you want to delete this tournament?")
 
-  if $('.bracket_data').text() != ""
-    tournamentSerializerJSON = $('.bracket_data').text()
-    tournament = JSON.parse(tournamentSerializerJSON).tournament
 
 
   class BracketView
@@ -97,7 +94,10 @@ $ ->
     matchWidth: 100
     matchBorder: 1
 
-  bracketView.renderBracket(tournament.ordered_bracket)
+  if $('.bracket_data').text() != ""
+    tournamentSerializerJSON = $('.bracket_data').text()
+    tournament = JSON.parse(tournamentSerializerJSON).tournament
+    bracketView.renderBracket(tournament.ordered_bracket)
 
   $('.bracket').on 'mouseenter', '.slot', () ->
     user_id = $(this).data('user-id')

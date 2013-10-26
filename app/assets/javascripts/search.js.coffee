@@ -59,3 +59,31 @@ $ ->
     engine: Hogan
     template: "<img src={{avatar_url}}><p><strong>{{username}}</strong>  {{full_name}}</p>"
 
+
+
+
+  $('.moderator-role-search').on "click", ".moderator-search-btn", (event) ->
+    [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
+    event.preventDefault()
+    $.ajax(
+      type: 'GET'
+      url: '/moderator_roles'
+      dataType: 'json'
+      data:
+        moderator_role:
+          query: $(this).parent().find('#moderator_role_query').val()
+      success: (data) ->
+        $('.mod-candidates').empty()
+        users = data.moderator_roles
+        output = ""
+        $.each users, (index, user) ->
+            output += "<div><h4>#{user.username}</h4><p>#{user.full_name}</p>"
+            $('.mod-candidate-form').find('#moderator_role_user_id').val(user.id)
+            $('.mod-candidate-form').find('#moderator_role_tournament_id').val(tournament_id)
+            output += $('.mod-candidate-form').html()
+            output += "</div>"
+        $('.mod-candidates').append(output)
+    )
+
+
+

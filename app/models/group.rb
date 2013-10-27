@@ -14,6 +14,6 @@ class Group < ActiveRecord::Base
                   against: {name: 'A', kind: 'B'},
                   using: { tsearch: { prefix: true }}
 
-  multisearchable against: {name: 'A', kind: 'B'},
+  multisearchable against: [:name, :kind],
                   using: { tsearch: { prefix: true }}
 end

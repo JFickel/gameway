@@ -68,7 +68,6 @@ $ ->
     template = "<img src={{avatar_url}}><p><strong>  {{value}}</strong></p>"
     setTypeAhead(table, template)
 
-
   $('.affiliation-search-filter').on "click", ".tournaments-filter", () ->
     table = "tournaments"
     template = "<p><strong>{{value}}</strong></p>"

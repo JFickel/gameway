@@ -29,10 +29,15 @@ class User < ActiveRecord::Base
   attr_accessor :login, :timezone
   validates :username, presence: true, uniqueness: { case_sensitive: true }
 
-  include PgSearch
+  include PgSearch # Call searchable on PgSearch::Document objects to retrieve the underlying model instance
   pg_search_scope :text_search,
                   against: {username: 'A', first_name: 'B', last_name: 'C'},
                   using: { tsearch: { prefix: true }}
+
+  multisearchable against: [:username, :first_name, :last_name],
+                  using: { tsearch: { prefix: true }}
+
+
 
   def search
     if params[:query].present?

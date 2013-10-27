@@ -24,7 +24,7 @@ class Tournament < ActiveRecord::Base
                   against: {title: 'A', description: 'B'},
                   using: { tsearch: { prefix: true }}
 
-  multisearchable against: {title: 'A', description: 'B'},
+  multisearchable against: [:title, :description],
                   using: { tsearch: { prefix: true }}
 
   validates_with TimeValidator, on: :create

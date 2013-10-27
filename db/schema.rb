@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024093231) do
+ActiveRecord::Schema.define(version: 20131027065202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affiliations", force: true do |t|
+    t.integer  "affiliate_team_id"
+    t.integer  "affiliated_tournament_id"
+    t.integer  "affiliated_team_id"
+    t.integer  "affiliated_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", force: true do |t|
     t.integer "user_id"
@@ -120,6 +129,7 @@ ActiveRecord::Schema.define(version: 20131024093231) do
     t.boolean  "started"
     t.boolean  "open"
     t.boolean  "open_applications"
+    t.integer  "maximum_participants"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

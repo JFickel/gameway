@@ -13,6 +13,9 @@ class Tournament < ActiveRecord::Base
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
 
+  has_many :affiliate_team_relationships, foreign_key: :affiliate_team_id, class_name: 'Affiliate'
+  has_many :affiliates, through: :affiliate_team_relationships
+
   # mode: individual, team
   # invite capability always turned on (derp)
   # open/closed: boolean

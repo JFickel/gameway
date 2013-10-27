@@ -3,6 +3,19 @@ class Team < ActiveRecord::Base
   has_many :users, through: :team_memberships
   has_many :events
 
+  has_many :affiliated_tournament_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
+  has_many :affiliated_tournaments, through: :affiliated_tournament_relationships
+
+  has_many :affiliated_group_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
+  has_many :affiliated_groups, through: :affiliated_group_relationships
+
+  has_many :affiliated_team_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
+  has_many :affiliated_teams, through: :affiliated_team_relationships
+
+  has_many :affiliate_team_relationships, foreign_key: :affiliated_team_id, class_name: 'Affiliate'
+  has_many :affiliates, through: :affiliate_team_relationships
+
+
   belongs_to :leader, foreign_key: 'user_id', class_name: User
   validates :name, presence: true, length: { minimum: 3, maximum: 24 }, uniqueness: { case_sensitive: false }
 

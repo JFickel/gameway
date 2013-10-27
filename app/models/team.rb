@@ -5,8 +5,6 @@ class Team < ActiveRecord::Base
   has_many :tournament_memberships
   has_many :tournaments, through: :tournament_memberships
 
-
-
   has_many :affiliated_tournament_relationships,
     foreign_key: :affiliate_team_id,
     class_name: 'Affiliation',

@@ -31,6 +31,10 @@ class TeamsController < ApplicationController
     @members = @team.users - [@leader] ## member method
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
   def update
     team = Team.find(params[:id])
     if team.update_attributes(team_params)

@@ -52,8 +52,9 @@
           %h3= link_to team.name, team_path(team)
           - if current_user == team.leader
             %h4= I18n.t("teams.leader")
+            = link_to I18n.t('teams.manage'), edit_team_path(team)
           - else
-            %h4= I18n.t("teams.leader")
+            %h4= I18n.t("teams.member")
 
     .user-groups
       %h2= "Your Groups"

@@ -14,10 +14,10 @@
 .add-moderator
   %h2= I18n.t('moderators.add')
 
-  = form_tag moderator_roles_path, method: :get, class: 'moderator-role-search' do
-    = text_field_tag "moderator_role[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
-    = hidden_field_tag "moderator_role[user_id]"
-    = submit_tag "Search", name: nil, class: 'moderator-search-btn'
+  = form_tag users_path, method: :get, class: 'user-search' do
+    = text_field_tag "user[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
+    = hidden_field_tag "user[user_id]"
+    = submit_tag "Search", name: nil, class: 'user-search-btn'
 
   %h3= I18n.t('search.results')
 

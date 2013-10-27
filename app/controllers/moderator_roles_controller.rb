@@ -1,11 +1,6 @@
 class ModeratorRolesController < ApplicationController
   def index
-    @users = User.text_search(moderator_role_params[:query]).limit(20) ## don't brogram for da future
 
-    respond_to do |format|
-      format.html
-      format.json { render :json => @users }
-    end
   end
 
   def create

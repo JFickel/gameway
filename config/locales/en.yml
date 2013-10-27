@@ -10,6 +10,9 @@ en:
     delete: "Delete"
     update: "Update"
     edit: "Edit"
+  affiliations:
+    add: "Add an Affiliation"
+    description: "Associate your team with a tournament or another organization."
   home:
     connect: 'Connect'
     connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'
@@ -18,6 +21,8 @@ en:
     compete: 'Compete'
     compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
   search:
+    filter: "Filter"
+    search: "Search"
     results: "Results"
   groups:
     find: "Find a Group"
@@ -34,6 +39,9 @@ en:
     add: "Add Event"
     events: "Events"
   teams:
+    change_name: "Team Name Change"
+    manage: "Manage"
+    management: "Team Management"
     find: "Find a Team"
     leader: "Leader"
     members: "Team Members"

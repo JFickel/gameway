@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.text_search(user_params[:query]).limit(20) ## don't brogram for da future
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @users }
+    end
+  end
+
   def edit
     unless current_user.starcraft2_account
       @starcraft2_account = Starcraft2Account.new
@@ -30,7 +39,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:login, :username, :first_name, :last_name,
-    :email, :password, :password_confirmation, :remember_me, :avatar)
+    :email, :password, :password_confirmation, :remember_me, :avatar, :query)
   end
 
 end

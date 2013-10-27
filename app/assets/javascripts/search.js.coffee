@@ -43,12 +43,12 @@ $ ->
 
   ## Implement this as a user search -- you can return users in a list and then add them as mod roles:
 
-  $('.moderator-role-search #moderator_role_query').typeahead
+  $('.user-search #user_query').typeahead
     name: 'users'
     remote:
-      url: "/moderator_roles?moderator_role%5Bquery%5D=%QUERY"
+      url: "/users?user%5Bquery%5D=%QUERY"
       filter: (parsedResponse) ->
-        $.map parsedResponse.moderator_roles, (user, i) ->
+        $.map parsedResponse.users, (user, i) ->
           datum =
             value: user.username
             tokens: [user.username, user.first_name, user.last_name]
@@ -62,19 +62,19 @@ $ ->
 
 
 
-  $('.moderator-role-search').on "click", ".moderator-search-btn", (event) ->
+  $('.user-search').on "click", ".user-search-btn", (event) ->
     [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
     event.preventDefault()
     $.ajax(
       type: 'GET'
-      url: '/moderator_roles'
+      url: '/users'
       dataType: 'json'
       data:
-        moderator_role:
-          query: $(this).parent().find('#moderator_role_query').val()
+        user:
+          query: $(this).parent().find('#user_query').val()
       success: (data) ->
         $('.mod-candidates').empty()
-        users = data.moderator_roles
+        users = data.users
         output = ""
         $.each users, (index, user) ->
             output += "<div><h4>#{user.username}</h4><p>#{user.full_name}</p>"

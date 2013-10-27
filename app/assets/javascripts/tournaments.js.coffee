@@ -85,12 +85,12 @@ $ ->
           $(".round-#{round.length*2} li").css('margin-bottom', "#{marginBottom}px")
 
           $(".round-#{round.length*2} li").css('height', "70px")
-          $(".round-#{round.length*2} li").css('padding', "#{((correctedHeight-70)/2)+correctedPadding}px 35px")
+          $(".round-#{round.length*2} li").css('padding', "#{((correctedHeight-70)/2)+correctedPadding}px 10px")
 
   bracketView = new BracketView
     moderatorStatus: $('.moderator-status').text()
     matchHeight: 50
-    matchPadding: [10, 35]
+    matchPadding: [10, 10]
     matchWidth: 100
     matchBorder: 1
 

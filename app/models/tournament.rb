@@ -27,6 +27,8 @@ class Tournament < ActiveRecord::Base
   multisearchable against: [:title, :description],
                   using: { tsearch: { prefix: true }}
 
+  validates :title, presence: true
+  validates :game, presence: true
   validates_with TimeValidator, on: :create
   validates_with TimeValidator, on: :update, if: :time_parameters?
   before_save :set_starts_at, if: :time_parameters?

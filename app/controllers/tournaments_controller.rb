@@ -22,8 +22,7 @@ class TournamentsController < ApplicationController
     if tournament.save
       redirect_to tournaments_path
     else
-      flash[:alert] = tournament.errors.full_messages
-      redirect_to new_tournament_path
+      redirect_to new_tournament_path, alert: tournament.errors.full_messages
     end
   end
 
@@ -38,12 +37,18 @@ class TournamentsController < ApplicationController
   end
 
   def update
-    tournament = Tournament.find(params[:id])
+    tournament = Tournament.includes(:matches).find(params[:id])
     tournament.start if params[:start]
     tournament.reload
 
     respond_to do |format|
-      format.html { redirect_to tournament }
+      format.html do
+        if tournament.update_attributes(tournament_params)
+          redirect_to tournament
+        else
+          redirect_to request.referer, alert: tournament.errors.full_messages
+        end
+      end
       format.json { render :json => tournament }
     end
   end
@@ -57,6 +62,7 @@ class TournamentsController < ApplicationController
   private
 
   def tournament_params
-    params.require(:tournament).permit(:title, :game, :starts_at, :description, :rules, :start_date, :start_hour, :start_minute, :start_period)
+    params.require(:tournament).permit(:title, :game, :starts_at, :description,
+    :rules, :start_date, :start_hour, :start_minute, :start_period, :open, :open_applications)
   end
 end

@@ -8,10 +8,11 @@
   %h3= I18n.t('tournaments.description')
   %p= @tournament.description
 
-.sign_up
-  = form_for @tournament_membership do |f|
-    = f.hidden_field :tournament_id, value: @tournament.id
-    = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
+- if @tournament.open && !@tournament.started
+  .sign_up
+    = form_for @tournament_membership do |f|
+      = f.hidden_field :tournament_id, value: @tournament.id
+      = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
 
 - if @owner == current_user
   .owner-panel

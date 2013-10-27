@@ -11,6 +11,7 @@ sc2 = Tournament.create(title: "Team Liquid October Invitational",
                   start_hour: "3",
                   start_minute: "30",
                   start_period: "pm",
+                  open: true,
                   user_id: 1,
                   description: 'Some of the biggest names in Starcraft 2 come to compete in this monthly tournament held by Team Liquid.')
 
@@ -29,6 +30,8 @@ lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
                         start_hour: "7",
                         start_minute: "00",
                         start_period: "pm",
+                        open: false,
+                        open_applications: false,
                         user_id: 2,
                         description: '16 teams from Texas compete in the third Lone Star Clash put on by TeSPA')
 

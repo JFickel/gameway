@@ -151,6 +151,32 @@ $ ->
       )
   )
 
+  if $('#tournament_open').val() is "true"
+      $('#tournament_open_applications').hide()
+      $('#tournament_open_applications').val("false")
+    else if $('#tournament_open').val() is "false"
+      $('#tournament_open_applications').show()
+
+  $('.new_tournament').on 'change', '#tournament_open', () ->
+    if $('#tournament_open').val() is "true"
+      $('#tournament_open_applications').hide()
+      $('#tournament_open_applications').val("false")
+    else if $('#tournament_open').val() is "false"
+      $('#tournament_open_applications').show()
+
+  $('.edit_tournament').on 'change', '#tournament_open', () ->
+    if $('#tournament_open').val() is "true"
+      $('#tournament_open_applications').hide()
+      $('#tournament_open_applications').val("false")
+    else if $('#tournament_open').val() is "false"
+      $('#tournament_open_applications').show()
+
+
+
+
+
+
+
 
 
 

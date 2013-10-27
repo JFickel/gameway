@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20131024093231) do
     t.text     "bracket"
     t.integer  "user_id"
     t.boolean  "started"
+    t.boolean  "open"
+    t.boolean  "open_applications"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,7 +14,9 @@ class Tournament < ActiveRecord::Base
   serialize :bracket
 
   # mode: individual, team
-  # open: boolean
+  # invite capability always turned on (derp)
+  # open/closed: boolean
+  # application_status: boolean
 
   pg_search_scope :text_search,
                   against: {title: 'A', description: 'B'},

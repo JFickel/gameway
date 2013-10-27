@@ -9,6 +9,9 @@ class CreateTournaments < ActiveRecord::Migration
       t.text :bracket
       t.belongs_to :user
       t.boolean :started
+      t.boolean :open
+      t.boolean :open_applications
+      t.integer :maximum_participants
       t.timestamps
     end
   end

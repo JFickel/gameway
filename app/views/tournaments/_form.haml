@@ -13,4 +13,8 @@
 
   = f.text_area :description, placeholder: 'Description', class: 'tournament-input-area'
 
+  = f.select :open, [['Open', 'true'],['Closed', 'false']], selected: @tournament.open
+
+  = f.select :open_applications, [['Applications Off', 'false'],['Applications On', 'true']], selected: @tournament.open_applications
+
   = f.submit class: 'tournament-submit'

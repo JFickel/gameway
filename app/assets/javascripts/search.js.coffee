@@ -46,7 +46,7 @@ $ ->
   $('.user-search #user_query').typeahead
     name: 'users'
     remote:
-      url: "/users?user%5Bquery%5D=%QUERY"
+      url: "/users?query=%QUERY"
       filter: (parsedResponse) ->
         $.map parsedResponse.users, (user, i) ->
           datum =
@@ -60,18 +60,16 @@ $ ->
     template: "<img src={{avatar_url}}><p><strong>{{username}}</strong>  {{full_name}}</p>"
 
 
-
-
-  $('.user-search').on "click", ".user-search-btn", (event) ->
-    [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
+  $('.add-moderator').on "submit", ".user-search", (event) ->
     event.preventDefault()
+    [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
+
     $.ajax(
       type: 'GET'
       url: '/users'
       dataType: 'json'
       data:
-        user:
-          query: $(this).parent().find('#user_query').val()
+        query: $(this).parent().find('#user_query').val()
       success: (data) ->
         $('.mod-candidates').empty()
         users = data.users
@@ -84,6 +82,5 @@ $ ->
             output += "</div>"
         $('.mod-candidates').append(output)
     )
-
 
 

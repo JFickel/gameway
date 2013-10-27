@@ -12,7 +12,7 @@ en:
     edit: "Edit"
   affiliations:
     add: "Add an Affiliation"
-    description: "Associate your team with a tournament or another organization."
+    description: "Associate your team with a group, tournament or even another team."
   home:
     connect: 'Connect'
     connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'
@@ -21,9 +21,10 @@ en:
     compete: 'Compete'
     compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
   search:
-    filter: "Filter"
+    filter: "Filter By"
     search: "Search"
     results: "Results"
+    enter_query: "Enter search query here"
   groups:
     find: "Find a Group"
     name: "Group Name"

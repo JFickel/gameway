@@ -50,6 +50,9 @@ class Team < ActiveRecord::Base
                   against: :name,
                   using: { tsearch: { prefix: true }}
 
+  multisearchable against: :name,
+                  using: { tsearch: { prefix: true }}
+
   def self.construct(options)
     team = Team.new(name: options[:name])
     team.team_memberships <<  TeamMembership.new(user_id: options[:user].id)

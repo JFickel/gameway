@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+
   has_many :group_memberships
   has_many :users, through: :group_memberships
   has_many :events
@@ -8,9 +9,11 @@ class Group < ActiveRecord::Base
   has_many :affiliates, through: :affiliate_team_relationships, source: :affiliate_team, class_name: 'Team'
 
 
-
   include PgSearch
   pg_search_scope :text_search,
                   against: {name: 'A', kind: 'B'},
+                  using: { tsearch: { prefix: true }}
+
+  multisearchable against: {name: 'A', kind: 'B'},
                   using: { tsearch: { prefix: true }}
 end

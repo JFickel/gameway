@@ -2,7 +2,7 @@
   %h2= I18n.t("teams.management")
   %h3= I18n.t('teams.change_name')
   %p= I18n.t('teams.length_disclaimer')
-  = form_for @team, html: {class: 'edit-team-form'} do |f|
+  = form_for @team do |f|
     = f.text_field :name, placeholder: I18n.t("teams.name"), class: 'edit-team-input'
     = f.submit I18n.t("model.update"), class: 'edit-team-btn'
 
@@ -12,22 +12,21 @@
     %p= I18n.t('affiliations.description')
 
 
-    %div.affiliation-select
-      = "#{I18n.t('search.filter')}:"
-      %button= I18n.t('navigation.tournaments')
-      %button= I18n.t('navigation.teams')
-      %button= I18n.t('navigation.groups')
 
-    = form_tag users_path, method: :get, class: 'user-search' do
-      = text_field_tag "user[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
-      = hidden_field_tag "user[user_id]"
-      = submit_tag "Search", name: nil, class: 'user-search-btn'
+    = form_tag groups_path, method: :get, class: 'affiliation-search' do
+      = text_field_tag "affiliation[query]", nil, placeholder: I18n.t('search.enter_query'), class: 'search-input'
+      = submit_tag "Search", name: nil, class: 'affiliation-search-btn'
+
+    %div.affiliation-search-filter
+      = "#{I18n.t('search.filter')}:"
+      %button.groups-filter= I18n.t('navigation.groups')
+      %button.tournaments-filter= I18n.t('navigation.tournaments')
+      %button.teams-filter= I18n.t('navigation.teams')
+
 
     %h3= I18n.t('search.results')
 
     .affiliation-candidates
-
-
 
     .affiliation-candidate-form
       = form_for :affiliation, url: affiliations_path do |f|

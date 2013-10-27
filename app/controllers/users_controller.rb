@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.text_search(user_params[:query]).limit(20) ## don't brogram for da future
+    @users = User.text_search(params[:query]).limit(20) ## don't brogram for da future
 
     respond_to do |format|
       format.html
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:login, :username, :first_name, :last_name,
-    :email, :password, :password_confirmation, :remember_me, :avatar, :query)
+    :email, :password, :password_confirmation, :remember_me, :avatar)
   end
 
 end

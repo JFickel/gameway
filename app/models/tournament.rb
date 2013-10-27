@@ -1,5 +1,4 @@
 class Tournament < ActiveRecord::Base
-  include PgSearch
   include ActiveModel::Validations
 
   attr_accessor :start_date, :start_hour, :start_minute, :start_period
@@ -20,9 +19,12 @@ class Tournament < ActiveRecord::Base
   # invite capability always turned on (derp)
   # open/closed: boolean
   # application_status: boolean
-
+  include PgSearch
   pg_search_scope :text_search,
                   against: {title: 'A', description: 'B'},
+                  using: { tsearch: { prefix: true }}
+
+  multisearchable against: {title: 'A', description: 'B'},
                   using: { tsearch: { prefix: true }}
 
   validates_with TimeValidator, on: :create

@@ -3,17 +3,41 @@ class Team < ActiveRecord::Base
   has_many :users, through: :team_memberships
   has_many :events
 
-  has_many :affiliated_tournament_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
-  has_many :affiliated_tournaments, through: :affiliated_tournament_relationships
+  has_many :affiliated_tournament_relationships,
+    foreign_key: :affiliate_team_id,
+    class_name: 'Affiliation',
+    dependent: :destroy
+  has_many :affiliated_tournaments,
+    through: :affiliated_tournament_relationships,
+    source: :affiliated_tournament,
+    class_name: 'Tournament'
 
-  has_many :affiliated_group_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
-  has_many :affiliated_groups, through: :affiliated_group_relationships
+  has_many :affiliated_group_relationships,
+    foreign_key: :affiliate_team_id,
+    class_name: 'Affiliation',
+    dependent: :destroy
+  has_many :affiliated_groups,
+    through: :affiliated_group_relationships,
+    source: :affiliated_group,
+    class_name: 'Group'
 
-  has_many :affiliated_team_relationships, foreign_key: :affiliate_id, class_name: 'Affiliate'
-  has_many :affiliated_teams, through: :affiliated_team_relationships
+  has_many :affiliated_team_relationships,
+    foreign_key: :affiliate_team_id,
+    class_name: 'Affiliation',
+    dependent: :destroy
+  has_many :affiliated_teams,
+    through: :affiliated_team_relationships,
+    source: :affiliated_team,
+    class_name: 'Team'
 
-  has_many :affiliate_team_relationships, foreign_key: :affiliated_team_id, class_name: 'Affiliate'
-  has_many :affiliates, through: :affiliate_team_relationships
+  has_many :affiliate_team_relationships,
+    foreign_key: :affiliated_team_id,
+    class_name: 'Affiliation',
+    dependent: :destroy
+  has_many :affiliates,
+    through: :affiliate_team_relationships,
+    source: :affiliate_team,
+    class_name: 'Team'
 
 
   belongs_to :leader, foreign_key: 'user_id', class_name: User

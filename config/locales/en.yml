@@ -59,6 +59,8 @@ en:
     moderators: "Moderators"
     existing: "Existing Moderators"
   tournaments:
+    team_mode: "Team Mode"
+    individual_mode: "Individual Mode"
     starts_at: "Tournament starts at"
     delete: "Delete Tournament"
     edit: "Edit Tournament"

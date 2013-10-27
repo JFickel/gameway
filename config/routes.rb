@@ -8,7 +8,11 @@ Gameway::Application.routes.draw do
   resources :starcraft2_accounts
   resources :events
 
-  resources :tournaments
+  resources :tournaments do
+    member do
+      post 'start'
+    end
+  end
   resources :tournament_memberships
   resources :moderator_roles
   resources :affiliations

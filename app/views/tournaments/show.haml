@@ -1,6 +1,10 @@
 .tournament-banner
   %h2= @tournament.title
   %h3= @tournament.game
+  - if @tournament.mode == "individual"
+    %h3= I18n.t('tournaments.individual_mode')
+  - elsif @tournament.mode == "team"
+    %h3= I18n.t('tournaments.team_mode')
   %h3= "Starts in #{distance_of_time_in_words(Time.current, @tournament.starts_at)}"
   %h3
     = I18n.t('tournaments.starts_at')
@@ -17,7 +21,7 @@
 - if @owner == current_user
   .owner-panel
     %h3= 'Owner Panel'
-    = button_to I18n.t('tournaments.manual_start'), tournament_path(@tournament, start: true), method: :put, class: 'manual-start-btn'
+    = button_to I18n.t('tournaments.manual_start'), start_tournament_path(@tournament, {tournament: {start: true}}), method: :post, class: 'manual-start-btn'
 
     = button_to I18n.t('tournaments.edit'), edit_tournament_path(@tournament), method: :get, class: 'edit-tournament-btn'
 
@@ -36,8 +40,12 @@
 
 .participants
   %h3= I18n.t('tournaments.participants')
-  - @tournament.users.each do |p|
-    %h4= link_to "#{p.username} - #{p.first_name} #{p.last_name}", user_path(p)
+  - if @tournament.mode == 'individual'
+    - @tournament.users.each do |p|
+      %h4= link_to "#{p.username} - #{p.first_name} #{p.last_name}", user_path(p)
+  - elsif @tournament.mode == 'team'
+    - @tournament.teams.each do |t|
+      %h4= link_to "#{t.name}"
 
 .matches
   = @tournament.matches

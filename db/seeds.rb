@@ -11,6 +11,7 @@ sc2 = Tournament.create(title: "Team Liquid October Invitational",
                   start_hour: "3",
                   start_minute: "30",
                   start_period: "pm",
+                  mode: "individual",
                   open: true,
                   user_id: 1,
                   description: 'Some of the biggest names in Starcraft 2 come to compete in this monthly tournament held by Team Liquid.')
@@ -24,16 +25,38 @@ sc2 = Tournament.create(title: "Team Liquid October Invitational",
   sc2.tournament_memberships << TournamentMembership.new(user_id: u.id)
 end
 
+24.times do |i|
+  t = Team.create(name: "Test Team#{i}",
+                  leader: User.find(i+1))
+end
+
+
 lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
                         game: 'League of Legends',
                         start_date: "2013-11-15",
                         start_hour: "7",
                         start_minute: "00",
                         start_period: "pm",
+                        mode: "individual",
                         open: false,
                         open_applications: false,
                         user_id: 2,
                         description: '16 teams from Texas compete in the third Lone Star Clash put on by TeSPA')
+
+lolopen = Tournament.create(title: 'Collegiate Gaming League Open',
+                            game: 'League of Legends',
+                            start_date: "2013-11-22",
+                            start_hour: "6",
+                            start_minute: "00",
+                            start_period: "pm",
+                            mode: "team",
+                            open: true,
+                            open_applications: false,
+                            user_id: 1,
+                            description: 'Collegiate Gaming league is hosting an open tournament for teams affiliated with colleges.')
+24.times do |i|
+  lolopen.tournament_memberships << TournamentMembership.new(team_id: i+1)
+end
 
 16.times do |i|
   lol.tournament_memberships << TournamentMembership.new(user_id: i+3)

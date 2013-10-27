@@ -8,6 +8,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.datetime :starts_at
       t.text :bracket
       t.belongs_to :user
+      t.text :mode
       t.boolean :started
       t.boolean :open
       t.boolean :open_applications

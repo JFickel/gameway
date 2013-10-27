@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20131027141341) do
   create_table "team_showings", force: true do |t|
     t.integer  "team_id"
     t.integer  "match_id"
+    t.boolean  "top"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(version: 20131027141341) do
   end
 
   create_table "tournament_memberships", force: true do |t|
+    t.integer  "team_id"
     t.integer  "tournament_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 20131027141341) do
     t.datetime "starts_at"
     t.text     "bracket"
     t.integer  "user_id"
+    t.text     "mode"
     t.boolean  "started"
     t.boolean  "open"
     t.boolean  "open_applications"

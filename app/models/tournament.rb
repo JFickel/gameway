@@ -6,8 +6,10 @@ class Tournament < ActiveRecord::Base
   belongs_to :owner, foreign_key: 'user_id', class_name: User
   has_many :tournament_memberships
   has_many :users, through: :tournament_memberships
+  has_many :teams, through: :tournament_memberships
   has_many :matches, inverse_of: :tournament
   has_many :user_showings, through: :matches
+  has_many :team_showings, through: :matches
   has_many :moderator_roles
   has_many :moderators, through: :moderator_roles, source: :user
   serialize :bracket
@@ -71,39 +73,53 @@ class Tournament < ActiveRecord::Base
     tournament_memberships.count - filtered_round_size
   end
 
+  def add_participant_pair_to_match(match, pair)
+    if self.mode == 'individual'
+      match.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
+    elsif self.mode == 'team'
+      match.team_showings.push TeamShowing.new(team_id: pair[0].team_id, top: true), TeamShowing.new(team_id: pair[1].team_id)
+    end
+  end
+
+  def add_first_initialized_filtered_round_participant_to_match(match, filter_slots)
+    if self.mode == 'individual'
+      match.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
+    elsif self.mode == 'team'
+      match.team_showings.push TeamShowing.new(team_id: tournament_memberships[filter_slots..-1].first.team_id)
+    end
+  end
+
   def add_filled_matches_to_filter_round(filter_slots)
     tournament_memberships.first(filter_slots).each_slice(2).with_object([]) do |pair,obj|
-      m = Match.new
-      self.matches << m
-
-      m.user_showings.push(UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id))
-      obj << m
+      match = Match.new
+      self.matches << match
+      add_participant_pair_to_match(match, pair)
+      obj << match
     end
   end
 
   def build_filtered_round_matches_with_odd_remainder(filter_slots)
     after_filter_round = []
-    m = Match.new
-    self.matches << m
-    m.user_showings.push UserShowing.new(user_id: tournament_memberships[filter_slots..-1].first.user_id)
-    after_filter_round << m
+    match = Match.new
+    self.matches << match
+    add_first_initialized_filtered_round_participant_to_match(match, filter_slots)
+    after_filter_round << match
 
     tournament_memberships[filter_slots+1..-1].each_slice(2) do |pair|
-      m = Match.new
-      self.matches << m
-      m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
-      after_filter_round << m
+      match = Match.new
+      self.matches << match
+      add_participant_pair_to_match(match, pair)
+      after_filter_round << match
     end
     return after_filter_round
   end
 
   def build_filtered_round_matches_with_even_remainder(filter_slots)
     tournament_memberships[filter_slots..-1].each_slice(2).with_object([]) do |pair, after_filter_round|
-      m = Match.new
-      self.matches << m
-
-      m.user_showings.push UserShowing.new(user_id: pair[0].user_id, top: true), UserShowing.new(user_id: pair[1].user_id)
-      after_filter_round << m
+      match = Match.new
+      self.matches << match
+      add_participant_pair_to_match(match, pair)
+      after_filter_round << match
     end
   end
 

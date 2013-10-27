@@ -36,20 +36,19 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:id])
   end
 
+  def start
+    tournament = Tournament.includes(:matches).find(params[:id])
+    tournament.start if tournament_params[:start]
+    redirect_to tournament
+  end
+
   def update
     tournament = Tournament.includes(:matches).find(params[:id])
-    tournament.start if params[:start]
-    tournament.reload
 
-    respond_to do |format|
-      format.html do
-        if tournament.update_attributes(tournament_params)
-          redirect_to tournament
-        else
-          redirect_to request.referer, alert: tournament.errors.full_messages
-        end
-      end
-      format.json { render :json => tournament }
+    if tournament.update_attributes(tournament_params)
+      redirect_to tournament
+    else
+      redirect_to request.referer, alert: tournament.errors.full_messages
     end
   end
 
@@ -63,6 +62,6 @@ class TournamentsController < ApplicationController
 
   def tournament_params
     params.require(:tournament).permit(:title, :game, :starts_at, :description,
-    :rules, :start_date, :start_hour, :start_minute, :start_period, :open, :open_applications)
+    :rules, :start_date, :start_hour, :start_minute, :start_period, :open, :open_applications, :start)
   end
 end

@@ -4,7 +4,7 @@ class MatchSerializer < ActiveModel::Serializer
   self.root = false
 
   def user_showings
-    if object.tournament.mode == "user"
+    if object.tournament.mode == "individual"
       ordered_showings = object.user_showings.sort_by do |us|
         us.top ? 0 : 1
       end

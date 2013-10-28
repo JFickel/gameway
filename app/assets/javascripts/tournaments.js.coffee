@@ -17,6 +17,9 @@ $ ->
       {@moderatorStatus, @matchHeight, @matchPadding, @matchWidth, @matchBorder} = options
 
     determineClassRound: (round_index, round, self) ->
+      # console.log self.bracket
+      # console.log round
+
       if round_index == self.bracket.length-1
         return "<ul class='round winner'>"
       else
@@ -36,6 +39,7 @@ $ ->
           output += self.determineHeader(round_index, round, match_index, self)
           if match != null
             if self.mode == "individual"
+              console.log match.user_showings
               $.each match.user_showings, (user_showing_index, user_showing) ->
                 if self.moderatorStatus is "true"
                   output += "<div class='slot' data-model-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
@@ -57,6 +61,8 @@ $ ->
       @setStyles()
 
     determineHeader: (round_index, round, match_index, self) ->
+      # console.log self.bracket
+      # console.log round
       if round_index == self.bracket.length - 1
         return "<div class='match-header'> Winner </div>"
       else if round.length == 1
@@ -71,12 +77,14 @@ $ ->
       self = this
       $.each @bracket, (round_index, round) ->
         if round_index == 0
+          console.log round
           $(".round-#{round.length*2} li").css('border-top', "0px solid white")
           $(".round-#{round.length*2} li").css('padding-top', "11px")
           $(".round-#{round.length*2} li:first-child").css('border-top', "1px solid black")
 
         marginTop = (Math.pow(2, round_index-1)*matchTotalHeight) - matchTotalHeight/2
         marginBottom = 2*marginTop
+        console.log self.bracket
         if round_index == self.bracket.length - 1
           marginTop = (Math.pow(2, round_index-2)*matchTotalHeight) - matchTotalHeight/2
           marginBottom = 2*marginTop
@@ -111,19 +119,19 @@ $ ->
     bracketView.renderBracket(tournament)
 
   $('.bracket').on 'mouseenter', '.slot', () ->
-    user_id = $(this).data('user-id')
+    user_id = $(this).data('model-id')
     $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).addClass("highlighted")
 
   $('.bracket').on 'mouseleave', '.slot', () ->
-    user_id = $(this).data('user-id')
+    user_id = $(this).data('model-id')
     $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).removeClass("highlighted")
 
 
   $('.bracket').on 'mouseenter', '.delete-slot-btn', () ->
     $(this).parent().addClass("delete-highlight")
-    user_id = $(this).parent().data('user-id')
+    user_id = $(this).parent().data('model-id')
     $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).removeClass("highlighted")
 

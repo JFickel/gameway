@@ -59,7 +59,7 @@ lolopen = Tournament.create(title: 'Collegiate Gaming League Open',
 end
 
 16.times do |i|
-  lol.tournament_memberships << TournamentMembership.new(user_id: i+3)
+  lol.tournament_memberships << TournamentMembership.new(team_id: i+3)
 end
 
 cloud9 = Team.create(name: 'Cloud 9')
@@ -78,6 +78,9 @@ balls = User.create(username: "balls",
                     last_name: "Van Lee",
                     email: "balls@example.com",
                     password: "password")
+
 cloud9.leader = hai
 cloud9.users.push hai, meteos, balls, User.first
 cloud9.save
+
+fnatic = Team.create(name: 'Fnatic', leader: User.first)

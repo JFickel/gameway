@@ -13,6 +13,10 @@
 
   = f.text_area :description, placeholder: 'Description', class: 'tournament-input-area'
 
+  %p= I18n.t('tournaments.mode_description')
+  = f.select :mode, [['Team Mode', 'individual'],['Individual Mode', 'team']], selected: @tournament.open
+
+  %p= I18n.t('tournaments.open_description')
   = f.select :open, [['Open', 'true'],['Closed', 'false']], selected: @tournament.open
 
   = f.select :open_applications, [['Applications Off', 'false'],['Applications On', 'true']], selected: @tournament.open_applications

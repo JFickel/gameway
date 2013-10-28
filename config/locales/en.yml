@@ -59,6 +59,8 @@ en:
     moderators: "Moderators"
     existing: "Existing Moderators"
   tournaments:
+    open_description: "Anyone can enter open tournaments. If you decide to make a closed tournament, you can choose whether or not to accept applications for spots in the tournament."
+    mode_description: "Only teams will be able to sign up for this tournament in team mode. Only users will be able to sign up for this tournament in individual mode."
     team_mode: "Team Mode"
     individual_mode: "Individual Mode"
     starts_at: "Tournament starts at"

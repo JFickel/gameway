@@ -13,10 +13,21 @@
   %p= @tournament.description
 
 - if @tournament.open && !@tournament.started
-  .sign_up
-    = form_for @tournament_membership do |f|
-      = f.hidden_field :tournament_id, value: @tournament.id
-      = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
+  - if @tournament.mode == "individual"
+    .sign_up
+      = form_for @tournament_membership do |f|
+        = f.hidden_field :tournament_id, value: @tournament.id
+        = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
+  - elsif @tournament.mode == "team"
+    - if current_user.team_leaderships.present?
+      %h3= "Select Team to Enter:"
+      .sign_up
+        = form_for @tournament_membership do |f|
+          = f.hidden_field :tournament_id, value: @tournament.id
+          = f.select :team_id, current_user.team_leaderships.map {|team| [team.name, team.id]}
+          = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
+    - else
+      = "You must be a leader or officer of your team to enter a tournament."
 
 - if @owner == current_user
   .owner-panel
@@ -45,7 +56,7 @@
       %h4= link_to "#{p.username} - #{p.first_name} #{p.last_name}", user_path(p)
   - elsif @tournament.mode == 'team'
     - @tournament.teams.each do |t|
-      %h4= link_to "#{t.name}"
+      %h4= link_to "#{t.name}", team_path(t)
 
 .matches
   = @tournament.matches

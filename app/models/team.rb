@@ -59,8 +59,8 @@ class Team < ActiveRecord::Base
 
   def self.construct(options)
     team = Team.new(name: options[:name])
-    team.team_memberships <<  TeamMembership.new(user_id: options[:user].id)
-    team.leader = options[:user]
+    team.team_memberships <<  TeamMembership.new(user_id: options[:leader].id)
+    team.leader = options[:leader]
     return team
   end
 end

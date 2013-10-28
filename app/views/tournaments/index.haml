@@ -11,6 +11,12 @@
       %tr
         %td.title-head
           %h2= I18n.t("tournaments.listing")
+        %td.status
+          %h4= "Entry"
+        %td.game.game-head
+          %h4= "Game"
+        %td.game.mode-head
+          %h4= "Mode"
         %td.start-time-head
           %h4= "Start Time"
         %td
@@ -19,12 +25,19 @@
           %h4= "Affiliates"
       - @tournaments.each do |tournament|
         %tr
-          %td
+          %td.title
             %h3= link_to tournament.title, tournament_path(tournament)
             %p.description= tournament.description
+          %td
+            %p.status= output_status(tournament)
+          %td
+            %p.game= tournament.game
+          %td
+            %p.mode= tournament.mode.capitalize
           %td
             %p.start-time= tournament.starts_at.strftime('%B %e, %Y')
             %p.start-time= tournament.starts_at.strftime('%l:%M%P')
           %td
             %p.owner= tournament.owner.username
           %td
+

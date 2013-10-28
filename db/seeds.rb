@@ -26,8 +26,9 @@ sc2 = Tournament.create(title: "Team Liquid October Invitational",
 end
 
 24.times do |i|
-  t = Team.create(name: "Test Team#{i}",
+  t = Team.construct(name: "Test Team#{i}",
                   leader: User.find(i+1))
+  t.save
 end
 
 
@@ -37,7 +38,7 @@ lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
                         start_hour: "7",
                         start_minute: "00",
                         start_period: "pm",
-                        mode: "individual",
+                        mode: "team",
                         open: false,
                         open_applications: false,
                         user_id: 2,
@@ -53,7 +54,7 @@ lolopen = Tournament.create(title: 'Collegiate Gaming League Open',
                             open: true,
                             open_applications: false,
                             user_id: 1,
-                            description: 'Collegiate Gaming league is hosting an open tournament for teams affiliated with colleges.')
+                            description: 'Collegiate Gaming League is hosting an open tournament for teams affiliated with colleges.')
 24.times do |i|
   lolopen.tournament_memberships << TournamentMembership.new(team_id: i+1)
 end
@@ -83,4 +84,5 @@ cloud9.leader = hai
 cloud9.users.push hai, meteos, balls, User.first
 cloud9.save
 
-fnatic = Team.create(name: 'Fnatic', leader: User.first)
+fnatic = Team.construct(name: 'Fnatic', leader: User.first)
+fnatic.save

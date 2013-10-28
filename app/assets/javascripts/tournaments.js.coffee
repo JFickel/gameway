@@ -22,7 +22,9 @@ $ ->
       else
         return "<ul class='round round-#{round.length*2}'>"
 
-    renderBracket: (@bracket) ->
+    renderBracket: (@tournament) ->
+      @bracket = @tournament.ordered_bracket
+      @mode = @tournament.mode
       $('.participants').hide()
       $('.tournament-sign-up-btn').hide()
       output = ""
@@ -33,12 +35,21 @@ $ ->
           output += "<li><div class='match'>"
           output += self.determineHeader(round_index, round, match_index, self)
           if match != null
-            $.each match.user_showings, (user_showing_index, user_showing) ->
-              if self.moderatorStatus is "true"
-                output += "<div class='slot' data-user-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
-                output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
-              else if self.moderatorStatus is "false"
-                output += "<div class='slot' data-user-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
+            if self.mode == "individual"
+              $.each match.user_showings, (user_showing_index, user_showing) ->
+                if self.moderatorStatus is "true"
+                  output += "<div class='slot' data-user-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
+                  output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
+                else if self.moderatorStatus is "false"
+                  output += "<div class='slot' data-user-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
+            else if self.mode == "team"
+              $.each match.team_showings, (team_showing_index, team_showing) ->
+                if self.moderatorStatus is "true"
+                  output += "<div class='slot' data-user-id='#{team_showing.team_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{team_showing_index}]' data-username='#{team_showing.team_name}'>x</a>"
+                  output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{team_showing_index}]'>#{team_showing.team_name}</button></div>"
+                else if self.moderatorStatus is "false"
+                  output += "<div class='slot' data-user-id='#{team_showing.team_id}'>#{team_showing.team_name}</div>"
+
           output += "</div></li>"
         output += "</ul>"
         $(".bracket").append output
@@ -97,7 +108,7 @@ $ ->
   if $('.bracket_data').text() != ""
     tournamentSerializerJSON = $('.bracket_data').text()
     tournament = JSON.parse(tournamentSerializerJSON).tournament
-    bracketView.renderBracket(tournament.ordered_bracket)
+    bracketView.renderBracket(tournament)
 
   $('.bracket').on 'mouseenter', '.slot', () ->
     user_id = $(this).data('user-id')
@@ -132,7 +143,7 @@ $ ->
         id: $('.tournament_id').text()
       success: (data) ->
         $('.bracket').empty()
-        bracketView.renderBracket(data.tournament.ordered_bracket)
+        bracketView.renderBracket(data.tournament)
     )
   )
 
@@ -147,7 +158,7 @@ $ ->
           id: $('.tournament_id').text()
         success: (data) ->
           $('.bracket').empty()
-          bracketView.renderBracket(data.tournament.ordered_bracket)
+          bracketView.renderBracket(data.tournament)
       )
   )
 

@@ -38,17 +38,17 @@ $ ->
             if self.mode == "individual"
               $.each match.user_showings, (user_showing_index, user_showing) ->
                 if self.moderatorStatus is "true"
-                  output += "<div class='slot' data-user-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
+                  output += "<div class='slot' data-model-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
                   output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
                 else if self.moderatorStatus is "false"
-                  output += "<div class='slot' data-user-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
+                  output += "<div class='slot' data-model-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
             else if self.mode == "team"
               $.each match.team_showings, (team_showing_index, team_showing) ->
                 if self.moderatorStatus is "true"
-                  output += "<div class='slot' data-user-id='#{team_showing.team_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{team_showing_index}]' data-username='#{team_showing.team_name}'>x</a>"
+                  output += "<div class='slot' data-model-id='#{team_showing.team_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{team_showing_index}]' data-username='#{team_showing.team_name}'>x</a>"
                   output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{team_showing_index}]'>#{team_showing.team_name}</button></div>"
                 else if self.moderatorStatus is "false"
-                  output += "<div class='slot' data-user-id='#{team_showing.team_id}'>#{team_showing.team_name}</div>"
+                  output += "<div class='slot' data-model-id='#{team_showing.team_id}'>#{team_showing.team_name}</div>"
 
           output += "</div></li>"
         output += "</ul>"
@@ -112,19 +112,19 @@ $ ->
 
   $('.bracket').on 'mouseenter', '.slot', () ->
     user_id = $(this).data('user-id')
-    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+    $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).addClass("highlighted")
 
   $('.bracket').on 'mouseleave', '.slot', () ->
     user_id = $(this).data('user-id')
-    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+    $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).removeClass("highlighted")
 
 
   $('.bracket').on 'mouseenter', '.delete-slot-btn', () ->
     $(this).parent().addClass("delete-highlight")
     user_id = $(this).parent().data('user-id')
-    $.map $('.round').find(".slot[data-user-id='#{user_id}']").get(), (slot, i) ->
+    $.map $('.round').find(".slot[data-model-id='#{user_id}']").get(), (slot, i) ->
       $(slot).removeClass("highlighted")
 
   $('.bracket').on 'mouseleave', '.delete-slot-btn', () ->

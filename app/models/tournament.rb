@@ -142,42 +142,64 @@ class Tournament < ActiveRecord::Base
     end
   end
 
-  def find_bottom_user(match)
-    us = match.user_showings.find {|us| us.top == nil }  ## methods
-    User.find(us.user_id)
+  def find_bottom_participant(match)
+    if match.tournament.mode == "individual"
+      match.user_showings.find {|us| us.top == nil }  ## methods
+    elsif match.tournament.mode == "team"
+      match.team_showings.find {|ts| ts.top == nil }  ## methods
+    end
   end
 
-  def find_top_user(match)
-    us = match.user_showings.find {|us| us.top == true }
-    User.find(us.user_id)
+  def find_top_participant(match)
+    if match.tournament.mode == "individual"
+      match.user_showings.find {|us| us.top == true } || match.user_showings.first ## methods
+    elsif match.tournament.mode == "team"
+      match.team_showings.find {|ts| ts.top == true } || match.team_showings.first ## methods
+    end
   end
 
-  def create_new_match_and_position_user(position, new_showing)
-    m = Match.create
-    self.matches << m
+  def create_and_position_new_match(position, new_showing)
+    match = Match.create
+    self.matches << match
+    add_showing_to_match(match, new_showing)
 
-    m.user_showings.push new_showing
-    self.bracket[position[0]+1][position[1]/2] = m
+    self.bracket[position[0]+1][position[1]/2] = match
+  end
+
+  def add_showing_to_match(match, new_showing)
+    if self.mode == "individual"
+      match.user_showings.push new_showing
+    elsif self.mode == "team"
+      match.team_showings.push new_showing
+    end
+  end
+
+  def set_new_showing(participant, position)
+    if self.mode == "individual"
+      UserShowing.new(user_id: participant.user_id, top: (position[1].even? ? true : nil) )
+    elsif self.mode == "team"
+      TeamShowing.new(team_id: participant.team_id, top: (position[1].even? ? true : nil) )
+    end
   end
 
   def advance position
     match = self.bracket[position[0]][position[1]]
 
     if position[2] == 1
-      user = find_bottom_user(match)
+      participant = find_bottom_participant(match)
     else
-      user = find_top_user(match)
+      participant = find_top_participant(match)
     end
 
     ## Create a new user showing and place him on top if his index is even
-    new_showing = UserShowing.new(user: user, top: (position[1].even? ? true : nil) )
+    new_showing = set_new_showing(participant, position)
 
     ## Place the new user showing the correct position
-    new_match = self.bracket[position[0]+1][position[1]/2]
-    if new_match.nil?
-      create_new_match_and_position_user(position, new_showing)
+    next_match = self.bracket[position[0]+1][position[1]/2]
+    if next_match.nil?
+      create_and_position_new_match(position, new_showing)
     else
-      new_match.user_showings.push new_showing
+      add_showing_to_match(next_match, new_showing)
     end
     self.save
   end
@@ -186,11 +208,11 @@ class Tournament < ActiveRecord::Base
     match = self.bracket[position[0]][position[1]]
 
     if position[2] == 1
-      us = match.user_showings.find {|us| us.top == nil }
+      showing = find_top_participant(match)
     else
-      us = match.user_showings.find {|us| us.top == true } || match.user_showings.first
+      showing = find_top_participant(match)
     end
 
-    us.destroy
+    showing.destroy
   end
 end

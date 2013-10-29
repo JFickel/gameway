@@ -60,7 +60,7 @@ $ ->
     template: "<img src={{avatar_url}}><p><strong>{{username}}</strong>  {{full_name}}</p>"
 
 
-  $('.add-moderator').on "submit", ".user-search", (event) ->
+  $('.add-auxiliary').on "submit", ".user-search", (event) ->
     event.preventDefault()
     [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
 
@@ -71,16 +71,19 @@ $ ->
       data:
         query: $(this).parent().find('#user_query').val()
       success: (data) ->
-        $('.mod-candidates').empty()
+        $('.auxiliary-candidates').empty()
         users = data.users
         output = ""
         $.each users, (index, user) ->
             output += "<div><h4>#{user.username}</h4><p>#{user.full_name}</p>"
-            $('.mod-candidate-form').find('#moderator_role_user_id').val(user.id)
-            $('.mod-candidate-form').find('#moderator_role_tournament_id').val(tournament_id)
-            output += $('.mod-candidate-form').html()
+            $('.moderator-candidate-form').find('#moderator_role_user_id').val(user.id)
+            $('.moderator-candidate-form').find('#moderator_role_tournament_id').val(tournament_id)
+            $('.broadcaster-candidate-form').find('#broadcaster_role_user_id').val(user.id)
+            $('.broadcaster-candidate-form').find('#broadcaster_role_tournament_id').val(tournament_id)
+            output += $('.moderator-candidate-form').html()
+            output += $('.broadcaster-candidate-form').html()
             output += "</div>"
-        $('.mod-candidates').append(output)
+        $('.auxiliary-candidates').append(output)
     )
 
 

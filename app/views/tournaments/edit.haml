@@ -9,10 +9,17 @@
   - @tournament.moderators.each do |mod|
     %h4= link_to "#{mod.username} - #{mod.first_name} #{mod.last_name}", user_path(mod)
 
+.existing-broadcasters
+  %h2= I18n.t('broadcasters.existing')
+
+  - @tournament.broadcasters.each do |bc|
+    %h4= link_to "#{bc.username} - #{bc.first_name} #{bc.last_name}", user_path(bc)
 
 
-.add-moderator
-  %h2= I18n.t('moderators.add')
+
+
+.add-auxiliary
+  %h2= I18n.t('tournaments.add_auxiliary')
 
   = form_tag users_path, method: :get, class: 'user-search' do
     = text_field_tag "user[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
@@ -21,14 +28,16 @@
 
   %h3= I18n.t('search.results')
 
-  .mod-candidates
+  .auxiliary-candidates
 
-
-
-  .mod-candidate-form
+  .moderator-candidate-form
     = form_for :moderator_role, url: moderator_roles_path do |f|
       = f.hidden_field :user_id
       = f.hidden_field :tournament_id
-      = f.submit nil, value: 'Add Moderator'
+      = f.submit nil, value: 'Request Moderator'
 
-
+  .broadcaster-candidate-form
+    = form_for :broadcaster_role, url: broadcaster_roles_path do |f|
+      = f.hidden_field :user_id
+      = f.hidden_field :tournament_id
+      = f.submit nil, value: 'Request Broadcast'

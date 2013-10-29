@@ -1,6 +1,7 @@
 .tournament-banner
   %h2= @tournament.title
   %h3= @tournament.game
+
   - if @tournament.mode == "individual"
     %h3= "#{I18n.t('tournaments.individual_mode') } #{I18n.t('tournaments.tournament')}"
   - elsif @tournament.mode == "team"

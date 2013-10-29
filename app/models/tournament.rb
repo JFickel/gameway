@@ -12,6 +12,9 @@ class Tournament < ActiveRecord::Base
   has_many :team_showings, through: :matches
   has_many :moderator_roles
   has_many :moderators, through: :moderator_roles, source: :user
+  has_many :broadcaster_roles
+  has_many :broadcasters, through: :broadcaster_roles, source: :user
+
   serialize :bracket
 
   has_many :affiliate_team_relationships, foreign_key: :affiliated_tournament_id, class_name: 'Affiliation', dependent: :destroy

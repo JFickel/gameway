@@ -14,6 +14,7 @@ en:
     add: "Add an Affiliation"
     description: "Associate your team with a group, tournament or even another team."
   home:
+    slogan: "Enhance your gaming"
     connect: 'Connect'
     connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'
     create: 'Create'
@@ -58,7 +59,12 @@ en:
     add: "Add Moderator"
     moderators: "Moderators"
     existing: "Existing Moderators"
+  broadcasters:
+    add: "Add Broadcaster"
+    broadcasters: "Broadcasters"
+    existing: "Existing Broadcasters"
   tournaments:
+    add_auxiliary: "Add Broadcasters and Moderators"
     tournament: "Tournament"
     applications_open: "Applications Open"
     closed: "Closed"

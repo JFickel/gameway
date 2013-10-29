@@ -1,0 +1,3 @@
+class BroadcasterRoles < ApplicationController
+
+end

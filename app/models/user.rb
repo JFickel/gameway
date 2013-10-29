@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:facebook, :twitch_oauth2], :authentication_keys => [:login]
 
   has_one :starcraft2_account
+  has_one :twitch_account
 
   has_many :group_memberships
   has_many :groups, through: :group_memberships
@@ -22,6 +23,8 @@ class User < ActiveRecord::Base
   has_many :matches, through: :user_showings
   has_many :moderator_roles
   has_many :moderated_tournaments, through: :moderator_roles, source: :tournament
+  has_many :broadcaster_roles
+  has_many :broadcasted_tournaments, through: :broadcaster_roles, source: :tournament
   has_many :events
 
   mount_uploader :avatar, AvatarUploader

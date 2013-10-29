@@ -15,6 +15,7 @@ Gameway::Application.routes.draw do
   end
   resources :tournament_memberships
   resources :moderator_roles
+  resources :broadcaster_roles
   resources :affiliations
 
   post 'slots', to: 'slots#create'

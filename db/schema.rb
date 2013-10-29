@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027141341) do
+ActiveRecord::Schema.define(version: 20131029173904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20131027141341) do
     t.string  "uid"
     t.string  "token"
     t.string  "token_secret"
+  end
+
+  create_table "broadcaster_roles", force: true do |t|
+    t.integer  "tournament_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -141,6 +148,14 @@ ActiveRecord::Schema.define(version: 20131027141341) do
     t.boolean  "open"
     t.boolean  "open_applications"
     t.integer  "maximum_participants"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "twitch_accounts", force: true do |t|
+    t.string   "username"
+    t.string   "stream_url"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

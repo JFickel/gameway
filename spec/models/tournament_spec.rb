@@ -9,6 +9,10 @@ describe Tournament do
   it { should have_many(:moderator_roles) }
   it { should have_many(:moderators).through(:moderator_roles) }
   let (:tournament) { Tournament.new(@options) }
+  let (:tournament_with_users) { create(:tournament, :with_users, users_count: 14) }
+  let (:tournament_with_teams) { create(:tournament, :with_teams, teams_count: 25) }
+  let (:tournament_without_teams) { create(:tournament, :with_teams, teams_count: 0) }
+  let (:tournament_without_users) { create(:tournament, :with_users, teams_count: 0) }
   let (:team) { FactoryGirl.create(:team) }
 
   before do
@@ -43,8 +47,36 @@ describe Tournament do
       expect(tournament.bracket).to eq nil
     end
 
-    # it 'should generate a bracket with 5 arrays for 14 users' do
-    #   expect(create(:tournament, :with_teams, teams_count: 14).start.bracket.length).to eq 5
-    # end
+    it 'should generate a bracket with 5 arrays with 14 users' do
+      expect(tournament_with_users.start.bracket.length).to eq 5
+    end
+
+    it 'should not generate a bracket with 0 users' do
+      expect(tournament_without_users.bracket).to eq nil
+    end
+
+    it 'should generate a bracket with 6 arrays with 25 teams' do
+      expect(tournament_with_teams.start.bracket.length).to eq 6
+    end
+
+    it 'should not generate a bracket with 0 users' do
+      expect(tournament_without_teams.bracket).to eq nil
+    end
+
+    it 'should have 6 matches in the first round with 14 users' do
+      expect(tournament_with_users.start.bracket.first.count {|e| e.class.try(:model_name).try(:singular) == 'match' }).to eq 6
+    end
+
+    it 'should initialize 7 matches total with 14 users' do
+      expect(tournament_with_users.start.matches.count).to eq 7
+    end
+
+    it 'should have 9 matches in the first round with 25 teams' do
+      expect(tournament_with_teams.start.bracket.first.count {|e| e.class.try(:model_name).try(:singular) == 'match' }).to eq 9
+    end
+
+    it 'should initialize 13 matches total with 25 teams' do
+      expect(tournament_with_teams.start.matches.count).to eq 13
+    end
   end
 end

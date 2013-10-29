@@ -41,6 +41,7 @@ class Tournament < ActiveRecord::Base
 
   def start
     reset_bracket
+    return self if tournament_memberships.empty?
     rounds = calculate_rounds
     self.bracket = [[nil]]
     rounds.times do |i|
@@ -49,6 +50,7 @@ class Tournament < ActiveRecord::Base
     initialize_bracket
     self.started = true
     self.save
+    return self
   end
 
   def reset_bracket

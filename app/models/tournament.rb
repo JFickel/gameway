@@ -17,10 +17,6 @@ class Tournament < ActiveRecord::Base
   has_many :affiliate_team_relationships, foreign_key: :affiliated_tournament_id, class_name: 'Affiliation', dependent: :destroy
   has_many :affiliates, through: :affiliate_team_relationships, source: :affiliate_team, class_name: 'Team'
 
-  # mode: individual, team
-  # invite capability always turned on (derp)
-  # open/closed: boolean
-  # application_status: boolean
   include PgSearch
   pg_search_scope :text_search,
                   against: {title: 'A', description: 'B'},

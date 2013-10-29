@@ -9,6 +9,7 @@ describe Tournament do
   it { should have_many(:moderator_roles) }
   it { should have_many(:moderators).through(:moderator_roles) }
   let (:tournament) { Tournament.new(@options) }
+  let (:team) { FactoryGirl.create(:team) }
 
   before do
     @options = { title: 'UIUC League of Legends Tournament',
@@ -21,25 +22,29 @@ describe Tournament do
 
   describe '.initialize' do
     it 'should store the title' do
-      tournament.title.should == 'UIUC League of Legends Tournament'
+      expect(tournament.title).to eq 'UIUC League of Legends Tournament'
     end
 
     it 'should store the game' do
-      tournament.game.should == 'League of Legends'
+      expect(tournament.game).to eq 'League of Legends'
     end
 
     it 'should store the description' do
-      tournament.description.should == 'Everyone is invited to this tournament hosted by the UIUC gaming club :D'
+      expect(tournament.description).to eq 'Everyone is invited to this tournament hosted by the UIUC gaming club :D'
     end
 
     it 'should store the rules' do
-      tournament.rules.should == 'None'
+      expect(tournament.rules).to eq 'None'
     end
   end
 
   describe '.start' do
-    it 'should return nil if bracket is not initialized' do
-      tournament.bracket.should == nil
+    it 'should have nil value for bracket if not started yet'  do
+      expect(tournament.bracket).to eq nil
     end
+
+    # it 'should generate a bracket with 5 arrays for 14 users' do
+    #   expect(create(:tournament, :with_teams, teams_count: 14).start.bracket.length).to eq 5
+    # end
   end
 end

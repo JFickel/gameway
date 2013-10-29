@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20131029183003) do
   end
 
   create_table "invitations", force: true do |t|
+    t.text     "message"
     t.integer  "user_id"
     t.integer  "tournament_id"
     t.integer  "team_id"

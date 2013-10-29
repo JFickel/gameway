@@ -17,6 +17,7 @@ Gameway::Application.routes.draw do
   resources :moderator_roles
   resources :broadcaster_roles
   resources :affiliations
+  resources :invitations
 
   post 'slots', to: 'slots#create'
   delete 'slots', to: 'slots#destroy'

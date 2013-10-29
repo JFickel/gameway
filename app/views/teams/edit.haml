@@ -6,6 +6,47 @@
     = f.text_field :name, placeholder: I18n.t("teams.name"), class: 'edit-team-input'
     = f.submit I18n.t("model.update"), class: 'edit-team-btn'
 
+
+  .add-team-member
+    %h3= I18n.t('teams.add_member')
+
+    = form_tag users_path, method: :get, class: 'user-search' do
+      = text_field_tag "user[query]", nil, placeholder: I18n.t('users.find'), class: 'search-input'
+      = hidden_field_tag "user[user_id]"
+      = submit_tag "Search", name: nil, class: 'user-search-btn'
+
+    %h3= I18n.t('search.results')
+
+    .team-member-candidates
+
+    .team-member-candidate-form
+      = form_for :invitation, url: invitations_path do |f|
+        = f.hidden_field :user_id
+        = f.hidden_field :team_id
+        = f.submit nil, value: 'Invite'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .add-affiliation
     %h3= I18n.t('affiliations.add')
 

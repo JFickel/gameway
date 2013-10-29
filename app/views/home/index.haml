@@ -21,6 +21,10 @@
       = I18n.t('users.logged_in')
       = link_to current_user.username, user_path(current_user)
   .user-panel
+    .user-invitations
+      - if current_user.invitations.present?
+        %h2= "Your Invitations"
+
     .user-tournaments
       %h2= "Your Tournaments"
       - if current_user.all_tournaments.empty?

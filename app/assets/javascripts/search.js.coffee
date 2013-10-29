@@ -86,4 +86,26 @@ $ ->
         $('.auxiliary-candidates').append(output)
     )
 
+  $('.add-team-member').on "submit", ".user-search", (event) ->
+    event.preventDefault()
+    [first, mid...,team_id] = $('.edit_team').attr('action').split("/")
 
+    $.ajax(
+      type: 'GET'
+      url: '/users'
+      dataType: 'json'
+      data:
+        query: $(this).parent().find('#user_query').val()
+      success: (data) ->
+        $('.team-member-candidates').empty()
+        users = data.users
+        output = ""
+        $.each users, (index, user) ->
+            output += "<div><h4>#{user.username}</h4><p>#{user.full_name}</p>"
+            $('.team-member-candidate-form').find('#invitation_user_id').val(user.id)
+            $('.team-member-candidate-form').find('#invitation_team_id').val(team_id)
+            output += $('.team-member-candidate-form').html()
+            output += "</div>"
+
+        $('.team-member-candidates').append(output)
+    )

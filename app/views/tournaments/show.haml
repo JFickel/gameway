@@ -2,9 +2,9 @@
   %h2= @tournament.title
   %h3= @tournament.game
   - if @tournament.mode == "individual"
-    %h3= I18n.t('tournaments.individual_mode')
+    %h3= "#{I18n.t('tournaments.individual_mode') } #{I18n.t('tournaments.tournament')}"
   - elsif @tournament.mode == "team"
-    %h3= I18n.t('tournaments.team_mode')
+    %h3= "#{I18n.t('tournaments.team_mode')} #{I18n.t('tournaments.tournament')}"
   %h3= "Starts in #{distance_of_time_in_words(Time.current, @tournament.starts_at)}"
   %h3
     = I18n.t('tournaments.starts_at')
@@ -12,22 +12,7 @@
   %h3= I18n.t('tournaments.description')
   %p= @tournament.description
 
-- if @tournament.open && !@tournament.started
-  - if @tournament.mode == "individual"
-    .sign_up
-      = form_for @tournament_membership do |f|
-        = f.hidden_field :tournament_id, value: @tournament.id
-        = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
-  - elsif @tournament.mode == "team"
-    - if current_user.team_leaderships.present?
-      %h3= "Select Team to Enter:"
-      .sign_up
-        = form_for @tournament_membership do |f|
-          = f.hidden_field :tournament_id, value: @tournament.id
-          = f.select :team_id, current_user.team_leaderships.map {|team| [team.name, team.id]}
-          = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
-    - else
-      = "You must be a leader or officer of your team to enter a tournament."
+= render 'sign_up_button'
 
 - if @owner == current_user
   .owner-panel

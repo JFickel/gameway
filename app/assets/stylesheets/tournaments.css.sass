@@ -266,6 +266,8 @@
     text-align: center
 
 .round
+  a.slot.highlighted
+    box-shadow: 0px 0px 22px blue
   .slot.highlighted
     button
       box-shadow: 0px 0px 22px blue
@@ -279,6 +281,28 @@
     // background-image: -moz-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
     // background-image: -webkit-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
     // background-image: -ms-linear-gradient(bottom, rgb(196,19,190) 52%, rgb(201,151,191) 25%, rgb(182,142,191) 83%)
+
+a.slot
+  text-decoration: none
+  display: inline-block
+  margin-bottom: 0
+  font-weight: normal
+  text-align: center
+  white-space: nowrap
+  cursor: pointer
+  border: 1px solid transparent
+  border-radius: 4px
+  color: #333333
+  background-color: #ffffff
+  border-color: #cccccc
+  padding: 1px 5px
+  &:hover
+    background-color: DodgerBlue
+    color: white
+  &:active
+    outline: none
+    background-color: limegreen
+
 
 button.advance-slot
   display: inline-block

@@ -45,14 +45,14 @@ $ ->
                   output += "<div class='slot' data-model-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
                   output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{user_showing_index}]'>#{user_showing.username}</button></div>"
                 else if self.moderatorStatus is "false"
-                  output += "<div class='slot' data-model-id='#{user_showing.user_id}'>#{user_showing.username}</div>"
+                  output += "<a href='/users/#{user_showing.user_id}' class='slot' data-model-id='#{user_showing.user_id}'>#{user_showing.username}</a>"
             else if self.mode == "team"
               $.each match.team_showings, (team_showing_index, team_showing) ->
                 if self.moderatorStatus is "true"
                   output += "<div class='slot' data-model-id='#{team_showing.team_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{team_showing_index}]' data-username='#{team_showing.team_name}'>x</a>"
                   output += "<button class='advance-slot' data-position='[#{round_index},#{match_index},#{team_showing_index}]'>#{team_showing.team_name}</button></div>"
                 else if self.moderatorStatus is "false"
-                  output += "<div class='slot' data-model-id='#{team_showing.team_id}'>#{team_showing.team_name}</div>"
+                  output += "<a href= '/teams/#{team_showing.team_id}' class='slot' data-model-id='#{team_showing.team_id}'>#{team_showing.team_name}</a>"
 
           output += "</div></li>"
         output += "</ul>"

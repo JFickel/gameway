@@ -59,6 +59,7 @@ en:
     moderators: "Moderators"
     existing: "Existing Moderators"
   tournaments:
+    tournament: "Tournament"
     applications_open: "Applications Open"
     closed: "Closed"
     open: "Open"

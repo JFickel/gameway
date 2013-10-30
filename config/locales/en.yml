@@ -98,11 +98,12 @@ en:
     sc2: "Starcraft 2"
     sc2_url: "Starcraft 2 Profile URL"
   users:
+    manage: "Manage your account"
     users: "Users"
     find: "Find User"
     edit: "Edit User"
     user: "User"
-    change_display: "Change your display picture"
+    change_display: "Fix your display picture"
     admin: "Admin"
     settings: "Settings"
     logout: "Logout"

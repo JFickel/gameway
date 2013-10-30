@@ -16,7 +16,7 @@ en:
   home:
     slogan: "Enhance your gaming"
     connect: 'Connect'
-    connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank up against your friends.'
+    connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank against your friends.'
     create: 'Create'
     create_description: 'Build a home page for your gaming community. Set up a calendar for your gaming team. Gain a following.'
     compete: 'Compete'
@@ -109,6 +109,7 @@ en:
     logout: "Logout"
     login: "Login"
     signup: "Sign Up"
+    get_started: "Get started:"
     remember_me: "Remember Me"
     password: "Password"
     username_or_email: "Username or Email"

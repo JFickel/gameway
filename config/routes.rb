@@ -29,8 +29,8 @@ Gameway::Application.routes.draw do
   root to: "home#index"
 
   devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
-    get "sign_up", :to => "devise/registrations#new"
+    get "/", :to => "devise/sessions#new"
+    get "/", :to => "devise/registrations#new"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

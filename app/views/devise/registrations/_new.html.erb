@@ -1,5 +1,5 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "front_sign_up" }) do |f| %>
-    <div class="signup-title">Get started:</div>
+    <div class="signup-title"><%= I18n.t('users.get_started') %></div>
     <div class="control-group<%# form_error_class(resource, :username) -%>">
       <%# f.label I18n.t("users.username"), :class => 'control-label' %>
       <div class='controls'>

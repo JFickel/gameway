@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
     if invitation.save
       redirect_to request.referer, notice: 'Invite sent'
     else
-      redirect_to request.referer, alert: invitation.errors.full_messages, notice: 'This user cannot be invited'
+      redirect_to request.referer, alert: invitation.errors.full_messages
     end
   end
 

@@ -1,7 +1,6 @@
 class InvitationsController < ApplicationController
   def create
     invitation = Invitation.new(invitation_params)
-
     if invitation.save
       redirect_to request.referer, notice: 'Invite sent'
     else

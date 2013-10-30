@@ -1,4 +1,5 @@
 %h2= @team.name
+= link_to I18n.t('teams.management'), edit_team_path(@team), class: 'medium-btn'
 
 = image_tag(@team.avatar.display.url, class: 'avatar')
 
@@ -23,8 +24,6 @@
 .team-events
   %h3= I18n.t('events.events')
 
-  / - if @team.leader == current_user || @team.users.include?(current_user)
-  /   .event-panel
   %h4= link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn'
   %ul
     - @team.events.each do |event|

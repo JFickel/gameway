@@ -29,13 +29,17 @@
   .auxiliary-candidates
 
   .moderator-candidate-form
-    = form_for :moderator_role, url: moderator_roles_path do |f|
+    = form_for :invitation, url: invitations_path do |f|
       = f.hidden_field :user_id
       = f.hidden_field :tournament_id
-      = f.submit nil, value: 'Request Moderator'
+      = f.hidden_field :role, value: 'moderator'
+      = f.hidden_field :sender_id, value: current_user.id
+      = f.submit nil, value: 'Send Moderator Invitation'
 
   .broadcaster-candidate-form
-    = form_for :broadcaster_role, url: broadcaster_roles_path do |f|
+    = form_for :invitation, url: invitations_path do |f|
       = f.hidden_field :user_id
       = f.hidden_field :tournament_id
-      = f.submit nil, value: 'Request Broadcast'
+      = f.hidden_field :role, value: 'broadcaster'
+      = f.hidden_field :sender_id, value: current_user.id
+      = f.submit nil, value: 'Send Broadcaster Invitation'

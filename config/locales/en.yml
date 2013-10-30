@@ -41,6 +41,7 @@ en:
     add: "Add Event"
     events: "Events"
   teams:
+    management: "Team Management"
     add_member: "Add Member"
     change_name: "Team Name Change"
     manage: "Manage"

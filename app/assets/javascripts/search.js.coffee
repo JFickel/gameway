@@ -76,10 +76,10 @@ $ ->
         output = ""
         $.each users, (index, user) ->
             output += "<div><h4>#{user.username}</h4><p>#{user.full_name}</p>"
-            $('.moderator-candidate-form').find('#moderator_role_user_id').val(user.id)
-            $('.moderator-candidate-form').find('#moderator_role_tournament_id').val(tournament_id)
-            $('.broadcaster-candidate-form').find('#broadcaster_role_user_id').val(user.id)
-            $('.broadcaster-candidate-form').find('#broadcaster_role_tournament_id').val(tournament_id)
+            $('.moderator-candidate-form').find('#invitation_user_id').val(user.id)
+            $('.moderator-candidate-form').find('#invitation_tournament_id').val(tournament_id)
+            $('.broadcaster-candidate-form').find('#invitation_user_id').val(user.id)
+            $('.broadcaster-candidate-form').find('#invitation_tournament_id').val(tournament_id)
             output += $('.moderator-candidate-form').html()
             output += $('.broadcaster-candidate-form').html()
             output += "</div>"

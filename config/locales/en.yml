@@ -14,7 +14,7 @@ en:
     add: "Add an Affiliation"
     description: "Associate your team with a group, tournament or even another team."
   home:
-    slogan: "Enhance your gaming"
+    slogan: "[Gaming Intensifies]"
     connect: 'Connect'
     connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank against your friends.'
     create: 'Create'
@@ -66,6 +66,7 @@ en:
     broadcasters: "Broadcasters"
     existing: "Existing Broadcasters"
   tournaments:
+    team_disclaimer: "You must be a team leader or officer to sign your team up for this tournament."
     add_auxiliary: "Add Broadcasters and Moderators"
     tournament: "Tournament"
     applications_open: "Applications Open"
@@ -94,9 +95,11 @@ en:
   providers:
     facebook: "Facebook"
     twitch: "Twitch"
-  games:
+  accounts:
     sc2: "Starcraft 2"
     sc2_url: "Starcraft 2 Profile URL"
+    twitch: "Twitch.tv"
+    twitch_username: "Twitch.tv Username"
   users:
     manage: "Manage your account"
     users: "Users"
@@ -119,7 +122,7 @@ en:
     email: "Email"
     personal_information: "Personal Information"
     providers: "Providers"
-    game_accounts: "Game Accounts"
+    gamer_accounts: "Gamer Accounts"
     other_providers: "Other Providers"
     sign_in: "Sign in"
     sign_in_with: "Sign in with %{provider}"

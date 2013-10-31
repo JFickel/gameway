@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:show]
   def index
     if params[:query].present?
       @teams = Team.text_search(params[:query])

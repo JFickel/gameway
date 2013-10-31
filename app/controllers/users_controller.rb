@@ -9,11 +9,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    unless current_user.starcraft2_account
-      @starcraft2_account = Starcraft2Account.new
-    else
-      @starcraft2_account = current_user.starcraft2_account
-    end
+    @starcraft2_account = current_user.starcraft2_account || Starcraft2Account.new
+    @twitch_account = current_user.twitch_account || TwitchAccount.new
   end
 
   def update

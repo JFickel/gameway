@@ -21,9 +21,14 @@
     = f.submit I18n.t('model.update'), class: 'update-user-info-btn'
 
 
-  %h2= I18n.t("users.game_accounts")
+  %h2= I18n.t("users.gamer_accounts")
   = form_for @starcraft2_account do |f|
-    = f.label :last_name, I18n.t("games.sc2_url")
-    = f.text_field :url, class: 'update-sc2-url'
-    = f.submit I18n.t('model.update'), class: 'update-sc2-url-btn'
+    = f.label :sc2_url, I18n.t("accounts.sc2_url")
+    = f.text_field :url, class: 'update-sc2-field'
+    = f.submit I18n.t('model.update'), class: 'medium-btn'
+
+  = form_for @twitch_account do |f|
+    = f.label :twitch_username, I18n.t("accounts.twitch_username")
+    = f.text_field :username, class: 'update-twitch-field'
+    = f.submit I18n.t('model.update'), class: 'medium-btn'
 

@@ -13,4 +13,5 @@
           = f.select :team_id, current_user.team_leaderships.map {|team| [team.name, team.id]}
           = f.submit I18n.t('tournaments.enter'), class: 'tournament-sign-up-btn'
     - else
-      = "You must be a leader or officer of your team to enter a tournament."
+      = I18n.t('tournaments.team_disclaimer')
+

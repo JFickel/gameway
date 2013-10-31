@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:show]
   before_action :tournament_params, only: [:create]
   def index
     if params[:query].present?

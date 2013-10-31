@@ -25,9 +25,13 @@
       - if current_user.invitations.present?
         %h2= "Your Invitations"
         - current_user.invitations.each do |invitation|
+          %p= invitation.message
           - if invitation.team_id.present?
             = render 'team_invite', invitation: invitation
-          %p= invitation.message
+          - if invitation.tournament_id.present?
+            = render 'tournament_invite', invitation: invitation
+
+
     .user-tournaments
       %h2= "Your Tournaments"
       - if current_user.all_tournaments.empty?

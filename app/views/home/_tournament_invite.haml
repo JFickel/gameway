@@ -1,0 +1,12 @@
+- if invitation.role == 'moderator'
+  = form_for :moderator_role, url: moderator_roles_path do |f|
+    = f.hidden_field :user_id, value: invitation.user_id
+    = f.hidden_field :tournament_id, value: invitation.tournament_id
+    = f.submit nil, value: 'Accept'
+  = link_to 'Deny', invitation_path(invitation), method: :delete
+- elsif invitation.role == 'broadcaster'
+  = form_for :broadcaster_role, url: broadcaster_roles_path do |f|
+    = f.hidden_field :user_id, value: invitation.user_id
+    = f.hidden_field :tournament_id, value: invitation.tournament_id
+    = f.submit nil, value: 'Accept'
+  = link_to 'Deny', invitation_path(invitation), method: :delete

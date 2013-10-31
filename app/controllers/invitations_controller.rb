@@ -19,6 +19,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:user_id, :team_id, :tournament_id, :sender_id)
+    params.require(:invitation).permit(:user_id, :team_id, :tournament_id, :sender_id, :role)
   end
 end

@@ -23,6 +23,7 @@
       = form_for :invitation, url: invitations_path do |f|
         = f.hidden_field :user_id
         = f.hidden_field :team_id
+        = f.hidden_field :sender_id, value: current_user.id
         = f.submit nil, value: 'Invite'
 
 

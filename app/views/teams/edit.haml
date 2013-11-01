@@ -4,6 +4,7 @@
   %p= I18n.t('teams.length_disclaimer')
   = form_for @team do |f|
     = f.text_field :name, placeholder: I18n.t("teams.name"), class: 'edit-team-input'
+    = f.select :open_applications, [['Open','true'],['Closed','false']], selected: @team.open_applications
     = f.submit I18n.t("model.update"), class: 'edit-team-btn'
 
 

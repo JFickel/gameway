@@ -100,7 +100,12 @@ en:
     sc2_url: "Starcraft 2 Profile URL"
     twitch: "Twitch.tv"
     twitch_username: "Twitch.tv Username"
+    twitch_online: "Stream is online"
+    twitch_offline: "Stream is offline"
+    twitch_watch: "Watch Stream"
+    twitch_visit: "Visit Twitch Channel"
   users:
+    signup_form: "Sign Up Form "
     manage: "Manage your account"
     users: "Users"
     find: "Find User"

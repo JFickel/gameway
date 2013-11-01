@@ -8,6 +8,8 @@ class Team < ActiveRecord::Base
   has_many :matches, through: :team_showings
   has_many :invitations
   has_many :invited_users, through: :invitations, source: :user
+  has_many :applications
+  has_many :applicants, through: :applications, source: :user
 
   has_many :affiliated_tournament_relationships,
     foreign_key: :affiliate_team_id,
@@ -64,5 +66,9 @@ class Team < ActiveRecord::Base
     team.team_memberships <<  TeamMembership.new(user_id: options[:leader].id)
     team.leader = options[:leader]
     return team
+  end
+
+  def add_tournament_event(tournament)
+    Event.create(team_id: self.id)
   end
 end

@@ -14,6 +14,8 @@ class Tournament < ActiveRecord::Base
   has_many :moderators, through: :moderator_roles, source: :user
   has_many :broadcaster_roles
   has_many :broadcasters, through: :broadcaster_roles, source: :user
+  has_many :applications
+  has_many :applicants, through: :applications, source: :user
 
   serialize :bracket
 

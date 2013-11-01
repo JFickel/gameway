@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   has_many :broadcasted_tournaments, through: :broadcaster_roles, source: :tournament
   has_many :events
   has_many :invitations
+  has_many :applications
+  has_many :team_applications, through: :applications, source: :team
+  has_many :tournament_applications, through: :applications, source: :tournament
 
   mount_uploader :avatar, AvatarUploader
 

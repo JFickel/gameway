@@ -9,3 +9,12 @@
       = f.file_field :avatar, class: 'file-field'
       = f.submit I18n.t('model.update'), class: 'update-display'
 
+
+
+- if @twitch.try(:stream_live?)
+  %h3= I18n.t('accounts.twitch_online')
+  = link_to I18n.t('accounts.twitch_watch'), @twitch.get_stream_url, class: 'small-btn'
+- elsif @twitch.username
+  %h3= I18n.t('accounts.twitch_offline')
+  = link_to I18n.t('accounts.twitch_visit'), @twitch.get_channel_url, class: 'small-btn'
+

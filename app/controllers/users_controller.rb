@@ -1,3 +1,4 @@
+require 'twitch'
 class UsersController < ApplicationController
   def index
     @users = User.text_search(params[:query]).limit(20) ## don't brogram for da future
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @uploader = @user.avatar
+    @twitch = Twitch.new(@user.twitch_account.username)
   end
 
   private

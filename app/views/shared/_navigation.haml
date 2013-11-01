@@ -2,9 +2,9 @@
   %h1.logo= link_to("gameway", root_path)
   - if user_signed_in?
     %ul.nav-links
-      %li= link_to I18n.t("navigation.tournaments"), tournaments_path
-      %li= link_to I18n.t("navigation.teams"), teams_path
-      %li= link_to I18n.t("navigation.groups"), groups_path
+      %li= link_to I18n.t("navigation.tournaments"), tournaments_path, class: "#{params[:controller] == 'tournaments' ? 'in-controller' : nil }"
+      %li= link_to I18n.t("navigation.teams"), teams_path, class: "#{params[:controller] == 'teams' ? 'in-controller' : nil }"
+      %li= link_to I18n.t("navigation.groups"), groups_path, class: "#{params[:controller] == 'groups' ? 'in-controller' : nil }"
       %li= link_to(I18n.t("users.settings"), edit_user_path(current_user))
       %li= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
   - else

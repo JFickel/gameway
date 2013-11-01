@@ -63,6 +63,6 @@ class TournamentsController < ApplicationController
 
   def tournament_params
     params.require(:tournament).permit(:title, :game, :starts_at, :description,
-    :rules, :start_date, :start_hour, :start_minute, :start_period, :open, :open_applications, :start)
+    :rules, :start_date, :start_hour, :start_minute, :start_period, :open, :open_applications, :start, :mode)
   end
 end

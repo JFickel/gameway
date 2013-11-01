@@ -1,7 +1,8 @@
 class TournamentMembershipsController < ApplicationController
   def create
-    if tournament_membership_params[:team]
+    if tournament_membership_params[:team_id]
       member = Team.find(tournament_membership_params[:team_id]).tournament_memberships.new(tournament_id: tournament_membership_params[:tournament_id])
+      member.team.add_tournament_event(Tournament.find(tournament_membership_params[:tournament_id]))
     else
       member = current_user.tournament_memberships.new(tournament_membership_params)
     end

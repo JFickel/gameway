@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20131101152433) do
 
   create_table "teams", force: true do |t|
     t.string   "name"
+    t.text     "introduction"
     t.boolean  "open_applications", default: true
     t.integer  "user_id"
     t.datetime "created_at"

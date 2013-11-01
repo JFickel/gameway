@@ -69,6 +69,13 @@ class Team < ActiveRecord::Base
   end
 
   def add_tournament_event(tournament)
-    Event.create(team_id: self.id)
+    Event.create(team_id: self.id, start_hour: tournament.starts_at.strftime("%l").strip,
+    start_minute: tournament.starts_at.strftime("%M"), start_period: tournament.starts_at.strftime("%p"),
+    start_date: tournament.starts_at.strftime("%B %e, %Y"), title: tournament.title,
+    description: "#{self.name} is competing in #{tournament.title}")
+  end
+
+  def remove_tournament_event(tournament)
+    self.events.find_by(starts_at: tournament.starts_at).destroy
   end
 end

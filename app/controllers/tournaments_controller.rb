@@ -2,12 +2,13 @@ class TournamentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:show]
   before_action :tournament_params, only: [:create]
   def index
-    if params[:query].present?
-      @tournaments = Tournament.text_search(params[:query])
-    else
-      @tournaments = Tournament.all
+    @tournaments = Rails.cache.fetch("text_search_#{params[:query]}") do
+      if params[:query].present?
+        Tournament.text_search(params[:query]).includes(:matches => :users)
+      else
+        Tournament.all
+      end
     end
-
     respond_to do |format|
       format.html
       format.json { render :json => @tournaments }
@@ -28,9 +29,12 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournament = Tournament.find(params[:id])
-    @owner = @tournament.owner
-    @tournament_membership = TournamentMembership.new
+    @tournament, @owner, @tournament_membership = Rails.cache.fetch("tshow_#{params[:id]}") do
+      tournament = Tournament.where(:id => params[:id]).includes(:matches => [:users, :user_showings]).first
+      owner = tournament.owner
+      tm = TournamentMembership.new
+      [tournament, owner, tm]
+    end
   end
 
   def edit

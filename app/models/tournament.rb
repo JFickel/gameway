@@ -36,6 +36,10 @@ class Tournament < ActiveRecord::Base
   validates_with TimeValidator, on: :update, if: :time_parameters?
   before_save :set_starts_at, if: :time_parameters?
 
+  # def open_bracket
+  #   Bracket.new(bracket, self)
+  # end
+
   def set_starts_at
     self.starts_at = Time.zone.parse("#{start_date} #{start_hour}:#{start_minute}#{start_period}")
   end

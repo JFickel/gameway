@@ -29,6 +29,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitch_oauth2'
 
+gem 'twitter'
+
 # Use rails admin for back-end
 gem 'rails_admin'
 
@@ -62,6 +64,9 @@ gem 'jquery-ui-rails'
 group :production, :staging do
   gem 'rails_12factor'
 end
+
+# Nice memcached driver
+gem 'dalli'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

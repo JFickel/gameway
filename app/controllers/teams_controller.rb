@@ -30,6 +30,13 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @leader = @team.leader
     @members = @team.users - [@leader] ## member method
+
+    # client = Twitter::Client.new do |config|
+    #   config.consumer_key        = "ZnSuxvrL2l33nGsLYFuQ"
+    #   config.consumer_secret     = "kxKBXZZPYHpYdJO4TCnVtPahO1cgaKmlK2ToHbHsDM"
+    #   config.access_token        = "864007722-IurWwUPqZJ5Gk8IAQBRmQcOIrCX09pZZijgbseWu"
+    #   config.access_token_secret = "Aqgl81erxBiFZ5SIzIYtCyOSY5fBcxFOEBmM1LossAQ8i"
+    # end
   end
 
   def edit

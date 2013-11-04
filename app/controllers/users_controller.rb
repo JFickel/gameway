@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @uploader = @user.avatar
-    @twitch = Twitch.new(@user.twitch_account.username)
+    @twitch = Twitch.new(@user.twitch_account.try(:username))
   end
 
   private

@@ -6,12 +6,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
-  version :display do
+  version :full do
     process :resize_to_fit => [800,800]
   end
 
-  version :thumb do
-    process :resize_to_fit => [200,200]
+  version :profile do
+    process :resize_to_fit => [400,400]
   end
 
   version :icon do

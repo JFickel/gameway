@@ -20,7 +20,7 @@ en:
     create: 'Create'
     create_description: 'Build a home page for your gaming community. Set up a calendar for your gaming team. Gain a following.'
     compete: 'Compete'
-    compete_description: 'Join a tournament and put your skills to the test. Win money and prizes. Show off your awards.'
+    compete_description: 'Join tournaments and put your skills to the test. Win money and prizes. Show off your awards.'
   search:
     filter: "Filter By"
     search: "Search"

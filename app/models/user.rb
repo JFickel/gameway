@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :team_applications, through: :applications, source: :team
   has_many :tournament_applications, through: :applications, source: :tournament
 
+
   mount_uploader :avatar, AvatarUploader
 
   attr_accessor :login, :timezone
@@ -44,7 +45,16 @@ class User < ActiveRecord::Base
   multisearchable against: [:username, :first_name, :last_name],
                   using: { tsearch: { prefix: true }}
 
+  before_save :set_gravatar_as_default
 
+  def avatar_url(user, size)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
+
+  def set_gravatar_as_default
+    self.remote_avatar_url = avatar_url(self, 400)
+  end
 
   def search
     if params[:query].present?

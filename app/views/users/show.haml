@@ -1,6 +1,6 @@
 %h1= @user.username
 %h2= "#{@user.first_name} #{@user.last_name}"
-= image_tag(@user.avatar.display.url, class: 'avatar')
+= image_tag(@user.avatar.profile.url, class: 'avatar', width: '230px')
 
 - if @user == current_user
   .user-change-display

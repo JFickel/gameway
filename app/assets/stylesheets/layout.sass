@@ -1,11 +1,13 @@
-$primary:     #DE6A00 // orange
-$secondary:   #DB9655 // light orange
-$tertiary:    #203E42 // dark green
-$quarternary: #7E9899 // light green
+// ORANGE AND DARK GREEN -- CUSTOM
 
-// how it should be: orange, light orange, dark green, light green
-
+// $primary:     #DE6A00 // orange
+// $secondary:   #DB9655 // light orange
+// $tertiary:    #203E42 // dark green
+// $quarternary: #7E9899 // light green
 // $quinary:    #D4FFFD
+
+
+
 
 // darkgreen: 203E42
 // lightgreen: 7E9899
@@ -14,9 +16,77 @@ $quarternary: #7E9899 // light green
 // orange: DE6A00
 
 
+// COOL MODERN
+
+// darkest: 323640
+// dark: 5B6470
+// medium: 8C94A1
+// light: BDC7D6
+// lightest: DFE2FF
+
+$primary: #DFE2FF
+$secondary: #8C94A1
+$tertiary: #5B6470
+$quinary: #BDC7D6
+$quarternary: #729EBF
+
+
+// BLUE SKY
+// $primary: #4E7AC7
+// $secondary: #7FB2F0
+// $tertiary: #16193B
+// $quarternary: #35478C
+// $quinary: #ADD5F7
+
+
+.slogan-panel-border
+  position: absolute
+  top: 20%
+  left: 19%
+  height: 90px
+  background-color: $quinary
+
+  opacity: 0.3
+  border-radius: 20px
+  width: 35%
+  box-shadow: 0px 0px 40px white
+
+  .slogan-panel
+    margin-top: 2px
+    margin-left: 1%
+    width: 98%
+    height: 86px
+    @include radial-gradient($primary, black)
+    border-radius: 20px
+    opacity: 1
+
+
+.feature-panel-border
+  position: absolute
+  top: 37%
+  height: 306px
+  background-color: $quinary
+
+  opacity: 0.3
+  border-radius: 20px
+  width: 60%
+  box-shadow: 0px 0px 40px white
+
+
+  .feature-panel
+    margin-top: 3px
+    margin-left: 1%
+    width: 98%
+    height: 300px
+    @include radial-gradient($primary, black)
+    border-radius: 20px
+    opacity: 1
+
+
 html
   font-family: 'Expletus Sans', sans-serif
   background-image: image-url("darkspace.jpg")
+  background-size: 2200px auto
 
 // .alert
 //   margin-left: 5%

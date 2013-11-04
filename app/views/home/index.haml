@@ -1,6 +1,10 @@
 - unless current_user
+  .slogan-panel-border
+    .slogan-panel
   .slogan
     %h1= I18n.t('home.slogan')
+  .feature-panel-border
+    .feature-panel
   .features
     %ul
       %li
@@ -12,6 +16,8 @@
       %li
         %h2= I18n.t('home.create')
         %p= I18n.t('home.create_description')
+
+
 
   = render 'devise/registrations/new'
 - else

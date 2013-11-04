@@ -1,5 +1,5 @@
 !!!
-%html
+%html{class: ('welcome' if params[:controller] == 'home' && params[:action] == 'index' && !current_user) }
   %head
     %title Gameway
     %link{href: 'http://fonts.googleapis.com/css?family=Expletus+Sans:400,700', rel: 'stylesheet', type:'text/css'}

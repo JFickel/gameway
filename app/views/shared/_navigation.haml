@@ -1,11 +1,16 @@
-%ul.nav
-  %h1.logo= link_to("gameway", root_path)
-  - if user_signed_in?
+- if user_signed_in?
+  .user-nav
+    %h1.nav-logo= link_to("gameway", root_path)
     %ul.nav-links
-      %li= link_to I18n.t("navigation.tournaments"), tournaments_path, class: "#{params[:controller] == 'tournaments' ? 'in-controller' : nil }"
-      %li= link_to I18n.t("navigation.teams"), teams_path, class: "#{params[:controller] == 'teams' ? 'in-controller' : nil }"
-      %li= link_to I18n.t("navigation.groups"), groups_path, class: "#{params[:controller] == 'groups' ? 'in-controller' : nil }"
+      %li= link_to I18n.t("navigation.tournaments"), tournaments_path, class: "#{params[:controller] == 'tournaments' ? 'highlighted-controller' : nil }"
+      %li= link_to I18n.t("navigation.teams"), teams_path, class: "#{params[:controller] == 'teams' ? 'highlighted-controller' : nil }"
+      %li= link_to I18n.t("navigation.groups"), groups_path, class: "#{params[:controller] == 'groups' ? 'highlighted-controller' : nil }"
+    %ul.user-links
+      %li= link_to current_user.username, user_path(current_user)
       %li= link_to(I18n.t("users.settings"), edit_user_path(current_user))
       %li= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
-  - else
+- else
+  %ul.nav
+    %h1.logo
+      = link_to("gameway", root_path)
     = render 'devise/menu/login_items'

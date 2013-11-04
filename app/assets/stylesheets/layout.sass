@@ -29,6 +29,7 @@ $secondary: #8C94A1
 $tertiary: #5B6470
 $quinary: #BDC7D6
 $quarternary: #729EBF
+$senary: #323640
 
 
 // BLUE SKY
@@ -38,6 +39,8 @@ $quarternary: #729EBF
 // $quarternary: #35478C
 // $quinary: #ADD5F7
 
+body
+  margin: 0
 
 .slogan-panel-border
   position: absolute
@@ -85,8 +88,11 @@ $quarternary: #729EBF
 
 html
   font-family: 'Expletus Sans', sans-serif
+
+html.welcome
   background-image: image-url("darkspace.jpg")
   background-size: 2200px auto
+
 
 // .alert
 //   margin-left: 5%
@@ -118,7 +124,6 @@ html
       color: $secondary
       text-shadow: 0px 0px 5px $secondary
 
-
   h1.logo
     margin-top: 0
     float: left
@@ -133,49 +138,6 @@ html
       &:hover
         color: $primary
         text-shadow: 0px 0px 20px $primary
-
-
-  .nav-links
-    list-style: none
-    float: right
-    width: 78%
-    margin-right: 2%
-    padding-top: 0.5%
-    a
-      text-decoration: none
-      display: inline-block
-      padding: 8px 16px
-      margin-bottom: 0
-      font-size: 20px
-      font-weight: normal
-      line-height: 1.33
-      text-align: center
-      white-space: nowrap
-      vertical-align: middle
-      cursor: pointer
-      border: 1px solid transparent
-      border-radius: 6px
-      background-color: $primary
-      color: white
-      text-shadow: 0px 0px 10px white
-      &:hover
-        color: white
-        background-color: $secondary
-    .in-controller
-      background-color: $tertiary
-      text-shadow: 0px 0px 10px white
-
-    li
-      padding-top: 0px
-      float: left
-      margin-left: 4%
-      font-weight: bold
-      font-size: 18px
-      width: 160px
-      height: 30px
-      text-align: center
-      // padding: 8px 10px
-
 
   .login_elements
     margin-top: 1%
@@ -243,6 +205,83 @@ html
       &:hover
         background-color: $quarternary
         color: white
+
+
+
+
+
+.user-nav
+  padding-top: 0.3%
+  @include linear-gradient($quinary, white)
+  padding-bottom: 1.1%
+  h1.nav-logo
+    margin-left: 5%
+    display: inline
+    list-style: none
+    a
+      text-decoration: none
+      color: $senary
+      &:hover
+        text-shadow: 0px 0px 1px black
+        color: black
+
+  .nav-links
+    margin-left: 15%
+    display: inline
+    list-style: none
+    li
+      display: inline
+    a
+      font-weight: bold
+      text-decoration: none
+      display: inline-block
+      padding: 6px 10px
+      margin-bottom: 0
+      font-size: 18px
+      line-height: 1.33
+      text-align: center
+      white-space: nowrap
+      vertical-align: middle
+      cursor: pointer
+      border: 1px solid transparent
+      border-radius: 6px
+      color: $senary
+      &:hover
+        color: white
+        background-color: $senary
+        text-shadow: 0px 0px 10px white
+
+  .user-links
+    margin-left: 15%
+    display: inline
+    list-style: none
+    li
+      display: inline
+    a
+      font-weight: bold
+
+      text-decoration: none
+      display: inline-block
+      padding: 6px 10px
+      margin-bottom: 0
+      font-size: 18px
+      line-height: 1.33
+      text-align: center
+      white-space: nowrap
+      vertical-align: middle
+      cursor: pointer
+      border: 1px solid transparent
+      border-radius: 6px
+      color: $senary
+      &:hover
+        color: white
+        background-color: $senary
+        text-shadow: 0px 0px 10px white
+
+
+    .highlighted-controller
+      background-color: $tertiary
+      text-shadow: 0px 0px 10px white
 
 
 .container

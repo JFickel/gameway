@@ -17,24 +17,18 @@
         %h2= I18n.t('home.create')
         %p= I18n.t('home.create_description')
 
-
   = render 'devise/registrations/new'
 - else
-  .user-welcome
-    %h2= I18n.t('users.welcome', name: "#{current_user.first_name} #{current_user.last_name}")
-    %h3
-      = I18n.t('users.logged_in')
-      = link_to current_user.username, user_path(current_user)
   .user-panel
-    .user-invitations
-      - if current_user.invitations.present?
-        %h2= "Your Invitations"
-        - current_user.invitations.each do |invitation|
-          %p= invitation.message
-          - if invitation.team_id.present?
-            = render 'team_invite', invitation: invitation
-          - if invitation.tournament_id.present?
-            = render 'tournament_invite', invitation: invitation
+    / .user-invitations
+    /   - if current_user.invitations.present?
+    /     %h2= "Your Invitations"
+    /     - current_user.invitations.each do |invitation|
+    /       %p= invitation.message
+    /       - if invitation.team_id.present?
+    /         = render 'team_invite', invitation: invitation
+    /       - if invitation.tournament_id.present?
+    /         = render 'tournament_invite', invitation: invitation
 
 
     .user-tournaments
@@ -45,7 +39,7 @@
         - current_user.all_tournaments.each do |tournament|
           .user-tournament
             %h3= link_to tournament.title, tournament_path(tournament)
-            %h4= "Starts in #{distance_of_time_in_words(Time.current, tournament.starts_at)}"
+            %h4= "Starts in #{distance_of_time_in_words(Time.current, tournament.starts_at)} at #{tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')}"
             - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
               %h4= I18n.t("tournaments.owner_and_participant")
               = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
@@ -65,16 +59,20 @@
         %p= I18n.t("teams.none")
       - else
         - current_user.teams.each do |team|
-          %h3= link_to team.name, team_path(team)
-          - if current_user == team.leader
-            %h4= I18n.t("teams.leader")
-            = link_to I18n.t('teams.manage'), edit_team_path(team)
-          - else
-            %h4= I18n.t("teams.member")
+          .user-team
+            %h3= link_to team.name, team_path(team)
+            - if current_user == team.leader
+              %h4= I18n.t("teams.leader")
+              = link_to I18n.t('teams.manage'), edit_team_path(team)
+            - else
+              %h4= I18n.t("teams.member")
 
     .user-groups
       %h2= "Your Groups"
-      - current_user.groups.each do |group|
-        %h3= link_to group.name, group_path(group)
-        %h4= group.kind
-
+      - if current_user.groups.empty?
+        %p= I18n.t('groups.none')
+      - else
+        - current_user.groups.each do |group|
+          .user-group
+            %h3= link_to group.name, group_path(group)
+            %h4= group.kind

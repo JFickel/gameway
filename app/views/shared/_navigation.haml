@@ -6,7 +6,7 @@
       %li= link_to I18n.t("navigation.teams"), teams_path, class: "#{params[:controller] == 'teams' ? 'highlighted-controller' : nil }"
       %li= link_to I18n.t("navigation.groups"), groups_path, class: "#{params[:controller] == 'groups' ? 'highlighted-controller' : nil }"
     %ul.user-links
-      %li= link_to "#{image_tag(@user.avatar.icon.url, class: 'icon', width: '27')} #{current_user.username}".html_safe, user_path(current_user)
+      %li= link_to "#{image_tag(current_user.avatar.icon.url, class: 'icon', width: '27')} #{current_user.username}".html_safe, user_path(current_user)
       %li= link_to(I18n.t("users.settings"), edit_user_path(current_user))
       %li= link_to(I18n.t("users.logout"), destroy_user_session_path, :method => :delete)
 - else

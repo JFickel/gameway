@@ -27,6 +27,7 @@ en:
     results: "Results"
     enter_query: "Enter search query here"
   groups:
+    none: "It looks like you don't belong to any groups yet. Take a look through our group listings and join one or create your own!"
     find: "Find a Group"
     name: "Group Name"
     form: "Create a Group"
@@ -56,7 +57,7 @@ en:
     form: "Create a Team"
     create: "Create Team"
     name: "Team Name"
-    none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and find one to join."
+    none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and apply to one."
   moderators:
     add: "Add Moderator"
     moderators: "Moderators"
@@ -77,8 +78,8 @@ en:
     team_mode: "Team Mode"
     individual_mode: "Individual Mode"
     starts_at: "Tournament starts at"
-    delete: "Delete Tournament"
-    edit: "Edit Tournament"
+    delete: "Delete"
+    edit: "Manage"
     find: "Find a Tournament"
     description: "Description"
     participants: "Participants"

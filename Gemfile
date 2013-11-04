@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bourbon'
 
 # Use typeahead.js for autocomplete
 gem 'twitter-typeahead-rails'

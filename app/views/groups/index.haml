@@ -1,5 +1,5 @@
 .groups
-  = link_to I18n.t("groups.create"), new_group_path, :class => 'create-group-btn'
+  = link_to I18n.t("groups.create"), new_group_path, :class => 'large-btn'
 
   = form_tag groups_path, method: :get, class: 'group-search' do
     = text_field_tag :query, params[:query], placeholder: I18n.t('groups.find')

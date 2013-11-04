@@ -105,6 +105,7 @@ en:
     twitch_watch: "Watch Stream"
     twitch_visit: "Visit Twitch Channel"
   users:
+    forgot_password: "Forgot your password?"
     signup_form: "Sign Up Form "
     manage: "Manage your account"
     users: "Users"
@@ -117,7 +118,7 @@ en:
     logout: "Logout"
     login: "Login"
     signup: "Sign Up"
-    get_started: "Get started:"
+    get_started: "Create an account:"
     remember_me: "Remember Me"
     password: "Password"
     username_or_email: "Username or Email"

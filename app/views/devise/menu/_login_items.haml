@@ -11,5 +11,5 @@
       %ul.second-tier
         / %li= label_tag 'user[remember_me]', I18n.t("users.remember_me")
         / %li= check_box_tag 'user[remember_me]'
-        %li= link_to "Forgot your password?", new_password_path('user')
+        %li= link_to I18n.t("users.forgot_password"), new_password_path('user'), class: 'forgot-password'
 

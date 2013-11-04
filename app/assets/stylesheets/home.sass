@@ -1,19 +1,25 @@
+.slogan
+  color: $secondary
+  font-size: 20px
+  text-shadow: 0px 0px 5px $secondary
+  width: 30%
+  margin-left: 19%
+
 .features
   width: 66%
   float: left
-  color: dodgerblue
+  color: $secondary
   h2
-    text-shadow: 0px 0px 3px dodgerblue
+    font-size: 28px
+    text-shadow: 0px 0px 4px $secondary
     text-align: center
   p
     padding: 20px 20px
     border-radius: 10px
-    // background-color: rgba(255, 140, 0, .8)
-    background-color: steelblue
+    background-color: $quarternary
     color: white
     text-shadow: 0px 0px 3px white
-    box-shadow: 0px 0px 25px steelblue
-
+    box-shadow: 0px 0px 20px $tertiary
 
   ul
     list-style: none
@@ -23,12 +29,6 @@
       float: left
       width: 29%
       margin-right: 4%
-.slogan
-  color: dodgerblue
-  text-shadow: 0px 0px 5px dodgerblue
-  width: 30%
-  margin-left: 21.5%
-
 
 
 .front_sign_up
@@ -43,9 +43,13 @@
     font-weight: bold
     font-size: 25px
     text-align: center
-    color: dodgerblue
-    text-shadow: 0px 0px 4px dodgerblue
-
+    color: $secondary
+    text-shadow: 0px 0px 4px $secondary
+  .facebook-connect
+    img
+      margin-top: 8px
+      margin-left: 15px
+      margin-bottom: 15px
 
   .sign-up-input
     display: block
@@ -64,49 +68,31 @@
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
 
+  .signup-btn
+    width: 60%
+    display: inline-block
+    padding: 3%
+    margin-left: 20%
+    margin-bottom: 0
+    font-size: 18px
+    font-weight: normal
+    line-height: 1.33
+    text-align: center
+    white-space: nowrap
+    vertical-align: middle
+    cursor: pointer
+    border: 1px solid transparent
+    border-radius: 6px
+    background-color: $tertiary
+    text-shadow: 0px 0px 10px white
+    color: white
+    &:hover
+      background-color: $quarternary
+      color: white
+
 .finish-signup
   .front_sign_up
     margin-right: 43%
-
-
-.signup-btn
-  width: 60%
-  display: inline-block
-  padding: 3%
-  margin-left: 20%
-  margin-bottom: 0
-  font-size: 18px
-  font-weight: normal
-  line-height: 1.33
-  text-align: center
-  white-space: nowrap
-  vertical-align: middle
-  cursor: pointer
-  border: 1px solid transparent
-  border-radius: 6px
-  background-color: darkslateblue
-  text-shadow: 0px 0px 10px white
-  color: white
-  &:hover
-    background-color: dodgerblue
-    color: white
-
-.signin-btn
-  display: inline-block
-  padding: 8px 14px
-  margin-left: 20%
-  margin-bottom: 0
-  font-size: 16px
-  font-weight: normal
-  line-height: 1.33
-  text-align: center
-  white-space: nowrap
-  vertical-align: middle
-  cursor: pointer
-  border: 1px solid transparent
-  border-radius: 6px
-  background-color: darkslateblue
-  color: white
 
 .user-panel
   margin-left: 2%
@@ -126,11 +112,11 @@
     h4
       margin-bottom: 0%
     a
-      color: darkslateblue
+      color: $primary
       &:hover
-        color: dodgerblue
+        color: $quarternary
       &:active
-        color: dodgerblue
+        color: $quarternary
 
     .user-tournament
       margin-bottom: 4%
@@ -141,28 +127,28 @@
       margin-bottom: 4%
 
     a
-      color: darkslateblue
+      color: $primary
       &:hover
-        color: dodgerblue
+        color: $quarternary
       &:active
-        color: dodgerblue
+        color: $quarternary
 
   .user-teams
     width: 33%
     a
-      color: darkslateblue
+      color: $primary
       &:hover
-        color: dodgerblue
+        color: $quarternary
       &:active
-        color: dodgerblue
+        color: $quarternary
 
 .user-welcome
   h3
     a
       text-decoration: none
-      color: darkslateblue
+      color: $primary
       &:hover
-        color: dodgerblue
+        color: $quarternary
       &:active
-        color: dodgerblue
+        color: $quarternary
 

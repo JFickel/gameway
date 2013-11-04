@@ -1,12 +1,22 @@
-/*
- *= require_self
- *= require jquery.ui.datepicker
- *= require_tree .
- */
-/* You must configure bootstrap variables before you import bootstrap. */
+$primary:     #DE6A00 // orange
+$secondary:   #DB9655 // light orange
+$tertiary:    #203E42 // dark green
+$quarternary: #7E9899 // light green
+
+// how it should be: orange, light orange, dark green, light green
+
+// $quinary:    #D4FFFD
+
+// darkgreen: 203E42
+// lightgreen: 7E9899
+// lightblue: D4FFFD
+// lightorange: DB9655
+// orange: DE6A00
+
 
 html
   font-family: 'Expletus Sans', sans-serif
+  background-image: url("darkspace.jpg")
 
 // .alert
 //   margin-left: 5%
@@ -32,13 +42,11 @@ html
   width: 100%
   a
     text-decoration: none
-    color: darkslateblue
+    color: $primary
 
     &:hover
-      color: dodgerblue
-      text-shadow: 0px 0px 5px dodgerblue
-
-
+      color: $secondary
+      text-shadow: 0px 0px 5px $secondary
 
 
   h1.logo
@@ -49,12 +57,12 @@ html
     font-size: 250%
     a
       text-decoration: none
-      color: darkslateblue
-      // text-shadow: 0px 0px 8px blue
-
+      @include radial-gradient($primary, $secondary)
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent
       &:hover
-        color: dodgerblue
-        text-shadow: 0px 0px 5px dodgerblue
+        color: $primary
+        text-shadow: 0px 0px 20px $primary
 
 
   .nav-links
@@ -77,14 +85,14 @@ html
       cursor: pointer
       border: 1px solid transparent
       border-radius: 6px
-      background-color: darkslateblue
+      background-color: $primary
       color: white
       text-shadow: 0px 0px 10px white
       &:hover
         color: white
-        background-color: dodgerblue
+        background-color: $secondary
     .in-controller
-      background-color: steelblue
+      background-color: $tertiary
       text-shadow: 0px 0px 10px white
 
     li
@@ -127,20 +135,45 @@ html
       padding: 4px 10px
       font-size: 13px
       line-height: 1.428571429
-      color: #555555
+      // color: $primary
       vertical-align: middle
-      background-color: #ffffff
       border: 1px solid #cccccc
       border-radius: 4px
       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
       -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
       transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+
+    .forgot-password
+      margin-right: 18px
+      color: $secondary
+      text-shadow: 0px 0px 10px $secondary
+      &:hover
+        color: $primary
+        text-shadow: 0px 0px 10px $primary
+
+
     .signin-btn
+      display: inline-block
+      padding: 8px 14px
+      margin-left: 20%
+      margin-bottom: 0
+      font-size: 16px
+      font-weight: normal
+      line-height: 1.33
+      text-align: center
+      white-space: nowrap
+      vertical-align: middle
+      cursor: pointer
+      border: 1px solid transparent
+      border-radius: 6px
+      background-color: $tertiary
+      color: white
       text-shadow: 0px 0px 10px white
       &:hover
-        background-color: dodgerblue
+        background-color: $quarternary
         color: white
+
 
 .container
   margin-left: 5%

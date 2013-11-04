@@ -1,12 +1,65 @@
-.team-listing
+.group-members
   a
     text-decoration: none
-    color: darkslateblue
+    color: $primary
     &:hover
-      color: dodgerblue
+      color: $quarternary
 
+.group-listing
+  h3
+    margin-bottom: 0
+  h4
+    margin-top: 0
 
-.team-search
+  a
+    text-decoration: none
+    color: $primary
+    &:hover
+      color: $quarternary
+
+.join-group-btn
+  text-decoration: none
+  display: inline-block
+  padding: 10px 16px
+  margin-bottom: 0
+  font-size: 20px
+  font-weight: normal
+  line-height: 1.33
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  cursor: pointer
+  border: 1px solid transparent
+  border-radius: 6px
+  background-color: $primary
+  color: white
+  text-shadow: 0px 0px 10px white
+  &:hover
+    color: white
+    background-color: $quarternary
+
+.create-group-btn
+  text-decoration: none
+  display: inline-block
+  padding: 10px 16px
+  margin-bottom: 0
+  font-size: 20px
+  font-weight: normal
+  line-height: 1.33
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  cursor: pointer
+  border: 1px solid transparent
+  border-radius: 6px
+  background-color: $primary
+  color: white
+  text-shadow: 0px 0px 10px white
+  &:hover
+    color: white
+    background-color: $quarternary
+
+.group-search
   float: right
   display: inline-block
   width: 30%
@@ -25,7 +78,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
-  .team-search-btn
+  .group-search-btn
     width: 25%
     display: inline-block
     padding: 10px 12px
@@ -39,79 +92,26 @@
     cursor: pointer
     border: 1px solid transparent
     border-radius: 6px
-    background-color: darkslateblue
+    background-color: $primary
     color: white
     text-shadow: 0px 0px 10px white
     &:hover
       color: white
-      background-color: dodgerblue
+      background-color: $quarternary
 
 
-.team-members
-  ul
-    li
-      list-style: none
-      a
-        text-decoration: none
-        color: darkslateblue
-        &:hover
-          color: dodgerblue
 
-.team-change-display
-  width: 250px
 
-  div
-    text-align: center
-    color: gray
-  .update-display
-    float: right
-    padding: 1px 20px
-    margin-bottom: 0
-    font-size: 15px
-    font-weight: normal
-    line-height: 1.33
-    text-align: center
-    white-space: nowrap
-    vertical-align: middle
-    cursor: pointer
-    border: 1px solid transparent
-    border-radius: 6px
-    background-color: darkslateblue
-    color: white
-    &:hover
-      background-color: dodgerblue
-
-.create-team-btn
-  text-decoration: none
-  display: inline-block
-  padding: 10px 16px
-  margin-bottom: 0
-  font-size: 20px
-  font-weight: normal
-  line-height: 1.33
-  text-align: center
-  white-space: nowrap
-  vertical-align: middle
-  cursor: pointer
-  border: 1px solid transparent
-  border-radius: 6px
-  background-color: darkslateblue
-  color: white
-  text-shadow: 0px 0px 10px white
-  &:hover
-    color: white
-    background-color: dodgerblue
-.new-team
-  width: 25%
+.new-group
+  width: 30%
   margin-left: 5%
   h2
     margin-bottom: 7%
   p
     text-align: center
 
-
-.new_team
-  .new-team-input
+.new-group-form
+  .new-group-input
     display: block
     width: 100%
     height: 28px
@@ -127,7 +127,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
-  .new-team-btn
+  .new-group-btn
     margin-top: 5%
     width: 40%
     margin-left: 30%
@@ -145,14 +145,14 @@
     cursor: pointer
     border: 1px solid transparent
     border-radius: 6px
-    background-color: darkslateblue
+    background-color: $primary
     color: white
     text-shadow: 0px 0px 10px white
     &:hover
       color: white
-      background-color: dodgerblue
+      background-color: $quarternary
 
-.team-events
+.group-events
   h4
     a
       text-decoration: none
@@ -167,23 +167,16 @@
       cursor: pointer
       border: 1px solid transparent
       border-radius: 6px
-      background-color: darkslateblue
+      background-color: $primary
       color: white
       text-shadow: 0px 0px 10px white
       &:hover
-        background-color: dodgerblue
+        background-color: $quarternary
   ul
     list-style: none
     li
       a
         text-decoration: none
-        color: darkslateblue
+        color: $primary
         &:hover
-          color: dodgerblue
-
-.affiliation-candidate-form
-  display: none
-
-.team-member-candidate-form
-  display: none
-
+          color: $quarternary

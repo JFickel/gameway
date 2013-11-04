@@ -1,5 +1,5 @@
 .tournaments
-  = link_to I18n.t("tournaments.create"), new_tournament_path, class: 'large-btn'
+  = link_to I18n.t("tournaments.create"), new_tournament_path, class: 'large-btn create-tournament-btn'
 
   = form_tag tournaments_path, method: :get, class: 'tournament-search' do
     = text_field_tag :query, params[:query], placeholder: I18n.t('tournaments.find'), class: 'search-input'

@@ -106,15 +106,16 @@
 
 
 .user-panel
+  font-family: Helvetica
   display: inline
-  color: $secondary
+  color: $tertiary
   text-align: center
 
   a
     text-decoration: none
     color: $quarternary
     &:hover
-      color: $senary
+      color: $septenary
 
   .user-tournaments
     float: left
@@ -137,23 +138,28 @@
       h4
         margin: 0
 
-  .user-groups
-    float: left
-    display: inline
-    width: 30%
-    padding-right: 3%
-    .user-group
-      padding: 10px 10px
-      text-align: left
-      border: 1px solid $secondary
-      box-shadow: 0px 0px 5px $secondary
-      border-radius: 6px
-      margin-bottom: 4%
+      .manage
+        display: inline
+        margin-left: 50%
+        a
+          text-shadow: none
+          background-color: $secondary
+          color: white
+          &:hover
+            color: $senary
+            text-shadow: none
+            background-color: $quinary
 
-      h3
-        margin: 0
-      h4
-        margin: 0
+      .delete
+        display: inline
+        a
+          text-shadow: none
+          background-color: $secondary
+          color: white
+          &:hover
+            color: $senary
+            text-shadow: none
+            background-color: $quinary
 
 
   .user-teams
@@ -173,3 +179,36 @@
         margin: 0
       h4
         margin: 0
+      .manage
+        display: inline
+        margin-left: 73%
+        a
+          text-shadow: none
+          background-color: $secondary
+          color: white
+          &:hover
+            color: $senary
+            text-shadow: none
+            background-color: $quinary
+
+
+  .user-groups
+    float: left
+    display: inline
+    width: 30%
+    padding-right: 3%
+    .user-group
+      padding: 10px 10px
+      text-align: left
+      border: 1px solid $secondary
+      box-shadow: 0px 0px 5px $secondary
+      border-radius: 6px
+      margin-bottom: 4%
+
+      h3
+        margin: 0
+      h4
+        margin: 0
+
+
+

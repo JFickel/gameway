@@ -20,16 +20,15 @@
   = render 'devise/registrations/new'
 - else
   .user-panel
-    / .user-invitations
-    /   - if current_user.invitations.present?
-    /     %h2= "Your Invitations"
-    /     - current_user.invitations.each do |invitation|
-    /       %p= invitation.message
-    /       - if invitation.team_id.present?
-    /         = render 'team_invite', invitation: invitation
-    /       - if invitation.tournament_id.present?
-    /         = render 'tournament_invite', invitation: invitation
-
+    .user-invitations
+      - if current_user.invitations.present?
+        %h2= "Invitations"
+        - current_user.invitations.each do |invitation|
+          %p= invitation.message
+          - if invitation.team_id.present?
+            = render 'team_invite', invitation: invitation
+          - if invitation.tournament_id.present?
+            = render 'tournament_invite', invitation: invitation
 
     .user-tournaments
       %h2= "Your Tournaments"
@@ -37,21 +36,12 @@
         %p= I18n.t("tournaments.none")
       - else
         - current_user.all_tournaments.each do |tournament|
-          .user-tournament
-            %h3= link_to tournament.title, tournament_path(tournament)
-            %h4= "Starts in #{distance_of_time_in_words(Time.current, tournament.starts_at)} at #{tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')}"
-            - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
-              %h4= I18n.t("tournaments.owner_and_participant")
-              = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
-              = link_to I18n.t("tournaments.delete"), tournament_path(tournament), method: :delete, class: 'tournament-delete-btn'
-
-            - elsif current_user == tournament.owner
-              %h4= I18n.t("tournaments.owner")
-              = link_to I18n.t("tournaments.edit"), edit_tournament_path(tournament)
-              = link_to I18n.t("tournaments.delete"), tournament_path(tournament), method: :delete, class: 'tournament-delete-btn'
-
-            - elsif current_user.tournaments.include? tournament
-              %h4= I18n.t("tournaments.participant")
+          - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
+            = render 'owner_tournament', participant: true, tournament: tournament
+          - elsif current_user == tournament.owner
+            = render 'owner_tournament', participant: false, tournament: tournament
+          - elsif current_user.tournaments.include? tournament
+            = render 'participant_tournament', tournament: tournament
 
     .user-teams
       %h2= "Your Teams"
@@ -63,9 +53,13 @@
             %h3= link_to team.name, team_path(team)
             - if current_user == team.leader
               %h4= I18n.t("teams.leader")
-              = link_to I18n.t('teams.manage'), edit_team_path(team)
+              %h4= pluralize(team.users.count, 'member')
+              .manage= link_to I18n.t('teams.manage'), edit_team_path(team), class: 'small-btn'
+
             - else
               %h4= I18n.t("teams.member")
+              %h4= pluralize(team.users.count, 'member')
+
 
     .user-groups
       %h2= "Your Groups"
@@ -76,3 +70,4 @@
           .user-group
             %h3= link_to group.name, group_path(group)
             %h4= group.kind
+            %h4= pluralize(group.users.count, 'member')

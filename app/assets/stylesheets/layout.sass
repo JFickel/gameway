@@ -132,12 +132,10 @@ html.welcome
     font-size: 250%
     a
       text-decoration: none
-      @include radial-gradient($primary, $secondary)
-      -webkit-background-clip: text
-      -webkit-text-fill-color: transparent
+      color: $primary
       &:hover
-        color: $primary
-        text-shadow: 0px 0px 20px $primary
+        color: white
+        text-shadow: 0px 0px 1px white
 
   .login_elements
     margin-top: 1%

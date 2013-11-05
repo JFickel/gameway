@@ -1,24 +1,27 @@
 = form_for @tournament do |f|
-  = f.text_field :title, placeholder: 'Title', class: 'tournament-input-field'
+  .fields
+    = f.text_field :title, placeholder: 'Title', class: 'tournament-input-field'
 
-  = f.text_field :game, placeholder: 'Game', class: 'tournament-input-field'
+    = f.text_field :game, placeholder: 'Game', class: 'tournament-input-field'
 
-  = f.text_field :start_date, placeholder: 'Date', value: @tournament.starts_at.try(:strftime, "%Y-%m-%d"), class: 'tournament-input-field'
+    = f.text_field :start_date, placeholder: 'Date', value: @tournament.starts_at.try(:strftime, "%Y-%m-%d"), class: 'tournament-input-field'
 
-  = f.text_field :start_hour, placeholder: 'Hour', value: @tournament.starts_at.try(:strftime, "%l").try(:strip)
+    = f.text_field :start_hour, placeholder: 'Hour', value: @tournament.starts_at.try(:strftime, "%l").try(:strip), class: 'tournament-time-field hour'
 
-  = f.text_field :start_minute, placeholder: 'Minute', value: @tournament.starts_at.try(:strftime, "%M")
+    = f.text_field :start_minute, placeholder: 'Minute', value: @tournament.starts_at.try(:strftime, "%M"), class: 'tournament-time-field'
 
-  = f.select :start_period, [['pm', 'pm'],['am', 'am']], selected: @tournament.starts_at.try(:strftime, "%P")
+    = f.select :start_period, [['pm', 'pm'],['am', 'am']], selected: @tournament.starts_at.try(:strftime, "%P")
 
-  = f.text_area :description, placeholder: 'Description', class: 'tournament-input-area'
+    = f.text_area :description, placeholder: 'Description', class: 'tournament-input-area'
 
-  %p= I18n.t('tournaments.mode_description')
-  = f.select :mode, [['Team Mode', 'team'],['Individual Mode', 'individual']], selected: @tournament.open
+  .modes
+    .mode
+      %p= I18n.t('tournaments.mode_description')
+      = f.select :mode, [['Team Mode', 'team'],['Individual Mode', 'individual']], selected: @tournament.open
+    .open
+      %p= I18n.t('tournaments.open_description')
+      = f.select :open, [['Open', 'true'],['Closed', 'false']], selected: @tournament.open
 
-  %p= I18n.t('tournaments.open_description')
-  = f.select :open, [['Open', 'true'],['Closed', 'false']], selected: @tournament.open
-
-  = f.select :open_applications, [['Applications Off', 'false'],['Applications On', 'true']], selected: @tournament.open_applications
+      = f.select :open_applications, [['Applications Off', 'false'],['Applications On', 'true']], selected: @tournament.open_applications
 
   = f.submit class: 'tournament-submit'

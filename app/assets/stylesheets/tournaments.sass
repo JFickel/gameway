@@ -10,6 +10,7 @@
         border-bottom: 1px solid dimgray
         margin-right: 3%
         h3
+          font-size: 1.3em
           margin-top: 1%
           margin-bottom: 0%
         h4
@@ -43,29 +44,6 @@
     &:hover
       color: $septenary
 
-.tournament-submit
-  text-decoration: none
-  display: inline-block
-  padding: 10px 16px
-  margin-bottom: 0
-  font-size: 20px
-  font-weight: normal
-  line-height: 1.33
-  text-align: center
-  white-space: nowrap
-  vertical-align: middle
-  cursor: pointer
-  border: 1px solid transparent
-  border-radius: 6px
-  background-color: $primary
-  color: white
-  text-shadow: 0px 0px 10px white
-  text-align: center
-  width: 30%
-  margin-left: 35%
-  &:hover
-    color: white
-    background-color: $quarternary
 
 .create-tournament-btn
   margin-left: 1%
@@ -116,8 +94,44 @@
   .tt-suggestions
   .tt-suggestion
 
+.new_tournament_title
+  font-size: 27px
+  margin-top: 3%
+  margin-bottom: 3%
+  margin-left: 33%
 .new_tournament
-  width: 25%
+  margin-left: 20%
+  .fields
+    width: 25%
+    float: left
+    // display: inline
+  .modes
+    p
+      margin: 0
+    width: 30%
+    float: left
+    margin-top: 0
+    margin-left: 8%
+    .mode
+      select
+        margin-left: 32%
+
+      margin-bottom: 5%
+      border: 1px solid $quinary
+      box-shadow: 0px 0px 5px $quinary
+      border-radius: 5px
+      padding: 6px 6px
+    .open
+      select
+        margin-top: 3%
+        margin-left: 38%
+
+      margin-bottom: 5%
+      border: 1px solid $quinary
+      box-shadow: 0px 0px 5px $quinary
+      border-radius: 5px
+      padding: 6px 6px
+
   .tournament-input-field
     margin-bottom: 3%
     display: block
@@ -152,10 +166,57 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+  .tournament-time-field
+    text-align: center
+    margin-bottom: 3%
+    display: inline
+    width: 18%
+    padding: 6px 12px
+    font-size: 14px
+    line-height: 1.428571429
+    color: #555555
+    vertical-align: middle
+    background-color: #ffffff
+    border: 1px solid #cccccc
+    border-radius: 4px
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+  .tournament-time-field.hour
+    margin-left: 20%
+  .tournament-submit
+    // float: left
+    margin-top: 28%
+    margin-left: -46%
+    text-decoration: none
+    padding: 10px 16px
+    margin-bottom: 0
+    font-size: 20px
+    font-weight: normal
+    line-height: 1.33
+    text-align: center
+    white-space: nowrap
+    vertical-align: middle
+    cursor: pointer
+    border: 1px solid transparent
+    border-radius: 6px
+    background-color: $quarternary
+    color: white
+    text-shadow: 0px 0px 10px white
+    text-align: center
+    width: 25%
+    &:hover
+      color: white
+      background-color: $septenary
+
+
+
 
 .manual-start-btn
+  margin-top: 3%
   text-decoration: none
-  display: inline-block
+  display: block
   padding: 6px 10px
   margin-bottom: 0
   font-size: 16px

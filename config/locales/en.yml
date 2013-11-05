@@ -67,6 +67,7 @@ en:
     broadcasters: "Broadcasters"
     existing: "Existing Broadcasters"
   tournaments:
+    create_form: "Create Tournament Form"
     team_disclaimer: "You must be a team leader or officer to sign your team up for this tournament."
     add_auxiliary: "Add Broadcasters and Moderators"
     tournament: "Tournament"

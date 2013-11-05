@@ -1,6 +1,12 @@
 .user-tournament
-  %h4= I18n.t("tournaments.participant")
+
   %h3= link_to tournament.title, tournament_path(tournament)
   %h4= "Starts in #{distance_of_time_in_words(Time.current, tournament.starts_at)} at #{tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')}"
   %h4= pluralize(tournament.tournament_memberships.count, 'participant')
   %h4= pluralize(tournament.tournament_memberships.count, 'participant')
+  .tournament-roles
+    - if broadcaster
+      %h4.tournament-role= I18n.t("tournaments.broadcaster")
+    - elsif moderator
+      %h4.tournament-role= I18n.t("tournaments.moderator")
+    %h4.tournament-role= I18n.t("tournaments.participant")

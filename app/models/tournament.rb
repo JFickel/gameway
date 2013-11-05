@@ -24,7 +24,7 @@ class Tournament < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :text_search,
-                  against: {title: 'A', description: 'B'},
+                  against: {title: 'A', description: 'B', game: 'C'},
                   using: { tsearch: { prefix: true }}
 
   multisearchable against: [:title, :description],

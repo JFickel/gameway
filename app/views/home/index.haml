@@ -36,12 +36,10 @@
         %p= I18n.t("tournaments.none")
       - else
         - current_user.all_tournaments.each do |tournament|
-          - if current_user == tournament.owner && current_user.tournaments.include?(tournament)
-            = render 'owner_tournament', participant: true, tournament: tournament
-          - elsif current_user == tournament.owner
-            = render 'owner_tournament', participant: false, tournament: tournament
-          - elsif current_user.tournaments.include? tournament
-            = render 'participant_tournament', tournament: tournament
+          - if current_user == tournament.owner
+            = render 'owner_tournament', determine_tournament_roles(current_user, tournament)
+          - else
+            = render 'participant_tournament', determine_tournament_roles(current_user, tournament)
 
     .user-teams
       %h2= "Your Teams"
@@ -49,17 +47,7 @@
         %p= I18n.t("teams.none")
       - else
         - current_user.teams.each do |team|
-          .user-team
-            %h3= link_to team.name, team_path(team)
-            - if current_user == team.leader
-              %h4= I18n.t("teams.leader")
-              %h4= pluralize(team.users.count, 'member')
-              .manage= link_to I18n.t('teams.manage'), edit_team_path(team), class: 'small-btn'
-
-            - else
-              %h4= I18n.t("teams.member")
-              %h4= pluralize(team.users.count, 'member')
-
+          = render 'user_team', determine_team_roles(current_user, team)
 
     .user-groups
       %h2= "Your Groups"

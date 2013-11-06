@@ -8,9 +8,24 @@
     = csrf_meta_tags
   %body
     = render 'shared/navigation'
-    %p.notice= notice
-    %p.alert= alert
-    %p.devise_errors= resource.errors.full_messages if resource.errors.present?
+    - unless !current_user && params[:action] == 'index' && params[:controller] == 'home'
+      - if notice
+        .notice= notice
+      - if alert
+        - if alert.class == Array
+          .alert
+            - alert.each do |error|
+              .error= error
+        - else
+          .alert= alert
+      - if resource.errors.present?
+        - if resource.errors.class == Array
+          .alert
+            - resource.errors.each do |error|
+              .error= error
+        - else
+          .alert= alert
+        .devise_errors= resource.errors.full_messages
     %input{type: 'hidden', class: 'time_zone'}
     .container
       = yield

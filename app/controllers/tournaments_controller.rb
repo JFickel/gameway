@@ -35,6 +35,7 @@ class TournamentsController < ApplicationController
       tm = TournamentMembership.new
       [tournament, owner, tm]
     end
+    @tournament.reload
   end
 
   def edit

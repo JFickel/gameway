@@ -29,7 +29,7 @@
             %h3= link_to tournament.title, tournament_path(tournament)
             .description= tournament.description
           %td.status
-            = output_status(tournament)
+            = tournament_open_status(tournament)
           %td.game
             = tournament.game
           %td.mode

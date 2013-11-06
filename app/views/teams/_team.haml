@@ -1,1 +1,10 @@
-%h3.team-name= link_to team.name, team_path(team)
+%tr
+  %td.name
+    %h3= link_to team.name, team_path(team)
+  %td.status
+    = output_team_status(team)
+  %td.leader
+    = link_to team.leader.username, user_path(team.leader)
+  %td.games
+    = "Games Placeholder"
+

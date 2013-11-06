@@ -42,6 +42,9 @@ en:
     add: "Add Event"
     events: "Events"
   teams:
+    closed: "Closed"
+    open: "Open"
+    team_list: "Team List"
     management: "Team Management"
     add_member: "Add Member"
     change_name: "Team Name Change"

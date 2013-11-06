@@ -6,5 +6,16 @@
     = submit_tag "Search", name: nil, class: 'team-search-btn'
 
   .team-listing
-    %h2= I18n.t("teams.listing")
-    = render partial: 'team', collection: @teams
+
+    %table
+      %tr
+        %td.title-head
+          %h2= I18n.t("teams.team_list")
+        %td.status
+          %h4= 'Entry'
+        %td.leader-head
+          %h4= 'Leader'
+        %td.games-head
+          %h4= 'Games'
+      %tr
+        = render partial: 'team', collection: @teams

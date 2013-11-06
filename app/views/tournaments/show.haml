@@ -19,7 +19,7 @@
       %td
         %h3= "Starts in:"
       %td
-        %h3= "#{distance_of_time_in_words(Time.current, @tournament.starts_at)}#{@tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')}"
+        %h3= "#{distance_of_time_in_words(Time.current, @tournament.starts_at)} at #{@tournament.starts_at.strftime('%l:%M%P on %B %e, %Y')}"
     %tr
       %td
         %h3= "#{I18n.t('tournaments.owner')}:"
@@ -81,6 +81,3 @@
   .moderator-status= "false"
 
 .bracket
-
-
-= @tournament.started?

@@ -62,14 +62,17 @@ en:
     name: "Team Name"
     none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and apply to one."
   moderators:
+    list: "Moderator List"
     add: "Add Moderator"
     moderators: "Moderators"
     existing: "Existing Moderators"
   broadcasters:
+    list: "Broadcaster List"
     add: "Add Broadcaster"
     broadcasters: "Broadcasters"
     existing: "Existing Broadcasters"
   tournaments:
+    edit_form: "Manage Tournament"
     create_form: "Create Tournament Form"
     team_disclaimer: "You must be a team leader or officer to sign your team up for this tournament."
     add_auxiliary: "Add Broadcasters and Moderators"

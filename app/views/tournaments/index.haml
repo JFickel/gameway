@@ -38,6 +38,6 @@
             = tournament.starts_at.strftime('%B %e, %Y')
             = tournament.starts_at.strftime('%l:%M%P')
           %td.owner
-            = tournament.owner.username
-          %td
+            = link_to tournament.owner.username, user_path(tournament.owner.username)
+          %td.affiliates
 

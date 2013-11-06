@@ -39,7 +39,7 @@ $ ->
             tokens: [group.name, group.kind]
             kind: group.kind
     engine: Hogan
-    template: "<strong>{{value}}</strong>  {{kind}}</p>"
+    template: "<strong>{{value}}</strong> - {{kind}}</p>"
 
   ## Implement this as a user search -- you can return users in a list and then add them as mod roles:
 

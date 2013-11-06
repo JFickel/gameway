@@ -13,9 +13,9 @@
           %h2= I18n.t("tournaments.listing")
         %td.status
           %h4= "Entry"
-        %td.game.game-head
+        %td.game-head
           %h4= "Game"
-        %td.game.mode-head
+        %td.mode-head
           %h4= "Mode"
         %td.start-time-head
           %h4= "Start Time"
@@ -27,17 +27,17 @@
         %tr
           %td.title
             %h3= link_to tournament.title, tournament_path(tournament)
-            %p.description= tournament.description
-          %td
-            %p.status= output_status(tournament)
-          %td
-            %p.game= tournament.game
-          %td
-            %p.mode= tournament.mode.capitalize
-          %td
-            %p.start-time= tournament.starts_at.strftime('%B %e, %Y')
-            %p.start-time= tournament.starts_at.strftime('%l:%M%P')
-          %td
-            %p.owner= tournament.owner.username
+            .description= tournament.description
+          %td.status
+            = output_status(tournament)
+          %td.game
+            = tournament.game
+          %td.mode
+            = tournament.mode.capitalize
+          %td.start-time
+            = tournament.starts_at.strftime('%B %e, %Y')
+            = tournament.starts_at.strftime('%l:%M%P')
+          %td.owner
+            = tournament.owner.username
           %td
 

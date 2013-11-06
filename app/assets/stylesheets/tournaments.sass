@@ -1,41 +1,40 @@
 .tournament-listing
+  margin-top: 2%
   table
+    font-family: Helvetica
     border-collapse: collapse
-    margin-right: 5%
     tr
-      .title
-        width: 100px
+      text-align: center
       td
-        font-size: 15px
+        font-size: 13px
         border-bottom: 1px solid dimgray
         margin-right: 3%
         h3
           font-size: 1.3em
           margin-top: 1%
           margin-bottom: 0%
-        h4
-          text-align: center
-        p
-          text-align: center
-        p.description
-          text-align: left
-          margin-top: 0
+      td.title
+        width: 35%
+        text-align: left
+        padding-bottom: 20px
+        .description
+          height: 15px
           overflow: hidden
           text-overflow: ellipsis
-          white-space: nowrap
-          padding-right: 8%
-          color: black
-        p.start-time
-          color: black
-          margin-top: 0px
-          margin-bottom: 0px
-        p.owner
-          color: black
 
-      td.start-time-head
-        width: 18%
-      td.game-head
-        width: 12%
+
+
+      td.title-head
+        padding-bottom: 5px
+        text-align: left
+        font-size: 20px
+        h2
+          margin: 0
+      td.game
+        width: 10%
+      td.start-time
+        width: 10%
+
 
   a
     color: $quarternary

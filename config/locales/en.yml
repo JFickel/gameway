@@ -22,6 +22,7 @@ en:
     compete: 'Compete'
     compete_description: 'Join tournaments and put your skills to the test. Win money and prizes. Show off your awards.'
   search:
+    search_results: "Search Results"
     filter: "Filter By"
     search: "Search"
     results: "Results"

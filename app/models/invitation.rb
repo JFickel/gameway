@@ -3,7 +3,9 @@ class Invitation < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :team
   validate :user_is_not_in_team, :user_is_not_tournament_owner, :user_is_not_broadcaster_already, :user_is_not_moderator_already
+  validates :user_id, uniqueness: {scope: [:role, :tournament_id]}
   before_save :set_message
+
 
   def set_message
     sender = User.try(:find, sender_id)

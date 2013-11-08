@@ -245,6 +245,7 @@ Devise.setup do |config|
 
   config.warden do |manager|
     manager.failure_app = CustomFailure
+    # manager.default_strategies.unshift :authenticate_admin!
   end
 
 

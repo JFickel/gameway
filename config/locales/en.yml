@@ -112,7 +112,6 @@ en:
     twitch_watch: "Watch Stream"
     twitch_visit: "Visit Twitch Channel"
   users:
-    forgot_password: "Forgot your password?"
     signup_form: "Sign Up Form "
     manage: "Manage your account"
     users: "Users"
@@ -141,7 +140,7 @@ en:
     sign_in_with: "Sign in with %{provider}"
     didnt_unlock: "Didn't receive unlock instructions?"
     didnt_confirmation: "Didn't receive confirmation instructions?"
-    forgot_password: "Forgot your password?"
+    forgot_password: "(forgot password)"
     sign_up: "Sign up"
     reset_password: "Reset Password"
     resend_confirmation: "Resend Confirmation Email"

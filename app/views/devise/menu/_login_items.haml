@@ -1,15 +1,11 @@
 = form_tag user_session_path do
   %ul.login_elements
     %li
-      %ul.first-tier
+      %ul
         %li= text_field_tag 'user[login]', nil, placeholder: I18n.t("users.username_or_email"), class: 'signin-input'
         %li= password_field_tag 'user[password]', nil, placeholder: I18n.t("users.password"), class: 'signin-input'
+        %li= link_to I18n.t("users.forgot_password"), new_password_path('user'), class: 'forgot-password'
         %li= hidden_field_tag 'user[timezone]', nil, class: 'user-timezone'
         %li
           %button.signin-btn= I18n.t("users.sign_in")
-    %li
-      %ul.second-tier
-        / %li= label_tag 'user[remember_me]', I18n.t("users.remember_me")
-        / %li= check_box_tag 'user[remember_me]'
-        %li= link_to I18n.t("users.forgot_password"), new_password_path('user'), class: 'forgot-password'
 

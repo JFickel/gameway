@@ -29,8 +29,11 @@ Gameway::Application.routes.draw do
   resources :team_memberships
   root to: "home#index"
 
+  # devise_for :users, :skip => [:sessions]
   devise_scope :user do
-    get "/", :to => "devise/sessions#new"
+    get "/", :to => "devise/sessions#new" #, :as => :new_user_session
+  #   post "/users/sign_in", to: "devise/sessions#create", as: :user_session
+  #   delete "/users/sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
     get "/", :to => "devise/registrations#new"
   end
 

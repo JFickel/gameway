@@ -1,15 +1,10 @@
 %h1= @user.username
 %h2= "#{@user.first_name} #{@user.last_name}"
-= image_tag(@user.avatar.profile.url, class: 'avatar', width: '230px')
 
 - if @user == current_user
-  .user-change-display
-    %div= I18n.t('users.change_display')
-    = form_for @user do |f|
-      = f.file_field :avatar, class: 'file-field'
-      = f.submit I18n.t('model.update'), class: 'update-display'
-
-
+  = link_to image_tag(@user.avatar.profile.url, class: 'avatar', width: '230px'), edit_user_path(current_user)
+- else
+  = image_tag(@user.avatar.profile.url, class: 'avatar', width: '230px')
 
 - if @twitch.try(:stream_live?)
   %h3= I18n.t('accounts.twitch_online')

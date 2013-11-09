@@ -28,7 +28,6 @@ end
 24.times do |i|
   t = Team.construct(name: "Test Team#{i}",
                   leader: User.find(i+1))
-  t.save
 end
 
 

@@ -52,6 +52,7 @@ class Team < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3, maximum: 24 }, uniqueness: { case_sensitive: false }
 
   mount_uploader :avatar, AvatarUploader
+  before_create :set_gravatar_as_default
 
   include PgSearch
   pg_search_scope :text_search,
@@ -61,10 +62,16 @@ class Team < ActiveRecord::Base
   multisearchable against: :name,
                   using: { tsearch: { prefix: true }}
 
+
+  def set_gravatar_as_default
+    self.remote_avatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.name)}.png?s=400&d=identicon&r=PG"
+  end
+
   def self.construct(options)
-    team = Team.new(name: options[:name])
+    team = Team.create(name: options[:name])
     team.team_memberships <<  TeamMembership.new(user_id: options[:leader].id)
     team.leader = options[:leader]
+    team.save
     return team
   end
 

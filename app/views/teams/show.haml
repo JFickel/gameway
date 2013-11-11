@@ -2,7 +2,7 @@
   %h2= @team.name
 
 - if current_user == @team.leader
-  = link_to I18n.t('teams.management'), edit_team_path(@team), class: 'small-btn'
+  = link_to I18n.t('teams.management'), edit_team_path(@team), class: 'small-btn team-management'
   = link_to image_tag(@team.avatar.profile.url, class: 'avatar'), edit_team_path(@team)
 - else
   = image_tag(@team.avatar.profile.url, class: 'avatar')

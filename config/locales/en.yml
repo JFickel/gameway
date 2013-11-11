@@ -136,6 +136,7 @@ en:
     personal_information: "Personal Information"
     providers: "Providers"
     gamer_accounts: "Gamer Accounts"
+    link_accounts: "Link your accounts"
     other_providers: "Other Providers"
     sign_in: "Sign in"
     sign_in_with: "Sign in with %{provider}"

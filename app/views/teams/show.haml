@@ -18,7 +18,6 @@
       %li
         %h4= link_to "#{member.username} - #{member.first_name} #{member.last_name}", user_path(member)
 
-
 .team-events
   %h3= I18n.t('events.events')
 
@@ -26,9 +25,9 @@
   %ul
     - @team.events.each do |event|
       %li
-        %h4= event.title
         %h4= event.starts_at.strftime("%B %e, %Y")
         %p= event.starts_at.strftime("%l:%M%P")
+        %h4= event.title
         %p= event.description
 
         = link_to I18n.t('model.edit'), edit_event_path(event, team_id: @team.id), class: 'edit-team-event-btn'

@@ -95,20 +95,6 @@
       padding: 0
       margin: 0
 
-.team-banner
-  h2
-    font-size: 32px
-
-.team-members
-  ul
-    li
-      list-style: none
-      a
-        text-decoration: none
-        color: $quarternary
-        &:hover
-          color: $septenary
-
 .team-change-display
   width: 250px
 
@@ -205,12 +191,45 @@
       color: white
       background-color: $septenary
 
-.team-management
-  display: block
-  width: 15%
-  margin-bottom: 2%
+
+.team-banner
+  width: 30%
+  float: left
+  h2
+    font-size: 32px
+  .team-management
+    display: block
+    width: 45%
+    margin-bottom: 2%
+
+
+  .team-members
+    float: left
+    ul
+      li
+        list-style: none
+        a
+          text-decoration: none
+          color: $quarternary
+          &:hover
+            color: $septenary
 
 .team-events
+  margin-top: 6.5%
+  margin-left: 5%
+  float: left
+  width: 32%
+  // border: 1px solid red
+  .event-banner
+    margin-bottom: 8%
+    .new-team-event-btn
+      margin-left: 45%
+      // float: right
+      color: white
+      display: inline
+    h3
+      display: inline
+      font-size: 24px
   h4
     a
       text-decoration: none
@@ -231,13 +250,57 @@
       &:hover
         background-color: $septenary
   ul
+    font-family: Helvetica
     list-style: none
     li
+      margin-bottom: 4%
+      margin-right: 50px
+      padding: 10px 10px
+      border-radius: 5px
+      border: 1px solid $secondary
+      box-shadow: 0px 0px 5px $secondary
       a
         text-decoration: none
         color: $quarternary
         &:hover
           color: $septenary
+      .date
+        margin-left: 5%
+        // border: 1px solid black
+        width: 13%
+        display: inline
+      .time
+        // margin-left: 5%
+        border-radius: 4px
+        background-color: $primary
+        padding: 3px 3px
+        color: senary
+        font-weight: bold
+        margin-left: 15%
+        display: inline
+        // border: 1px solid green
+      .title
+        text-overflow: clip
+        width: 100%
+        white-space: nowrap
+        overflow: hidden
+
+        font-weight: normal
+        text-decoration: underline
+        margin-top: 3%
+        margin-bottom: 3%
+        font-size: 20px
+        // border: 1px solid red
+      .desc
+        margin-top: 0
+        // border: 1px solid orange
+      .edit-team-event-btn
+        color: white
+        &:hover
+          color: white
+      .edit
+        margin-left: 48%
+
 
 .affiliation-candidate-form
   display: none

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_one :starcraft2_account
   has_one :twitch_account
+  has_one :lol_account
 
   has_many :group_memberships
   has_many :groups, through: :group_memberships

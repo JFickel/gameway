@@ -5,8 +5,7 @@ class TwitchAccountsController < ApplicationController
     if twitch_account.save
       redirect_to request.referer
     else
-      flash[:alert] = user.errors.full_messages ## change alerts
-      redirect_to request.referer
+      redirect_to request.referer, alert: user.errors.full_messages
     end
   end
 
@@ -15,8 +14,7 @@ class TwitchAccountsController < ApplicationController
     if twitch_account.update_attributes(twitch_account_params)
       redirect_to request.referer
     else
-      flash[:alert] = user.errors.full_messages
-      redirect_to request.referer
+      redirect_to request.referer, alert: user.errors.full_messages
     end
   end
 

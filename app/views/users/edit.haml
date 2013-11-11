@@ -32,3 +32,9 @@
     = f.text_field :username, class: 'update-twitch-field'
     = f.submit I18n.t('model.update'), class: 'medium-btn'
 
+
+  = form_for @lol_account do |f|
+    = f.label :summoner_name, I18n.t("accounts.summoner_name")
+    = f.text_field :summoner_name, class: 'update-lol-field'
+    = f.submit I18n.t('model.update'), class: 'medium-btn'
+

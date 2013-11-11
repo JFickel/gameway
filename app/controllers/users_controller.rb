@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def edit
     @starcraft2_account = current_user.starcraft2_account || Starcraft2Account.new
     @twitch_account = current_user.twitch_account || TwitchAccount.new
+    @lol_account = current_user.lol_account || LolAccount.new
   end
 
   def update

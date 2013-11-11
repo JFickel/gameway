@@ -24,7 +24,7 @@
 
     = link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn medium-btn'
   %ul
-    - @team.events.each do |event|
+    - @team.events.sort_by{|e| e.starts_at}.each do |event|
       %li
         %h4.date= event.starts_at.strftime("%B %e, %Y")
         %p.time= event.starts_at.strftime("%l:%M%P")

@@ -112,6 +112,7 @@ en:
     twitch_offline: "Stream is offline"
     twitch_watch: "Watch Stream"
     twitch_visit: "Visit Twitch Channel"
+    summoner_name: "League of Legends Summoner Name"
   users:
     signup_form: "Sign Up Form "
     manage: "Manage your account"

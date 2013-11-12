@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_filter :authenticate_user!, only: [:show, :index]
   before_action :tournament_params, only: [:create]
   def index
     @tournaments = Rails.cache.fetch("text_search_#{params[:query]}") do

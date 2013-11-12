@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Time.zone = "Pacific Time (US & Canada)"
+
 sc2 = Tournament.create(title: "Team Liquid October Invitational",
                   game: "Starcraft 2: Heart of the Swarm",
                   start_date: "2013-11-15",

@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:show, :index]
   def index
     if params[:query].present?
       @groups = Group.text_search(params[:query])

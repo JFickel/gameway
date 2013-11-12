@@ -1,5 +1,6 @@
 require 'twitch'
 class UsersController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:show]
   def index
     @users = User.text_search(params[:query]).limit(20) ## don't brogram for da future
 

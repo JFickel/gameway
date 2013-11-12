@@ -15,6 +15,7 @@ Gameway::Application.routes.draw do
       post 'start'
     end
   end
+
   resources :tournament_memberships
   resources :moderator_roles
   resources :broadcaster_roles

@@ -22,7 +22,8 @@
   .event-banner
     %h3= I18n.t('events.events')
 
-    = link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn medium-btn'
+    - if @team.users.include? current_user
+      = link_to I18n.t('events.add'), new_event_path(team_id: @team.id), class: 'new-team-event-btn medium-btn'
   %ul
     - @team.events.sort_by{|e| e.starts_at}.each do |event|
       %li

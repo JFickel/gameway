@@ -16,6 +16,8 @@ class Tournament < ActiveRecord::Base
   has_many :broadcasters, through: :broadcaster_roles, source: :user
   has_many :applications
   has_many :applicants, through: :applications, source: :user
+  has_many :comments
+  has_many :commenters, through: :comments, source: :user
 
   serialize :bracket
 
@@ -30,7 +32,7 @@ class Tournament < ActiveRecord::Base
   multisearchable against: [:title, :description],
                   using: { tsearch: { prefix: true }}
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 32 }
   validates :game, presence: true
   validates_with TimeValidator, on: :create
   validates_with TimeValidator, on: :update, if: :time_parameters?

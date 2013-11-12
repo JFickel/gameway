@@ -6,7 +6,16 @@
     = submit_tag "Search", name: nil, class: 'group-search-btn'
 
 
-  %h2= I18n.t("groups.listing")
-
   .group-listing
-    = render partial: 'group', collection: @groups
+    %table
+      %tr
+        %td.title-head
+          %h2= I18n.t("groups.group_list")
+        %td.status
+          %h4= 'Kind'
+        %td.leader-head
+          %h4= 'Members'
+      %tr
+        = render partial: 'group', collection: @groups
+
+

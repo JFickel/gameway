@@ -28,6 +28,7 @@ en:
     results: "Results"
     enter_query: "Enter search query here"
   groups:
+    group_list: "Group List"
     none: "It looks like you don't belong to any groups yet. Take a look through our group listings and join one or create your own!"
     find: "Find a Group"
     name: "Group Name"

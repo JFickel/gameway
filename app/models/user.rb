@@ -29,8 +29,10 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :invitations
   has_many :applications
-  has_many :team_applications, through: :applications, source: :team
-  has_many :tournament_applications, through: :applications, source: :tournament
+  has_many :applied_teams, through: :applications, source: :team
+  has_many :applied_tournaments, through: :applications, source: :tournament
+  has_many :comments
+  has_many :commented_tournaments, through: :comments, source: :tournament
 
 
   mount_uploader :avatar, AvatarUploader

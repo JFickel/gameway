@@ -48,51 +48,74 @@ body
   top: 20%
   left: 19%
   height: 90px
-  background-color: $quinary
+  background-color: $senary
 
-  opacity: 0.3
+  // opacity: 0.3
+  opacity: 0.8
+
   border-radius: 20px
   width: 35%
   box-shadow: 0px 0px 40px white
 
-  .slogan-panel
-    margin-top: 2px
-    margin-left: 1%
-    width: 98%
-    height: 86px
-    @include radial-gradient($primary, black)
-    border-radius: 20px
-    opacity: 1
+//   .slogan-panel
+//     margin-top: 2px
+//     margin-left: 1%
+//     width: 98%
+//     height: 86px
+//     @include radial-gradient($tertiary, black)
+//     border-radius: 20px
+//     opacity: 1
 
 
 .feature-panel-border
   position: absolute
   top: 37%
   height: 306px
-  background-color: $quinary
+  background-color: $senary
 
-  opacity: 0.3
+  // opacity: 0.3
+  opacity: 0.97
   border-radius: 20px
   width: 60%
   box-shadow: 0px 0px 40px white
 
 
-  .feature-panel
-    margin-top: 3px
-    margin-left: 1%
-    width: 98%
-    height: 300px
-    @include radial-gradient($primary, black)
-    border-radius: 20px
-    opacity: 1
+.registration-panel-border
+  position: absolute
+  top: 21%
+  height: 480px
+  background-color: $senary
+
+  // opacity: 0.3
+  opacity: 0.97
+  border-radius: 20px
+  width: 24%
+  margin-left: 65.5%
+  box-shadow: 0px 0px 40px white
+  z-index: 1
+
+
+
+
+//   .feature-panel
+//     margin-top: 3px
+//     margin-left: 1%
+//     width: 98%
+//     height: 300px
+//     @include radial-gradient($tertiary, black)
+//     border-radius: 20px
+//     opacity: 1
 
 
 html
   font-family: 'Expletus Sans', sans-serif
 
 html.welcome
-  background-image: image-url("darkspace.jpg")
-  background-size: 2200px auto
+  // background-image: image-url("darkspace.jpg")
+  background-color: $senary
+  // background-size: 2550px auto
+  background-size: 2000px auto
+  transform:rotate(7deg)
 
 
 .alert

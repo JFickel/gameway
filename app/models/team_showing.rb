@@ -31,7 +31,7 @@ class TeamShowing < ActiveRecord::Base
   end
 
   def team_showings_from_last_match
-    Team.try(:find_by, id: team_id).try(:matches).try(:where, tournament_id: match.try(:tournament).try(:id)).try(:last).try(:team_showings)
+    TeamShowing.where(team_id: team_id).try(:last).try(:match).try(:user_showings)
   end
 
   def saved_team_showings_from_current_match

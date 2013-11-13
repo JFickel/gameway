@@ -140,7 +140,6 @@ $ ->
 
 
   $('.bracket').on('click', 'button.advance-slot', () ->
-    $(this).css("box-shadow", "0px 0px 30px green")
     $(this).css("outline", "none")
     $.ajax(
       type: 'POST'

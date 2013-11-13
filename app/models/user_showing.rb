@@ -31,7 +31,7 @@ class UserShowing < ActiveRecord::Base
   end
 
   def user_showings_from_last_match
-    User.try(:find_by, id: user_id).try(:matches).try(:where, tournament_id: match.try(:tournament).try(:id)).try(:last).try(:user_showings)
+    UserShowing.where(user_id: user_id).try(:last).try(:match).try(:user_showings)
   end
 
   def saved_user_showings_from_current_match

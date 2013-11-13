@@ -12,18 +12,19 @@
     %h4= link_to "#{user.username} - #{user.first_name} #{user.last_name}", user_path(user)
 
 .group-events
-  %h3= I18n.t('events.events')
+  .event-banner
+    %h3= I18n.t('events.events')
 
-  %h4= link_to I18n.t('events.add'), new_event_path(group_id: @group.id), class: 'new-group-event-btn'
+    = link_to I18n.t('events.add'), new_event_path(group_id: @group.id), class: 'new-group-event-btn medium-btn'
 
   %ul
-    - @group.events.each do |event|
+    - @group.events.sort_by{|e| e.starts_at}.each do |event|
       %li
-        %h4= event.title
-        %h4= event.starts_at.strftime("%B %e, %Y")
-        %p= event.starts_at.strftime("%l:%M%P")
-        %p= event.description
+        %h4.date= event.starts_at.strftime("%B %e, %Y")
+        %p.time= event.starts_at.strftime("%l:%M%P")
+        %h4.title= event.title
+        %p.desc= event.description
 
-        = link_to I18n.t('model.edit'), edit_event_path(event, group_id: @group.id), class: 'edit-group-event-btn'
-        = link_to I18n.t('model.delete'), event_path(event), class: 'edit-group-event-btn', method: :delete
-
+        - if current_user == event.user
+          = link_to I18n.t('model.edit'), edit_event_path(event, group_id: @group.id), class: 'edit edit-group-event-btn small-btn'
+          = link_to I18n.t('model.delete'), event_path(event), class: 'edit-group-event-btn small-btn', method: :delete

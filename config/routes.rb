@@ -9,6 +9,7 @@ Gameway::Application.routes.draw do
   resources :twitch_accounts
   resources :lol_accounts
   resources :events
+  resources :games
 
   resources :tournaments do
     member do

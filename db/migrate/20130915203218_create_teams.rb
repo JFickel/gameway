@@ -4,6 +4,7 @@ class CreateTeams < ActiveRecord::Migration
       t.string :name
       t.text :introduction
       t.boolean :open_applications, default: true
+      # t.boolean :partner #
       t.belongs_to :user
       t.timestamps
     end

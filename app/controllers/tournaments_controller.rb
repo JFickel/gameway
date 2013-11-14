@@ -2,12 +2,12 @@ class TournamentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:show, :index]
   before_action :tournament_params, only: [:create]
 
-  def track_tournament_creation(tournament)
-    Analytics.track(
-      user_id: current_user.id,
-      event: 'Created Tournament',
-      properties: { mode: tournament.mode, game: tournament.game })
-  end
+  # def track_tournament_creation(tournament)
+  #   Analytics.track(
+  #     user_id: current_user.id,
+  #     event: 'Created Tournament',
+  #     properties: { mode: tournament.mode, game: tournament.game })
+  # end
 
   def index
     @tournaments = Rails.cache.fetch("text_search_#{params[:query]}") do
@@ -30,8 +30,8 @@ class TournamentsController < ApplicationController
   def create
     tournament = current_user.owned_tournaments.new(tournament_params)
     if tournament.save
+      # track_tournament_creation(tournament)
       redirect_to tournaments_path
-      track_tournament_creation(tournament)
     else
       redirect_to new_tournament_path, alert: tournament.errors.full_messages
     end

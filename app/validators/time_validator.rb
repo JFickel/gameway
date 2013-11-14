@@ -1,10 +1,17 @@
 class TimeValidator < ActiveModel::Validator
   def validate record
+    time_is_not_in_the_past record
     presence_of_date record
     hour_is_in_range record
     minute_is_in_range record
     numeric_presence_of_hour record
     numeric_presence_of_minute record
+  end
+
+  def time_is_not_in_the_past record
+    if Time.zone.parse("#{record.start_date} #{record.start_hour}:#{record.start_minute}#{record.start_period}") < Time.current
+      record.errors.add(record.class.model_name.singular, 'cannot be in the past')
+    end
   end
 
   def presence_of_date record

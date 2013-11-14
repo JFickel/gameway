@@ -248,6 +248,17 @@ Devise.setup do |config|
     # manager.default_strategies.unshift :authenticate_admin!
   end
 
+  # Warden::Manager.after_set_user do |user, auth, opts|
+  #   Analytics.identify(
+  #     user_id: user.id,
+  #     traits: { email: user.email,
+  #               first_name: user.first_name,
+  #               last_name: user.last_name,
+  #               username: user.username,
+  #               tournament_memberships: user.tournament_memberships.count,
+  #               events: user.events.count }
+  #     )
+  # end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine

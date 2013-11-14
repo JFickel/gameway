@@ -59,6 +59,21 @@ $ ->
     engine: Hogan
     template: "<img src={{avatar_url}}><p><strong>{{username}}</strong>  {{full_name}}</p>"
 
+  $('.game-search').typeahead
+    name: 'games'
+    remote:
+      url: "/games?query=%QUERY"
+      filter: (parsedResponse) ->
+        $.map parsedResponse.games, (game, i) ->
+          datum =
+            value: game.name
+            tokens: [game.name]
+            avatar_url: game.avatar_url
+          return datum
+    engine: Hogan
+    template: "<img src={{avatar_url}}><p><strong>{{value}}</strong></p>"
+
+
 
   $('.add-auxiliary').on "submit", ".user-search", (event) ->
     event.preventDefault()

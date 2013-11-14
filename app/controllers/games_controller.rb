@@ -9,6 +9,12 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    @games = Game.text_search(params[:query]) if params[:query].present?
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @games }
+    end
   end
 
   def new

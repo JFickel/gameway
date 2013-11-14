@@ -3,7 +3,7 @@
     .fields
       = f.text_field :title, placeholder: 'Title', class: 'tournament-input-field'
 
-      = f.text_field :game, placeholder: 'Game', class: 'tournament-input-field'
+      = f.text_field :game, placeholder: 'Game', class: 'game-search'
 
       = f.text_field :start_date, placeholder: 'Date', value: @tournament.starts_at.try(:strftime, "%Y-%m-%d"), class: 'tournament-input-field'
 

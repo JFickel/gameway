@@ -16,9 +16,9 @@ class GamesController < ApplicationController
   end
 
   def create
-    game = Game.new
+    game = Game.new(game_params)
     if game.save
-      redirect_to game
+      redirect_to games_path
     else
       redirect_to new_game_path, alert: game.errors.full_messages
     end
@@ -49,6 +49,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:team).permit(:name, :avatar)
+    params.require(:game).permit(:name, :avatar)
   end
 end

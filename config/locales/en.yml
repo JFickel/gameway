@@ -170,6 +170,11 @@ en:
     confirm_with_link: "You can confirm your account through the link below"
     confirm_my_account: "Confirm My Account"
     finish_signup: "Please finish the signup process below."
+  games:
+    name: "Game Name"
+    add: "Add Game"
+    edit: "Edit Game"
+    game_list: "Game List"
   helpers:
     submit:
       create: "Create"

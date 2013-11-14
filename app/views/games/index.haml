@@ -1,24 +1,21 @@
 .games
   = link_to I18n.t("games.add"), new_game_path, :class => 'add-game-btn'
 
-  = form_tag teams_path, method: :get, class: 'game-search' do
-    = text_field_tag :query, params[:query], placeholder: I18n.t('games.find')
-    = submit_tag "Search", name: nil, class: 'game-search-btn'
+  / = form_tag teams_path, method: :get, class: 'game-search' do
+  /   = text_field_tag :query, params[:query], placeholder: I18n.t('games.find')
+  /   = submit_tag "Search", name: nil, class: 'game-search-btn'
 
   .game-listing
     %table
       %tr
         %td.title-head
           %h2= I18n.t("games.game_list")
-        %td.status
-          %h4= 'Entry'
-        %td.leader-head
-          %h4= 'Leader'
-        %td.games-head
-          %h4= 'Games'
       - @games.each do |game|
         %tr
           %td.name
             = game.name
           %td.avatar
-            = image_tag game.avatar.profile.url, class: 'game-avatar'
+            = image_tag game.avatar.profile.url, class: 'game-avatar', width: '42px'
+          %td.actions
+            = link_to I18n.t('model.edit'), edit_game_path(game)
+            = link_to I18n.t('model.delete'), game_path(game), method: :delete

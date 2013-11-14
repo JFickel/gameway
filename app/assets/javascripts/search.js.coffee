@@ -62,7 +62,8 @@ $ ->
 
   $('.add-auxiliary').on "submit", ".user-search", (event) ->
     event.preventDefault()
-    [first, mid...,tournament_id] = $('.edit_tournament').attr('action').split("/")
+    array = document.URL.split('/')
+    tournament_id = array[array.length-2]
 
     $.ajax(
       type: 'GET'

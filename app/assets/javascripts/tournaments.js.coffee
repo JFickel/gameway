@@ -39,7 +39,6 @@ $ ->
           output += self.determineHeader(round_index, round, match_index, self)
           if match != null
             if self.mode == "individual"
-              console.log match.user_showings
               $.each match.user_showings, (user_showing_index, user_showing) ->
                 if self.moderatorStatus is "true"
                   output += "<div class='slot' data-model-id='#{user_showing.user_id}'><a class='delete-slot-btn' data-delete-slot='[#{round_index},#{match_index},#{user_showing_index}]' data-username='#{user_showing.username}'>x</a>"
@@ -77,14 +76,14 @@ $ ->
       self = this
       $.each @bracket, (round_index, round) ->
         if round_index == 0
-          console.log round
+          # console.log round
           $(".round-#{round.length*2} li").css('border-top', "0px solid white")
           $(".round-#{round.length*2} li").css('padding-top', "11px")
           $(".round-#{round.length*2} li:first-child").css('border-top', "1px solid black")
 
         marginTop = (Math.pow(2, round_index-1)*matchTotalHeight) - matchTotalHeight/2
         marginBottom = 2*marginTop
-        console.log self.bracket
+        # console.log self.bracket
         if round_index == self.bracket.length - 1
           marginTop = (Math.pow(2, round_index-2)*matchTotalHeight) - matchTotalHeight/2
           marginBottom = 2*marginTop

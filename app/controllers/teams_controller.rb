@@ -29,7 +29,8 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @leader = @team.leader
-    @members = @team.users - [@leader] ## member method
+    @members = @team.members ## member method
+    @live_streams = @team.live_streams
 
     # client = Twitter::Client.new do |config|
     #   config.consumer_key        = "ZnSuxvrL2l33nGsLYFuQ"

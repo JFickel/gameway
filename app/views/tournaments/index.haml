@@ -17,6 +17,8 @@
           %h4= "Game"
         %td.mode-head
           %h4= "Mode"
+        %td.participants-head
+          %h4= "Participants"
         %td.start-time-head
           %h4= "Start Time"
         %td
@@ -34,6 +36,8 @@
             = tournament.game
           %td.mode
             = tournament.mode.capitalize
+          %td.participants
+            = tournament.participant_count
           %td.start-time
             = tournament.starts_at.strftime('%B %e, %Y')
             = tournament.starts_at.strftime('%l:%M%P')

@@ -64,6 +64,14 @@ class Tournament < ActiveRecord::Base
     return self
   end
 
+  def participant_count
+    if self.mode == 'individual'
+      self.users.count
+    elsif self.mode == 'team'
+      self.teams.count
+    end
+  end
+
   def reset_bracket
     self.user_showings.each(&:destroy)
     self.matches.destroy_all

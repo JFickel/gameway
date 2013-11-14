@@ -67,6 +67,19 @@ class Team < ActiveRecord::Base
     self.remote_avatar_url = "https://secure.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.name)}.png?s=400&d=identicon&r=PG"
   end
 
+  def members
+    self.users - [self.leader]
+  end
+
+  def live_streams
+    self.users.each.with_object([]) do |user, output|
+      if user.twitch_account.try(:username)
+        twitch = Twitch.new(user)
+        output << twitch if twitch.stream_live?
+      end
+    end
+  end
+
   def self.construct(options)
     team = Team.create(name: options[:name])
     team.team_memberships <<  TeamMembership.new(user_id: options[:leader].id)

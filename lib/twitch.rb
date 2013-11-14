@@ -1,7 +1,8 @@
 class Twitch
-  attr_accessor :username
-  def initialize(username)
-    @username = username
+  attr_accessor :username, :user
+  def initialize(user)
+    @user = user
+    @username = user.twitch_account.try(:username)
   end
 
   def get_stream

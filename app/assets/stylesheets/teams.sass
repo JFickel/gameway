@@ -203,15 +203,31 @@
 
 
   .team-members
+    h3
+      font-size: 24px
+      text-decoration: underline
+      margin-left: -6%
     float: left
     ul
+      // padding-left: 5%
       li
+        // margin-left: 3%
         list-style: none
         a
           text-decoration: none
           color: $quarternary
           &:hover
             color: $septenary
+        &:first-child
+          margin-left: -63px
+    .leader
+      background-color: $primary
+      padding: 3px
+      border-radius: 3px
+      display: inline
+      margin-right: 3px
+    .team-member-avatar
+      vertical-align: middle
 
 .team-events
   margin-top: 3%
@@ -222,6 +238,7 @@
   .event-banner
     margin-bottom: 8%
     h3
+      text-decoration: underline
       display: inline
       font-size: 28px
       margin-left: 5%

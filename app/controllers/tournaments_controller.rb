@@ -6,7 +6,11 @@ class TournamentsController < ApplicationController
     Analytics.track(
       user_id: current_user.id,
       event: 'Created Tournament',
-      properties: { mode: tournament.mode, game: tournament.game })
+      properties: { mode: tournament.mode, game: tournament.game },
+      context: {
+        'Google Analytics' => {clientId: request.cookies['_ga'].split('.')[2..4].join('.')}
+      }
+    )
   end
 
   def index

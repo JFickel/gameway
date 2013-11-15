@@ -5,7 +5,10 @@ class TournamentMembershipsController < ApplicationController
       event: 'Joined Tournament',
       properties: { tournament_id: tournament_membership.tournament_id,
                     tournament_membership_id: tournament_membership.id,
-                    team_id: tournament_membership.team_id })
+                    team_id: tournament_membership.team_id },
+      context: {
+        'Google Analytics' => {clientId: request.cookies['_ga'].split('.')[2..4].join('.')}
+      })
   end
 
   def create

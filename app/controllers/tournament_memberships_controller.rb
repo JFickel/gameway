@@ -3,7 +3,9 @@ class TournamentMembershipsController < ApplicationController
     Analytics.track(
       user_id: current_user.id,
       event: 'Joined Tournament',
-      properties: { tournament_id: tournament_membership.tournament_id, tournament_membership_id: tournament_membership.id, team_id: tournament_membership.team_id })
+      properties: { tournament_id: tournament_membership.tournament_id,
+                    tournament_membership_id: tournament_membership.id,
+                    team_id: tournament_membership.team_id })
   end
 
   def create
@@ -15,7 +17,7 @@ class TournamentMembershipsController < ApplicationController
     end
 
     if member.save
-      track_membership_creation
+      track_membership_creation(member)
       redirect_to request.referer, notice: "Successfully signed up for tournament!"
     else
       redirect_to request.referer, alert: member.errors.full_messages

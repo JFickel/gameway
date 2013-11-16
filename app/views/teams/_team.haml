@@ -1,8 +1,11 @@
 %tr
   %td.name
+    = link_to image_tag(team.avatar.profile.url), team_path(team)
     %h3= link_to team.name, team_path(team)
   %td.status
     = output_team_status(team)
+  %td.members
+    = team.users.count
   %td.leader
     = link_to team.leader.username, user_path(team.leader)
   %td.games

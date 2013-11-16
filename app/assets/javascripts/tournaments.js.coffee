@@ -12,6 +12,7 @@ $ ->
 
 
 
+
   class BracketView
     constructor: (options) ->
       {@moderatorStatus, @matchHeight, @matchPadding, @matchWidth, @matchBorder} = options
@@ -115,7 +116,15 @@ $ ->
   if $('.bracket_data').text() != ""
     tournamentSerializerJSON = $('.bracket_data').text()
     tournament = JSON.parse(tournamentSerializerJSON).tournament
+    current_opponent = tournament.current_opponent
     bracketView.renderBracket(tournament)
+
+  if current_opponent
+    if user = current_opponent.user
+      $('.participant_panel')
+
+    else if team = current_opponent.team
+      $('.participant-panel .opponent').append("<a href='#{team.team_url}'><img src=#{team.avatar_url}></a><h3><a href='#{team.team_url}'>#{team.name}</a></h3>")
 
   $('.bracket').on 'mouseenter', '.slot', () ->
     user_id = $(this).data('model-id')

@@ -49,10 +49,14 @@ class Tournament < ActiveRecord::Base
   def current_opponent(current_user)
     case self.mode
     when 'individual'
-      self.user_showings.where(user_id: current_user.id).order('created_at DESC').first.user
+      current_user_showings = self.user_showings.where(user_id: current_user.id).order('created_at DESC')
+      if current_user_showings.present?
+        current_user_showings.first.match.user_showings.find{|us| us.user_id != user.id }.try(:user)
+      end
     when 'team'
-      team = current_user.teams.find {|t| self.teams.include? t }
-      self.team_showings.where(team_id: team.id ).order('created_at DESC').first.team
+      if team = current_user.teams.find {|t| self.teams.include? t }
+        self.team_showings.where(team_id: team.id ).order('created_at DESC').first.match.team_showings.find{|ts| ts.team_id != team.id }.try(:team)
+      end
     end
   end
 

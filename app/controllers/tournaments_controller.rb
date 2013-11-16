@@ -48,8 +48,13 @@ class TournamentsController < ApplicationController
       tm = TournamentMembership.new
       [tournament, owner, tm]
     end
-    @opponent = @tournament.current_opponent(current_user)
+    # @opponent = @tournament.current_opponent(current_user)
     @tournament.reload
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @tournament, scope: current_user }
+    end
   end
 
   def edit

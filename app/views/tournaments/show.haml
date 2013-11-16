@@ -6,7 +6,7 @@
       %td
         %h3= "Game:"
       %td
-        %h3= @tournament.game
+        %h3.tournament-game= @tournament.game
     %tr
       %td
         %h3= "Mode:"
@@ -43,11 +43,15 @@
 
 - if @tournament.users.include?(current_user) || current_user.teams.find{|t| @tournament.teams.include? t }
   .participant-panel
-    %h3= 'Participant Panel'
-    - if @tournament.mode == 'individual'
-      = "Your opponent is: #{@opponent.username}"
-    - elsif @tournament.mode == 'team'
-      = "Your opponent is: #{@opponent.name}"
+    .opponent
+    / %h3= 'Participant Panel'
+    / - if @opponent
+    /   - if @tournament.mode == 'individual'
+    /     = "Your current opponent is: #{@opponent.username}"
+    /   - elsif @tournament.mode == 'team'
+    /     = "Your current opponent is: #{@opponent.name}"
+    / - else
+    /   = "Waiting for a new opponent"
 
 
 - if @tournament.moderators.present?
@@ -77,7 +81,7 @@
 
 .bracket_data
   - if @tournament.started?
-    = TournamentSerializer.new(@tournament).to_json
+    = TournamentSerializer.new(@tournament, scope: current_user).to_json
 
 .update_path
   = request.env["REQUEST_URI"]

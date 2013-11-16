@@ -1,6 +1,6 @@
 %tr
   %td.name
-    = link_to image_tag(team.avatar.profile.url, class: 'team-list-image'), team_path(team)
+    = link_to image_tag(team.avatar.profile.url, class: 'team-list-image', width: '48px'), team_path(team)
     %h3= link_to team.name, team_path(team)
   %td.status
     = output_team_status(team)

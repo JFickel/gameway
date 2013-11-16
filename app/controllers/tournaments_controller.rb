@@ -48,6 +48,7 @@ class TournamentsController < ApplicationController
       tm = TournamentMembership.new
       [tournament, owner, tm]
     end
+    @opponent = @tournament.current_opponent(current_user)
     @tournament.reload
   end
 

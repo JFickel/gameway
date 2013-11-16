@@ -41,6 +41,15 @@
 
     = button_to I18n.t('tournaments.edit'), edit_tournament_path(@tournament), method: :get, class: 'medium-btn'
 
+- if @tournament.users.include?(current_user) || current_user.teams.find{|t| @tournament.teams.include? t }
+  .participant-panel
+    %h3= 'Participant Panel'
+    - if @tournament.mode == 'individual'
+      = "Your opponent is: #{@opponent.username}"
+    - elsif @tournament.mode == 'team'
+      = "Your opponent is: #{@opponent.name}"
+
+
 - if @tournament.moderators.present?
   .moderators
     %h3= I18n.t('moderators.moderators')

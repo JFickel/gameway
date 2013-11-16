@@ -46,6 +46,16 @@ class Tournament < ActiveRecord::Base
     start_hour.present? || start_minute.present? || start_date.present?
   end
 
+  def current_opponent(current_user)
+    case self.mode
+    when 'individual'
+      self.user_showings.where(user_id: current_user.id).order('created_at DESC').first.user
+    when 'team'
+      team = current_user.teams.find {|t| self.teams.include? t }
+      self.team_showings.where(team_id: team.id ).order('created_at DESC').first.team
+    end
+  end
+
   def start
     reset_bracket_components
     return self if tournament_memberships.empty?

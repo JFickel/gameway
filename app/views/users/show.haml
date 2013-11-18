@@ -13,3 +13,5 @@
   %h3= I18n.t('accounts.twitch_offline')
   = link_to I18n.t('accounts.twitch_visit'), @twitch.get_channel_url, class: 'small-btn'
 
+- content_for :javascripts do
+  alert('hi');

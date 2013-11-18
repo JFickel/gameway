@@ -1,40 +1,26 @@
-# $('.new_starcraft2_account').on('ajax:success', (data, status, xhr) ->
-#   console.log data
-#   console.log status
-#   console.log xhr
-#   # $('#starcraft2_account_url').text("")
-# )
-
-# # $('.new_starcraft2_account').on('ajax:complete', (xhr, status) ->
-# #   console.log data
-# #   console.log status
-# #   console.log xhr
-# #   # $('#starcraft2_account_url').text("")
-# # )
-# # $(document).ready ->
-# #   $("#new_post").on("ajax:success", (e, data, status, xhr) ->
-# #     $("#new_post").append xhr.responseText
-# #   ).bind "ajax:error", (e, xhr, status, error) ->
-# #     $("#new_post").append "<p>ERROR</p>"
-
 $(document).ready ->
-  $('.edit_starcraft2_account').on('ajax:success', (event, data, status, xhr) ->
-    console.log event
+  $('form#edit_starcraft2_account_1').on('ajax:success', (evnt, data, status, xhr) ->
+    console.log "SUCCESS"
+    console.log evnt
     console.log data
-    console.log status
-    console.log xhr
-  )
-
-  $('.edit_starcraft2_account').on('ajax:complete', (xhr, status) ->
-    console.log status
+    # console.log status
     console.log xhr
   )
 
 
-  # $('.edit_starcraft2_account').on('ajax:send', (xhr) ->
+  $('form#edit_starcraft2_account_1').on('ajax:error', (evnt, xhr, status, error) ->
+    console.log "ERROR"
+    console.log status
+    console.log xhr
+  )
+
+# $('#account_settings').on('ajax:error', function(event, xhr, status) {
+#   // insert the failure message inside the "#account_settings" element
+#   $(this).append(xhr.responseText)
+# });
+
+  # $('.edit_starcraft2_account').on('ajax:complete', (evnt, xhr, status) ->
+  #   console.log evnt
+  #   # console.log status
   #   console.log xhr
-  # )
-
-  # $('.edit_starcraft2_account').on('ajax:before', () ->
-  #   console.log "IT WENT IT WENT IT WENT"
   # )

@@ -4,7 +4,6 @@
     %title Gameway
     %link{href: 'http://fonts.googleapis.com/css?family=Expletus+Sans:400,700', rel: 'stylesheet', type:'text/css'}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false
-    = javascript_include_tag "application", "data-turbolinks-track" => false
     = csrf_meta_tags
   %body
     = render 'shared/navigation'
@@ -29,3 +28,7 @@
     %input{type: 'hidden', class: 'time_zone'}
     .container
       = yield
+
+= javascript_include_tag "application", "data-turbolinks-track" => false
+
+= "<script>#{yield :javascripts}</script>".html_safe

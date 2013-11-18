@@ -27,14 +27,13 @@
     = f.text_field :url, class: 'update-sc2-field'
     = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
 
-  = form_for @twitch_account do |f|
+  = form_for @twitch_account, remote: true do |f|
     = f.label :twitch_username, I18n.t("accounts.twitch_username")
     = f.text_field :username, class: 'update-twitch-field'
     = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
 
 
-  = form_for @lol_account do |f|
+  = form_for @lol_account, remote: true do |f|
     = f.label :summoner_name, I18n.t("accounts.summoner_name")
     = f.text_field :summoner_name, class: 'update-lol-field'
     = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
-

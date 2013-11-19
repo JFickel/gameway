@@ -10,6 +10,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.belongs_to :user
       t.text :mode
       t.boolean :started
+      t.boolean :live
       t.boolean :open
       t.boolean :open_applications
       t.integer :maximum_participants

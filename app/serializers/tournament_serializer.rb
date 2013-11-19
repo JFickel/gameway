@@ -1,5 +1,5 @@
 class TournamentSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :ordered_bracket, :mode, :current_opponent
+  attributes :id, :title, :description, :ordered_bracket, :mode, :current_opponent, :started, :live
 
   def ordered_bracket
     tournament = Tournament.includes(:matches).find(object)

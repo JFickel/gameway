@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20131114213231) do
     t.integer  "user_id"
     t.text     "mode"
     t.boolean  "started"
+    t.boolean  "live"
     t.boolean  "open"
     t.boolean  "open_applications"
     t.integer  "maximum_participants"

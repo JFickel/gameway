@@ -10,7 +10,7 @@ Time.zone = "Pacific Time (US & Canada)"
 
 sc2 = Tournament.create(title: "Team Liquid October Invitational",
                   game: "Starcraft 2: Heart of the Swarm",
-                  start_date: "2013-11-15",
+                  start_date: "2014-11-15",
                   start_hour: "3",
                   start_minute: "30",
                   start_period: "pm",
@@ -36,7 +36,7 @@ end
 
 lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
                         game: 'League of Legends',
-                        start_date: "2013-11-15",
+                        start_date: "2014-11-15",
                         start_hour: "7",
                         start_minute: "00",
                         start_period: "pm",
@@ -48,7 +48,7 @@ lol = Tournament.create(title: 'TeSPA Lone Star Clash 3',
 
 lolopen = Tournament.create(title: 'Collegiate Gaming League Open',
                             game: 'League of Legends',
-                            start_date: "2013-11-22",
+                            start_date: "2014-11-22",
                             start_hour: "6",
                             start_minute: "00",
                             start_period: "pm",

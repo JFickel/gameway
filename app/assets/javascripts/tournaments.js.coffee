@@ -113,15 +113,28 @@ $ ->
     matchWidth: 100
     matchBorder: 1
 
+  # setInterval
+  #   () ->
+  #     $.ajax(
+  #       type: 'GET'
+  #       url: document.URL
+  #       dataType: 'json'
+  #       success: (data) ->
+  #         $('.bracket').empty()
+  #         bracketView.renderBracket(data.tournament)
+  #     )
+  #   60000
+
   if $('.bracket_data').text() != ""
     tournamentSerializerJSON = $('.bracket_data').text()
     tournament = JSON.parse(tournamentSerializerJSON).tournament
     current_opponent = tournament.current_opponent
     bracketView.renderBracket(tournament)
+    console.log tournament
 
   if current_opponent
     if user = current_opponent.user
-      $('.participant_panel')
+      $('.participant-panel .opponent').append("<a href='#{team.team_url}'><img src=#{team.avatar_url}></a><h3><a href='#{team.team_url}'>#{team.name}</a></h3>")
 
     else if team = current_opponent.team
       $('.participant-panel .opponent').append("<a href='#{team.team_url}'><img src=#{team.avatar_url}></a><h3><a href='#{team.team_url}'>#{team.name}</a></h3>")

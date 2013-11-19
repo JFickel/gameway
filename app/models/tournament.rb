@@ -46,6 +46,13 @@ class Tournament < ActiveRecord::Base
     start_hour.present? || start_minute.present? || start_date.present?
   end
 
+  def live_streamers
+    streamers = []
+    streamers << Twitch.new(owner) if Twitch.new(owner).stream_live?
+    broadcasters.each { |bc| streamers << Twitch.new(bc) if Twitch.new(bc).stream_live? }
+    return streamers
+  end
+
   def current_opponent(current_user)
     case self.mode
     when 'individual'

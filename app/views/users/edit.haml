@@ -1,39 +1,41 @@
-.update-user
-  %h1= I18n.t("users.manage")
+.edit-user
+  .personal-information
+    %h1= I18n.t("users.manage")
 
-  %h2= I18n.t("users.personal_information")
-  = form_for current_user do |f|
+    %h2= I18n.t("users.personal_information")
+    = form_for current_user do |f|
 
-    = f.label :username, I18n.t("users.username")
-    = f.text_field :username, class: 'update-user-input'
+      = f.label :username, I18n.t("users.username")
+      = f.text_field :username, class: 'update-user-input'
 
-    = f.label :first_name, I18n.t("users.first_name")
-    = f.text_field :first_name, class: 'update-user-input'
+      = f.label :first_name, I18n.t("users.first_name")
+      = f.text_field :first_name, class: 'update-user-input'
 
-    = f.label :last_name, I18n.t("users.last_name")
-    = f.text_field :last_name, class: 'update-user-input'
+      = f.label :last_name, I18n.t("users.last_name")
+      = f.text_field :last_name, class: 'update-user-input'
 
-    = image_tag(current_user.avatar.full.url, class: 'avatar')
+      = image_tag(current_user.avatar.full.url, class: 'avatar')
 
-    = f.label :last_name, I18n.t("users.change_display")
-    = f.file_field :avatar, class: 'file-field'
+      = f.label :last_name, I18n.t("users.change_display")
+      = f.file_field :avatar, class: 'file-field'
 
-    = f.submit I18n.t('model.update'), class: 'update-user-info-btn'
+      = f.submit I18n.t('model.update'), class: 'update-user-info-btn'
+
+  .link-accounts
+    %h2= I18n.t("users.link_accounts")
+    %h3.flash-messages
+    = form_for @starcraft2_account, remote: true do |f|
+      = f.label :sc2_url, I18n.t("accounts.sc2_url")
+      = f.text_field :url, class: 'update-sc2-field'
+      = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
+
+    = form_for @twitch_account, remote: true do |f|
+      = f.label :twitch_username, I18n.t("accounts.twitch_username")
+      = f.text_field :username, class: 'update-twitch-field'
+      = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
 
 
-  %h2= I18n.t("users.link_accounts")
-  = form_for @starcraft2_account, remote: true do |f|
-    = f.label :sc2_url, I18n.t("accounts.sc2_url")
-    = f.text_field :url, class: 'update-sc2-field'
-    = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
-
-  = form_for @twitch_account, remote: true do |f|
-    = f.label :twitch_username, I18n.t("accounts.twitch_username")
-    = f.text_field :username, class: 'update-twitch-field'
-    = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
-
-
-  = form_for @lol_account, remote: true do |f|
-    = f.label :summoner_name, I18n.t("accounts.summoner_name")
-    = f.text_field :summoner_name, class: 'update-lol-field'
-    = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}
+    = form_for @lol_account, remote: true do |f|
+      = f.label :summoner_name, I18n.t("accounts.summoner_name")
+      = f.text_field :summoner_name, class: 'update-lol-field'
+      = f.submit I18n.t('model.update'), class: 'medium-btn', data: { disable_with: 'Updating'}

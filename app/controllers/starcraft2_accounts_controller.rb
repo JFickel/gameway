@@ -16,15 +16,9 @@ class Starcraft2AccountsController < ApplicationController
     account = current_user.starcraft2_account
     respond_to do |format|
       if account.update_attributes(starcraft2_account_params)
-        # format.html { redirect_to request.referer }
-        # format.js { render json: { url: sc2_account.url }, status: 200 }
-
         format.json { render json: { message: 'Successfully added Starcraft 2 Account' } }
-        # format.js { render js: "alert('hi')", status: 200 }
-        # format.json { render json: sc2_account }
       else
-        # format.html { redirect_to request.referer }
-        # format.json { render json: sc2_account.errors, status: :unprocessable_entity }
+        format.json { render json: { message: 'Something went wrong adding your Starcraft 2 Account' } }
       end
     end
   end

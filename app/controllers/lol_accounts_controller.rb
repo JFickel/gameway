@@ -11,10 +11,12 @@ class LolAccountsController < ApplicationController
 
   def update
     lol_account = current_user.lol_account
-    if lol_account.update_attributes(lol_account_params)
-      redirect_to request.referer
-    else
-      redirect_to request.referer, alert: user.errors.full_messages
+    respond_to do |format|
+      if lol_account.update_attributes(lol_account_params)
+        format.json { render json: { message: 'Successfully added League of Legends Account' } }
+      else
+        format.json { render json: { message: 'Something went wrong adding your League of Legends Account' } }
+      end
     end
   end
 

@@ -11,10 +11,12 @@ class TwitchAccountsController < ApplicationController
 
   def update
     twitch_account = current_user.twitch_account
-    if twitch_account.update_attributes(twitch_account_params)
-      redirect_to request.referer
-    else
-      redirect_to request.referer, alert: user.errors.full_messages
+    respond_to do |format|
+      if twitch_account.update_attributes(twitch_account_params)
+        format.json { render json: { message: 'Successfully added Twitch.tv Account' } }
+      else
+        format.json { render json: { message: 'Something went wrong adding your Twitch.tv Account' } }
+      end
     end
   end
 

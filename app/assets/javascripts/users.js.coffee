@@ -17,7 +17,7 @@ $(document).ready ->
 
   $('form.edit_starcraft2_account').on('ajax:error', (evnt, xhr, status, error) ->
     $('.link-accounts .flash-messages').empty()
-    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong adding your Starcraft 2 Account</div>")
+    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong updating your Starcraft 2 Account</div>")
   )
 
 
@@ -40,7 +40,7 @@ $(document).ready ->
 
   $('form.edit_lol_account').on('ajax:error', (evnt, xhr, status, error) ->
     $('.link-accounts .flash-messages').empty()
-    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong adding your Starcraft 2 Account</div>")
+    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong updating your Starcraft 2 Account</div>")
   )
 
 
@@ -64,7 +64,7 @@ $(document).ready ->
 
   $('form.edit_twitch_account').on('ajax:error', (evnt, xhr, status, error) ->
     $('.link-accounts .flash-messages').empty()
-    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong adding your Starcraft 2 Account</div>")
+    $('.link-accounts .flash-messages').append("<div class='link-account-flash'>Something went wrong updating your Starcraft 2 Account</div>")
   )
 
 

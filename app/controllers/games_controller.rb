@@ -1,15 +1,12 @@
 class GamesController < ApplicationController
   before_filter :is_admin?
 
-  def is_admin?
-    unless current_user.admin?
-      redirect_to root_path, alert: 'You are not an admin'
-    end
-  end
-
   def index
-    @games = Game.all
-    @games = Game.text_search(params[:query]) if params[:query].present?
+    if params[:query].present?
+      @games = Game.text_search(params[:query])
+    else
+      @games = Game.all
+    end
 
     respond_to do |format|
       format.html
@@ -53,6 +50,12 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def is_admin?
+    unless current_user.admin?
+      redirect_to root_path, alert: 'You are not an admin'
+    end
+  end
 
   def game_params
     params.require(:game).permit(:name, :avatar)

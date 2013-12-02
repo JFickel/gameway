@@ -28,6 +28,10 @@ gem 'pg'
 # Use ActiveModel::Serializers for JSON responses
 gem 'active_model_serializers'
 
+# Working with Ember.js
+gem 'ember-rails'
+gem 'ember-source', '1.2.0'
+
 # Using FB and twitch omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'

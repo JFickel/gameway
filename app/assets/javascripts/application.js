@@ -17,4 +17,13 @@
 //= require detect_timezone
 //= require jquery.detect_timezone
 //= require hogan.js
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require gameway
 //= require_tree .
+
+window.Gameway = Ember.Application.create({
+  rootElement: '#tournament-show'
+});

@@ -16,5 +16,8 @@ FactoryGirl.define do
         end
       end
     end
+
+    after(:build) { |team| team.class.skip_callback(:create, :before, :set_gravatar_as_default) }
+    after(:create) { |team| team.class.set_callback(:create, :before, :set_gravatar_as_default) }
   end
 end

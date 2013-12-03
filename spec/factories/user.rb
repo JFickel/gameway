@@ -9,7 +9,7 @@ FactoryGirl.define do
     email { "#{username}@example.com" }
     password "password"
 
-    after(:build) { |user| user.class.skip_callback(:set_gravatar_as_default) }
-    after(:create) { |user| user.class.set_callback(:set_gravatar_as_default) }
+    after(:build) { |user| user.class.skip_callback(:create, :after, :set_gravatar_as_default) }
+    after(:create) { |user| user.class.set_callback(:create, :after, :set_gravatar_as_default) }
   end
 end

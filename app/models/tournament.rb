@@ -73,6 +73,7 @@ class Tournament < ActiveRecord::Base
     self.bracket = Bracket.new(self).construct
     self.started = true
     self.save
+    return self
   end
 
   def participant_count

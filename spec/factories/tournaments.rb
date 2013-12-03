@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :tournament do
     sequence(:title) {|n| "Tournament#{n}"}
     game 'League of Legends'
-    start_date '2013-11-5'
+    start_date Date.current + 1.month
     start_hour '9'
     start_minute '00'
     start_period 'pm'
@@ -20,6 +20,7 @@ FactoryGirl.define do
 
       after :create do |tournament, evaluator|
         evaluator.teams_count.times do |i|
+          # create(:tournament_membership, team: create(:team, name: Faker::Company.name), tournament: tournament)
           create(:tournament_membership, team: create(:team), tournament: tournament)
         end
       end
@@ -31,6 +32,7 @@ FactoryGirl.define do
 
       after :create do |tournament, evaluator|
         evaluator.users_count.times do |i|
+          # create(:tournament_membership, user: create(:user, username: "#{Faker::Name.first_name} #{Faker::Name.last_name}"), tournament: tournament)
           create(:tournament_membership, user: create(:user), tournament: tournament)
         end
       end

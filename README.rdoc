@@ -1,6 +1,6 @@
 == Gameway
 
-{<img src="https://travis-ci.org/[JFickel]/[gameway].png" />}[https://travis-ci.org/[JFickel]/[gameway]]
+{<img src="https://travis-ci.org/JFickel/gameway.png" />}[https://travis-ci.org/JFickel/gameway]
 
 
 This is a prototype for a gaming website idea that I've had for a while. Right now, the goals are:

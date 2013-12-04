@@ -1,7 +1,20 @@
 class TournamentSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :ordered_bracket, :mode, :current_opponent, :started, :live
+  attributes :id,
+             :title,
+             :game,
+             :description,
+             :rules,
+             :starts_at,
+             :bracket,
+             :mode,
+             :current_opponent,
+             :started,
+             :live,
+             :open,
+             :open_applications,
+             :maximum_participants
 
-  def ordered_bracket
+  def bracket
     tournament = Tournament.includes(:matches).find(object)
     if tournament.bracket.present?
       tournament.bracket.map do |round|

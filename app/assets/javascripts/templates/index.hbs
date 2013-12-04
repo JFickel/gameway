@@ -1,6 +1,73 @@
-<h1>Hi</h1>
+<div class="tournament-banner">
+  <h2>{{title}}</h2>
 
-<h2>{{title}}</h2>
+  <table>
+    <tr>
+      <td>
+        <h3>Game:</h3>
+      </td>
+      <td>
+        <h3>{{game}}</h3>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Mode:</h3>
+      </td>
+      <td>
+        {{#if isTeamMode}}
+          <h3>I18n.t tournaments.team_mode</h3>
+        {{else}}
+          <h3>I18n.t tournaments.individual_mode</h3>
+        {{/if}}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Starts in:</h3>
+      </td>
+      <td>
+        <h3>{{starts_at}}</h3>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>I18n.t tournaments.owner</h3>
+      </td>
+      <td>
+        {{!-- <h3>{{#link-to 'user' owner}} {{ownerFormatted}} {{/link-to}}</h3> --}} <h3>Owner name placeholder</h3>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>I18n.t tournaments.description</h3>
+      </td>
+      <td>
+        <h3>{{description}}</h3>
+      </td>
+    </tr>
+  </table>
+
+  {{#if displayIndividualSignup}}
+    <button class="medium-btn" {{action individualSignup}}>I18n.t tournaments.enter</button>
+  {{/if}}
+
+  {{mode}}
+
+{{!--   {{#if displayTeamSignup}}
+    <select>
+      {{#each currentUserTeams}}
+        <option >{{name}}</option>
+      {{/each}}
+    </select>
+  {{/if}}
+ --}}
+
+</div>
 
 {{test}}
 
@@ -8,12 +75,3 @@
   {{!-- {{controller.model.orderedBracket}} --}}
   {{!-- {{orderedBracket}} --}}
 {{/with}}
-
-language: ruby
-rvm:
-- 2.0.0
-deploy:
-  provider: heroku
-  api_key:
-    secure: WTD2MeKgvovNhfQjoeavcv6UWFvU5jphdXlpXwb20YJLkkFRZienCj/PRogOvtaAjwqbWPhO08BUyVmGyQbdpW0YBVByWWM/RFFP6lnUI68JgD00tNLQouIxiuiAFZnic0rsgjGLHIZIDRAyjcJhL0h1Zm2Fq1BspC44ksYjW+c=
-  app: gameway-alpha-staging

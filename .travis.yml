@@ -1,8 +1,8 @@
 language: ruby
 rvm:
   - "2.0.0-p195"
-deploy:
-  provider: heroku
-  api_key:
-    secure: WTD2MeKgvovNhfQjoeavcv6UWFvU5jphdXlpXwb20YJLkkFRZienCj/PRogOvtaAjwqbWPhO08BUyVmGyQbdpW0YBVByWWM/RFFP6lnUI68JgD00tNLQouIxiuiAFZnic0rsgjGLHIZIDRAyjcJhL0h1Zm2Fq1BspC44ksYjW+c=
-  app: gameway-alpha-staging
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: WTD2MeKgvovNhfQjoeavcv6UWFvU5jphdXlpXwb20YJLkkFRZienCj/PRogOvtaAjwqbWPhO08BUyVmGyQbdpW0YBVByWWM/RFFP6lnUI68JgD00tNLQouIxiuiAFZnic0rsgjGLHIZIDRAyjcJhL0h1Zm2Fq1BspC44ksYjW+c=
+#   app: gameway-alpha-staging

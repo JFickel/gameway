@@ -13,12 +13,13 @@ Gameway.IndexController = Ember.ObjectController.extend(
       return false
   ).property('mode', 'open', 'started')
 
-  # individualSignup: ->
-    # Gameway.TournamentMembership.createRecord
-      # tournamentId: @get('id')
-      # userId: is there a way to get a current user object in ember??
-  ## How do I even handle this?
-
+  individualSignup: ->
+    Gameway.TournamentMembership.createRecord
+      tournamentId: @get('id')
+      userId: 1
+    # console.log "YA SIGNED UP"
+    # how would I get a current user object in ember??
+    # How do I even handle this?
 
   # test: (->
     # console.log @get('orderedBracket')

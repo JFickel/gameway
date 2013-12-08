@@ -31,7 +31,7 @@ class TournamentSerializer < ActiveModel::Serializer
   end
 
   def current_opponent
-    if object.started?
+    if object.started? && current_user
       if object.current_opponent(scope).class == Team
         TeamSerializer.new object.current_opponent(scope)
       elsif object.current_opponent(scope).class == User

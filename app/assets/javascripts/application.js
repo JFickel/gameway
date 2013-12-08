@@ -27,3 +27,4 @@
 window.Gameway = Ember.Application.create({
   rootElement: '#tournament-show'
 });
+

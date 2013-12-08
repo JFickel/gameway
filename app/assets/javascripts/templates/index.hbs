@@ -54,22 +54,34 @@
 </div>
 
 
+{{!--   {{#if currentUser.isSignedIn}}
+    "HAY YOURE SIGNED IN :DDD"
+  {{else}}
+    "ACCESS DENIED"
+  {{/if}}
+ --}}
+
   {{#if displayIndividualSignup}}
     <button class="medium-btn" {{action 'individualSignup'}}>Enter Tournament</button>
   {{/if}}
 
-  <h2>Broadcasters</h2>
-  {{#each liveStreamers}}
-    <a href="/users/{{unbound [0].user.id}}"><img src="{{unbound [0].user.avatar_url}}" width="47px"></a>
-    <a href="/users/{{unbound [0].user.id}}">{{[0].user.username}} - {{[0].user.first_name}} {{[0].user.last_name}}</a>
-    <a href="{{unbound [1]}}" class="small-btn">Watch Stream</a>
-  {{/each}}
+  {{#if liveStreamers}}
+    <h2>Broadcasters</h2>
+    {{#each liveStreamers}}
+      <a href="/users/{{unbound [0].user.id}}"><img src="{{unbound [0].user.avatar_url}}" width="47px"></a>
+      <a href="/users/{{unbound [0].user.id}}">{{[0].user.username}} - {{[0].user.first_name}} {{[0].user.last_name}}</a>
+      <a href="{{unbound [1]}}" class="small-btn">Watch Stream</a>
+    {{/each}}
+  {{/if}}
 
   <div class="participant-count"></div>
 
   <div class="participants">
     <h3>Participant List</h3>
     {{#if isTeamMode}}
+      {{#each teams}}
+        <h4><a href="/teams/{{unbound id}}">{{name}}</a></h4>
+      {{/each}}
     {{else}}
       {{#each users}}
         <h4><a href="/users/{{unbound id}}">{{username}} - {{first_name}} {{last_name}}</a></h4>

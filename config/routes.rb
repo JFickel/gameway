@@ -2,6 +2,7 @@ Gameway::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" } #:sessions => "users/analytics"
 
+  get '/users/current', to: "current_user#fetch"
   resources :users
   resources :groups
   resources :group_memberships

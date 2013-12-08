@@ -9,7 +9,7 @@ Gameway.IndexController = Ember.ObjectController.extend(
       # how would I get a current user object in ember??
       # How do I even handle this?
   isTeamMode: (->
-    console.log @get('liveStreamers')[0][1]
+    # console.log @get('liveStreamers')[0][1]
     # console.log @get('users')
     if @get('mode') == 'team'
       return true

@@ -12,7 +12,10 @@ class TournamentSerializer < ActiveModel::Serializer
              :live,
              :open,
              :open_applications,
-             :maximum_participants
+             :maximum_participants,
+             :live_streamers
+  has_many :users
+  has_many :teams
 
   def bracket
     tournament = Tournament.includes(:matches).find(object)
@@ -35,5 +38,12 @@ class TournamentSerializer < ActiveModel::Serializer
         UserSerializer.new object.current_opponent(scope)
       end
     end
+  end
+
+  def live_streamers
+    streamers = []
+    streamers << Twitch.new(object.owner) if Twitch.new(object.owner).stream_live?
+    object.broadcasters.each { |bc| streamers << Twitch.new(bc) if Twitch.new(bc).stream_live? }
+    return streamers.map { |s| [UserSerializer.new(s.user), s.get_stream_url] }
   end
 end

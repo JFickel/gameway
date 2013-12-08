@@ -51,14 +51,33 @@
       </td>
     </tr>
   </table>
+</div>
+
 
   {{#if displayIndividualSignup}}
     <button class="medium-btn" {{action 'individualSignup'}}>Enter Tournament</button>
   {{/if}}
 
-  {{storeTest}}
+  <h2>Broadcasters</h2>
+  {{#each liveStreamers}}
+    <a href="/users/{{unbound [0].user.id}}"><img src="{{unbound [0].user.avatar_url}}" width="47px"></a>
+    <a href="/users/{{unbound [0].user.id}}">{{[0].user.username}} - {{[0].user.first_name}} {{[0].user.last_name}}</a>
+    <a href="{{unbound [1]}}" class="small-btn">Watch Stream</a>
+  {{/each}}
 
-  {{!-- {{mode}} --}}
+  <div class="participant-count"></div>
+
+  <div class="participants">
+    <h3>Participant List</h3>
+    {{#if isTeamMode}}
+    {{else}}
+      {{#each users}}
+        <h4><a href="/users/{{unbound id}}">{{username}} - {{first_name}} {{last_name}}</a></h4>
+      {{/each}}
+    {{/if}}
+  </div>
+
+
 
 {{!--   {{#if displayTeamSignup}}
     <select>
@@ -69,9 +88,7 @@
   {{/if}}
  --}}
 
-</div>
 
-{{test}}
 
 {{#with controller}}
   {{!-- {{controller.model.orderedBracket}} --}}

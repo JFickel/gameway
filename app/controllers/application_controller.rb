@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.referer
+    # This won't work because it'll redirect to the omniauth strategy and encounter a redirect loop - need some way to handle this case
+    # I want to be able to redirect people back to the page that they were looking at after they sign in
+    # request.referer
+    root_path
   end
 
   def after_sign_out_path_for(resource)

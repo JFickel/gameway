@@ -9,6 +9,13 @@ Gameway.IndexController = Ember.ObjectController.extend(
       # console.log "YA SIGNED UP"
       # how would I get a current user object in ember??
       # How do I even handle this?
+    start: ->
+      $.ajax
+        url: "#{location.origin}/tournaments/#{@get('id')}/start"
+        type: 'POST'
+        data: {tournament: {start: true}}
+    edit: ->
+      window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]
     # console.log @get('users')

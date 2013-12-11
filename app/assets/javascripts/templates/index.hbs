@@ -53,10 +53,16 @@
   </table>
 </div>
 
+  {{#if started}}
+    <h3>Tournament has started!</h3>
+  {{/if}}
+
   {{#if isOwner}}
-    <h3>Current user is owner of tournament</h3>
-  {{else}}
-    <h3>Current user is not owner of this tournament</h3>
+    <div class="owner-panel">
+      <h3>Owner Panel</h3>
+      <button class="medium-btn" {{action 'start'}}>Manual Start</button>
+      <button class="medium-btn" {{action 'edit'}}>Edit Tournament</button>
+    </div>
   {{/if}}
 
   {{!-- {{isOwner}} --}}

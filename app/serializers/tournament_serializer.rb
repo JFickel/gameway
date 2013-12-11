@@ -13,7 +13,8 @@ class TournamentSerializer < ActiveModel::Serializer
              :open,
              :open_applications,
              :maximum_participants,
-             :live_streamers
+             :live_streamers,
+             :owner
   has_many :users
   has_many :teams
 
@@ -28,6 +29,10 @@ class TournamentSerializer < ActiveModel::Serializer
         end
       end
     end
+  end
+
+  def owner
+    UserSerializer.new(object.owner)
   end
 
   def current_opponent

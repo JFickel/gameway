@@ -1,4 +1,5 @@
 Gameway.IndexController = Ember.ObjectController.extend(
+  needs: ['currentUser']
   actions:
     individualSignup: ->
       membership = this.store.createRecord('tournament_membership', {tournamentId: @get('id'), userId: true})
@@ -23,4 +24,19 @@ Gameway.IndexController = Ember.ObjectController.extend(
     else
       return false
   ).property('mode', 'open', 'started')
+
+  isOwner: (->
+    # console.log parseInt(@get('controllers.currentUser').get('content').get('id'))
+    # console.log @get('owner').user.id
+    # console.log @get('controllers.currentUser').get('id')
+    if parseInt(@get('controllers.currentUser').get('content').get('id')) == @get('owner').user.id
+      return true
+    else
+      return false
+
+    # console.log currentUser.content
+    # console.log @get('owner')
+    # console.log @get('owner').user
+    # return @get('owner').user
+  ).property('owner')
 )

@@ -1,3 +1,3 @@
-# Gameway.CurrentUserRoute = Ember.Route.extend
-#   model: ->
-#     return @store.find('user', 'current')
+Gameway.CurrentUserRoute = Ember.Route.extend
+  model: ->
+    return @store.find('user', 'current')

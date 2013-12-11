@@ -2,6 +2,13 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :first_name, :last_name, :full_name,
   :avatar_url, :user_url, :lol_account, :starcraft2_account
 
+  # def initialize(user, options)
+  #   if options[:root] == false
+  #     self.class.root = false
+  #   end
+  #   super
+  # end
+
   def full_name
     "#{object.first_name} #{object.last_name}"
   end

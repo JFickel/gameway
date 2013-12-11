@@ -53,12 +53,25 @@
   </table>
 </div>
 
-
-  {{#if currentUser.isSignedIn}}
-    "HAY YOURE SIGNED IN :DDD"
+  {{#if isOwner}}
+    <h3>Current user is owner of tournament</h3>
   {{else}}
-    "ACCESS DENIED"
+    <h3>Current user is not owner of this tournament</h3>
   {{/if}}
+
+  {{!-- {{isOwner}} --}}
+  {{!-- <h3>Owner:</h3> --}}
+  {{!-- <h1>{{owner.user.user_url}}</h1> --}}
+
+{{!-- {{firstUser}} --}}
+{{!-- {{currentUser}} --}}
+
+
+    {{#if currentUser.isSignedIn}}
+      "ACCESS GRANTED"
+    {{else}}
+      "ACCESS DENIED"
+    {{/if}}
 
 
   {{#if displayIndividualSignup}}

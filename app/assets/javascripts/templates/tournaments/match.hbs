@@ -1,0 +1,9 @@
+{{#if isTeamMode}}
+  {{#each slot in match.team_showings}}
+    {{view Gameway.SlotView}}
+  {{/each}}
+{{else}}
+  {{#each slot in match.user_showings}}
+    {{view Gameway.SlotView}}
+  {{/each}}
+{{/if}}

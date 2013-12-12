@@ -18,7 +18,7 @@ Gameway.IndexController = Ember.ObjectController.extend(
       window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]
-    # console.log @get('users')
+    console.log @get('bracket')
     if @get('mode') == 'team'
       return true
     else if @get('mode') == 'individual'

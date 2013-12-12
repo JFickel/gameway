@@ -93,20 +93,25 @@
     {{/each}}
   {{/if}}
 
+  {{view Gameway.BracketView}}
+
+
   <div class="participant-count"></div>
 
-  <div class="participants">
-    <h3>Participant List</h3>
-    {{#if isTeamMode}}
-      {{#each teams}}
-        <h4><a href="/teams/{{unbound id}}">{{name}}</a></h4>
-      {{/each}}
-    {{else}}
-      {{#each users}}
-        <h4><a href="/users/{{unbound id}}">{{username}} - {{first_name}} {{last_name}}</a></h4>
-      {{/each}}
-    {{/if}}
-  </div>
+  {{#unless started}}
+    <div class="participants">
+      <h3>Participant List</h3>
+      {{#if isTeamMode}}
+        {{#each teams}}
+          <h4><a href="/teams/{{unbound id}}">{{name}}</a></h4>
+        {{/each}}
+      {{else}}
+        {{#each users}}
+          <h4><a href="/users/{{unbound id}}">{{username}} - {{first_name}} {{last_name}}</a></h4>
+        {{/each}}
+      {{/if}}
+    </div>
+  {{/unless}}
 
 
 

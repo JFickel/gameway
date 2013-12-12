@@ -12,7 +12,6 @@ $ ->
 
 
 
-
   class BracketView
     constructor: (options) ->
       {@moderatorStatus, @matchHeight, @matchPadding, @matchWidth, @matchBorder} = options

@@ -17,6 +17,8 @@ class TournamentSerializer < ActiveModel::Serializer
              :owner
   has_many :users
   has_many :teams
+  has_many :moderators
+  has_many :broadcasters
 
   def bracket
     tournament = Tournament.includes(:matches).find(object)

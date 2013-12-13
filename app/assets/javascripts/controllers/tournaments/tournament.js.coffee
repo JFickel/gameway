@@ -18,7 +18,7 @@ Gameway.IndexController = Ember.ObjectController.extend(
       window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]
-    console.log @get('bracket')
+    # console.log @get('bracket')
     if @get('mode') == 'team'
       return true
     else if @get('mode') == 'individual'
@@ -33,17 +33,19 @@ Gameway.IndexController = Ember.ObjectController.extend(
   ).property('mode', 'open', 'started')
 
   isOwner: (->
-    # console.log parseInt(@get('controllers.currentUser').get('content').get('id'))
-    # console.log @get('owner').user.id
-    # console.log @get('controllers.currentUser').get('id')
     if parseInt(@get('controllers.currentUser').get('content').get('id')) == @get('owner').user.id
       return true
     else
       return false
+  ).property('owner', 'controllers.currentUser')
 
-    # console.log currentUser.content
-    # console.log @get('owner')
-    # console.log @get('owner').user
-    # return @get('owner').user
-  ).property('owner')
+  hasModeratorAccess: (->
+    current_user_id = parseInt(@get('controllers.currentUser').get('content').get('id'))
+    moderator_ids = @get('moderators').mapBy('id')
+    owner_id = @get('owner').user.id
+    if moderator_ids.contains(current_user_id) or current_user_id == owner_id
+      return true
+    else
+      return false
+  ).property('moderators', 'owner', 'controllers.currentUser')
 )

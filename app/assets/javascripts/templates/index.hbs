@@ -38,7 +38,7 @@
         <h3>Owner:</h3>
       </td>
       <td>
-        {{!-- <h3>{{#link-to 'user' owner}} {{ownerFormatted}} {{/link-to}}</h3> --}} <h3>Owner name placeholder</h3>
+        <h3><a href="/users/{{unbound id}}">{{owner.user.username}} - {{owner.user.first_name}} {{owner.user.last_name}}</a></h3>
       </td>
     </tr>
 
@@ -52,6 +52,11 @@
     </tr>
   </table>
 </div>
+
+  {{#each moderator in moderators}}
+    <h2>DO YOU HAVE MODERATOR ACCESS?</h2>
+    {{hasModeratorAccess}}
+  {{/each}}
 
   {{#if started}}
     <h3>Tournament has started!</h3>

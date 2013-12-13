@@ -84,7 +84,8 @@ gem 'jbuilder', '~> 1.2'
 # Use facebook library to add high schools, colleges, friends
 gem "koala"
 
-# Use my sc2 gem
+# Game API Wrappers
+gem 'ruby-lol'
 gem 'starcraft2'
 # gem 'twitch'
 

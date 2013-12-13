@@ -58,7 +58,7 @@ class Tournament < ActiveRecord::Base
     when 'individual'
       current_user_showings = self.user_showings.where(user_id: current_user.id).order('created_at DESC')
       if current_user_showings.present?
-        current_user_showings.first.match.user_showings.find{|us| us.user_id != user.id }.try(:user)
+        current_user_showings.first.match.user_showings.find{|us| us.user_id != current_user.id }.try(:user)
       end
     when 'team'
       if team = current_user.teams.find {|t| self.teams.include? t }

@@ -5,4 +5,12 @@ class Match < ActiveRecord::Base
   has_many :users, through: :user_showings
   has_many :team_showings
   has_many :teams, through: :team_showings
+
+  def showings
+    if tournament.mode == 'individual'
+      user_showings
+    elsif tournament.mode == 'team'
+      team_showings
+    end
+  end
 end

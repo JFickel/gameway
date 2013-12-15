@@ -1,5 +1,4 @@
 class BracketController
-
   def initialize(tournament)
     @tournament = tournament
   end

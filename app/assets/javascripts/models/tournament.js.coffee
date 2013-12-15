@@ -15,10 +15,10 @@ Gameway.Tournament = DS.Model.extend(
   liveStreamers: DS.attr()
 
   owner: DS.attr()
+
   users: DS.attr()
   teams: DS.attr()
 
   moderators: DS.attr()
   broadcasters: DS.attr()
-
 )

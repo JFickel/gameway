@@ -11,7 +11,6 @@ $ ->
     return confirm("Are you sure you want to delete this tournament?")
 
 
-
   class BracketView
     constructor: (options) ->
       {@moderatorStatus, @matchHeight, @matchPadding, @matchWidth, @matchBorder} = options
@@ -412,4 +411,3 @@ $ ->
   #         renderModeratorBracket(data.tournament.ordered_bracket)
   #     )
   # )
-

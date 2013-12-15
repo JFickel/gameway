@@ -64,7 +64,7 @@ class TournamentsController < ApplicationController
   def start
     tournament = Tournament.includes(:matches).find(params[:id])
     tournament.start if tournament_params[:start]
-    redirect_to tournament
+    render json: tournament, scope: current_user
   end
 
   def update

@@ -100,8 +100,7 @@
 
   {{view Gameway.BracketView}}
 
-
-  <div class="participant-count"></div>
+  <div class="participant-count">{{participantCount}}</div>
 
   {{#unless started}}
     <div class="participants">
@@ -117,7 +116,6 @@
       {{/if}}
     </div>
   {{/unless}}
-
 
 
 {{!--   {{#if displayTeamSignup}}

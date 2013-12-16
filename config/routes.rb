@@ -18,6 +18,8 @@ Gameway::Application.routes.draw do
     end
   end
   resources :matches
+  resources :user_showings
+  resources :team_showings
 
   resources :tournament_memberships
   resources :moderator_roles

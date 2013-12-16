@@ -4,7 +4,7 @@ class MatchesController < ApplicationController
   end
 
   def update
-    Match.update(params)
+    Match.update_attributes(params)
   end
 
   def destroy

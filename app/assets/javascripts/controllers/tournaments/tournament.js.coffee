@@ -7,8 +7,10 @@ Gameway.IndexController = Ember.ObjectController.extend(
 
 
     start: (showing) ->
-      position = @calculatePosition(showing)
-      @advanceSlot position, showing
+      console.log @get('users')
+      # position = @calculatePosition(showing)
+      # console.log position
+      # @advanceSlot position, showing
       # self = this
       # $.ajax
       #   url: "#{location.origin}/tournaments/#{@get('id')}/start"
@@ -107,9 +109,6 @@ Gameway.IndexController = Ember.ObjectController.extend(
     return position
 
   advanceSlot: (position, showing) ->
-    # Find match
-    match = @get('bracket')[position[0]][position[1]]
-
     # Determine whether slot is top or bottom
     if position[1] % 2 == 0
       top = true
@@ -124,6 +123,7 @@ Gameway.IndexController = Ember.ObjectController.extend(
       next_match = @store.createRecord('match', {tournamentId: @get('id')})
       @get('matches').pushObject(next_match)
       @get('bracket')[position[0]+1][Math.floor(position[1]/2)] = next_match
+      next_match.save()
 
     # Add new user/team showing to the next match
     if @get('isTeamMode')
@@ -131,7 +131,6 @@ Gameway.IndexController = Ember.ObjectController.extend(
     else
       new_showing = @store.createRecord('userShowing', {userId: showing.user_id, top: top, matchId: next_match.id})
 
-    next_match.save()
     new_showing.save()
     @get('model').save()
 

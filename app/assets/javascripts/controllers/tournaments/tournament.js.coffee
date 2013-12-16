@@ -106,26 +106,36 @@ Gameway.IndexController = Ember.ObjectController.extend(
               return true
     return position
 
-  # advanceSlot: (position, showing) ->
-  #   match = @get('bracket')[position[0]][position[1]]
-  #   console.log showing.user_id
+  advanceSlot: (position, showing) ->
+    # Find match
+    match = @get('bracket')[position[0]][position[1]]
 
-  #   if position[1] % 2 == 0
-  #     top = true
-  #   else
-  #     top = false
+    # Determine whether slot is top or bottom
+    if position[1] % 2 == 0
+      top = true
+    else
+      top = false
 
-  #   if @get('isTeamMode')
-  #     @store.createRecord('teamShowing', {team_id: showing.team_id, top: top})
-  #   else
-  #     @store.createRecord('userShowing', {user_id: showing.user_id, top: top})
+    # Find next match
+    next_match = @get('bracket')[position[0]+1][Math.floor(position[1]/2)]
+
+    # If next match is nil, create a new one and place in correct position
+    if next_match is null
+      next_match = @store.createRecord('match', {tournamentId: @get('id')})
+      @get('matches').pushObject(next_match)
+      @get('bracket')[position[0]+1][Math.floor(position[1]/2)] = next_match
+
+    # Add new user/team showing to the next match
+    if @get('isTeamMode')
+      new_showing = @store.createRecord('teamShowing', {teamId: showing.team_id, top: top, matchId: next_match.id})
+    else
+      new_showing = @store.createRecord('userShowing', {userId: showing.user_id, top: top, matchId: next_match.id})
+
+    next_match.save()
+    new_showing.save()
+    @get('model').save()
 
 
-
-    # console.log position
-    # console.log match
-
-
-  ## Maybe you can convert EVERYTHING (bracket/bracket_controller.rb) to ember
+  ## Maybe I can convert bracket/bracket_controller.rb to ember too
   # calculateRounds:
 )

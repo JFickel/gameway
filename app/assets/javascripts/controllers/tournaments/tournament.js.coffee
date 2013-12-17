@@ -5,7 +5,6 @@ Gameway.IndexController = Ember.ObjectController.extend(
       membership = this.store.createRecord('tournament_membership', {tournamentId: @get('id'), userId: true})
       membership.save()
 
-
     start: (showing) ->
       $.ajax
         url: "#{location.origin}/tournaments/#{@get('id')}/start"
@@ -16,22 +15,24 @@ Gameway.IndexController = Ember.ObjectController.extend(
     edit: ->
       window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
 
-    # advanceSlot: (showing) ->
-    #   position = calculatePosition(showing)
-    #   if position[1] % 2 == 0
-    #     top = true
-    #   else
-    #     top = false
+    advanceSlot: (showing) ->
+      position = @calculatePosition(showing)
+      if position[1] % 2 == 0
+        top = true
+      else
+        top = false
 
-    #   if @get('isTeamMode')
-    #     showing = @store.createRecord('teamShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
-    #   else
-    #     showing = @store.createRecord('userShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
+      if @get('isTeamMode')
+        # showing = @store.createRecord('teamShowing', {userId: showing.get('userId'), matchId: , top: top})
+      else
+        # new_showing = @store.createRecord('userShowing', {userId: showing.user_id, matchId: @store.getById('match', showing.match_id).get('next.id'), top: top})
+        next_match = @store.getById('match', showing.match_id).get('next')
+        new_showing = @store.createRecord('userShowing', {userId: showing.user_id, matchId: next_match.get('id'), top: top})
+        next_match.get('userShowings').pushObject(new_showing)
+        next_match.save()
 
-    #   showing.save()
-
-    # deleteSlot: (showing) ->
-    #   showing.destroyRecord()
+    deleteSlot: (showing) ->
+      showing.destroyRecord()
 
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]

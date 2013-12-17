@@ -4,7 +4,9 @@ Gameway.Tournament = DS.Model.extend(
   description: DS.attr('string')
   rules: DS.attr()
   starts_at: DS.attr('date')
-  bracket: DS.attr()
+
+  bracket: DS.castManyMany('match')
+
   mode: DS.attr('string')
   current_opponent: DS.attr()
   started: DS.attr('boolean')

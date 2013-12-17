@@ -1,7 +1,15 @@
 Gameway.Match = DS.Model.extend
-  # next: DS.belongsTo('match')
-  previous: DS.attr('')
+  next: (->
+    id = @get('data.next_match_id')
+    return @store.getById('match', id) if id
+  ).property('data')
 
+  previous: (->
+    id = @get('data.previous_match_id')
+    return @store.getById('match', id) if id
+  ).property('data')
+
+  round_index: DS.attr()
 
   tournament: DS.belongsTo('tournament')
   userShowings: DS.hasMany('userShowing')

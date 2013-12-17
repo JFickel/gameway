@@ -3,6 +3,8 @@
     {{view Gameway.SlotView}}
   {{/each}}
 {{else}}
+  {{!-- {{log match}} --}}
+  {{!-- {{log match.user_showings}} --}}
   {{#each slot in match.user_showings}}
     {{view Gameway.SlotView}}
   {{/each}}

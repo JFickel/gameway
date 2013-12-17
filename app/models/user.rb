@@ -48,17 +48,17 @@ class User < ActiveRecord::Base
   multisearchable against: [:username, :first_name, :last_name],
                   using: { tsearch: { prefix: true }}
 
-  after_create :set_gravatar_as_default
+  # after_create :set_gravatar_as_default
 
   def avatar_url(size)
     gravatar_id = Digest::MD5.hexdigest(self.email.downcase)
     "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=identicon&r=PG"
   end
 
-  def set_gravatar_as_default
-    self.remote_avatar_url = avatar_url(400)
-    self.save
-  end
+  # def set_gravatar_as_default
+  #   self.remote_avatar_url = avatar_url(400)
+  #   self.save
+  # end
 
   def search
     if params[:query].present?

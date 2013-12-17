@@ -1,9 +1,13 @@
 class MatchSerializer < ActiveModel::Serializer
   embed :ids, include: true
-  attributes :id, :tournament_id, :next_match_id
+  attributes :id, :tournament_id, :next_match_id, :previous_match_id, :round_index
 
   has_many :user_showings
   has_many :team_showings
+
+  def previous_match_id
+    object.previous.id if object.previous
+  end
   # has_one :previous
 
   # def next

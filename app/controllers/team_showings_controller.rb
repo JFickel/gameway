@@ -10,4 +10,10 @@ class TeamShowingsController < ApplicationController
   def destroy
     TeamShowing.destroy(params[:id])
   end
+
+  private
+
+  def team_showing_params
+    params.require(:team_showing_params).permit(:team_id, :match_id, :top)
+  end
 end

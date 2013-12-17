@@ -1,13 +1,27 @@
 class MatchesController < ApplicationController
   def create
-    Match.create(params)
+    if match = Match.create(match_params)
+      render json: match
+    end
   end
 
   def update
-    Match.update_attributes(params)
+    match = Match.find(params[:id])
+    if match.update_attributes(match_params)
+      render json: match
+    end
+
   end
 
   def destroy
-    Match.destroy(params[:id])
+    if Match.destroy(params[:id])
+      render status: 200
+    end
+  end
+
+  private
+
+  def match_params
+    params.require(:match).permit(:tournament_id)
   end
 end

@@ -16,22 +16,22 @@ Gameway.IndexController = Ember.ObjectController.extend(
     edit: ->
       window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
 
-    advanceSlot: (showing) ->
-      position = calculatePosition(showing)
-      if position[1] % 2 == 0
-        top = true
-      else
-        top = false
+    # advanceSlot: (showing) ->
+    #   position = calculatePosition(showing)
+    #   if position[1] % 2 == 0
+    #     top = true
+    #   else
+    #     top = false
 
-      if @get('isTeamMode')
-        showing = @store.createRecord('teamShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
-      else
-        showing = @store.createRecord('userShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
+    #   if @get('isTeamMode')
+    #     showing = @store.createRecord('teamShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
+    #   else
+    #     showing = @store.createRecord('userShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
 
-      showing.save()
+    #   showing.save()
 
-    deleteSlot: (showing) ->
-      showing.destroyRecord()
+    # deleteSlot: (showing) ->
+    #   showing.destroyRecord()
 
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]

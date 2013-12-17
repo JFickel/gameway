@@ -1,6 +1,7 @@
 Gameway.Match = DS.Model.extend
-  next: DS.attr()
-  previous: DS.attr()
+  # next: DS.belongsTo('match')
+  previous: DS.attr('')
+
 
   tournament: DS.belongsTo('tournament')
   userShowings: DS.hasMany('userShowing')
@@ -16,7 +17,6 @@ Gameway.Match = DS.Model.extend
 # Gameway.NextMatch = DS.Model.extend
 #   match: DS.belongsTo('Gameway.Match')
 #   nextMatchId: DS.attr()
-
 
 # App.User = DS.Model.extend
 #   name: DS.attr('string')

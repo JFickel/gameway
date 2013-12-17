@@ -21,12 +21,12 @@ class Bracket
 
   def construct_round_arrays
     # Each created nested array represents a round. The rightmost array represents the location for the winner
-    winner_holder = Match.new
+    winner_holder = Match.create
     @output = [[winner_holder]]
     tournament.matches << winner_holder
     rounds.times do |i|
       round_matches = (2**(i+1)/2).times.with_object([]) do |num,array|
-        match = Match.new
+        match = Match.create
         array << match
         tournament.matches << match
       end
@@ -40,6 +40,7 @@ class Bracket
       round.each.with_index do |match, mi|
         unless max_length == ri
           match.next = @output[ri+1][mi/2]
+          match.save
         end
       end
     end

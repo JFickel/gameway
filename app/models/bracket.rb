@@ -12,6 +12,7 @@ class Bracket
   def construct
     # Builds round arrays. Fills first (filter) and second (filitered) rounds with matches and showings
     construct_round_arrays
+    set_next_matches
     fill_round_arrays
     return @output
   end
@@ -30,6 +31,17 @@ class Bracket
         tournament.matches << match
       end
       @output.unshift round_matches
+    end
+  end
+
+  def set_next_matches
+    max_length = @output.length - 1
+    @output.each.with_index do |round, ri|
+      round.each.with_index do |match, mi|
+        unless max_length == ri
+          match.next = @output[ri+1][mi/2]
+        end
+      end
     end
   end
 

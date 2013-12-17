@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20131114213231) do
   end
 
   create_table "matches", force: true do |t|
+    t.integer  "next_match_id"
     t.integer  "tournament_id"
     t.datetime "created_at"
     t.datetime "updated_at"

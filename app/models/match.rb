@@ -6,6 +6,13 @@ class Match < ActiveRecord::Base
   has_many :team_showings
   has_many :teams, through: :team_showings
 
+  has_one :previous,
+    class_name: 'Match',
+    foreign_key: 'next_match_id'
+  belongs_to :next,
+    class_name: 'Match',
+    foreign_key: 'next_match_id'
+
   def showings
     if tournament.mode == 'individual'
       user_showings

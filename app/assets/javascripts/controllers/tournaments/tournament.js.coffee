@@ -7,50 +7,31 @@ Gameway.IndexController = Ember.ObjectController.extend(
 
 
     start: (showing) ->
-      console.log @get('users')
-      # position = @calculatePosition(showing)
-      # console.log position
-      # @advanceSlot position, showing
-      # self = this
-      # $.ajax
-      #   url: "#{location.origin}/tournaments/#{@get('id')}/start"
-      #   type: 'POST'
-      #   data: {tournament: {start: true}}
-      # @get('model').reload()
-
+      $.ajax
+        url: "#{location.origin}/tournaments/#{@get('id')}/start"
+        type: 'POST'
+        data: {tournament: {start: true}}
+      @get('model').reload()
 
     edit: ->
       window.location.href = "#{location.origin}/tournaments/#{@get('id')}/edit"
 
-
-    # NONONO!!! This should all be done with ember-data
     advanceSlot: (showing) ->
-      self = this
-      $.ajax
-        type: 'POST'
-        url: '/slots'
-        dataType: 'json'
-        data:
-          showing_id: showing_id
-          id: @get('id')
-      @get('model').reload()
-        success: (data) ->
-          console.log data
-          this.get('model').reload()
+      position = calculatePosition(showing)
+      if position[1] % 2 == 0
+        top = true
+      else
+        top = false
 
+      if @get('isTeamMode')
+        showing = @store.createRecord('teamShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
+      else
+        showing = @store.createRecord('userShowing', {userId: showing.get('userId'), matchId: showing.get('next.id'), top: top})
+
+      showing.save()
 
     deleteSlot: (showing) ->
-      $ajax
-        type: 'DELETE'
-        url: '/slots'
-        dataType: 'json'
-        data:
-          showing_id: showing_id
-          id: @get('id')
-        success: (data) ->
-          console.log data
-          # @get('model').reload()
-
+      showing.destroyRecord()
 
   isTeamMode: (->
     # console.log @get('liveStreamers')[0][1]
@@ -107,33 +88,6 @@ Gameway.IndexController = Ember.ObjectController.extend(
             else
               return true
     return position
-
-  advanceSlot: (position, showing) ->
-    # Determine whether slot is top or bottom
-    if position[1] % 2 == 0
-      top = true
-    else
-      top = false
-
-    # Find next match
-    next_match = @get('bracket')[position[0]+1][Math.floor(position[1]/2)]
-
-    # If next match is nil, create a new one and place in correct position
-    if next_match is null
-      next_match = @store.createRecord('match', {tournamentId: @get('id')})
-      @get('matches').pushObject(next_match)
-      @get('bracket')[position[0]+1][Math.floor(position[1]/2)] = next_match
-      next_match.save()
-
-    # Add new user/team showing to the next match
-    if @get('isTeamMode')
-      new_showing = @store.createRecord('teamShowing', {teamId: showing.team_id, top: top, matchId: next_match.id})
-    else
-      new_showing = @store.createRecord('userShowing', {userId: showing.user_id, top: top, matchId: next_match.id})
-
-    new_showing.save()
-    @get('model').save()
-
 
   ## Maybe I can convert bracket/bracket_controller.rb to ember too
   # calculateRounds:

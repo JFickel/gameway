@@ -24,6 +24,6 @@ Gameway.Tournament = DS.Model.extend(
   teams: DS.hasMany('team')
   matches: DS.hasMany('match')
 
-  moderators: DS.attr()
-  broadcasters: DS.attr()
+  moderators: DS.hasMany('moderator')
+  broadcasters: DS.hasMany('broadcaster')
 )

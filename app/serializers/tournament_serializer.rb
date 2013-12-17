@@ -1,4 +1,5 @@
 class TournamentSerializer < ActiveModel::Serializer
+  embed :ids, include: true
   attributes :id,
              :title,
              :game,
@@ -20,6 +21,7 @@ class TournamentSerializer < ActiveModel::Serializer
   has_many :moderators
   has_many :broadcasters
   has_many :matches
+
 
   def bracket
     tournament = Tournament.includes(:matches).find(object)

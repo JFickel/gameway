@@ -28,3 +28,18 @@ window.Gameway = Ember.Application.create({
   rootElement: '#tournament-show'
 });
 
+// record.set("tier", "bronze")
+// record.set("points", 0)
+// record.save().then(function() { Gameway.flash("Gameway", "You have been assigned to the Bronze league."); })
+
+window.Gameway.Flasher = {
+  // { message: <str>, cssClass: <str> }
+  messages: [],
+
+  message: function(message) {
+    this.messages.pushObject({
+      message: message,
+      cssClass: "info"
+    });
+  }
+};

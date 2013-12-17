@@ -8,3 +8,7 @@ Gameway.User = DS.Model.extend(
   lol_account: DS.attr()
   starcraft2_account: DS.attr()
 )
+
+Gameway.Broadcaster = Gameway.User.extend()
+
+Gameway.Moderator = Gameway.User.extend()

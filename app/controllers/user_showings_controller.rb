@@ -1,15 +1,13 @@
 class UserShowingsController < ApplicationController
   def create
-    if user_showing = UserShowing.create(user_showing_params)
-      render json: user_showing
-    end
+    UserShowing.create(user_showing_params)
+    render json: user_showing
   end
 
   def update
     user_showing = UserShowing.find(params[:id])
-    if UserShowing.update_attributes(user_showing_params)
-      render json: user_showing
-    end
+    user_showing.update_attributes(user_showing_params)
+    render json: user_showing
   end
 
   def destroy

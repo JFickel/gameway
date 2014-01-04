@@ -5,7 +5,7 @@ Gameway.Tournament = DS.Model.extend(
   rules: DS.attr()
   starts_at: DS.attr('date')
 
-  bracket: DS.castManyMany('match')
+  # bracket: DS.castManyMany('match')
 
   mode: DS.attr('string')
   current_opponent: DS.attr()
@@ -28,4 +28,14 @@ Gameway.Tournament = DS.Model.extend(
 
   moderators: DS.hasMany('moderator')
   broadcasters: DS.hasMany('broadcaster')
+
+  bracket: (->
+    rounds = { }
+    @get('matches').forEach (match) ->
+      round_index = match.get('roundIndex')
+      round = rounds[round_index] = rounds[round_index] || []
+      round.push(match)
+    # equivalent to Hash#values
+    Object.keys(rounds).sort().map((round) -> rounds[round])
+  ).property("matches")
 )

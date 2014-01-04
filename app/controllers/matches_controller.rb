@@ -10,7 +10,6 @@ class MatchesController < ApplicationController
     if match.update_attributes(match_params)
       render json: match
     end
-
   end
 
   def destroy

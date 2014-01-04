@@ -6,7 +6,7 @@ class TournamentSerializer < ActiveModel::Serializer
              :description,
              :rules,
              :starts_at,
-             :bracket,
+             # :bracket,
              :mode,
              :current_opponent,
              :started,
@@ -23,18 +23,18 @@ class TournamentSerializer < ActiveModel::Serializer
   has_many :matches
 
 
-  def bracket
-    tournament = Tournament.includes(:matches).find(object)
-    if tournament.bracket.present?
-      tournament.bracket.map do |round|
-        round.map do |match|
-          if match != nil
-            MatchSerializer.new match
-          end
-        end
-      end
-    end
-  end
+  # def bracket
+  #   tournament = Tournament.includes(:matches).find(object)
+  #   if tournament.bracket.present?
+  #     tournament.bracket.map do |round|
+  #       round.map do |match|
+  #         if match != nil
+  #           MatchSerializer.new match
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
   def owner
     UserSerializer.new(object.owner)

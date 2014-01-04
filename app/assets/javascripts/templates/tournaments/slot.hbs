@@ -6,9 +6,9 @@
   {{#if hasModeratorAccess}}
     <div class="slot">
      <a class="delete-slot-btn" {{action 'deleteSlot' slot}}>x</a>
-     <button class="advance-slot" {{action 'advanceSlot' slot}}>{{slot.username}}</button>
+     <button class="advance-slot" {{action 'advanceSlot' slot}}>{{slot.user.username}}</button>
     </div>
   {{else}}
-    <a href="/users/{{unbound slot.user_id}}" class="slot">{{slot.username}}</a>
+    <a href="/users/{{unbound slot.user_id}}" class="slot">{{slot.user.username}}</a>
   {{/if}}
 {{/if}}

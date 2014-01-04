@@ -9,7 +9,7 @@ Gameway.Match = DS.Model.extend
     return @store.getById('match', id) if id
   ).property('data')
 
-  round_index: DS.attr()
+  roundIndex: DS.attr()
 
   tournament: DS.belongsTo('tournament')
   userShowings: DS.hasMany('userShowing')

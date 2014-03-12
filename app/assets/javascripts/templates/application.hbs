@@ -1,3 +1,42 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Gameway</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav" padding-left="20px">
+        <li class="active"><a href="#">Tournaments</a></li>
+        <li><a href="#">Teams</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Forgot password?</a></li>
+        <li><a href="#">Sign Up</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-right" role="login">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Email">
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Log In</button>
+      </form>
+
+<!--       <ul class="nav navbar-nav navbar-right">
+        <li padding-right='10px'><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png"></li>
+      </ul> -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 <div style="width: 600px; border: 6px solid #eee; margin: 0 auto; padding: 20px; text-align: center; font-family: sans-serif;">
   <img src="http://emberjs.com/images/about/ember-productivity-sm.png" style="display: block; margin: 0 auto;">
   <h1>Welcome to Ember.js!</h1>
@@ -5,3 +44,5 @@
   (inside <code>app/assets/javascripts/templates/application.handlebars</code>) with your application's
   HTML.</p>
 </div>
+
+<h1>{{appName}}</h1>

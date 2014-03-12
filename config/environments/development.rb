@@ -31,5 +31,6 @@ Gameway::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.cache_store = :dalli_store
+  # Memcached config
+  # config.cache_store = :dalli_store
 end

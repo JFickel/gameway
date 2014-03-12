@@ -14,13 +14,22 @@ class TournamentsController < ApplicationController
   end
 
   def index
-    @tournaments = Rails.cache.fetch("text_search_#{params[:query]}") do
-      if params[:query].present?
-        Tournament.text_search(params[:query]).includes(:matches => :users)
-      else
-        Tournament.all
-      end
+    debugger;
+    if params[:query].present?
+      @tournaments = Tournament.text_search(params[:query])
+    else
+      @tournaments = Tournament.all
     end
+
+    # Memcached example:
+    # @tournaments = Rails.cache.fetch("text_search_#{params[:query]}") do
+    #   if params[:query].present?
+    #     Tournament.text_search(params[:query]).includes(:matches => :users)
+    #   else
+    #     Tournament.all
+    #   end
+    # end
+
     respond_to do |format|
       format.html
       format.json { render :json => @tournaments }
@@ -42,14 +51,20 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournament, @owner, @tournament_membership = Rails.cache.fetch("tshow_#{params[:id]}") do
-      tournament = Tournament.where(:id => params[:id]).includes(:matches => [:users, :user_showings]).first
-      owner = tournament.owner
-      tm = TournamentMembership.new
-      [tournament, owner, tm]
-    end
+
+    @tournament = Tournament.find(params[:id])
+    @owner = @tournament.owner
+    @tournament_membership = TournamentMembership.new
+
+    # Memcached example
+    # @tournament, @owner, @tournament_membership = Rails.cache.fetch("tshow_#{params[:id]}") do
+    #   tournament = Tournament.where(:id => params[:id]).includes(:matches => [:users, :user_showings]).first
+    #   owner = tournament.owner
+    #   tm = TournamentMembership.new
+    #   [tournament, owner, tm]
+    # end
     # @opponent = @tournament.current_opponent(current_user)
-    @tournament.reload
+    # @tournament.reload
 
     respond_to do |format|
       format.html

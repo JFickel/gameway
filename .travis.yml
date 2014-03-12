@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.0.0-p451
+  - "2.0.0-p195"
 env:
   global:
   - secure: XM6K22SbMLuN2vdQH2+1rqDJvpSMy+9wJMS6nhd1Ed8OEhb0VeBNsRJEj2vb5oo6noeEQ8UWYuLJqaiTEaR8kYYsL4RHQCS6izxY7RCkIdCk/wayHchdSO+882sGlQbb9rOQe5oPg5XYNnxfq2cujxEITQv1URzOiYRF3s0gwqQ=

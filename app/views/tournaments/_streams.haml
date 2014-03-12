@@ -1,7 +1,0 @@
-/ - if @tournament.started && @tournament.live_streamers.present?
-%h2= 'Broadcasters'
-- @tournament.live_streamers.each do |streamer|
-  = link_to link_to image_tag(streamer.user.avatar.profile.url, class: 'tournament-streamer-avatar', width: '47px'), user_path(streamer.user)
-  = link_to "#{streamer.user.username} - #{streamer.user.first_name} #{streamer.user.last_name}", user_path(streamer.user)
-  = link_to I18n.t('accounts.twitch_watch'), streamer.get_stream_url, class: 'small-btn'
-

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Gameway::Application.config.secret_key_base = '74ecf2b1a3f40e910ad9df1174288e6794ffe49a77f32512c479b63253288e1b9590c4b983a0954be1f9ae098cbf77948b01410067eb41a01d1b141ae3b1006c'
+Gameway::Application.config.secret_key_base = '9771ff239128c9f2d410756ad6ae97f293787f55772994524e07fec46fd1df1d5d4394cdc71ea6e103bb11b1dbbc1c12a8da6c7b2dff49ee8b389b4c1ed1b554'

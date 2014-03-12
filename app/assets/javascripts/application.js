@@ -12,34 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
-//= require twitter/typeahead.min
-//= require detect_timezone
-//= require jquery.detect_timezone
-//= require hogan.js
+//= require turbolinks
+//= require jquery
 //= require handlebars
 //= require ember
 //= require ember-data
 //= require_self
 //= require gameway
+
+// for more details see: http://emberjs.com/guides/application/
+Gameway = Ember.Application.create();
+
 //= require_tree .
-
-window.Gameway = Ember.Application.create({
-  rootElement: '#tournament-show'
-});
-
-// record.set("tier", "bronze")
-// record.set("points", 0)
-// record.save().then(function() { Gameway.flash("Gameway", "You have been assigned to the Bronze league."); })
-
-window.Gameway.Flasher = {
-  // { message: <str>, cssClass: <str> }
-  messages: [],
-
-  message: function(message) {
-    this.messages.pushObject({
-      message: message,
-      cssClass: "info"
-    });
-  }
-};

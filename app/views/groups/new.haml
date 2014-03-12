@@ -1,7 +1,0 @@
-.new-group
-  %h2= I18n.t("groups.form")
-  %p= I18n.t("groups.control_disclaimer")
-  = form_for @group, html: {class: 'new-group-form'} do |f|
-    = f.text_field :name, placeholder: I18n.t("groups.name"), class: 'new-group-input'
-    = f.submit "Create", :disable_with => 'Creating...', class: 'new-group-btn'
-

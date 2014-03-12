@@ -1,188 +1,23 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 en:
-  main:
-    app: "Gameway"
-  navigation:
-    groups: "Groups"
-    tournaments: "Tournaments"
-    teams: "Teams"
-  model:
-    create: "Create"
-    delete: "Delete"
-    update: "Update"
-    edit: "Edit"
-  affiliations:
-    add: "Add an Affiliation"
-    description: "Associate your team with a group, tournament or even another team."
-  home:
-    slogan: "[Gaming Intensifies]"
-    connect: 'Connect'
-    connect_description: 'Find gaming groups at your school. Link your game accounts and see how you rank against your friends.'
-    create: 'Create'
-    create_description: 'Build a home page for your gaming community. Set up a calendar for your gaming team. Gain a following.'
-    compete: 'Compete'
-    compete_description: 'Join tournaments and put your skills to the test. Win money and prizes. Show off your awards.'
-  search:
-    search_results: "Search Results"
-    filter: "Filter By"
-    search: "Search"
-    results: "Results"
-    enter_query: "Enter search query here"
-  groups:
-    group_list: "Group List"
-    none: "It looks like you don't belong to any groups yet. Take a look through our group listings and join one or create your own!"
-    find: "Find a Group"
-    name: "Group Name"
-    form: "Create a Group"
-    create: "Create Group"
-    join: "Join Group"
-    members: "Members"
-    listing: "All Groups"
-    control_disclaimer: "Groups are open-ended which means anyone can join. Groups are controlled by member consensus."
-  events:
-    edit: "Edit Event"
-    create: "Create an Event"
-    add: "Add Event"
-    events: "Events"
-  teams:
-    closed: "Closed"
-    open: "Open"
-    team_list: "Team List"
-    management: "Team Management"
-    add_member: "Add Member"
-    change_name: "Team Name Change"
-    manage: "Manage"
-    management: "Team Management"
-    find: "Find a Team"
-    leader: "Leader"
-    members: "Team Members"
-    member: "Member"
-    change_display: "Change display picture"
-    listing: "All Teams"
-    length_disclaimer: "Team name must be 3-24 characters in length."
-    form: "Create a Team"
-    create: "Create Team"
-    name: "Team Name"
-    none: "It looks like you don't belong to any teams yet. You can create your own or search through the team listings and apply to one."
-  moderators:
-    list: "Moderator List"
-    add: "Add Moderator"
-    moderators: "Moderators"
-    existing: "Existing Moderators"
-  broadcasters:
-    list: "Broadcaster List"
-    add: "Add Broadcaster"
-    broadcasters: "Broadcasters"
-    existing: "Existing Broadcasters"
-  tournaments:
-    moderator: "Moderator"
-    edit_form: "Manage Tournament"
-    create_form: "Create Tournament Form"
-    team_disclaimer: "You must be a team leader or officer to sign your team up for this tournament."
-    add_auxiliary: "Add Broadcasters and Moderators"
-    tournament: "Tournament"
-    applications_open: "Applications Open"
-    closed: "Closed"
-    open: "Open"
-    open_description: "Anyone can enter open tournaments. If you decide to make a closed tournament, you can choose whether or not to accept applications for spots in the tournament."
-    mode_description: "Only teams will be able to sign up for this tournament in team mode. Only users will be able to sign up for this tournament in individual mode."
-    team_mode: "Team"
-    individual_mode: "Individual"
-    starts_at: "Tournament starts at"
-    delete: "Delete"
-    edit: "Manage"
-    find: "Find a Tournament"
-    description: "Description"
-    participants: "Participants"
-    participant_list: "Participant List"
-    enter: "Enter Tournament"
-    manual_start: "Manual Start"
-    participant: "Participant"
-    owner: "Owner"
-    listing: "Upcoming Tournaments"
-    title: "Tournaments"
-    create: "Create Tournament"
-    none: "It looks like you don't belong to any tournaments yet. You can create your own or search through the tournament listings and find one to join."
-  providers:
-    facebook: "Facebook"
-    twitch: "Twitch"
-  accounts:
-    sc2: "Starcraft 2"
-    sc2_url: "Starcraft 2 Profile URL"
-    twitch: "Twitch.tv"
-    twitch_username: "Twitch.tv Username"
-    twitch_online: "Stream is online"
-    twitch_offline: "Stream is offline"
-    twitch_watch: "Watch Stream"
-    twitch_visit: "Visit Twitch Channel"
-    summoner_name: "League of Legends Summoner Name"
-  users:
-    signup_form: "Sign Up Form "
-    manage: "Manage your account"
-    users: "Users"
-    find: "Find User"
-    edit: "Edit User"
-    user: "User"
-    change_display: "Fix your display picture"
-    admin: "Admin"
-    settings: "Settings"
-    logout: "Logout"
-    login: "Login"
-    signup: "Sign Up"
-    get_started: "Create an account:"
-    remember_me: "Remember Me"
-    password: "Password"
-    username_or_email: "Username or Email"
-    username: "Username"
-    first_name: "First Name"
-    last_name: "Last Name"
-    email: "Email"
-    personal_information: "Personal Information"
-    providers: "Providers"
-    gamer_accounts: "Gamer Accounts"
-    link_accounts: "Link your accounts"
-    other_providers: "Other Providers"
-    sign_in: "Sign in"
-    sign_in_with: "Sign in with %{provider}"
-    didnt_unlock: "Didn't receive unlock instructions?"
-    didnt_confirmation: "Didn't receive confirmation instructions?"
-    forgot_password: "(forgot password)"
-    sign_up: "Sign up"
-    reset_password: "Reset Password"
-    resend_confirmation: "Resend Confirmation Email"
-    unlock_directions: "Unlock Directions"
-    cancel_account: "Cancel Account"
-    sure: "Are you sure?"
-    name: "Name"
-    password_confirmation: "Password Confirmation"
-    current_password: "Current Password"
-    update_profile: "Update Profile"
-    need_current_password: "We need your current password to confirm your changes."
-    change_password: "Change Password"
-    password_reset: "Password Reset"
-    unlock_account: "Unlock My Account"
-    logged_in: "You are logged in as"
-    locked_due_to_attempts: "Your account has been locked due to an excessive number of login attempts."
-    click_to_unlock: "Click the link below to unlock your account"
-    someone_requested: "Someone has requested a link to change your password. You can do this through the link below."
-    didnt_request: "If you didn't request this, please ignore this email."
-    email_wont_change_until: "Your password won't change until you access the link above and create a new password."
-    welcome: "Welcome %{name}!"
-    confirm_with_link: "You can confirm your account through the link below"
-    confirm_my_account: "Confirm My Account"
-    finish_signup: "Please finish the signup process below."
-  games:
-    name: "Game Name"
-    add: "Add Game"
-    edit: "Edit Game"
-    game_list: "Game List"
-  helpers:
-    submit:
-      create: "Create"
-      update: "Update"
-  errors:
-    messages:
-      carrierwave_processing_error: "Cannot resize image."
-      carrierwave_integrity_error: "Not an image."
-      carrierwave_download_error: "Couldn't download image."
-      extension_white_list_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
-      extension_black_list_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+  hello: "Hello world"

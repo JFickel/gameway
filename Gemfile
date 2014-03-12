@@ -3,9 +3,7 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem 'bourbon'
 
 # Add Segment.io analytics
 gem 'analytics-ruby', '<1.0'
@@ -20,7 +18,7 @@ gem 'hogan_assets'
 gem 'haml-rails'
 
 # Use devise for authentication
-gem 'devise', branch: 'rails4'
+gem 'devise', '3.2.3'
 
 # Postgres for heroku
 gem 'pg'
@@ -36,8 +34,6 @@ gem 'ember-source', '1.2.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitch_oauth2'
-
-gem 'twitter'
 
 # Use rails admin for back-end
 gem 'rails_admin'
@@ -87,7 +83,6 @@ gem "koala"
 # Game API Wrappers
 gem 'ruby-lol'
 gem 'starcraft2'
-# gem 'twitch'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -103,7 +98,6 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
-  # gem 'capybara-webkit'
   gem 'launchy'
   gem 'pry-rails'
 
@@ -114,7 +108,6 @@ group :development, :test do
   gem 'spork-rails'
   gem 'guard-spork'
 
-  # Test coverage analysis
   gem 'simplecov'
 end
 

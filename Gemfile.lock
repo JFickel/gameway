@@ -396,7 +396,7 @@ DEPENDENCIES
   rails (= 4.0.3)
   rails_12factor
   rails_admin
-  rmagick
+  rmagick (= 2.13.2)
   rspec-rails
   ruby-lol
   sass-rails (~> 4.0.0)

@@ -72,7 +72,7 @@ describe Tournament do
     end
 
     it 'should have 9 matches in the first round with 25 teams' do
-      expect(tournament_with_teams.start.bracket.first.count {|e| e.class.try(:model_name).try(:singular) == 'match' }).to eq 9
+      expect(tournament_with_teams.start.bracket.first.count {|e| e.class == Match }).to eq 9
     end
 
     it 'should initialize 13 matches total with 25 teams' do

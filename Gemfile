@@ -4,6 +4,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 
 gem 'sass-rails', '~> 4.0.0'
+gem 'bourbon', '3.1.8'
 
 # Use typeahead.js for autocomplete
 gem 'twitter-typeahead-rails'
@@ -26,6 +27,8 @@ gem 'active_model_serializers'
 # Working with Ember.js
 gem 'ember-rails'
 gem 'ember-source', '1.2.0'
+
+gem 'gon', '5.0.4'
 
 # Using FB and twitch omniauth
 gem 'omniauth'

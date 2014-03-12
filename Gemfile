@@ -7,7 +7,6 @@ gem 'ember-source', '1.4.0'
 gem 'active_model_serializers'
 gem 'gon'
 
-
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
@@ -32,5 +31,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
+group :development, :test do
+  gem 'debugger'
+  gem 'simplecov'
+
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'pry-rails'
+
+  gem 'better_errors' # go to /__better_errors to see the last error
+  gem 'binding_of_caller'
+end

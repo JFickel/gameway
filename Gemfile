@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0', patchlevel: "195"
+ruby '2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -95,6 +95,8 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'debugger'
+
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'factory_girl_rails'
@@ -124,6 +126,3 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-
-# Use debugger
-gem 'debugger', group: [:development, :test]

@@ -5,9 +5,6 @@ gem 'rails', '4.0.3'
 
 gem 'sass-rails', '~> 4.0.0'
 
-# Add Segment.io analytics
-gem 'analytics-ruby', '<1.0'
-
 # Use typeahead.js for autocomplete
 gem 'twitter-typeahead-rails'
 

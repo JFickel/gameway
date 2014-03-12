@@ -1,6 +1,20 @@
 language: ruby
 rvm:
-  - "2.0.0-p195"
+- 2.0.0-p451
+env:
+  global:
+  - secure: XM6K22SbMLuN2vdQH2+1rqDJvpSMy+9wJMS6nhd1Ed8OEhb0VeBNsRJEj2vb5oo6noeEQ8UWYuLJqaiTEaR8kYYsL4RHQCS6izxY7RCkIdCk/wayHchdSO+882sGlQbb9rOQe5oPg5XYNnxfq2cujxEITQv1URzOiYRF3s0gwqQ=
+  - secure: A9hRHC8QXlxphkzngDFmrNH2xFnS/FrW8QQJbZcu8juWss2DcsbjOnptwC0m25SGiN4MnoZNA96Nlzjp5cvS4pVrhhO7K58MkxbDsbcD3k7t5u9rYOf6JjnefuCUu1suKRRpD1yxxKfjIuF7HiD0nAEnxr2J5eKzM+33BhIfbX0=
+  - secure: ly3gEzHP/LLFeHRytvVjLPb5O5C2ZjYBTDDUsHGuNdId9n6tf//gunsLSaZkR0UF9Tt/0XhgpuKUo1HQUD+qi1Go4sx5vOpHrgJ9WjGKz8r5200M1xlImnBsKDH2szr9drVqIRFcBVyXNBwYyLKnbLMJdDGrNxp0FTXLhzO2H1A=
+  - secure: HIQ0BLO5TsR5MFfM0ZxyN9uQNY5DGB153k1gvtQEg42UN/ImqJBny3v9EB3x+Gfnh42MrBSDoHbpJ/IK/PJYGvpQu4i4yZmZot6xyiRrBlRyqHlgDYYAr0zTDnd+OKzHe9239XzY/MNlx3QjOz4GyuG9TPUqnKUkEV2ZAf9tTfQ=
+  - secure: hFLl0JJxk4MHQuxRcBAWjKyH7XenWPknaPvzRwYX/uiowU4ihRUg7iXDejmKvXyTLeWp9tvCAzf0czfJcHGnxhB9KPeQc07EI2zlotQAGsLjPxV89Cf3gQHAXvyVPTdZNPNXELX/bpyJqAygItIwe2BdcjIIMlZZjTypMJvJnhY=
+  - secure: YqM/cfA/67n/TcrIqtyHtk+g4QPYpTlYkIO0xCpR1Q2pElqN2n+IWEsDjxSvGsEiTd0XQvWAdKACxd0TDHccybQFg0wOvBfqGZm4OvtD8GSOrRmFZEVA0SC9yV1lz3YVOud8bQLtUCufQafsigZgSRzUfWxdZjihjuIOwnu0+bg=
+  - secure: mVAkaa+sdrgnxZvjUE8S6PlJvF9ewkfEX8qNYTE7oIA+hr+EH2UsUbQLTcYk4FTMB18l/Z4BnWb0VOZ69flpvCNYf3mnD1ItjVID3FFlxvBgjYO/FBAfBZOoa7NG2SFaewtUud+WY1T8hPX1uHP/f0E5Jm0yXlYHmeFW+pYqAKA=
+  - secure: gUPBuN2mR5NEETe+U4zmfsIUGPWiyf83b1mYkjzxfayDfksp/bC/VWawRb16vjMbPf612Rb0gEj9DhdAHwRi0zaRdo+PEMpxWi4dHASzy9pWDbfwxvD7VOGpUeibMfbvqbjA97SljY3y/MciIccIFdQ5HCTtgDNuiFMYGmsCTWM=
+  - secure: TN8Rw943BI48A9herxJZ8QXA9VWC+xbiSpyhFhv6QLmFN3/hmngmsXA1cRkZcD3ZRxFIDybJJ/Ob+ticbUJ5cLozkqccE2VN/BhDTUr5KkfICzxoXwRx0m+FNdeZOpTGMNS3ABHXJF2svHNkX2desbJ32Khxb5/5AHHre5QjcsM=
+  - secure: dOfDwOsbod9uLzlEyuO59NcuEq7mbumTNjmMuDmMwVWP301qQt5sKM/tgOIBWoYKZequ6g3EVrU5WzvH6HBNi78P7U5vfDfvmn+MjbZI699vdPUsZZ/VmSvF9gdXE3mmcZBYaf7psViHTirN9mWHFKerhCzwqwHpRcWfVt0JIF0=
+  - secure: K88MWcaMpIiWkAlSZtxwbcuMNaYqj5tKZtIuT9EITHUpLxXVPZGeFiCGbubb/U9X+dyDp6YRL7dGW3v7CuBSU/ytu/mxO6IuTm6TyGz+83NJ5UMWQEZpzsP/da3OuyB6MRhYYegi0wZqoCFty24pTjdRY5XwspXgLsihzec9NhE=
+
 # deploy:
 #   provider: heroku
 #   api_key:

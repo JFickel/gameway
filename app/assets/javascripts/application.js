@@ -21,6 +21,8 @@
 //= require gameway
 
 // for more details see: http://emberjs.com/guides/application/
-Gameway = Ember.Application.create();
+Gameway = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
 //= require_tree .

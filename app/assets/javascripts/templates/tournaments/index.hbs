@@ -2,6 +2,6 @@
 
 <h2>Tournament Listing: </h2>
 
-{{#each tournament in model}}
-  <h3>{ id: {{tournament.id}}, title: {{tournament.title}}, description: {{tournament.description}} }</h3>
+{{#each tournament in controller}}
+  {{tournament.id}}. {{#link-to 'tournament' tournament}}{{tournament.title}}{{/link-to}}
 {{/each}}

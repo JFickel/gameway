@@ -1,2 +1,3 @@
-Gameway.TournamentsIndexController = Ember.Controller.extend({
+Gameway.TournamentsIndexController = Ember.ArrayController.extend({
+  
 })

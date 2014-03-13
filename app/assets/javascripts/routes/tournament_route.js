@@ -1,5 +1,5 @@
-// Gameway.TournamentRoute = Ember.Route.extend({
-//   model: function() {
-//     return this.store.find('tournament', 1)
-//   }
-// });
+Gameway.TournamentRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.store.find('tournament', params.tournament_id) // default behavior
+  }
+});

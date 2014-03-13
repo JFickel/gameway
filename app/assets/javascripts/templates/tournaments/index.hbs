@@ -1,0 +1,7 @@
+<h1>This is the TournamentsIndex template</h1>
+
+<h2>Tournament Listing: </h2>
+
+{{#each tournament in model}}
+  <h3>{ id: {{tournament.id}}, title: {{tournament.title}}, description: {{tournament.description}} }</h3>
+{{/each}}

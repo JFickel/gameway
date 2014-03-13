@@ -1,3 +1,3 @@
 Gameway.ApplicationController = Ember.Controller.extend({
-  appName: 'My First Example'
+  appName: 'This is a property of the application controller'
 });

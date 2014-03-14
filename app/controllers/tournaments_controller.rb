@@ -32,7 +32,7 @@ class TournamentsController < ApplicationController
   def destroy
     tournament = Tournament.find(params[:id])
     if tournament.destroy
-      render json: { msg: 'Successfully destroyed'}
+      render json: tournament
     else
       render json: { errors: tournament.errors }
     end

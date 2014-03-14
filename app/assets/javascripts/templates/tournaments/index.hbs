@@ -2,6 +2,8 @@
 
 <h2>Tournament Listing: </h2>
 
+{{#link-to 'tournaments.new' class="btn btn-primary btn-lg btn-info"}}Create Tournament{{/link-to}}
+
 {{#each tournament in controller}}
   {{tournament.id}}. {{#link-to 'tournament' tournament}}{{tournament.title}}{{/link-to}}
 {{/each}}

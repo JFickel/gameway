@@ -8,9 +8,9 @@ class TournamentsController < ApplicationController
     tournament = Tournament.new(tournament_params)
 
     if tournament.save
-      render status: 200
+      render json: tournament
     else
-      render status: 403
+      render json: { errors: tournament.errors }
     end
   end
 
@@ -23,18 +23,18 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
 
     if tournament.update_attributes(tournament_params)
-      render status: 200
+      render json: tournament
     else
-      render status: 403
+      render json: { errors: tournament.errors }
     end
   end
 
   def destroy
     tournament = Tournament.find(params[:id])
     if tournament.destroy
-      render status: 200
+      render json: { msg: 'Successfully destroyed'}
     else
-      render status: 403
+      render json: { errors: tournament.errors }
     end
   end
 

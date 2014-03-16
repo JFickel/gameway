@@ -5,7 +5,8 @@ gem 'rails', '4.0.3'
 gem 'ember-rails'
 gem 'ember-source', '1.4.0'
 gem 'active_model_serializers'
-gem 'gon'
+gem 'gon', '5.0.4'
+gem 'devise', '3.2.3'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'

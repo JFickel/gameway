@@ -3,14 +3,16 @@ Gameway.ApplicationController = Ember.Controller.extend({
   password: '',
   actions: {
     sign_in: function() {
+      thisController = this;
       $.ajax({
         type: "POST",
         url: "users/sign_in",
-        data: { authenticity_token: Gameway.gon.get('authenticityToken'), user: { email: this.get('email'), password: this.get('password') }, commit: "Sign in"  },
+        data: { authenticity_token: Gameway.gon.get('authenticityToken'), user: { email: thisController.get('email'), password: thisController.get('password') }, commit: "Sign in"  },
         success: function(data) {
-          Gameway.gon.set('authenticityToken', data.authenticity_token);
+          Gameway.gon.set('authenticityToken', data.authenticity_token)
+          Gameway.gon.set('currentUser', data.user);
+          Gameway.gon.set('userSignedIn', true);
           console.log("Signed in! :3");
-          alert("we did it reddit xD")
         }
       });
     },
@@ -18,10 +20,12 @@ Gameway.ApplicationController = Ember.Controller.extend({
       $.ajax({
         type: "DELETE",
         url: "users/sign_out",
+        data: { authenticity_token: Gameway.gon.get('authenticityToken') },
         success: function(data) {
+          Gameway.gon.set('authenticityToken', data.authenticity_token)
           Gameway.gon.set('currentUser', null);
           Gameway.gon.set('userSignedIn', false);
-          alert("we did it lebbit :DDD");
+          console.log("Signed out! :3");
         }
       })
     }

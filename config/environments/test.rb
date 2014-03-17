@@ -3,6 +3,18 @@ Gameway::Application.configure do
 
   # Devise config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "gameway.com",
+    :authentication => :login,
+    :user_name => ENV["GMAIL_USERNAME"],
+    :password => ENV["GMAIL_PASSWORD"]
+  }
+
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that

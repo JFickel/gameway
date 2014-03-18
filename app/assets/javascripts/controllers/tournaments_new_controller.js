@@ -1,4 +1,4 @@
-Gameway.TournamentsNewController = Ember.Controller.extend({
+Gameway.TournamentsNewController = Gameway.Controller.extend({
   title: '',
   description: '',
   actions: {

@@ -1,4 +1,4 @@
-Gameway.TournamentController = Ember.ObjectController.extend({
+Gameway.TournamentController = Gameway.ObjectController.extend({
   actions: {
     destroy: function(model) {
       if (confirm("Are you sure you want to delete %@?".fmt(model.get('title')))) {

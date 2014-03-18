@@ -1,4 +1,4 @@
-Gameway.ApplicationController = Ember.Controller.extend({
+Gameway.ApplicationController = Gameway.Controller.extend({
   email: '',
   password: '',
   actions: {
@@ -7,7 +7,12 @@ Gameway.ApplicationController = Ember.Controller.extend({
       $.ajax({
         type: "POST",
         url: "users/sign_in",
-        data: { authenticity_token: Gameway.gon.get('authenticityToken'), user: { email: thisController.get('email'), password: thisController.get('password') }, commit: "Sign in"  },
+        data: { authenticity_token: Gameway.gon.get('authenticityToken'),
+                user: {
+                  email: thisController.get('email'),
+                  password: thisController.get('password')
+                }
+              },
         success: function(data) {
           Gameway.gon.set('authenticityToken', data.authenticity_token)
           Gameway.gon.set('currentUser', data.user);

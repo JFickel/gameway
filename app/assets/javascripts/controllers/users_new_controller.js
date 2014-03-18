@@ -1,10 +1,9 @@
-Gameway.UsersNewController = Ember.Controller.extend({
+Gameway.UsersNewController = Gameway.Controller.extend({
   email: '',
   password: '',
   passwordConfirmation: '',
   actions: {
     sign_up: function() {
-      debugger;
       thisController = this;
       $.ajax({
         type: "POST",

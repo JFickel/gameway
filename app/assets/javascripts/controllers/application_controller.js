@@ -1,9 +1,10 @@
 Gameway.ApplicationController = Gameway.Controller.extend({
   email: '',
   password: '',
+  hasSignInError: false,
   actions: {
     sign_in: function() {
-      thisController = this;
+      var thisController = this;
       $.ajax({
         type: "POST",
         url: "users/sign_in",
@@ -14,10 +15,14 @@ Gameway.ApplicationController = Gameway.Controller.extend({
                 }
               },
         success: function(data) {
+          thisController.set('hasSignInError', false)
           Gameway.gon.set('authenticityToken', data.authenticity_token)
           Gameway.gon.set('currentUser', data.user);
           Gameway.gon.set('userSignedIn', true);
           console.log("Signed in! :3");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          thisController.set('hasSignInError', true)
         }
       });
     },

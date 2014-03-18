@@ -17,19 +17,25 @@
         <li><a href="#">Teams</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Forgot password?</a></li>
-        {{#link-to 'users.new' tagName='li'}}<a href>Sign Up</a>{{/link-to}}
-        <li><a href {{action 'logout'}}>Logout</a></li>
-      </ul>
+      {{#if gon.userSignedIn}}
+        <ul class="nav navbar-nav navbar-right">
+          {{#link-to 'user' gon.currentUser.id tagName='li'}}<a href>{{gon.currentUser.email}}</a>{{/link-to}}
+          <li><a href {{action 'logout'}}>Logout</a></li>
+        </ul>
+      {{else}}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Forgot password?</a></li>
+          {{#link-to 'users.new' tagName='li'}}<a href>Sign Up</a>{{/link-to}}
+        </ul>
 
-      <form class="navbar-form navbar-right" role="login">
-        <div class="form-group">
-          {{input placeholder="Email" value=email class="form-control"}}
-          {{input type="password" placeholder="Password" value=password class="form-control"}}
-        </div>
-        <button {{action 'sign_in'}} class="btn btn-default">Log In</button>
-      </form>
+        <form class="navbar-form navbar-right" role="login">
+          <div class="form-group" {{bind-attr class="hasSignInError:has-error"}}>
+            {{input placeholder="Email" value=email class="form-control"}}
+            {{input type="password" placeholder="Password" value=password class="form-control"}}
+          </div>
+          <button {{action 'sign_in'}} class="btn btn-default">Log In</button>
+        </form>
+      {{/if}}
     </div>
   </div>
 </nav>

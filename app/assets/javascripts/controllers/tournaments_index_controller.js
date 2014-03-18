@@ -1,4 +1,5 @@
-Gameway.TournamentsIndexController = Ember.ArrayController.extend({
+Gameway.TournamentsIndexController = Gameway.ArrayController.extend({
   sortProperties: ['id'],
-  sortAscending: true
+  sortAscending: true,
+  helloBinding: 'Gameway.gon.userSignedIn'
 })

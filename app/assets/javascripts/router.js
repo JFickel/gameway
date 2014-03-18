@@ -7,4 +7,11 @@ Gameway.Router.map(function() {
   this.resource('tournament', { path: '/tournaments/:tournament_id' }, function() {
     this.route('edit');
   });
+
+  this.resource('users', function() {
+    this.route('new');
+  });
+  this.resource('user', { path: '/users/:user_id'}, function() {
+    this.route('edit');
+  });
 });

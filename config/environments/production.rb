@@ -1,6 +1,21 @@
 Gameway::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Devise config
+  config.action_mailer.default_url_options = { :host => 'gameway.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "gameway.com",
+    :authentication => :login,
+    :user_name => ENV["GMAIL_USERNAME"],
+    :password => ENV["GMAIL_PASSWORD"]
+  }
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

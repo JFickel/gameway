@@ -1,0 +1,43 @@
+<div class="col-md-6">
+  <h1>Sign Up</h1>
+  <p>You will need to confirm your email address after completing this form.</p>
+  <br>
+  <div class="col-md-7">
+    <form role="form">
+      <div class="form-group" {{bind-attr class="hasEmailError:has-error"}}>
+        <label for="exampleInputEmail1">Email</label>
+        {{input placeholder="joe@gmail.com" value=email class="form-control"}}
+        {{#each emailErrors}}
+          <span class="help-block text-danger">{{.}}</span>
+        {{/each}}
+      </div>
+
+      <div class="form-group" {{bind-attr class="hasPasswordError:has-error"}}>
+        <label for="exampleInputPassword1">Password</label>
+        {{input type="password" value=password class="form-control"}}
+        {{#unless hasPasswordError}}
+          <span class="help-block">Note: password must be at least 8 characters long.</span>
+        {{/unless}}
+        {{#each passwordErrors}}
+          <span class="help-block text-danger">{{.}}</span>
+        {{/each}}
+      </div>
+
+      <div class="form-group" {{bind-attr class="hasPasswordConfirmationError:has-error"}}>
+        <label for="exampleInputPassword1">Password Confirmation</label>
+        {{input type="password" value=passwordConfirmation class="form-control"}}
+        {{#each passwordConfirmationErrors}}
+          <span class="help-block text-danger">{{.}}</span>
+        {{/each}}
+      </div>
+
+      <button {{action 'sign_up'}} class="btn btn-default">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="form-group has-error has-feedback">
+  <label class="control-label" for="inputError2">Input with error</label>
+  <input type="text" class="form-control" id="inputError2">
+  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+</div> -->

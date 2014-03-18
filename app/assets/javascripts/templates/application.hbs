@@ -17,24 +17,27 @@
         <li><a href="#">Teams</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Forgot password?</a></li>
-        <li><a href="#">Sign Up</a></li>
-      </ul>
+      {{#if gon.userSignedIn}}
+        <ul class="nav navbar-nav navbar-right">
+          {{#link-to 'user' gon.currentUser.id tagName='li'}}<a href>{{gon.currentUser.email}}</a>{{/link-to}}
+          <li><a href {{action 'logout'}}>Logout</a></li>
+        </ul>
+      {{else}}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Forgot password?</a></li>
+          {{#link-to 'users.new' tagName='li'}}<a href>Sign Up</a>{{/link-to}}
+        </ul>
 
-      <form class="navbar-form navbar-right" role="login">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email">
-          <input type="password" class="form-control" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Log In</button>
-      </form>
-
-<!--       <ul class="nav navbar-nav navbar-right">
-        <li padding-right='10px'><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png"></li>
-      </ul> -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        <form class="navbar-form navbar-right" role="login">
+          <div class="form-group" {{bind-attr class="hasSignInError:has-error"}}>
+            {{input placeholder="Email" value=email class="form-control"}}
+            {{input type="password" placeholder="Password" value=password class="form-control"}}
+          </div>
+          <button {{action 'sign_in'}} class="btn btn-default">Log In</button>
+        </form>
+      {{/if}}
+    </div>
+  </div>
 </nav>
 
 <h1>{{appName}}</h1>

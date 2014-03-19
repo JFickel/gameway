@@ -14,6 +14,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
   actions: {
     sign_up: function() {
       var thisController = this;
+      this.send('openModal', 'modals/processing');
       $.ajax({
         type: "POST",
         url: "users",
@@ -25,6 +26,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
                 }
               },
         success: function(data) {
+          thisController.send('closeModal');
           if (data.errors) {
             if (data.errors.email) {
               thisController.set('hasEmailError', true);
@@ -39,12 +41,10 @@ Gameway.UsersNewController = Gameway.Controller.extend({
               thisController.set('passwordConfirmationErrors', data.errors.password_confirmation);
             }
           } else {
-            debugger;
             Gameway.gon.set('authenticityToken', data.authenticity_token)
-            // Gameway.gon.set('currentUser', data.user);
-            // Gameway.gon.set('userSignedIn', true);
-            // need to display message that they should check their email for confirmation :3
-            thisController.transitionToRoute('tournaments')
+            Gameway.flashController.pushObject({message: "You're almost there! Please log into your email and click the validation link that we sent you.",
+                                                type: 'alert-info'})
+            thisController.transitionToRoute('application')
           }
         }
       });

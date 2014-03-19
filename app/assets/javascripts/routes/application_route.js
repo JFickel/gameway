@@ -7,7 +7,6 @@ Gameway.ApplicationRoute = Ember.Route.extend({
       });
     },
     closeModal: function() {
-      debugger;
       $('.modal-backdrop').remove();
       return this.disconnectOutlet({
         outlet: 'modal',

@@ -5,6 +5,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
                                           type: 'alert-success'})
     }
   },
+  twitchAuthURL: window.location.origin + '/users/auth/twitchtv',
   email: '',
   password: '',
   hasSignInError: false,

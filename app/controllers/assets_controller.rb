@@ -1,6 +1,9 @@
 class AssetsController < ApplicationController
   def index
-    gon.email_confirmed = flash[:email_confirmed]
-    gon.first_twitch_auth = flash[:first_twitch_auth]
+    inject_flash_messages
+  end
+
+  def inject_flash_messages
+    gon.push(flash.to_hash)
   end
 end

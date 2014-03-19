@@ -4,6 +4,10 @@ Gameway.ApplicationController = Gameway.Controller.extend({
       Gameway.flashController.pushObject({message: "Thanks for signing up! You can now log into your account.",
                                           type: 'alert-success'})
     }
+    if (this.get('gon.twitchAuthFailure')) {
+      Gameway.flashController.pushObject({message: "Failed to authenticate with Twitch.",
+                                          type: 'alert-danger'})
+    }
   },
   twitchAuthURL: window.location.origin + '/users/auth/twitchtv',
   email: '',

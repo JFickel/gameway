@@ -1,4 +1,10 @@
 Gameway.ApplicationController = Gameway.Controller.extend({
+  init: function() {
+    if (this.get('gon.emailConfirmed')) {
+      Gameway.flashController.pushObject({message: "Thanks for signing up! You can now log into your account.",
+                                          type: 'alert-success'})
+    }
+  },
   email: '',
   password: '',
   hasSignInError: false,

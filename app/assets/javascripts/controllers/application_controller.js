@@ -5,6 +5,10 @@ Gameway.ApplicationController = Gameway.Controller.extend({
                                           type: 'alert-success'})
     }
   },
+  // twitchAuthURL: function() {
+  //   return window.location.origin + '/users/auth/twitchtv'
+  // }.property(),
+  twitchAuthURL: window.location.origin + '/users/auth/twitchtv',
   email: '',
   password: '',
   hasSignInError: false,

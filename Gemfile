@@ -8,6 +8,7 @@ gem 'ember-source', '1.4.0'
 gem 'active_model_serializers'
 gem 'gon', '5.0.4'
 gem 'devise', '3.2.3'
+gem 'omniauth-twitchtv', github: 'JFickel/omniauth-twitchtv'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'

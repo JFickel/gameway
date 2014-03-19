@@ -23,6 +23,8 @@
           <li><a href {{action 'logout'}}>Logout</a></li>
         </ul>
       {{else}}
+
+
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Forgot password?</a></li>
           {{#link-to 'users.new' tagName='li'}}<a href>Sign Up</a>{{/link-to}}
@@ -35,6 +37,10 @@
           </div>
           <button {{action 'sign_in'}} class="btn btn-default">Log In</button>
         </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a {{bind-attr href=twitchAuthURL}}>Connect with Twitch</a></li>
+        </ul>
       {{/if}}
     </div>
   </div>

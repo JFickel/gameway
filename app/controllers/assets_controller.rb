@@ -1,9 +1,6 @@
 class AssetsController < ApplicationController
   def index
-    inject_email_confirmed if flash[:email_confirmed]
-  end
-
-  def inject_email_confirmed
-    gon.email_confirmed = true
+    gon.email_confirmed = flash[:email_confirmed]
+    gon.first_twitch_auth = flash[:first_twitch_auth]
   end
 end

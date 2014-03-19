@@ -6,7 +6,7 @@
     <form role="form">
       <div class="form-group" {{bind-attr class="hasEmailError:has-error"}}>
         <label for="exampleInputEmail1">Email</label>
-        {{input placeholder="joe@gmail.com" value=email class="form-control"}}
+        {{input value=email class="form-control"}}
         {{#each emailErrors}}
           <span class="help-block text-danger">{{.}}</span>
         {{/each}}

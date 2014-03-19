@@ -6,20 +6,24 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable, omniauth_providers: [:twitchtv]
 
   def self.find_for_twitchtv_oauth(auth)
-    user = where(auth.slice(:provider, :uid)).first_or_initialize do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
+    user = where(auth.slice(:provider, :uid)).first
+    return [user, false] if user.present?
+
+    if user = User.where(email: auth.info.email).first
+      user.update_attributes(provider: auth.provider, uid: auth.uid)
+      return user, false
     end
 
-    if first_login = user.new_record?
-      user.skip_confirmation!
-      user.save
-    end
+    user = User.new(provider: auth.provider,
+                    uid: auth.uid,
+                    email: auth.info.email,
+                    password: Devise.friendly_token[0,20])
 
-    return user, first_login
+    # user.name = auth.info.name   # assuming the user model has a name
+    # user.image = auth.info.image # assuming the user model has an image
+
+    user.skip_confirmation!
+    user.save
+    return user, true
   end
 end

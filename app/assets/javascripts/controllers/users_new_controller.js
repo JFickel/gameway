@@ -42,7 +42,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
             }
           } else {
             Gameway.gon.set('authenticityToken', data.authenticity_token)
-            Gameway.flashController.pushObject({message: "You're almost there! Please log into your email and click the validation link that we sent you.",
+            Gameway.flashController.pushObject({message: "You're almost there! Please log into your email and click the validation link that has been sent to you.",
                                                 type: 'alert-info'})
             thisController.transitionToRoute('application')
           }

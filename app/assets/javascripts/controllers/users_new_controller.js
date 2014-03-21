@@ -12,7 +12,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
   passwordConfirmationErrors: [],
 
   actions: {
-    sign_up: function() {
+    signUp: function() {
       var thisController = this;
       this.send('openModal', 'modals/processing');
       $.ajax({

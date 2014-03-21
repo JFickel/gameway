@@ -1,10 +1,9 @@
-Gameway.Gon = Ember.Object.extend({
-  currentUser: gon.current_user,
-  userSignedIn: gon.user_signed_in,
-  authenticityToken: gon.authenticity_token,
-  emailConfirmed: gon.email_confirmed,
-  firstTwitchAuth: gon.first_twitch_auth,
-  twitchAuthFailure: gon.twitch_auth_failure
+var camelizedGon = {};
+
+Ember.keys(gon).forEach(function(item, index) {
+  camelizedGon[item.camelize()] = gon[item];
 })
+
+Gameway.Gon = Ember.Object.extend(camelizedGon)
 
 Gameway.gon = Gameway.Gon.create()

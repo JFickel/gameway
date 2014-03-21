@@ -9,6 +9,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # def update
+  #   user = User.find_by(id: params[:id])
+  #
+  #   if user == current_user # || current_user.admin?
+  #
+  #   end
+  #
+  #
+  # end
+
   private
 
     def user_params

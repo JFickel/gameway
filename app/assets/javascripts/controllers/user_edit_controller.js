@@ -33,7 +33,7 @@ Gameway.UserEditController = Ember.Controller.extend({
             }
             else if (data.errors.password_confirmation) {
               thisController.set('hasNewPasswordConfirmationError', true);
-              thisController.est('newPasswordConfirmationErrors', data.errors.password_confirmation);
+              thisController.set('newPasswordConfirmationErrors', data.errors.password_confirmation);
             }
             else if (data.errors.current_password) {
               thisController.set('hasOldPasswordError', true);

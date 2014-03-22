@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def inject_current_user_js
-    gon.current_user = current_user
+    gon.current_user = UserSerializer.new(current_user, root: false).as_json
     gon.user_signed_in = user_signed_in?
   end
 end

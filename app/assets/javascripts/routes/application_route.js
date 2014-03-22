@@ -1,4 +1,4 @@
-Gameway.ApplicationRoute = Ember.Route.extend({
+Gameway.ApplicationRoute = Gameway.Route.extend({
   actions: {
     openModal: function(modalName) {
       this.render('processing', {

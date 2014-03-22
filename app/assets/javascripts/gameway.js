@@ -1,7 +1,8 @@
-//= require ./gon
 //= require ./store
 //= require_tree ./mixins
 //= require_tree ./models
+//= require ./gon
+//= require ./base_route
 //= require_tree ./base_controllers
 //= require_tree ./controllers
 //= require_tree ./views

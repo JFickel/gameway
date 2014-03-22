@@ -42,6 +42,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
       });
     },
     logout: function() {
+      var thisController = this;
       $.ajax({
         type: "DELETE",
         url: "users/sign_out",
@@ -50,6 +51,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
           Gameway.gon.set('authenticityToken', data.authenticity_token)
           Gameway.gon.set('currentUser', null);
           Gameway.gon.set('userSignedIn', false);
+          thisController.transitionTo('index')
           console.log("Signed out! :3");
         }
       })

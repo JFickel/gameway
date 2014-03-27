@@ -5,6 +5,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.text :description
       t.date :starts_at # Will I need Sidekiq for this?
       t.boolean :started
+      t.integer :user_id
 
       t.timestamps
     end

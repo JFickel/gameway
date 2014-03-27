@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326130313) do
+ActiveRecord::Schema.define(version: 20140327131759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20140326130313) do
     t.text     "structure"
     t.integer  "tournamnent_id"
     t.integer  "game_id"
+    t.string   "mode"
+    t.string   "game"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competitors", force: true do |t|
+    t.integer  "tournament_id"
+    t.integer  "team_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140326130313) do
   create_table "games", force: true do |t|
     t.string   "name"
     t.string   "technical_name"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,14 +45,23 @@ ActiveRecord::Schema.define(version: 20140326130313) do
   create_table "match_ups", force: true do |t|
     t.integer  "match_id"
     t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "top"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "matches", force: true do |t|
-    t.integer  "next_match_id"
+    t.integer  "next_match_up_id"
     t.integer  "round_index"
     t.integer  "bracket_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

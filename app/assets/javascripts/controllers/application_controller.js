@@ -8,6 +8,10 @@ Gameway.ApplicationController = Gameway.Controller.extend({
       Gameway.flashController.pushObject({message: "Failed to authenticate with Twitch.",
                                           type: 'alert-danger'})
     }
+    if (this.get('gon.firstTwitchAuth')) {
+      Gameway.flashController.pushObject({message: "Successfully connected with Twitch. Your current password has been randomly generated, and a password reset link has been sent to your email. We suggest that you change your password now.",
+                                          type: 'alert-info'})
+    }
   },
   twitchAuthURL: window.location.origin + '/users/auth/twitchtv',
   email: '',

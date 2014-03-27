@@ -6,6 +6,20 @@
 
 {{#link-to 'tournaments.new' class="btn btn-primary btn-info"}}Create Tournament{{/link-to}}
 
-{{#each tournament in controller}}
-  {{tournament.id}}. {{#link-to 'tournament' tournament}}{{tournament.title}}{{/link-to}}
-{{/each}}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  {{#each tournament in controller}}
+    <tr>
+      <td>{{tournament.id}}</td>
+      <td>{{#link-to 'tournament' tournament}}{{tournament.name}}{{/link-to}}</td>
+      <td>{{tournament.description}}</td>
+    </tr>
+  {{/each}}
+</table>

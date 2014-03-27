@@ -8,5 +8,6 @@ Gameway::Application.routes.draw do
   }
   root to: "assets#index"
   resources :tournaments
+  resources :brackets
   resources :users
 end

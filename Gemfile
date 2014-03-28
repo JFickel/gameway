@@ -11,7 +11,7 @@ gem 'devise', '3.2.3'
 gem 'omniauth-twitchtv', github: 'JFickel/omniauth-twitchtv'
 
 # Ruby interface to League of Legends API
-gem 'ruby-lol'
+gem 'ruby-lol', github: 'mikamai/ruby-lol'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'

@@ -12,23 +12,38 @@
   </div>
 
   <div class="col-md-3 col-sm-5">
-    <h3>Set Up Game Accounts</h3>
 
-    <div class="form-group" {{bind-attr class="hasSummonerNameError:has-error"}}>
-      <label>League of Legends Summoner Name</label>
-      {{input value=summonerName class="form-control"}}
 
-      {{#each summonerNameErrors}}
-        <span class="help-block text-danger">{{.}}</span>
-      {{/each}}
-    </div>
+    {{#unless verifyStep}}
+      <h3>Set Up Game Accounts</h3>
 
-    <div class="form-group">
-      <label>Region</label>
-      {{view Ember.Select content=regions optionValuePath="content.value" optionLabelPath="content.label" class="form-control"}}
-    </div>
+      <div class="form-group" {{bind-attr class="hasSummonerNameError:has-error"}}>
+        <label>League of Legends Summoner Name</label>
+        {{input value=summonerName class="form-control"}}
 
-    <button {{action 'addSummonerName'}} class="btn btn-default col-md-offset-4">Continue</button>
+        {{#each summonerNameErrors}}
+          <span class="help-block text-danger">{{.}}</span>
+        {{/each}}
+      </div>
+
+      <div class="form-group">
+        <label>Region</label>
+        {{view Ember.Select content=regions optionValuePath="content.value" optionLabelPath="content.label" value=selectedRegion class="form-control"}}
+      </div>
+
+      <button {{action 'addSummonerName'}} class="btn btn-default col-md-offset-4">Continue</button>
+    {{else}}
+      <h3>Summoner Verification</h3>
+
+
+      <p>You're almost done. The summoner name <strong>{{summonerName}}</strong> has been found in the {{selectedRegionLabel}} region.</p>
+      <p>Please verify that you own this summoner by changing the name of one of your rune pages to the following code: <code>{{code}}</code></p>
+      <p>Remember to save your rune page so the change takes effect.</p>
+
+
+
+      <button {{action 'verifySummonerName'}} class="btn btn-default col-md-offset-4">Verify</button>
+    {{/unless}}
   </div>
 
   <div class="col-md-3 col-sm-5">

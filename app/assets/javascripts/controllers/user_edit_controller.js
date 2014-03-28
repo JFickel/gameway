@@ -3,6 +3,8 @@ Gameway.UserEditController = Ember.Controller.extend({
   oldPassword: '',
   newPassword: '',
   newPasswordConfirmation: '',
+  verifyStep: false,
+  summonerId: '',
 
   hasSummonerNameError: false,
   hasOldPasswordError: false,
@@ -24,9 +26,46 @@ Gameway.UserEditController = Ember.Controller.extend({
     { label: 'Oceania', value: 'oce' }
   ],
 
+  generateCode: function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz";
+
+    for(var i=0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }.property(),
+  code: '',
+  selectedRegion: 'na',
+  selectedRegionLabel: '',
+
   actions: {
     addSummonerName: function() {
-
+      var thisController = this;
+      $.ajax({
+        type: 'GET',
+        url: 'lol_accounts/new',
+        data: { authenticity_token: Gameway.gon.get('authenticityToken'),
+                lol_account: {
+                  region: thisController.get('selectedRegion'),
+                  summoner_name: thisController.get('summonerName')
+                }
+              },
+        success: function(data) {
+          if (data.errors) {
+            thisController.set('hasSummonerNameError', true);
+            thisController.set('summonerNameErrors', data.errors)
+          } else {
+            debugger;
+            thisController.set('code', thisController.get('generateCode'))
+            thisController.set('summonerId', data.summoner_id);
+            thisController.set('summonerName', data.summoner_name);
+            thisController.set('selectedRegionLabel', thisController.get('regions').findBy('value', thisController.get('selectedRegion')).label);
+            thisController.set('verifyStep', true);
+            // Gameway.flashController.pushObject({message:  message, type: 'alert-success'});
+          }
+        }
+      })
     },
     updatePassword: function() {
       var thisController = this;

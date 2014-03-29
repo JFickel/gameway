@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:twitchtv]
 
+  has_one :lol_account
+  has_many :tournaments
+  has_many :team_memberships
+  has_many :teams, through: :team_memberships
+  has_many :teams_led, foreign_key: 'user_id', class_name: Team
+
   def self.find_for_twitchtv_oauth(auth)
     user = where(auth.slice(:provider, :uid)).first
     return [user, false] if user.present?

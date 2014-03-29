@@ -12,10 +12,46 @@
   </div>
 
   <div class="col-md-3 col-sm-5">
+
+
+    {{#unless verifyStep}}
+      <h3>Set Up Game Accounts</h3>
+
+      <div class="form-group" {{bind-attr class="hasSummonerNameError:has-error"}}>
+        <label>League of Legends Summoner Name</label>
+        {{input value=summonerName class="form-control"}}
+
+        {{#each summonerNameErrors}}
+          <span class="help-block text-danger">{{.}}</span>
+        {{/each}}
+      </div>
+
+      <div class="form-group">
+        <label>Region</label>
+        {{view Ember.Select content=regions optionValuePath="content.value" optionLabelPath="content.label" value=selectedRegion class="form-control"}}
+      </div>
+
+      <button {{action 'addSummonerName'}} class="btn btn-default col-md-offset-4">Continue</button>
+    {{else}}
+      <h3>Summoner Verification</h3>
+
+
+      <p>You're almost done. The summoner name <strong>{{summonerName}}</strong> has been found in the {{selectedRegionLabel}} region.</p>
+      <p>Please verify that you own this summoner by renaming one of your rune pages to the following case-sensitive code: <code>{{verificationCode}}</code></p>
+      <p>Remember to save your rune page so the change takes effect.</p>
+      <p>Note: You may need click verify more than once. Riot's servers can be slow to propagate your changes to their API servers. </p>
+
+
+
+      <button {{action 'verifySummonerName'}} class="btn btn-default col-md-offset-4">Verify</button>
+    {{/unless}}
+  </div>
+
+  <div class="col-md-3 col-sm-5">
     <h3>Change Password</h3>
 
     <div class="form-group" {{bind-attr class="hasOldPasswordError:has-error"}}>
-      <label for="exampleInputPassword1">Old Password</label>
+      <label>Old Password</label>
       {{input type="password" value=oldPassword class="form-control"}}
 
       {{#each oldPasswordErrors}}
@@ -24,7 +60,7 @@
     </div>
 
     <div class="form-group" {{bind-attr class="hasNewPasswordError:has-error"}}>
-      <label for="exampleInputPassword1">New Password</label>
+      <label>New Password</label>
       {{input type="password" value=newPassword class="form-control"}}
       {{#unless hasNewPasswordError}}
         <span class="help-block">Note: password must be at least 8 characters long.</span>
@@ -36,13 +72,13 @@
 
 
     <div class="form-group" {{bind-attr class="hasNewPasswordConfirmationError:has-error"}}>
-      <label for="exampleInputPassword1">New Password Confirmation</label>
+      <label>New Password Confirmation</label>
       {{input type="password" value=newPasswordConfirmation class="form-control"}}
       {{#each newPasswordConfirmationErrors}}
         <span class="help-block text-danger">{{.}}</span>
       {{/each}}
     </div>
 
-    <button {{action 'updatePassword'}} class="btn btn-default">Update</button>
+    <button {{action 'updatePassword'}} class="btn btn-default col-md-offset-4">Update</button>
   </div>
 </div>

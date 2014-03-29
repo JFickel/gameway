@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" padding-left="20px">
         {{#link-to 'tournaments' tagName='li'}}<a href>Tournaments</a>{{/link-to}}
-        <li><a href="#">Teams</a></li>
+        {{#link-to 'teams' tagName='li'}}<a href>Teams</a>{{/link-to}}
       </ul>
 
       {{#if gon.userSignedIn}}

@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
     user.save
     return user, true
   end
+
+  def all_teams
+    teams_led + teams
+  end
 end

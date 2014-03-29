@@ -14,4 +14,11 @@ Gameway.Router.map(function() {
   this.resource('user', { path: '/users/:user_id'}, function() {
     this.route('edit');
   });
+
+  this.resource('teams', function() {
+    this.route('new')
+  });
+  this.resource('team', { path: '/teams/:team_id' }, function() {
+    this.route('edit')
+  })
 });

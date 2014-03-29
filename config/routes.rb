@@ -11,4 +11,5 @@ Gameway::Application.routes.draw do
   resources :brackets
   resources :users
   resources :lol_accounts
+  resources :teams
 end

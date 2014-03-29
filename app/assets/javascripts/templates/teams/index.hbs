@@ -1,0 +1,23 @@
+<h1>This is the TeamsIndex template</h1>
+
+<h2>Team Listing: </h2>
+
+{{#link-to 'teams.new' class="btn btn-primary btn-info"}}Create Team{{/link-to}}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>LoL Region</th>
+    </tr>
+  </thead>
+
+  {{#each team in controller}}
+    <tr>
+      <td>{{team.id}}</td>
+      <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+      <td>{{formatRegion team.lolRegion}}</td>
+    </tr>
+  {{/each}}
+</table>

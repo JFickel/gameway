@@ -10,6 +10,11 @@ gem 'gon', '5.0.4'
 gem 'devise', '3.2.3'
 gem 'omniauth-twitchtv', github: 'JFickel/omniauth-twitchtv'
 
+# Carrierwave for image uploads
+gem 'fog'
+gem 'carrierwave'
+gem 'rmagick', '2.13.2', :require => 'RMagick'
+
 # Ruby interface to League of Legends API
 gem 'ruby-lol', github: 'mikamai/ruby-lol'
 

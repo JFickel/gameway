@@ -52,7 +52,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
   actions: {
     verifySummonerName: function() {
       var thisController = this;
-      this.send('openModal', 'modals/processing');
+      this.send('openProcessingModal', 'modals/processing');
       window.setTimeout(function(){
         $.ajax({
           type: 'POST',
@@ -67,13 +67,16 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
                   }
                 },
           success: function(data) {
-            thisController.send('closeModal');
+            thisController.send('closeProcessingModal');
             if (data.errors) {
               data.errors.forEach(function(error){
                 Gameway.flashController.pushObject({message: error,
                                                     type: 'alert-danger'});
               })
             } else {
+              var camelizedLolAccountData = recursiveCamelizeObjectKeys(data.lol_account);
+              var lolAccount = thisController.store.push('lolAccount', camelizedLolAccountData)
+              thisController.set('currentUser.lolAccountId', lolAccount)
               Gameway.flashController.pushObject({message: 'success :3',
                                                   type: 'alert-success'});
             }
@@ -82,7 +85,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
       }, 3500);
     },
     addSummonerName: function() {
-      this.send('openModal', 'modals/processing');
+      this.send('openProcessingModal', 'modals/processing');
       var thisController = this;
       $.ajax({
         type: 'GET',
@@ -98,7 +101,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
             thisController.set('hasSummonerNameError', true);
             thisController.set('summonerNameErrors', data.errors)
           } else {
-            thisController.send('closeModal');
+            thisController.send('closeProcessingModal');
             thisController.set('verificationCode', thisController.get('generateCode'))
             thisController.set('summonerId', data.summoner_id);
             thisController.set('summonerName', data.summoner_name);

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   def render *args
     inject_csrf_token
     inject_current_user_js
-    inject_asset_path
     super
   end
 
@@ -17,9 +16,5 @@ class ApplicationController < ActionController::Base
   def inject_current_user_js
     gon.current_user_payload = UserSerializer.new(current_user).as_json
     gon.user_signed_in = user_signed_in?
-  end
-
-  def inject_asset_path
-    gon.image_path = ActionController::Base.helpers.asset_path('.')
   end
 end

@@ -3,5 +3,8 @@ Gameway.UserEditRoute = Gameway.Route.extend({
     if (transition.params.user.user_id !== this.get('currentUser.id')) {
       this.transitionTo('index')
     }
+  },
+  model: function() {
+    return this.modelFor('user')
   }
 })

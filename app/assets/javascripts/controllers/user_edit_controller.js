@@ -1,5 +1,15 @@
-Gameway.UserEditController = Gameway.Controller.extend({
-  summonerName: '',
+Gameway.UserEditController = Gameway.ObjectController.extend({
+  summonerNameSet: function() {
+    if (this.get('currentUser.lolAccountId')) {
+      return true
+    }
+  }.property('currentUser.lolAccountId'),
+  divisionImageUrl: function() {
+    return "/assets/lol/divisions/" + this.get('lolAccountId.soloTier') + "_" + this.get('lolAccountId.soloRank') + ".png"
+  }.property('currentUser.lolAccountId'),
+  summonerName: function() {
+    return this.get('currentUser.lolAccountId.summonerName')
+  }.property('currentUser.lolAccountId'),
   oldPassword: '',
   newPassword: '',
   newPasswordConfirmation: '',
@@ -40,9 +50,6 @@ Gameway.UserEditController = Gameway.Controller.extend({
   selectedRegionLabel: '',
 
   actions: {
-    // debug: function() {
-    //   debugger;
-    // },
     verifySummonerName: function() {
       var thisController = this;
       this.send('openModal', 'modals/processing');

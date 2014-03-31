@@ -19,11 +19,10 @@
 
       {{#if gon.userSignedIn}}
         <ul class="nav navbar-nav navbar-right">
-          {{#link-to 'user.edit' gon.currentUser.id tagName='li'}}<a href>{{gon.currentUser.email}}</a>{{/link-to}}
+          {{#link-to 'user.edit' currentUser.id tagName='li'}}<a href>{{currentUser.email}}</a>{{/link-to}}
           <li><a href {{action 'logout'}}>Logout</a></li>
         </ul>
       {{else}}
-
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Forgot password?</a></li>

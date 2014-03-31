@@ -40,6 +40,9 @@ Gameway.UserEditController = Gameway.Controller.extend({
   selectedRegionLabel: '',
 
   actions: {
+    // debug: function() {
+    //   debugger;
+    // },
     verifySummonerName: function() {
       var thisController = this;
       this.send('openModal', 'modals/processing');
@@ -72,6 +75,7 @@ Gameway.UserEditController = Gameway.Controller.extend({
       }, 3500);
     },
     addSummonerName: function() {
+      this.send('openModal', 'modals/processing');
       var thisController = this;
       $.ajax({
         type: 'GET',
@@ -87,6 +91,7 @@ Gameway.UserEditController = Gameway.Controller.extend({
             thisController.set('hasSummonerNameError', true);
             thisController.set('summonerNameErrors', data.errors)
           } else {
+            thisController.send('closeModal');
             thisController.set('verificationCode', thisController.get('generateCode'))
             thisController.set('summonerId', data.summoner_id);
             thisController.set('summonerName', data.summoner_name);

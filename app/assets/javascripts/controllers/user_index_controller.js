@@ -1,2 +1,2 @@
-Gameway.UserIndexController = Gameway.Controller.extend({
+Gameway.UserIndexController = Gameway.ObjectController.extend({
 })

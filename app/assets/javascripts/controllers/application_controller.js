@@ -49,7 +49,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
         data: { authenticity_token: Gameway.gon.get('authenticityToken') },
         success: function(data) {
           Gameway.gon.set('authenticityToken', data.authenticity_token)
-          Gameway.gon.set('currentUser', null);
+          Gameway.gon.set('currentUserPayload', null);
           Gameway.gon.set('userSignedIn', false);
           thisController.transitionTo('index')
           console.log("Signed out! :3");

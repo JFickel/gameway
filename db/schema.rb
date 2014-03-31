@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20140328225854) do
     t.text     "description"
     t.date     "starts_at"
     t.boolean  "started"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

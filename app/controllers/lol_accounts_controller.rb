@@ -22,7 +22,8 @@ class LolAccountsController < ApplicationController
 
   def create
     # should have summoner name, user id and region
-    @lol_account = LolAccount.new(lol_account_params)
+    @lol_account = LolAccount.where(user_id: lol_account_params[:user_id]).first_or_initialize
+    @lol_account.assign_attributes(lol_account_params)
 
     if verify_summoner
       save_lol_account

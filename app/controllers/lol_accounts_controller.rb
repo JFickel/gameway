@@ -66,11 +66,18 @@ class LolAccountsController < ApplicationController
     end
 
     def save_lol_account
-      entries = @client.league.get_entries(lol_account_params[:summoner_id])
-      if solo_entry = entries.find { |entry| entry.queue_type == "RANKED_SOLO_5x5" }
-        @lol_account.solo_tier = solo_entry.tier
-        @lol_account.solo_rank = solo_entry.rank
+      begin
+        entries = @client.league.get_entries(lol_account_params[:summoner_id])
+        if solo_entry = entries.find { |entry| entry.queue_type == "RANKED_SOLO_5x5" }
+          @lol_account.solo_tier = solo_entry.tier
+          @lol_account.solo_rank = solo_entry.rank
+        else
+          @lol_account.solo_tier = "unknown"
+        end
+      rescue
+        @lol_account.solo_tier = "unknown"
       end
+
       @lol_account.save
     end
 

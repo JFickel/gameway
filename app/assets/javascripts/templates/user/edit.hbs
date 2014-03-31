@@ -1,9 +1,10 @@
-<h2>Account Settings</h2>
+<h2 style="margin-bottom: 50px">Account Settings</h2>
 
 <div class="row">
-  <div class="col-sm-3 col-md-2">
-    <div class="thumbnail">
-      <img src="/assets/profile.png" alt="...">
+  <div class="col-sm-3 col-md-2" style="text-align: center">
+    {{#link-to 'user.index' this class="btn btn-lg btn-default"}}View Profile{{/link-to}}
+    <div class="thumbnail" style="text-align: center; margin-top: 10px">
+      <img src="https://s3.amazonaws.com/gameway-production/user_accounts/default_profile.png">
       <div class="caption" style="text-align: center">
         <h4>Display Picture</h4>
         <a href="#" class="btn btn-default" role="button">Change</a></p>
@@ -11,11 +12,21 @@
     </div>
   </div>
 
+  {{#if summonerNameSet}}
+    <div class="col-md-3 col-sm-5">
+      <div style="text-align: center">
+        <h2>{{lolAccountId.summonerName}}</h2>
+        <img {{bind-attr src=divisionImageUrl}}>
+        <h4>{{lolAccountId.soloTier}} {{lolAccountId.soloRank}}</h4>
+        <h4>{{formatRegion lolAccountId.region}}</h4>
+        <button {{action 'updateSummonerData'}} class="btn btn-default">Update Data</button>
+      </div>
+    </div>
+  {{/if}}
+
   <div class="col-md-3 col-sm-5">
-
-
     {{#unless verifyStep}}
-      <h3>Set Up Game Accounts</h3>
+      <h3>Connect Summoner</h3>
 
       <div class="form-group" {{bind-attr class="hasSummonerNameError:has-error"}}>
         <label>League of Legends Summoner Name</label>
@@ -46,6 +57,7 @@
       <button {{action 'verifySummonerName'}} class="btn btn-default col-md-offset-4">Verify</button>
     {{/unless}}
   </div>
+
 
   <div class="col-md-3 col-sm-5">
     <h3>Change Password</h3>

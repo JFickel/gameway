@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-sm-3 col-md-2">
     <div class="thumbnail">
-      <img src="/assets/profile.png">
+      <img src="https://s3.amazonaws.com/gameway-production/user_accounts/default_profile.png">
       <div class="caption" style="text-align: center">
         <h4>Display Picture</h4>
         <a href="#" class="btn btn-default" role="button">Change</a></p>
@@ -15,7 +15,7 @@
     <div class="col-md-3 col-sm-5">
       <div style="text-align: center">
         <h2>{{lolAccountId.summonerName}}</h2>
-        <img {{bindAttr src=divisionImageUrl}}>
+        <img {{bind-attr src=divisionImageUrl}}>
         <h4>{{lolAccountId.soloTier}} {{lolAccountId.soloRank}}</h4>
         <h4>{{formatRegion lolAccountId.region}}</h4>
         <button {{action 'updateSummonerData'}} class="btn btn-default">Update Data</button>

@@ -5,7 +5,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
     }
   }.property('currentUser.lolAccountId'),
   divisionImageUrl: function() {
-    return "/assets/lol/divisions/" + this.get('lolAccountId.soloTier') + "_" + this.get('lolAccountId.soloRank') + ".png"
+    return "https://s3.amazonaws.com/gameway-production/lol/divisions/" + this.get('lolAccountId.soloTier') + "_" + this.get('lolAccountId.soloRank') + ".png"
   }.property('currentUser.lolAccountId'),
   summonerName: function() {
     return this.get('currentUser.lolAccountId.summonerName')

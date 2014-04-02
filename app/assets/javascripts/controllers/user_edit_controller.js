@@ -50,9 +50,12 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
   selectedRegionLabel: '',
 
   actions: {
+    avatarUploadModal: function() {
+      this.send('openModal', 'modals/avatar_upload')
+    },
     verifySummonerName: function() {
       var thisController = this;
-      this.send('openProcessingModal', 'modals/processing');
+      this.send('openModal', 'modals/processing');
       window.setTimeout(function(){
         $.ajax({
           type: 'POST',
@@ -67,7 +70,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
                   }
                 },
           success: function(data) {
-            thisController.send('closeProcessingModal');
+            thisController.send('closeModal');
             if (data.errors) {
               data.errors.forEach(function(error){
                 Gameway.flashController.pushObject({message: error,
@@ -85,7 +88,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
       }, 3500);
     },
     addSummonerName: function() {
-      this.send('openProcessingModal', 'modals/processing');
+      this.send('openModal', 'modals/processing');
       var thisController = this;
       $.ajax({
         type: 'GET',
@@ -101,13 +104,12 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
             thisController.set('hasSummonerNameError', true);
             thisController.set('summonerNameErrors', data.errors)
           } else {
-            thisController.send('closeProcessingModal');
+            thisController.send('closeModal');
             thisController.set('verificationCode', thisController.get('generateCode'))
             thisController.set('summonerId', data.summoner_id);
             thisController.set('summonerName', data.summoner_name);
             thisController.set('selectedRegionLabel', thisController.get('regions').findBy('value', thisController.get('selectedRegion')).label);
             thisController.set('verifyStep', true);
-            // Gameway.flashController.pushObject({message:  message, type: 'alert-success'});
           }
         }
       })

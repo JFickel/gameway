@@ -1,12 +1,12 @@
 Gameway.ApplicationRoute = Gameway.Route.extend({
   actions: {
-    openProcessingModal: function(modalName) {
-      this.render('processing', {
+    openModal: function(modalName) {
+      this.render(modalName, {
         into: 'application',
         outlet: 'modal'
       });
     },
-    closeProcessingModal: function() {
+    closeModal: function() {
       $('.modal-backdrop').remove();
       return this.disconnectOutlet({
         outlet: 'modal',

@@ -1,4 +1,4 @@
-Gameway.ProcessingView = Ember.View.extend({
+Gameway.ModalsProcessingView = Ember.View.extend({
   didInsertElement: function() {
     $('#processingModal').modal({backdrop: 'static'})
   }

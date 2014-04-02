@@ -14,7 +14,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
   actions: {
     signUp: function() {
       var thisController = this;
-      this.send('openProcessingModal', 'modals/processing');
+      this.send('openModal', 'processing');
       $.ajax({
         type: "POST",
         url: "users",
@@ -26,7 +26,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
                 }
               },
         success: function(data) {
-          thisController.send('closeProcessingModal');
+          thisController.send('closeModal');
           if (data.errors) {
             if (data.errors.email) {
               thisController.set('hasEmailError', true);

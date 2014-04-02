@@ -1,14 +1,23 @@
 <div class="modal fade" id="avatarUploadModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" style="padding: 15px">
-      <div class="modal-header">
-        <h1>Dis is the avatar upload :3</h1>
-      </div>
+    <div class="modal-content" style="padding: 5%; width: 80%">
+      <h2>Upload Display Picture</h2>
+      <br>
 
-      <div class="progress progress-striped active">
-        <div class="progress-bar"  role="progressbar" style="width: 100%">
+
+
+      {{#unless currentlyUploading}}
+        <div style="text-align: center">
+          {{input type="file"}}
+          <br>
+          <button {{action 'uploadAvatar'}} class="btn btn-info">Upload</button>
         </div>
-      </div>
+      {{else}}
+        <div class="progress progress-striped active">
+          <div class="progress-bar"  role="progressbar" style="width: 100%">
+          </div>
+        </div>
+      {{/unless}}
 
     </div>
   </div>

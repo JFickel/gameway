@@ -24,11 +24,13 @@ Gameway.ModalsAvatarUploadController = Gameway.Controller.extend({
             },
             success: function(data) {
               if (data.errors) {
+                thisController.set('currentlyUploading', false);
                 data.errors.forEach(function(error) {
                   Gameway.flashController.pushObject({message: error,
                                                       type: 'alert-danger'})
                 })
               } else {
+                thisController.set('currentlyUploading', false);
                 thisController.send('closeModal')
                 thisController.set('currentUser.avatarUrl', data.avatar_url + '?' + Math.random())
               }

@@ -101,6 +101,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
               },
         success: function(data) {
           if (data.errors) {
+            thisController.send('closeModal');
             thisController.set('hasSummonerNameError', true);
             thisController.set('summonerNameErrors', data.errors)
           } else {

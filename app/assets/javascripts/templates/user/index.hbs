@@ -1,4 +1,37 @@
-<h2>user index template</h2>
-<h2>Email: {{email}}</h2>
+<h1>Jamie</h1>
+<br>
+<div class="row">
+  <div class="col-sm-3 col-md-2" style="text-align: center">
+    <br>
+    <img {{bind-attr src=avatarUrl}} class='img-thumbnail'>
+  </div>
+
+  {{#if lolAccountId}}
+    <div class="col-md-3 col-sm-5 ">
+      <div style="text-align: center">
+        <h2>{{lolAccountId.summonerName}}</h2>
+        <img {{bind-attr src=divisionImageUrl}}>
+        <h4>{{lolAccountId.soloTier}} {{lolAccountId.soloRank}}</h4>
+        <h4>{{formatRegion lolAccountId.region}}</h4>
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="col-md-4 col-sm-6 col-md-offset-0">
+    <h2>Teams</h2>
+    <br>
+    <table class="table table-striped">
+
+      {{#each team in this.teamIds.content}}
+        <tr>
+          <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+          <td>{{formatRegion team.lolRegion}}</td>
+        </tr>
+      {{/each}}
+    </table>
+
+  </div>
+
+</div>
 
 {{debugger}}

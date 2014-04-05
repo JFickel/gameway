@@ -50,6 +50,22 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
   selectedRegionLabel: '',
 
   actions: {
+    updateName: function() {
+      var user = this.get('model'),
+          thisController = this;
+
+      user.save().then(function() {
+        thisController.set('nameErrors', null)
+        thisController.set('updateNameErrors', false)
+        thisController.set('updateNameSuccess', true)
+        thisController.set('nameSuccess', ["Successfully updated"])
+      }, function(err) {
+        thisController.set('nameErrors', err.responseJSON.errors.name)
+        thisController.set('updateNameErrors', true)
+        thisController.set('updateNameSuccess', false)
+        thisController.set('nameSuccess', null)
+      })
+    },
     avatarUploadModal: function() {
       this.send('openModal', 'modals/avatar_upload')
     },

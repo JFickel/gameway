@@ -17,3 +17,6 @@
 
 # Ignore SimpleCov
 /coverage
+
+# Ignore Carrierwave Uploads
+/uploads

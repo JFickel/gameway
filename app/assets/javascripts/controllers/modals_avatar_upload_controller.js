@@ -32,7 +32,8 @@ Gameway.ModalsAvatarUploadController = Gameway.Controller.extend({
               } else {
                 thisController.set('currentlyUploading', false);
                 thisController.send('closeModal')
-                thisController.set('currentUser.avatarUrl', data.avatar_url + '?' + Math.random())
+                thisController.store.pushPayload('user', data)
+                thisController.set('currentUser.avatarUrl', thisController.get('currentUser.avatarUrl') + '?' + Math.random())
               }
             }
           })

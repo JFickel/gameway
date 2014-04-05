@@ -17,19 +17,21 @@
     </div>
   {{/if}}
 
-  <div class="col-md-4 col-sm-6 col-md-offset-0">
-    <h2>Teams</h2>
-    <br>
-    <table class="table table-striped">
+  {{#if teams}}
+    <div class="col-md-4 col-sm-6 col-md-offset-0">
+      <h2>Teams</h2>
+      <br>
+      <table class="table table-striped">
 
-      {{#each team in this.teams.content}}
-        <tr>
-          <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
-          <td>{{formatRegion team.lolRegion}}</td>
-        </tr>
-      {{/each}}
-    </table>
+        {{#each team in this.teams.content}}
+          <tr>
+            <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+            <td>{{formatRegion team.lolRegion}}</td>
+          </tr>
+        {{/each}}
+      </table>
 
-  </div>
+    </div>
+  {{/if}}
 
 </div>

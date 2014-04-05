@@ -14,7 +14,7 @@ Gameway.UsersNewController = Gameway.Controller.extend({
   actions: {
     signUp: function() {
       var thisController = this;
-      this.send('openModal', 'processing');
+      this.send('openModal', 'modals/processing');
       $.ajax({
         type: "POST",
         url: "users",

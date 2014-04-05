@@ -1,5 +1,5 @@
 class UserSerializer < ApplicationSerializer
-  attributes :id, :email, :avatar_url
+  attributes :id, :name, :email, :avatar_url
 
   has_one :lol_account
   has_many :teams

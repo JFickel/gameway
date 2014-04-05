@@ -28,7 +28,7 @@ class LolAccountsController < ApplicationController
     if verify_summoner
       save_lol_account
       set_up_teams
-      render json: @lol_account
+      render json: current_user
     else
       render json: { errors: @errors }
     end

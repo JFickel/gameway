@@ -2,9 +2,11 @@ Gameway.Controller = Ember.Controller.extend({
   gon: Gameway.gon,
   currentUser: function() {
     if (Gameway.gon.get('currentUserPayload.user') === null) { return null; }
-    if (Gameway.gon.get('currentUserPayload.lolAccounts.0') !== undefined) {
-      this.store.push('lolAccount', Gameway.gon.get('currentUserPayload.lolAccounts.0'));
+    if (!this.store.getById('user', Gameway.gon.get('currentUserPayload.user.id'))) {
+      this.store.pushPayload('user', gon.current_user_payload)
+      return this.store.getById('user', Gameway.gon.get('currentUserPayload.user.id'))
+    } else {
+      return this.store.getById('user', Gameway.gon.get('currentUserPayload.user.id'))
     }
-    return this.store.push('user', Gameway.gon.get('currentUserPayload.user'));
   }.property('Gameway.gon.currentUserPayload')
 })

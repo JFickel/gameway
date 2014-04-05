@@ -1,15 +1,15 @@
 Gameway.UserEditController = Gameway.ObjectController.extend({
   summonerNameSet: function() {
-    if (this.get('currentUser.lolAccountId')) {
+    if (this.get('currentUser.lolAccount')) {
       return true
     }
-  }.property('currentUser.lolAccountId'),
+  }.property('currentUser.lolAccount'),
   divisionImageUrl: function() {
-    return "https://s3.amazonaws.com/gameway-production/lol/divisions/" + this.get('lolAccountId.soloTier') + "_" + this.get('lolAccountId.soloRank') + ".png"
-  }.property('currentUser.lolAccountId'),
+    return "https://s3.amazonaws.com/gameway-production/lol/divisions/" + this.get('lolAccount.soloTier') + "_" + this.get('lolAccount.soloRank') + ".png"
+  }.property('currentUser.lolAccount'),
   summonerName: function() {
-    return this.get('currentUser.lolAccountId.summonerName')
-  }.property('currentUser.lolAccountId'),
+    return this.get('currentUser.lolAccount.summonerName')
+  }.property('currentUser.lolAccount'),
   oldPassword: '',
   newPassword: '',
   newPasswordConfirmation: '',
@@ -50,6 +50,22 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
   selectedRegionLabel: '',
 
   actions: {
+    updateName: function() {
+      var user = this.get('model'),
+          thisController = this;
+
+      user.save().then(function() {
+        thisController.set('nameErrors', null)
+        thisController.set('updateNameErrors', false)
+        thisController.set('updateNameSuccess', true)
+        thisController.set('nameSuccess', ["Successfully updated"])
+      }, function(err) {
+        thisController.set('nameErrors', err.responseJSON.errors.name)
+        thisController.set('updateNameErrors', true)
+        thisController.set('updateNameSuccess', false)
+        thisController.set('nameSuccess', null)
+      })
+    },
     avatarUploadModal: function() {
       this.send('openModal', 'modals/avatar_upload')
     },
@@ -77,9 +93,8 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
                                                     type: 'alert-danger'});
               })
             } else {
-              var camelizedLolAccountData = recursiveCamelizeObjectKeys(data.lol_account);
-              var lolAccount = thisController.store.push('lolAccount', camelizedLolAccountData)
-              thisController.set('currentUser.lolAccountId', lolAccount)
+              thisController.store.pushPayload('user', data)
+              thisController.set('verifyStep', false)
               Gameway.flashController.pushObject({message: 'success :3',
                                                   type: 'alert-success'});
             }

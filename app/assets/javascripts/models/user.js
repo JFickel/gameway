@@ -1,8 +1,9 @@
 attr = DS.attr;
 
 Gameway.User = DS.Model.extend({
+  name: attr('string'),
   email: attr('string'),
-  lolAccountId: DS.belongsTo('lolAccount'),
+  lolAccount: DS.belongsTo('lolAccount'),
   avatarUrl: attr('string'),
-  teamIds: DS.hasMany('team')
+  teams: DS.hasMany('team')
 })

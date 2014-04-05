@@ -3,11 +3,26 @@
 <div class="row">
   <div class="col-sm-3 col-md-2" style="text-align: center">
     {{#link-to 'user.index' this class="btn btn-lg btn-default"}}View Profile{{/link-to}}
+    <br>
+    <br>
+    <div {{bind-attr class=":form-group updateNameSuccess:has-success updateNameErrors:has-error"}} style="text-align: left">
+      <label>Set Display Name</label>
+      {{input value=name class="form-control"}}
+      {{#each nameErrors}}
+        <span class="help-block text-danger">{{.}}</span>
+      {{/each}}
+      {{#each nameSuccess}}
+        <span class="help-block text-danger">{{.}}</span>
+      {{/each}}
+      <div style="text-align: center; margin-top: 10px">
+        <button {{action 'updateName'}} class="btn btn-default">Update</button>
+      </div>
+    </div>
     <div class="thumbnail" style="text-align: center; margin-top: 10px">
       <img {{bind-attr src=avatarUrl}}>
       <div class="caption" style="text-align: center">
         <h4>Display Picture</h4>
-        <button {{action 'avatarUploadModal'}} class="btn btn-default">Change</button>
+        <button {{action 'avatarUploadModal'}} class="btn btn-default">Upload</button>
       </div>
     </div>
   </div>
@@ -15,10 +30,10 @@
   {{#if summonerNameSet}}
     <div class="col-md-3 col-sm-5">
       <div style="text-align: center">
-        <h2>{{lolAccountId.summonerName}}</h2>
+        <h2>{{lolAccount.summonerName}}</h2>
         <img {{bind-attr src=divisionImageUrl}}>
-        <h4>{{lolAccountId.soloTier}} {{lolAccountId.soloRank}}</h4>
-        <h4>{{formatRegion lolAccountId.region}}</h4>
+        <h4>{{lolAccount.soloTier}} {{lolAccount.soloRank}}</h4>
+        <h4>{{formatRegion lolAccount.region}}</h4>
         <button {{action 'updateSummonerData'}} class="btn btn-default">Update Data</button>
       </div>
     </div>

@@ -5,18 +5,22 @@ class UsersController < ApplicationController
   end
 
   def update
-    uploaded_avatar_file = decode_file_data if params[:file_data]
-    current_user.avatar = uploaded_avatar_file
-    if current_user.save
-      render json: { avatar_url: current_user.avatar.url }
+    if params[:file_data]
+      current_user.avatar = uploaded_avatar_file
     else
-      render json: { errors: current_user.errors.messages }
+      current_user.assign_attributes(user_params)
+    end
+
+    if current_user.save
+      render json: current_user
+    else
+      render json: { errors: current_user.errors.messages }, status: 422
     end
   end
 
   private
 
-    def decode_file_data
+    def uploaded_avatar_file
       clean_base64 = params[:file_data].gsub(/.*base64,/, '')
       decoded_base64 = Base64.decode64(clean_base64)
 
@@ -24,5 +28,9 @@ class UsersController < ApplicationController
       File.open(file_path, 'wb') { |file| file.write(decoded_base64) }
 
       File.new(file_path)
+    end
+
+    def user_params
+      params.require(:user).permit(:name)
     end
 end

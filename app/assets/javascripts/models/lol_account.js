@@ -1,7 +1,7 @@
 attr = DS.attr;
 
 Gameway.LolAccount = DS.Model.extend({
-  userId: DS.belongsTo('user'),
+  user: DS.belongsTo('user'),
   summonerId: attr('number'),
   summonerName: attr('string'),
   soloTier: attr('string'),

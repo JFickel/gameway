@@ -1,15 +1,15 @@
 Gameway.UserEditController = Gameway.ObjectController.extend({
   summonerNameSet: function() {
-    if (this.get('currentUser.lolAccountId')) {
+    if (this.get('currentUser.lolAccount')) {
       return true
     }
-  }.property('currentUser.lolAccountId'),
+  }.property('currentUser.lolAccount'),
   divisionImageUrl: function() {
-    return "https://s3.amazonaws.com/gameway-production/lol/divisions/" + this.get('lolAccountId.soloTier') + "_" + this.get('lolAccountId.soloRank') + ".png"
-  }.property('currentUser.lolAccountId'),
+    return "https://s3.amazonaws.com/gameway-production/lol/divisions/" + this.get('lolAccount.soloTier') + "_" + this.get('lolAccount.soloRank') + ".png"
+  }.property('currentUser.lolAccount'),
   summonerName: function() {
-    return this.get('currentUser.lolAccountId.summonerName')
-  }.property('currentUser.lolAccountId'),
+    return this.get('currentUser.lolAccount.summonerName')
+  }.property('currentUser.lolAccount'),
   oldPassword: '',
   newPassword: '',
   newPasswordConfirmation: '',
@@ -77,9 +77,8 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
                                                     type: 'alert-danger'});
               })
             } else {
-              var camelizedLolAccountData = recursiveCamelizeObjectKeys(data.lol_account);
-              var lolAccount = thisController.store.push('lolAccount', camelizedLolAccountData)
-              thisController.set('currentUser.lolAccountId', lolAccount)
+              thisController.store.pushPayload('user', data)
+              thisController.set('verifyStep', false)
               Gameway.flashController.pushObject({message: 'success :3',
                                                   type: 'alert-success'});
             }

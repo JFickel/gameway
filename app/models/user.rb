@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :teams, through: :team_memberships
   has_many :teams_led, foreign_key: 'user_id', class_name: Team
 
-  validates :name, length: { in: 3..20 }
-  
+  validates :name, length: { in: 3..20 }, allow_blank: true
+
   mount_uploader :avatar, AvatarUploader
 
   def self.find_for_twitchtv_oauth(auth)

@@ -14,7 +14,11 @@ Gameway.ApplicationController = Gameway.Controller.extend({
                                           type: 'alert-info'});
     }
     if (this.get('gon.twitchAuth')) {
-      this.transitionTo('tournaments.index');
+      if (this.get('currentUser.lolAccount')) {
+        this.transitionTo('tournaments.index');
+      } else {
+        this.transitionTo('user.edit', this.get('currentUser'))
+      }
     }
   },
   twitchAuthURL: window.location.origin + '/users/auth/twitchtv',

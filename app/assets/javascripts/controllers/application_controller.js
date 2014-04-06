@@ -9,15 +9,15 @@ Gameway.ApplicationController = Gameway.Controller.extend({
                                           type: 'alert-danger'});
     }
     if (this.get('gon.firstTwitchAuth')) {
-      this.transitionTo('user.edit', this.get('currentUser'));
+      this.transitionToRoute('user.edit', this.get('currentUser'));
       Gameway.flashController.pushObject({message: "Successfully connected with Twitch. Your current password has been randomly generated, and a password reset link has been sent to your email in case you want to set your password.",
                                           type: 'alert-info'});
     }
     if (this.get('gon.twitchAuth')) {
       if (this.get('currentUser.lolAccount')) {
-        this.transitionTo('tournaments.index');
+        this.transitionToRoute('tournaments.index');
       } else {
-        this.transitionTo('user.edit', this.get('currentUser'))
+        this.transitionToRoute('user.edit', this.get('currentUser'))
       }
     }
   },
@@ -43,7 +43,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
           Gameway.gon.set('currentUserPayload', data.current_user_payload);
           thisController.store.pushPayload('user', data.current_user_payload);
           Gameway.gon.set('userSignedIn', true);
-          thisController.transitionTo('tournaments')
+          thisController.transitionToRoute('tournaments')
         },
         error: function(jqXHR, textStatus, errorThrown) {
           thisController.set('hasSignInError', true)
@@ -60,7 +60,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
           Gameway.gon.set('authenticityToken', data.authenticity_token)
           Gameway.gon.set('currentUserPayload', null);
           Gameway.gon.set('userSignedIn', false);
-          thisController.transitionTo('index')
+          Gameway.__container__.lookup('route:' + thisController.get('currentRouteName')).refresh();
         }
       })
     }

@@ -40,7 +40,8 @@ Gameway.ApplicationController = Gameway.Controller.extend({
         success: function(data) {
           thisController.set('hasSignInError', false)
           Gameway.gon.set('authenticityToken', data.authenticity_token)
-          Gameway.gon.set('currentUser', data.user);
+          Gameway.gon.set('currentUserPayload', data.current_user_payload);
+          thisController.store.pushPayload('user', data.current_user_payload);
           Gameway.gon.set('userSignedIn', true);
           thisController.transitionTo('tournaments')
         },

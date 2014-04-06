@@ -20,11 +20,11 @@ class User < ActiveRecord::Base
     return [user, false] if user.present?
 
     if user = User.where(email: auth.info.email).first
-      user.update_attributes(provider: auth.provider, uid: auth.uid)
+      user.update_attributes(provider: auth.provider, uid: auth.uid, confirmation_token: nil, confirmed_at: Time.current)
       return user, false
     end
 
-    user = User.new(name: auth.info.name,
+    user = User.new(name: auth.info.nickname,
                     provider: auth.provider,
                     uid: auth.uid,
                     email: auth.info.email,

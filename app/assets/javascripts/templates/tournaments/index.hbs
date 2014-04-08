@@ -35,7 +35,7 @@
         <td>{{tournament.id}}</td>
         <td>{{#link-to 'tournament' tournament}}{{tournament.name}}{{/link-to}}</td>
         <td>25</td>
-        <td>Sunday, April 6, 2013 at 3:30pm</td>
+        <td>{{formattedLongDate tournament.createdAt}}</td>
       </tr>
     {{/each}}
   </tbody>

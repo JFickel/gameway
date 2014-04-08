@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   def index
-    tournaments = Tournament.last(40)
+    tournaments = Tournament.where(lol_region: params[:lol_region]).last(40)
     render json: tournaments
   end
 
@@ -41,6 +41,6 @@ class TournamentsController < ApplicationController
   private
 
     def tournament_params
-      params.require(:tournament).permit(:name, :description, :user_id)
+      params.require(:tournament).permit(:name, :description, :user_id, :lol_region)
     end
 end

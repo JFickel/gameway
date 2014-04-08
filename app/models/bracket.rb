@@ -3,7 +3,6 @@ class Bracket < ActiveRecord::Base
   belongs_to :tournament
 
   def initialize(mode: 'team', participants: [], game: 'lol')
-    return if participants.empty?
-    
+    return if participants.empty?    
   end
 end

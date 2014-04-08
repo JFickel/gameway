@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 20140404100202) do
     t.date     "starts_at"
     t.boolean  "started"
     t.integer  "user_id"
+    t.string   "lol_region"
+    t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

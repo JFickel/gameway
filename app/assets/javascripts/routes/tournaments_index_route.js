@@ -1,5 +1,9 @@
 Gameway.TournamentsIndexRoute = Gameway.Route.extend({
   model: function() {
-    return this.store.findAll('tournament')
-  }
+    var region = this.get('currentUser.lolAccount.region') || "na"
+    return this.store.find('tournament', { lol_region: region })
+  },
+  // action: {
+
+  // }
 });

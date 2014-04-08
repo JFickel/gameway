@@ -1,21 +1,42 @@
-<h2>Tournaments List: </h2>
+<div class="row">
+  <div class="col-sm-5 col-md-3">
+    <h2>Tournaments List</h2>
+  </div>
 
-{{#link-to 'tournaments.new' class="btn btn-primary btn-info"}}Create Tournament{{/link-to}}
+  <div class="col-sm-6 col-md-4">
+    <br>
+    {{#link-to 'tournaments.new' class="btn btn-primary btn-info"}}Create Tournament{{/link-to}}
+  </div>
+</div>
+
+<h4>Select Region</h4>
+
+<div class="btn-group btn-group-justified">
+  {{#each region in regions}}
+    <div class="btn-group">
+      <button type="button" {{action 'setFilter' region.name}} {{bind-attr class=":btn :btn-default region.active"}}>{{region.label}}</button>
+    </div>
+  {{/each}}
+</div>
+
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>id</th>
       <th>Name</th>
-      <th>Description</th>
+      <th>Participants</th>
+      <th>Start Date and Time</th>
     </tr>
   </thead>
-
-  {{#each tournament in controller}}
-    <tr>
-      <td>{{tournament.id}}</td>
-      <td>{{#link-to 'tournament' tournament}}{{tournament.name}}{{/link-to}}</td>
-      <td>{{tournament.description}}</td>
-    </tr>
-  {{/each}}
+  <tbody>
+    {{#each tournament in model}}
+      <tr>
+        <td>{{tournament.id}}</td>
+        <td>{{#link-to 'tournament' tournament}}{{tournament.name}}{{/link-to}}</td>
+        <td>25</td>
+        <td>Sunday, April 6, 2013 at 3:30pm</td>
+      </tr>
+    {{/each}}
+  </tbody>
 </table>

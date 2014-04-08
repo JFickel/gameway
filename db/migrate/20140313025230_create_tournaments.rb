@@ -6,11 +6,15 @@ class CreateTournaments < ActiveRecord::Migration
       t.date :starts_at # Will I need Sidekiq for this?
       t.boolean :started
       t.integer :user_id
+      t.string :lol_region
+      t.integer :game_id
 
       t.timestamps
     end
   end
 end
+
+# Possibly add a tournament game configuration model in the future if we support more games
 
 # bracket:
 # structure: [

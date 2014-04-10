@@ -1,0 +1,39 @@
+<div class="modal fade" id="joinTournamentModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="padding: 5%; width: 90%">
+      <h2>Select Team to Enter Tournament</h2>
+
+      <br>
+
+      {{#if currentUser.teams}}
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-md-offset-3">
+            {{view Ember.Select content=teams optionValuePath="content.value" optionLabelPath="content.label" value=selectedTeam class="form-control"}}
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-offset-4">
+            <button {{action 'submitTeam'}} class="btn btn-success">Submit</button>
+            <button {{action 'cancelJoinTournament'}} class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      {{else}}
+        <div class="row" style="text-align: center">
+          <div class="col-md-8 col-sm-8 col-md-offset-2">
+            <p>It looks like you don't belong to any teams yet. Join one to enter this tournament.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-5">
+            <button {{action 'cancelJoinTournament'}} class="btn btn-danger">Close</button>
+          </div>
+        </div>
+      {{/if}}
+
+
+    </div>
+  </div>
+</div>

@@ -6,10 +6,16 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable, omniauth_providers: [:twitchtv]
 
   has_one :lol_account
-  has_many :tournaments
+
+  has_many :tournaments_hosted, foreign_key: 'user_id', class_name: Tournament
+
+  has_many :competitions, foreign_key: 'user_id', class_name: Competitorship
+  has_many :tournaments, through: :competitions
+
+  has_many :teams_led, foreign_key: 'user_id', class_name: Team
+
   has_many :team_memberships
   has_many :teams, through: :team_memberships
-  has_many :teams_led, foreign_key: 'user_id', class_name: Team
 
   validates :name, length: { in: 3..20 }, allow_blank: true
 

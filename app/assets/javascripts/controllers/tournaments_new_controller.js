@@ -23,6 +23,8 @@ Gameway.TournamentsNewController = Gameway.Controller.extend({
         user: this.get('currentUser'),
         lolRegion: this.get('selectedRegion')
       }).save().then(function (tournament) {
+        thisController.set('name', '')
+        thisController.set('description', '')
         thisController.transitionToRoute('tournament', tournament)
       })
     }

@@ -7,6 +7,9 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
           thisController.transitionToRoute('tournaments.index')
         })
       }
+    },
+    joinTournamentModal: function() {
+      this.send('openModal', 'modals/join_tournament')
     }
   }
 })

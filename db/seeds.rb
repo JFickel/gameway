@@ -16,3 +16,5 @@ user = User.new(email: 'example@example.com',
                 password_confirmation: 'password')
 user.skip_confirmation!
 user.save
+
+tournament = Tournament.create(name: 'Another Tournament')

@@ -15,6 +15,8 @@ Gameway.ApplicationController = Gameway.Controller.extend({
     }
     if (this.get('gon.twitchAuth')) {
       if (this.get('currentUser.lolAccount')) {
+        // Probably want to have smart redirects here -- if they aren't signed up for tournaments,
+        // send them to tournaments.index, otherwise send them to the user dashboard
         this.transitionToRoute('tournaments.index');
       } else {
         this.transitionToRoute('user.edit', this.get('currentUser'))
@@ -43,6 +45,7 @@ Gameway.ApplicationController = Gameway.Controller.extend({
           Gameway.gon.set('currentUserPayload', data.current_user_payload);
           thisController.store.pushPayload('user', data.current_user_payload);
           Gameway.gon.set('userSignedIn', true);
+          // Consider smart redirects here too
           thisController.transitionToRoute('tournaments')
         },
         error: function(jqXHR, textStatus, errorThrown) {

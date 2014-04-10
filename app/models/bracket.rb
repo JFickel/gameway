@@ -8,6 +8,7 @@ class Bracket < ActiveRecord::Base
     self.mode = participants.first.class.to_s.downcase
     self.participants = participants.shuffle
     construct
+    self.save
   end
 
   def rounds

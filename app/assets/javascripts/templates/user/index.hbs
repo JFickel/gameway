@@ -22,13 +22,14 @@
       <h2>Teams</h2>
       <br>
       <table class="table table-striped">
-
-        {{#each team in this.teams.content}}
-          <tr>
-            <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
-            <td>{{formatRegion team.lolRegion}}</td>
-          </tr>
-        {{/each}}
+        <tbody>
+          {{#each team in this.teams.content}}
+            <tr>
+              <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+              <td>{{formatRegion team.lolRegion}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
       </table>
     </div>
   {{/if}}

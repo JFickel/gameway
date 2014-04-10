@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140404100202) do
   end
 
   create_table "matches", force: true do |t|
-    t.integer  "next_match_up_id"
+    t.integer  "next_matchup_id"
     t.integer  "round_index"
     t.integer  "bracket_id"
     t.datetime "created_at"

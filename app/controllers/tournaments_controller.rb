@@ -22,9 +22,10 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
-    tournament.start if params[:start]
-
-    if tournament.update_attributes(tournament_params)
+    if params[:start]
+      tournament.start
+      render json: tournament
+    elsif tournament.update_attributes(tournament_params)
       render json: tournament
     else
       render json: { errors: tournament.errors }

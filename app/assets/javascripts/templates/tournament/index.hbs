@@ -9,6 +9,7 @@
 </div>
 
 <button {{action 'joinTournamentModal'}} class="btn btn-info">Join Tournament</button>
+<button {{action 'startTournament'}} class="btn btn-success">Start Tournament</button>
 
 <br>
 <br>
@@ -25,19 +26,20 @@
   <div class="col-md-4 col-sm-6 col-md-offset-0">
     <br>
     <table class="table table-striped">
+      <tbody>
+        {{#each team in teams}}
+          <tr>
+            <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+            <td>{{formatRegion team.lolRegion}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
 
-      {{#each team in teams}}
-        <tr>
-          <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
-          <td>{{formatRegion team.lolRegion}}</td>
-        </tr>
-      {{/each}}
     </table>
   </div>
 {{/if}}
 
 {{debugger}}
 
-
-<h3>created at: {{createdAt}}</h3>
-<h3>updated at: {{updatedAt}}</h3>
+<h3>created at: {{formattedLongDate createdAt}}</h3>
+<h3>updated at: {{formattedLongDate updatedAt}}</h3>

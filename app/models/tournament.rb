@@ -7,11 +7,13 @@ class Tournament < ActiveRecord::Base
 
   def start
     self.started = true
-    self.started_at = Time.current
-    self.bracket = Bracket.new(participants: participants)
+    bracket = Bracket.new
+    bracket.build(participants: participants)
+    self.bracket = bracket
+    self.save
   end
 
   def participants
-    self.users ? self.users : self.teams
+    self.users.present? ? self.users : self.teams
   end
 end

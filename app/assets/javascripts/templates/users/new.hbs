@@ -1,8 +1,9 @@
-<div class="col-md-6">
+<div class="col-md-5">
   <h1>Sign Up</h1>
-  <p>You will need to confirm your email address after completing this form.</p>
+  <p>You can also sign up with your Twitch.tv account by clicking the Connect with Twitch button in the navbar.</p>
+  <p>You will need to confirm your email address after submitting this form.</p>
   <br>
-  <div class="col-md-7">
+  <div class="col-md-8">
     <form role="form">
       <div class="form-group" {{bind-attr class="hasEmailError:has-error"}}>
         <label for="exampleInputEmail1">Email</label>
@@ -31,7 +32,7 @@
         {{/each}}
       </div>
 
-      <button {{action 'signUp'}} class="btn btn-default">Sign Up</button>
+      <button {{action 'signUp'}} class="btn btn-default col-md-offset-4">Sign Up</button>
     </form>
   </div>
 </div>

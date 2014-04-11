@@ -26,7 +26,8 @@ user.save
   user.save
 end
 
-tournament = Tournament.create(name: 'Another Tournament', description: 'This is a test tournament', lol_region: 'na')
+tournament = Tournament.create(name: 'Another Tournament', description: 'This is a test tournament',
+                               lol_region: 'na', user_id: 1)
 
 team_names = ['Baltimore Ravens', 'Chicago Bears', 'Cincinatti Bengals', 'Detroit Lions',
               'Cleveland Browns', 'Green Bay Packers', 'Pittsburgh Steelers', 'Minnesota Vikings',

@@ -1,5 +1,43 @@
-<h1>{{name}}</h1>
-<button {{action 'destroy' model}} class="btn btn-danger">Delete</button>
-<h2>description: {{description}}</h2>
-<h3>created at: {{createdAt}}</h3>
-<h3>updated at: {{updatedAt}}</h3>
+<div class="row">
+  <div class="col-sm-8 col-md-6">
+    <h1>{{name}}</h1>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <br>
+    <button {{action 'destroy' model}} class="btn btn-danger">Delete</button>
+  </div>
+</div>
+
+<button {{action 'joinTournamentModal'}} class="btn btn-info">Join Tournament</button>
+<button {{action 'startTournament'}} class="btn btn-success">Start Tournament</button>
+
+<br>
+<br>
+<h3>Description</h3>
+<div class="row">
+  <div class="col-sm-6 col-md4">
+    <p>{{description}}</p>
+  </div>
+</div>
+
+<h3>Competitors</h3>
+
+{{#if teams}}
+  <div class="col-md-4 col-sm-6 col-md-offset-0">
+    <br>
+    <table class="table table-striped">
+      <tbody>
+        {{#each team in teams}}
+          <tr>
+            <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+            <td>{{formatRegion team.lolRegion}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
+  </div>
+{{/if}}
+
+<h3>created at: {{formattedLongDate createdAt}}</h3>
+<h3>updated at: {{formattedLongDate updatedAt}}</h3>

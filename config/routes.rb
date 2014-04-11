@@ -8,6 +8,7 @@ Gameway::Application.routes.draw do
   }
   root to: "assets#index"
   resources :tournaments
+  resources :competitorships
   resources :brackets
   resources :users
   resources :lol_accounts

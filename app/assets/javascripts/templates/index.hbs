@@ -1,40 +1,44 @@
-<div class="jumbotron">
-  <div class="page-header">
-    <h1>Gaming Intensifies</h1>
+{{#if currentUser}}
+  <h1>User Dashboard</h1>
+{{else}}
+  <div class="jumbotron">
+    <div class="page-header">
+      <h1>Gaming Intensifies</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" style="text-align: center">
+          <br>
+          <br>
+          <br>
+          <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/twitch-logo.png">
+          <br>
+          <div class="caption">
+            <h3>Sign Up</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" style="text-align: center">
+          <br>
+          <br>
+          <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/League-of-legends-logo.jpg" >
+          <div class="caption">
+            <h3>Connect Game Account</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail" style="text-align: center">
+          <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/bracket-image.png">
+          <div class="caption">
+            <h3>Join Tournaments</h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail" style="text-align: center">
-        <br>
-        <br>
-        <br>
-        <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/twitch-logo.png">
-        <br>
-        <div class="caption">
-          <h3>Sign Up</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail" style="text-align: center">
-        <br>
-        <br>
-        <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/League-of-legends-logo.jpg" >
-        <div class="caption">
-          <h3>Connect Game Account</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail" style="text-align: center">
-        <img src="https://s3.amazonaws.com/gameway-production/miscellaneous/bracket-image.png">
-        <div class="caption">
-          <h3>Join Tournaments</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{{/if}}

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404100202) do
+ActiveRecord::Schema.define(version: 20140410142740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brackets", force: true do |t|
     t.text     "structure"
-    t.integer  "tournamnent_id"
+    t.integer  "tournament_id"
     t.integer  "game_id"
     t.string   "mode"
     t.string   "game"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140404100202) do
     t.datetime "updated_at"
   end
 
-  create_table "competitors", force: true do |t|
+  create_table "competitorships", force: true do |t|
     t.integer  "tournament_id"
     t.integer  "team_id"
     t.integer  "user_id"
@@ -51,7 +51,15 @@ ActiveRecord::Schema.define(version: 20140404100202) do
     t.string  "region"
   end
 
-  create_table "match_ups", force: true do |t|
+  create_table "matches", force: true do |t|
+    t.integer  "next_matchup_id"
+    t.integer  "index"
+    t.integer  "round_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "matchups", force: true do |t|
     t.integer  "match_id"
     t.integer  "user_id"
     t.integer  "team_id"
@@ -60,9 +68,8 @@ ActiveRecord::Schema.define(version: 20140404100202) do
     t.datetime "updated_at"
   end
 
-  create_table "matches", force: true do |t|
-    t.integer  "next_match_up_id"
-    t.integer  "round_index"
+  create_table "rounds", force: true do |t|
+    t.integer  "index"
     t.integer  "bracket_id"
     t.datetime "created_at"
     t.datetime "updated_at"

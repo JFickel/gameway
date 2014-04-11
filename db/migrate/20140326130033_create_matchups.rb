@@ -1,6 +1,6 @@
-class CreateMatchUps < ActiveRecord::Migration
+class CreateMatchups < ActiveRecord::Migration
   def change
-    create_table :match_ups do |t|
+    create_table :matchups do |t|
       t.integer :match_id
       t.integer :user_id
       t.integer :team_id

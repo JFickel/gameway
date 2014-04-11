@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  # Need to create user permissions
   def index
     tournaments = Tournament.where(lol_region: params[:lol_region]).last(40)
     render json: tournaments
@@ -21,8 +22,10 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
-
-    if tournament.update_attributes(tournament_params)
+    if params[:start]
+      tournament.start
+      render json: tournament
+    elsif tournament.update_attributes(tournament_params)
       render json: tournament
     else
       render json: { errors: tournament.errors }

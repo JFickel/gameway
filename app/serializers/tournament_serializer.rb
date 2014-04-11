@@ -1,9 +1,6 @@
 class TournamentSerializer < ApplicationSerializer
-  attributes :id, :name, :description, :lol_region, :created_at, :updated_at, :bracket
+  attributes :id, :name, :description, :lol_region, :created_at, :updated_at
 
   has_many :teams
-
-  def bracket
-    object.structure
-  end
+  has_one :bracket
 end

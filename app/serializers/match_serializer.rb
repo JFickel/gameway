@@ -1,7 +1,5 @@
 class MatchSerializer < ApplicationSerializer
-  attributes :id, :matchups
+  attributes :id, :round_id, :next_matchup_id, :index
 
-  def matchups
-    object.matchups
-  end
+  has_many :matchups
 end

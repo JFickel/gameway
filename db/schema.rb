@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404100202) do
+ActiveRecord::Schema.define(version: 20140410142740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20140404100202) do
 
   create_table "matches", force: true do |t|
     t.integer  "next_matchup_id"
-    t.integer  "round_index"
-    t.integer  "bracket_id"
+    t.integer  "index"
+    t.integer  "round_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 20140404100202) do
     t.integer  "user_id"
     t.integer  "team_id"
     t.boolean  "top"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rounds", force: true do |t|
+    t.integer  "index"
+    t.integer  "bracket_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

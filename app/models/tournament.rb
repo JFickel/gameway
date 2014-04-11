@@ -7,9 +7,14 @@ class Tournament < ActiveRecord::Base
 
   def start
     self.started = true
-    bracket = Bracket.new
+    bracket = Bracket.create
     bracket.build(participants: participants)
     self.bracket = bracket
+    self.save
+  end
+
+  def clear
+    self.bracket = nil
     self.save
   end
 

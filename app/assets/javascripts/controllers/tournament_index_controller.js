@@ -24,6 +24,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
           } else {
             Gameway.flashController.pushObject({message: "Tournament started!", type: 'alert-info'})
             thisController.store.pushPayload('tournament', data);
+
           }
         }
       })

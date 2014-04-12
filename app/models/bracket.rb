@@ -32,6 +32,7 @@ class Bracket < ActiveRecord::Base
     build_rounds
     fill_filter_round
     fill_filtered_round
+    self.reload
   end
 
   def build_rounds

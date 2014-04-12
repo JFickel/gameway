@@ -30,8 +30,30 @@
   </div>
 </div>
 
+
 {{#if started}}
   <h3>Tournament has started!</h3>
+
+
+
+  {{#if participatingTeams}}
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        {{#each currentStatus in participatingTeams}}
+          <h4>Your team
+            {{#link-to 'team' currentStatus.team}}{{currentStatus.team.name}}{{/link-to}}
+            is currently facing
+            {{#link-to 'team' currentStatus.opponent}}{{currentStatus.opponent.name}}{{/link-to}}
+          </h4>
+          <p>To enter the lobby for this match, go to the Custom Game tab in the game client and select the Tournament Code option. Copy and paste the following code into the field:</p>
+          <code>pvpnet://lol/customgame/joinorcreate/map1/pick6/team5/specALL/eyJuYW1lIjoiV</code>
+          <code>G91cm5hbWVudCAiLCJleHRyYSI6IiIsInBhc3N3b3JkIjoiQVNEMTIzIiwicmVwb3J0IjoiaHR0</code>
+          <code>cDpcL1wvd2Vic2l0ZS5jb21cL2dhbWVyZXBvcnRcLyJ9</code>
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
   <h3>Bracket:</h3>
   <div class="row">
     {{#each round in bracket.rounds}}

@@ -6,36 +6,38 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         winner,
         reverseRounds = [],
         thisController = this;
-    this.get('teams').forEach(function(team, index){
-      if (thisController.get('currentUser.teams').contains(team)) {
-        reversedRounds = thisController.get('bracket.rounds.content').reverse();
+    if (this.get('currentUser')) {
+      this.get('teams').forEach(function(team, index){
+        if (thisController.get('currentUser.teams').contains(team)) {
+          reversedRounds = thisController.get('bracket.rounds.content').reverse();
 
-        // Searches through the latest rounds to find the latest matchup
-        reversedRounds.every(function(round, reversedRoundIndex) {
-          return round.get('matches').every(function(match) {
-            var competingTeams = match.get('matchups').map(function(matchup) {
-                  return matchup.get('team');
-                });
-            if (competingTeams.contains(team)) {
-              opponent = competingTeams.filter(function(competingTeam) {
-                if (team != competingTeam) { return true; }
-              }).objectAt(0);
-              if (reversedRoundIndex == 0) {
-                winner = true;
+          // Searches through the latest rounds to find the latest matchup
+          reversedRounds.every(function(round, reversedRoundIndex) {
+            return round.get('matches').every(function(match) {
+              var competingTeams = match.get('matchups').map(function(matchup) {
+                    return matchup.get('team');
+                  });
+              if (competingTeams.contains(team)) {
+                opponent = competingTeams.filter(function(competingTeam) {
+                  if (team != competingTeam) { return true; }
+                }).objectAt(0);
+                if (reversedRoundIndex == 0) {
+                  winner = true;
+                }
+                return false;
+              } else {
+                return true;
               }
-              return false;
-            } else {
-              return true;
-            }
+            });
           });
-        });
-        // This is so dumb that I have to reverse it back again --
-        // There should be a better solution
-        thisController.get('bracket.rounds.content').reverse();
-        participatingTeams.push({ team: team, opponent: opponent, winner: winner });
-      }
-    })
-    return participatingTeams
+          // This is so dumb that I have to reverse it back again --
+          // There should be a better solution
+          thisController.get('bracket.rounds.content').reverse();
+          participatingTeams.push({ team: team, opponent: opponent, winner: winner });
+        }
+      })
+      return participatingTeams
+    }
   }.property(),
   actions: {
     destroy: function(model) {

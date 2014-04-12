@@ -5,7 +5,7 @@ class Tournament < ActiveRecord::Base
   has_many :users, through: :competitorships
   has_many :teams, through: :competitorships
 
-  
+
 
   def start
     self.started = true
@@ -16,6 +16,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def clear
+    self.started = false
     self.bracket = nil
     self.save
   end

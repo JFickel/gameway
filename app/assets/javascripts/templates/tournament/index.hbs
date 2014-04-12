@@ -30,26 +30,54 @@
   </div>
 </div>
 
-<h3>Competitors</h3>
+{{debugger}}
 
-{{#if teams}}
-  <div class="col-md-4 col-sm-6 col-md-offset-0">
-    <br>
-    <table class="table table-striped">
-      <tbody>
-        {{#each team in teams}}
-          <tr>
-            <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
-            <td>{{formatRegion team.lolRegion}}</td>
-          </tr>
+{{#if started}}
+  <h3>Tournament has started!</h3>
+  <h3>Bracket:</h3>
+  <div class="row">
+    {{#each round in bracket.rounds}}
+      <div class="col-md-2">
+        {{#each match in round.matches}}
+          <table class="table table-bordered" style="width: 180px">
+            <tbody>
+              {{#each matchup in match.matchups}}
+                <tr>
+                  {{#if matchup.team}}
+                    <td>{{matchup.team.name}}</td>
+                  {{else}}
+                    <td><span style="visibility: hidden">Pending</span></td>
+                  {{/if}}
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
         {{/each}}
-      </tbody>
-
-    </table>
+      </div>
+    {{/each}}
   </div>
+
+
+{{else}}
+  <h3>Competitors</h3>
+
+  {{#if teams}}
+    <div class="col-md-4 col-sm-6 col-md-offset-0">
+      <br>
+      <table class="table table-striped">
+        <tbody>
+          {{#each team in teams}}
+            <tr>
+              <td>{{#link-to 'team' team}}{{team.name}}{{/link-to}}</td>
+              <td>{{formatRegion team.lolRegion}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+
+      </table>
+    </div>
+  {{/if}}
 {{/if}}
 
-
-<h3>started: {{started}}</h3>
 <h3>created at: {{formattedLongDate createdAt}}</h3>
 <h3>updated at: {{formattedLongDate updatedAt}}</h3>

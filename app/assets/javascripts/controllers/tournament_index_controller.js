@@ -1,4 +1,5 @@
 Gameway.TournamentIndexController = Gameway.ObjectController.extend({
+  needs: ['application'],
   actions: {
     destroy: function(model) {
       if (confirm("Are you sure you want to delete %@?".fmt(model.get('name')))) {
@@ -19,11 +20,10 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         data: { start: true },
         success: function(data) {
           if (data.errors) {
-            Gameway.flashController.pushObject({message: data.errors, type: 'alert-danger'})
-            Gameway.__container__.lookup('route:' + thisController.get('currentRouteName')).refresh();
+            Gameway.flashController.pushObject({message: data.errors, type: 'alert-danger'});
           } else {
             Gameway.flashController.pushObject({message: "Tournament started!", type: 'alert-info'})
-            Gameway.__container__.lookup('route:' + thisController.get('currentRouteName')).refresh();
+            thisController.store.pushPayload('tournament', data);
           }
         }
       })

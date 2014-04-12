@@ -7,6 +7,8 @@ Gameway.ApplicationRoute = Gameway.Route.extend({
       });
     },
     closeModal: function() {
+      $('.modal').modal('hide');
+      $('body').removeClass('modal-open');
       $('.modal-backdrop').remove();
       return this.disconnectOutlet({
         outlet: 'modal',

@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20140410142740) do
   enable_extension "plpgsql"
 
   create_table "brackets", force: true do |t|
-    t.text     "structure"
     t.integer  "tournament_id"
     t.integer  "game_id"
     t.string   "mode"

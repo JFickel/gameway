@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   has_many :team_memberships
   has_many :teams, through: :team_memberships
 
-  validates :name, length: { in: 3..20 }, allow_blank: true
+  validates :name, length: { in: 3..20 }
+  validates :email, uniqueness: true
 
   mount_uploader :avatar, AvatarUploader
 
@@ -26,8 +27,7 @@ class User < ActiveRecord::Base
     return [user, false] if user.present?
 
     if user = User.where(email: auth.info.email).first
-      user.update_attributes(name: auth.info.nickname,
-                             provider: auth.provider,
+      user.update_attributes(provider: auth.provider,
                              uid: auth.uid,
                              confirmation_token: nil,
                              confirmed_at: Time.current)

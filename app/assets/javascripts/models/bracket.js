@@ -2,6 +2,7 @@ attr = DS.attr;
 
 Gameway.Bracket = DS.Model.extend({
   tournament: DS.belongsTo('tournament'),
-  structure: attr(),
-  mode: attr('string')
+  rounds: DS.hasMany('round'),
+  mode: attr('string'),
+  game: attr('string')
 })

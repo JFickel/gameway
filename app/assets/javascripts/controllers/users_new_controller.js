@@ -22,7 +22,8 @@ Gameway.UsersNewController = Gameway.Controller.extend({
                 user: {
                   email: thisController.get('email'),
                   password: thisController.get('password'),
-                  password_confirmation: thisController.get('passwordConfirmation')
+                  password_confirmation: thisController.get('passwordConfirmation'),
+                  name: thisController.get('displayName')
                 }
               },
         success: function(data) {
@@ -31,6 +32,10 @@ Gameway.UsersNewController = Gameway.Controller.extend({
             if (data.errors.email) {
               thisController.set('hasEmailError', true);
               thisController.set('emailErrors', data.errors.email);
+            }
+            else if (data.errors.name) {
+              thisController.set('hasDisplayNameError', true);
+              thisController.set('displayNameErrors', data.errors.name)
             }
             else if (data.errors.password) {
               thisController.set('hasPasswordError', true);

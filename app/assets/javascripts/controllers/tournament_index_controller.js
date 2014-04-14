@@ -9,7 +9,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
     if (this.get('currentUser')) {
       this.get('teams').forEach(function(team, index){
         if (thisController.get('currentUser.teams').contains(team)) {
-          reversedRounds = thisController.get('bracket.rounds.content').reverse();
+          reversedRounds = thisController.get('bracket.rounds.content').slice().reverse();
 
           // Searches through the latest rounds to find the latest matchup
           reversedRounds.every(function(round, reversedRoundIndex) {
@@ -30,9 +30,6 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
               }
             });
           });
-          // This is so dumb that I have to reverse it back again --
-          // There should be a better solution
-          thisController.get('bracket.rounds.content').reverse();
           participatingTeams.push({ team: team, opponent: opponent, winner: winner });
         }
       })

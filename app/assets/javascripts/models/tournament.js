@@ -8,6 +8,7 @@ Gameway.Tournament = DS.Model.extend({
   teams: DS.hasMany('team'),
   started: attr('boolean'),
   startsAt: attr('date'),
+  ended: attr('boolean'),
   lolRegion: attr('string'),
   createdAt: attr('date'),
   updatedAt: attr('date')

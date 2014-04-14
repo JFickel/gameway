@@ -8,7 +8,7 @@
       </ul>
     </div>
 
-    <div class="col-md-3 col-sm-3">
+    <div class="col-md-4 col-sm-4">
       {{#if currentUser.teams}}
         <h2>Your Teams</h2>
 
@@ -20,11 +20,18 @@
 
     <div class="col-md-4 col-sm-4">
       {{#if currentUser.tournaments}}
-        <h2>Your Tournaments</h2>
 
-        {{#each tournament in currentUser.tournaments}}
+        <h3>Current Tournaments</h3>
+        {{#each tournament in currentTournaments}}
           {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
         {{/each}}
+
+        <h3>Past Tournaments</h3>
+
+        {{#each tournament in pastTournaments}}
+          {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
+        {{/each}}
+
       {{/if}}
     </div>
   </div>

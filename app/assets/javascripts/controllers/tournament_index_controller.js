@@ -38,7 +38,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       })
       return participatingTeams
     }
-  }.property(),
+  }.property('currentUser'),
   actions: {
     destroy: function(model) {
       if (confirm("Are you sure you want to delete %@?".fmt(model.get('name')))) {

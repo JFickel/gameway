@@ -1,5 +1,33 @@
 {{#if currentUser}}
-  <h1>User Dashboard</h1>
+  <div class="row">
+    <div class="col-md-2 col-sm-2">
+      <ul class="nav nav-pills nav-stacked">
+        {{#link-to 'index' tagName='li'}}<a href>Dashboard</a>{{/link-to}}
+        {{#link-to 'user.edit' currentUser tagName='li'}}<a href>Account Settings</a>{{/link-to}}
+        {{#link-to 'user.index' currentUser tagName='li'}}<a href>View Profile</a>{{/link-to}}
+      </ul>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+      {{#if currentUser.teams}}
+        <h2>Your Teams</h2>
+
+        {{#each team in currentUser.teams}}
+          {{#link-to 'team.index' team}}<h3>{{team.name}}</h3>{{/link-to}}
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+      {{#if currentUser.tournaments}}
+        <h2>Your Tournaments</h2>
+
+        {{#each tournament in currentUser.tournaments}}
+          {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
 {{else}}
   <div class="jumbotron">
     <div class="page-header">

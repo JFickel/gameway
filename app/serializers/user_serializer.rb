@@ -3,6 +3,7 @@ class UserSerializer < ApplicationSerializer
 
   has_one :lol_account
   has_many :teams
+  has_many :tournaments
 
   def avatar_url
     object.avatar.url || "https://s3.amazonaws.com/gameway-production/user_accounts/default_profile.png"
@@ -14,5 +15,9 @@ class UserSerializer < ApplicationSerializer
 
   def teams
     object.all_teams
+  end
+
+  def tournaments
+    object.all_tournaments
   end
 end

@@ -1,9 +1,14 @@
-<h2 style="margin-bottom: 50px">Account Settings</h2>
+
 
 <div class="row">
+  <div class="col-md-2 col-sm-2">
+    <ul class="nav nav-pills nav-stacked">
+      {{#link-to 'index' tagName='li'}}<a href>Dashboard</a>{{/link-to}}
+      {{#link-to 'user.edit' currentUser tagName='li'}}<a href>Account Settings</a>{{/link-to}}
+      {{#link-to 'user.index' currentUser tagName='li'}}<a href>View Profile</a>{{/link-to}}
+    </ul>
+  </div>
   <div class="col-sm-3 col-md-2" style="text-align: center">
-    {{#link-to 'user.index' this class="btn btn-lg btn-default"}}View Profile{{/link-to}}
-    <br>
     <br>
     <div {{bind-attr class=":form-group updateNameSuccess:has-success updateNameErrors:has-error"}} style="text-align: left">
       <label>Set Display Name</label>

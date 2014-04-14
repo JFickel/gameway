@@ -50,4 +50,12 @@ class User < ActiveRecord::Base
   def all_teams
     teams_led + teams
   end
+
+  def all_tournaments
+    (tournaments_hosted + tournaments + all_teams.map { |t| t.tournaments }.flatten).uniq
+  end
+
+  def upcoming_tournaments
+    tournaments_hosted.where(ended: nil) + tournaments.where(ended: nil) + all_teams.map { |t| t.tournaments.where(ended: nil) }.flatten.uniq
+  end
 end

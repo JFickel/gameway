@@ -6,5 +6,6 @@ Gameway.User = DS.Model.extend({
   lolAccount: DS.belongsTo('lolAccount'),
   avatarUrl: attr('string'),
   iconUrl: attr('string'),
-  teams: DS.hasMany('team')
+  teams: DS.hasMany('team'),
+  tournaments: DS.hasMany('tournament')
 })

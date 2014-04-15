@@ -15,6 +15,10 @@
         {{#each team in currentUser.teams}}
           {{#link-to 'team.index' team}}<h3>{{team.name}}</h3>{{/link-to}}
         {{/each}}
+      {{else}}
+        <p>
+          You don't belong to any teams yet.
+        </p>
       {{/if}}
     </div>
 
@@ -31,7 +35,10 @@
         {{#each tournament in pastTournaments}}
           {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
         {{/each}}
-
+      {{else}}
+        <p>
+          It doesn't look like you're signed up for any tournaments yet.
+        </p>
       {{/if}}
     </div>
   </div>

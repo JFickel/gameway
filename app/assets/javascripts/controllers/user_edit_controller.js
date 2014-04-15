@@ -76,8 +76,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
         $.ajax({
           type: 'POST',
           url: 'lol_accounts',
-          data: { authenticity_token: Gameway.gon.get('authenticityToken') ,
-                  verification_code: thisController.get('verificationCode'),
+          data: { verification_code: thisController.get('verificationCode'),
                   lol_account: {
                     region: thisController.get('selectedRegion'),
                     summoner_name: thisController.get('summonerName'),
@@ -108,8 +107,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
       $.ajax({
         type: 'GET',
         url: 'lol_accounts/new',
-        data: { authenticity_token: Gameway.gon.get('authenticityToken'),
-                lol_account: {
+        data: { lol_account: {
                   region: thisController.get('selectedRegion'),
                   summoner_name: thisController.get('summonerName')
                 }
@@ -135,8 +133,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
       $.ajax({
         type: 'PATCH',
         url: 'users/password',
-        data: { authenticity_token: Gameway.gon.get('authenticityToken'),
-                id: Gameway.gon.get('currentUser.id'),
+        data: { id: thisController.get('currentUser.id'),
                 user: {
                   current_password: thisController.get('oldPassword'),
                   password: thisController.get('newPassword'),
@@ -158,6 +155,9 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
               thisController.set('oldPasswordErrors', data.errors.current_password);
             }
           } else {
+            thisController.set('oldPassword', '');
+            thisController.set('newPassword', '');
+            thisController.set('newPasswordConfirmation', '');
             Gameway.gon.set('authenticityToken', data.authenticity_token);
             Gameway.flashController.pushObject({message: "Password successfully changed.",
                                                 type: 'alert-success'});

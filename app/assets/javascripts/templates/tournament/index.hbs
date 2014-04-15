@@ -43,6 +43,7 @@
           <h4>Your team
             {{#link-to 'team' currentStatus.team}}{{currentStatus.team.name}}{{/link-to}}
             is currently facing
+            {{currentStatus.winner}}
             {{#link-to 'team' currentStatus.opponent}}{{currentStatus.opponent.name}}{{/link-to}}
           </h4>
           <p>To enter the lobby for this match, go to the Custom Game tab in the game client and select the Tournament Code option. Copy and paste the following code into the field.</p>

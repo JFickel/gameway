@@ -30,6 +30,9 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
               }
             });
           });
+          // {"name":"Tournament ","extra":"","password":"ASD123","report":"http:\/\/website.com\/gamereport\/"}
+
+          thisController.get('bracket.id')
           participatingTeams.push({ team: team, opponent: opponent, winner: winner });
         }
       })

@@ -31,7 +31,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
                        '","password":"' +
                        password +
                        '","report":"' +
-                       'https://gameway.fwd.wf/matches/advance' +
+                       'https:\\/\\/gameway.fwd.wf\\/matches\\/lol_advance' +
                        '"}');
                 if (reversedRoundIndex == 0) {
                   winner = true;
@@ -42,6 +42,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
               }
             });
           });
+          // https://gameway.fwd.wf/matches/advance
           participatingTeams.push({ team: team, opponent: opponent, winner: winner, code: code, password: password });
         }
       })

@@ -38,7 +38,7 @@ Gameway.UserEditController = Gameway.ObjectController.extend({
 
   generateCode: function makeid() {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz";
+    var possible = "abcdefghijklmnpqrstuvwxyz";
 
     for(var i=0; i < 5; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));

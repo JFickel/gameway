@@ -20,6 +20,7 @@ gem 'ruby-lol', github: 'mikamai/ruby-lol'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'pg_search'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

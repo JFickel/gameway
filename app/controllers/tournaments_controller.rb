@@ -1,7 +1,12 @@
 class TournamentsController < ApplicationController
   # Need to create user permissions
   def index
-    tournaments = Tournament.where(lol_region: params[:lol_region]).last(40)
+    params = {lol_region: "na", ended: nil, limit: 40 }.merge(params.to_h)
+    if params[:search]
+      
+    else
+      tournaments = Tournament.where(lol_region: params[:lol_region], ended: params[:ended]).order(:starts_at).limit(params[:limit])
+    end
     render json: tournaments
   end
 

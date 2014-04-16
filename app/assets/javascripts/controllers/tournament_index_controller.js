@@ -5,7 +5,8 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         opponent,
         winner,
         reverseRounds = [],
-        thisController = this;
+        thisController = this,
+        code = "";
     if (this.get('currentUser')) {
       this.get('teams').forEach(function(team, index){
         if (thisController.get('currentUser.teams').contains(team)) {
@@ -21,6 +22,17 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
                 opponent = competingTeams.filter(function(competingTeam) {
                   if (team != competingTeam) { return true; }
                 }).objectAt(0);
+                password = thisController.get('generateCode')
+                code = "pvpnet://lol/customgame/joinorcreate/map1/pick6/team5/specALL/" +
+                       btoa('{"name":"Match ' +
+                       match.get('id') +
+                       '","extra":"' +
+                       match.get('id') +
+                       '","password":"' +
+                       password +
+                       '","report":"' +
+                       'https://gameway.fwd.wf/matches/advance' +
+                       '"}');
                 if (reversedRoundIndex == 0) {
                   winner = true;
                 }
@@ -30,15 +42,21 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
               }
             });
           });
-          // {"name":"Tournament ","extra":"","password":"ASD123","report":"http:\/\/website.com\/gamereport\/"}
-
-          thisController.get('bracket.id')
-          participatingTeams.push({ team: team, opponent: opponent, winner: winner });
+          participatingTeams.push({ team: team, opponent: opponent, winner: winner, code: code, password: password });
         }
       })
       return participatingTeams
     }
   }.property('currentUser'),
+  generateCode: function makeid() {
+    var text = "";
+    var possible = "abcdefghijklmnpqrstuvwxyz";
+
+    for(var i=0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }.property(),
   actions: {
     destroy: function(model) {
       if (confirm("Are you sure you want to delete %@?".fmt(model.get('name')))) {

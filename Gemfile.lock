@@ -184,6 +184,10 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pg_search (0.7.3)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -297,6 +301,7 @@ DEPENDENCIES
   launchy
   omniauth-twitchtv!
   pg
+  pg_search
   pry-rails
   rails (= 4.0.3)
   rails_12factor

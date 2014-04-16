@@ -7,6 +7,7 @@ Gameway::Application.routes.draw do
     passwords: "users/passwords"
   }
   root to: "assets#index"
+  post '/matches/advance', to: 'matches#advance'
   resources :tournaments
   resources :competitorships
   resources :brackets

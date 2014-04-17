@@ -41,7 +41,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
                        password +
                        '","report":"' +
                        // localhost forwarding address
-                       'https:\\/\\/gameway.fwd.wf\\/matches\\/lol_advance' +
+                       'https:\\/\\/gameway.fwd.wf\\/matchups\\/lol_advance' +
                        '"}');
                 if (reversedRoundIndex == 0) {
                   winner = true;

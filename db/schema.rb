@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140410142740) do
     t.integer  "user_id"
     t.integer  "team_id"
     t.boolean  "top"
+    t.boolean  "origin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

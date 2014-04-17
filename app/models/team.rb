@@ -7,6 +7,6 @@ class Team < ActiveRecord::Base
   has_many :tournaments, through: :competitorships
 
   def all_users
-    members + leader
+    members + [leader]
   end
 end

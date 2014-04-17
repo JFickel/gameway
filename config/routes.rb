@@ -14,4 +14,6 @@ Gameway::Application.routes.draw do
   resources :users
   resources :lol_accounts
   resources :teams
+  resources :matchups
+  resources :matches
 end

@@ -6,8 +6,17 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         winner,
         reverseRounds = [],
         thisController = this,
-        code = "";
-    if (this.get('currentUser')) {
+        code = "",
+        matchupUpdatesRef;
+
+    if (this.get('started') && this.get('currentUser')) {
+      matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/brackets/' +
+                                       thisController.get('bracket.id') +
+                                       '/matchup_updates/')
+      matchupUpdatesRef.on('child_changed', function(snapshot) {
+        thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
+      })
+
       this.get('teams').forEach(function(team, index){
         if (thisController.get('currentUser.teams').contains(team)) {
           reversedRounds = thisController.get('bracket.rounds.content').slice().reverse();
@@ -31,6 +40,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
                        '","password":"' +
                        password +
                        '","report":"' +
+                       // localhost forwarding address
                        'https:\\/\\/gameway.fwd.wf\\/matches\\/lol_advance' +
                        '"}');
                 if (reversedRoundIndex == 0) {
@@ -42,13 +52,12 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
               }
             });
           });
-          // https://gameway.fwd.wf/matches/advance
           participatingTeams.push({ team: team, opponent: opponent, winner: winner, code: code, password: password });
         }
       })
       return participatingTeams
     }
-  }.property('currentUser'),
+  }.property('currentUser', 'bracket.rounds.@each.matches.@each.matchups.@each.teamId'),
   generateCode: function makeid() {
     var text = "";
     var possible = "abcdefghijklmnpqrstuvwxyz";
@@ -71,7 +80,8 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       this.send('openModal', 'modals/join_tournament')
     },
     startTournament: function() {
-      var thisController = this;
+      var thisController = this,
+          matchupUpdatesRef;
       $.ajax({
         method: 'PATCH',
         url: '/tournaments/' + thisController.get('id'),
@@ -82,10 +92,26 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
           } else {
             Gameway.flashController.pushObject({message: "Tournament started!", type: 'alert-info'})
             thisController.store.pushPayload('tournament', data);
-
+            matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/' +
+                                             thisController.get('bracket.id') +
+                                             '/matchup_updates')
+            matchupUpdatesRef.on('child_changed', function(snapshot) {
+              thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
+            })
           }
         }
       })
+    },
+    manualAdvance: function(matchup) {
+      var nextMatchupId = matchup.get('match.nextMatchupId'),
+          nextMatchup = this.store.getById('matchup', nextMatchupId);
+
+      nextMatchup.set('team', matchup.get('team'));
+      nextMatchup.save();
+    },
+    manualRegression: function(matchup){
+      matchup.set('team', null);
+      matchup.save();
     }
   }
 })

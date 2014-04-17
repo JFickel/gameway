@@ -5,6 +5,7 @@ class CreateMatchups < ActiveRecord::Migration
       t.integer :user_id
       t.integer :team_id
       t.boolean :top
+      t.boolean :origin
 
       t.timestamps
     end

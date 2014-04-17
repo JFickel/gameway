@@ -50,18 +50,20 @@ class Bracket < ActiveRecord::Base
     (2**(reverse_index+1)/2).times.with_object([]) do |match_index, array|
       next_match_index = match_index/2
       next_match = rounds.first.matches[next_match_index]
-      next_matchup = next_match.matchups.find_by(top: next_match_index.even? ? true : nil)
+      next_matchup = next_match.matchups.find_by(top: match_index.even? ? true : nil)
       match = Match.create(index: match_index, next_matchup_id: next_matchup.id,
                            matchups: Matchup.create([{top: true}, {}]) )
       array << match
     end
   end
 
+  # The origin attribute is used to determine if the matchup is a team's starting position
+
   def fill_filter_round
     participants.first(filter_round_participants_count).each_slice(2).with_index do |pair, index|
       match = self.rounds.first.matches[index]
       match.matchups.each.with_index do |matchup, index|
-        matchup.update_attributes({ "#{mode}_id".to_sym => pair[index].id, top: index == 0 ? true : nil })
+        matchup.update_attributes({ "#{mode}_id".to_sym => pair[index].id, top: index == 0 ? true : nil, origin: true })
       end
     end
   end
@@ -72,11 +74,11 @@ class Bracket < ActiveRecord::Base
     filtered_round_matches = rounds[1].matches[filtered_round_participants_count/4..-1]
     filtered_round_matches.each do |match|
       if remaining_participants.present? && remaining_participants.odd?
-        match.matchups.find_by(top: nil).update_attributes({ "#{mode}_id".to_sym => remaining_participants.shift.id })
+        match.matchups.find_by(top: nil).update_attributes({ "#{mode}_id".to_sym => remaining_participants.shift.id, origin: true })
         next
       end
       match.matchups.each.with_index do |matchup, index|
-        matchup.update_attributes({ "#{mode}_id".to_sym => remaining_participants.shift.id, top: index == 0 ? true : nil })
+        matchup.update_attributes({ "#{mode}_id".to_sym => remaining_participants.shift.id, top: index == 0 ? true : nil, origin: true })
       end
     end
   end

@@ -63,7 +63,21 @@
               {{#each matchup in match.matchups}}
                 <tr>
                   {{#if matchup.team}}
-                    <td>{{matchup.team.name}}</td>
+                    <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+                          {{matchup.team.name}}
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href {{ action 'manualAdvance' matchup }}>Advance</a></li>
+                          {{#unless matchup.origin}}
+                            <li><a href {{ action 'manualRegression' matchup }}>Remove</a></li>
+                          {{/unless}}
+                          <li>{{#link-to 'team.index' matchup.team}}View Team{{/link-to}}</li>
+                        </ul>
+                      </div>
+                    </td>
                   {{else}}
                     <td><span style="visibility: hidden">Pending</span></td>
                   {{/if}}

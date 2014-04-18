@@ -7,11 +7,13 @@ Gameway::Application.routes.draw do
     passwords: "users/passwords"
   }
   root to: "assets#index"
-  post '/matches/lol_advance', to: 'matches#lol_advance'
+  post '/matchups/lol_advance', to: 'matchups#lol_advance'
   resources :tournaments
   resources :competitorships
   resources :brackets
   resources :users
   resources :lol_accounts
   resources :teams
+  resources :matchups
+  resources :matches
 end

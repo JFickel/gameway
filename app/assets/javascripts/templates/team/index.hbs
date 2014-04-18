@@ -1,1 +1,27 @@
 <h2>{{name}}</h2>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4" style="text-align: center">
+    <br>
+    <img {{bind-attr src=avatarUrl}} class='img-thumbnail'>
+  </div>
+
+  {{#if users}}
+    <div class="col-md-4 col-sm-6 col-md-offset-0">
+      <h3>Members</h3>
+      <br>
+      <table class="table table-striped">
+        <tbody>
+          {{#each user in this.users}}
+            <tr>
+              <td>
+                <img {{bind-attr src=user.iconUrl }} class="img-thumbnail" style="width: 42px; height: 42px">
+                {{#link-to 'user' user}}{{user.name}}{{/link-to}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</div>

@@ -6,7 +6,9 @@ class Team < ActiveRecord::Base
   has_many :competitorships
   has_many :tournaments, through: :competitorships
 
+  mount_uploader :avatar, AvatarUploader
+
   def all_users
-    members + leader
+    members + [leader]
   end
 end

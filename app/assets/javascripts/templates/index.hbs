@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-2 col-sm-2">
       <ul class="nav nav-pills nav-stacked">
+        <h4>Control Panel</h4>
         {{#link-to 'index' tagName='li'}}<a href>Dashboard</a>{{/link-to}}
         {{#link-to 'user.edit' currentUser tagName='li'}}<a href>Account Settings</a>{{/link-to}}
         {{#link-to 'user.index' currentUser tagName='li'}}<a href>View Profile</a>{{/link-to}}
@@ -13,7 +14,7 @@
         <h2>Your Teams</h2>
 
         {{#each team in currentUser.teams}}
-          {{#link-to 'team.index' team}}<h3>{{team.name}}</h3>{{/link-to}}
+          {{#link-to 'team.edit' team}}<h3>{{team.name}}</h3>{{/link-to}}
         {{/each}}
       {{else}}
         <p>

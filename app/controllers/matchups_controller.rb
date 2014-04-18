@@ -19,7 +19,7 @@ class MatchupsController < ApplicationController
 
     matchup = Matchup.find(match.next_matchup_id)
     matchup.update_attributes(team: winning_team)
-    HTTParty.put("https://gameway.firebaseio.com/brackets/#{match.round.bracket.id}/matchup_updates/#{matchup.id}.json",
+    HTTParty.put("https://gameway.firebaseio.com/brackets/#{match.round.bracket_id}/matchup_updates/#{matchup.id}.json",
                  body: { team_id: winning_team.id, id: matchup.id }.to_json)
     render status: 200
   end
@@ -27,8 +27,8 @@ class MatchupsController < ApplicationController
   def update
     matchup = Matchup.find(params[:id])
 
-    if matchup.update_attributes(matchup_params)
-      HTTParty.put("https://gameway.firebaseio.com/brackets/#{matchup.match.round.bracket.id}/matchup_updates/#{matchup.id}.json",
+    if matchup.update_attributes(team_id: matchup_params[:team_id])
+      HTTParty.put("https://gameway.firebaseio.com/brackets/#{matchup.match.round.bracket_id}/matchup_updates/#{matchup.id}.json",
                    body: { team_id: matchup.team_id, id: matchup.id }.to_json)
       render json: matchup
     else

@@ -57,7 +57,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       })
       return participatingTeams
     }
-  }.property('currentUser', 'bracket.rounds.@each.matches.@each.matchups.@each.teamId'),
+  }.property('currentUser', 'bracket.rounds.@each.matches.@each.matchups.@each.team'),
   generateCode: function makeid() {
     var text = "";
     var possible = "abcdefghijklmnpqrstuvwxyz";

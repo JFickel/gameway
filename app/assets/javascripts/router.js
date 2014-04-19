@@ -16,9 +16,10 @@ Gameway.Router.map(function() {
   });
 
   this.resource('teams', function() {
-    this.route('new')
+    this.route('new');
+    this.route('show');
   });
   this.resource('team', { path: '/teams/:team_id' }, function() {
-    this.route('edit')
+    this.route('edit');
   })
 });

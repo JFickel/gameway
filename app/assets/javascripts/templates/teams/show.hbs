@@ -1,0 +1,31 @@
+{{#if currentUser}}
+  <div class="row">
+    <div class="col-md-2 col-sm-2">
+      <ul class="nav nav-pills nav-stacked list-group">
+        <h3>Control Panel</h3>
+        {{#link-to 'index' tagName='li'}}<a href class="list-group-item">My Tournaments</a>{{/link-to}}
+        {{#link-to 'teams.show' tagName='li'}}<a href class="list-group-item">My Teams</a>{{/link-to}}
+        {{#link-to 'user.edit' currentUser tagName='li'}}<a href class="list-group-item">Account Settings</a>{{/link-to}}
+        {{#link-to 'user.index' currentUser tagName='li'}}<a href class="list-group-item">View Profile</a>{{/link-to}}
+      </ul>
+    </div>
+
+    <div class="row col-md-9">
+      {{#each team in this}}
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="http://media.zenfs.com/mit/td/nflquiz-0.0.18/ravens_500x500.png" style="height: 200px; width: 300px">
+            <div class="caption">
+              <h4>{{team.name}}</h4>
+              <h5>7 Members</h5>
+              <p>
+                {{#link-to 'team.edit' tournament class="btn btn-primary"}}Manage{{/link-to}}
+                {{#link-to 'team.index' tournament class="btn btn-default"}}View{{/link-to}}
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{/if}}

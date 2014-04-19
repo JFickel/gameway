@@ -1,46 +1,63 @@
 {{#if currentUser}}
   <div class="row">
     <div class="col-md-2 col-sm-2">
-      <ul class="nav nav-pills nav-stacked">
-        <h4>Control Panel</h4>
-        {{#link-to 'index' tagName='li'}}<a href>Dashboard</a>{{/link-to}}
-        {{#link-to 'user.edit' currentUser tagName='li'}}<a href>Account Settings</a>{{/link-to}}
-        {{#link-to 'user.index' currentUser tagName='li'}}<a href>View Profile</a>{{/link-to}}
+      <ul class="nav nav-pills nav-stacked list-group">
+        <h3>Control Panel</h3>
+        {{#link-to 'index' tagName='li'}}<a href class="list-group-item">My Tournaments</a>{{/link-to}}
+        {{#link-to 'teams.show' tagName='li'}}<a href class="list-group-item">My Teams</a>{{/link-to}}
+        {{#link-to 'user.edit' currentUser tagName='li'}}<a href class="list-group-item">Account Settings</a>{{/link-to}}
+        {{#link-to 'user.index' currentUser tagName='li'}}<a href class="list-group-item">View Profile</a>{{/link-to}}
       </ul>
     </div>
 
-    <div class="col-md-4 col-sm-4">
-      {{#if currentUser.teams}}
-        <h2>Your Teams</h2>
+    <h2 class="col-md-offset-3">Current Tournaments</h2>
+    <br>
 
-        {{#each team in currentUser.teams}}
-          {{#link-to 'team.edit' team}}<h3>{{team.name}}</h3>{{/link-to}}
-        {{/each}}
-      {{else}}
-        <p>
-          You don't belong to any teams yet.
-        </p>
-      {{/if}}
+
+    <div class="row col-md-9">
+      {{#each tournament in currentTournaments}}
+        <div class="col-sm-4 col-md-4">
+          <div class="thumbnail">
+            <img src="http://fnatic.com/filestorage/imagedb/full/8882.jpg" style="height: 200px; width: 300px">
+            <div class="caption">
+              <h4>{{tournament.name}}</h4>
+              <h5>Starts December 5th, 2014</h5>
+              <p>
+                {{#link-to 'tournament.index' tournament class="btn btn-primary"}}Manage{{/link-to}}
+                {{#link-to 'tournament.index' tournament class="btn btn-default"}}View{{/link-to}}
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
+  </div>
 
-    <div class="col-md-4 col-sm-4">
-      {{#if currentUser.tournaments}}
+  <div class="row">
+    <h2 class="col-md-offset-3">Past Tournaments</h2>
+    <br>
 
-        <h3>Current Tournaments</h3>
-        {{#each tournament in currentTournaments}}
-          {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
-        {{/each}}
-
-        <h3>Past Tournaments</h3>
-
-        {{#each tournament in pastTournaments}}
-          {{#link-to 'tournament.index' tournament}}<h3>{{tournament.name}}</h3>{{/link-to}}
-        {{/each}}
-      {{else}}
-        <p>
-          It doesn't look like you're signed up for any tournaments yet.
-        </p>
-      {{/if}}
+    <div class="col-md-9 col-md-offset-2">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Participants</th>
+            <th>Started At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each tournament in currentTournaments}}
+            <tr>
+              <td>{{tournament.id}}</td>
+              <td>{{#link-to 'tournament' tournament}}{{tournament.name}}{{/link-to}}</td>
+              <td>25</td>
+              <td>{{formattedLongDate tournament.createdAt}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
   </div>
 {{else}}

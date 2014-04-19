@@ -13,7 +13,10 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/brackets/' +
                                        thisController.get('bracket.id') +
                                        '/matchup_updates/')
+
+      console.log('https://gameway.firebaseio.com/brackets/' + thisController.get('bracket.id') + '/matchup_updates/')
       matchupUpdatesRef.on('child_changed', function(snapshot) {
+        console.log("FIRED")
         thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
       })
 

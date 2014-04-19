@@ -9,6 +9,7 @@ gem 'active_model_serializers'
 gem 'gon', '5.0.4'
 gem 'devise', '3.2.3'
 gem 'omniauth-twitchtv', github: 'JFickel/omniauth-twitchtv'
+gem 'httparty'
 
 # Carrierwave for image uploads
 gem 'fog'

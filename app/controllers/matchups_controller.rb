@@ -1,4 +1,4 @@
-require 'HTTParty'
+require 'httparty'
 
 class MatchupsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:lol_advance]

@@ -1,6 +1,22 @@
-// http://emberjs.com/guides/models/using-the-store/
+var firebaseRef = new Firebase('https://gameway.firebaseio.com/')
 
 Gameway.ApplicationSerializer = DS.ActiveModelSerializer.extend({});
+
+Gameway.BracketAdapter = DS.FirebaseAdapter.extend({
+  firebase: firebaseRef
+});
+
+Gameway.RoundAdapter = DS.FirebaseAdapter.extend({
+  firebase: firebaseRef
+});
+
+Gameway.MatchAdapter = DS.FirebaseAdapter.extend({
+  firebase: firebaseRef
+});
+
+Gameway.MatchupAdapter = DS.FirebaseAdapter.extend({
+  firebase: firebaseRef
+});
 
 $(function() {
   var token = Gameway.gon.get('authenticityToken');

@@ -1,6 +1,7 @@
 Gameway.TournamentIndexController = Gameway.ObjectController.extend({
   needs: ['application'],
   participatingTeams: function(model) {
+    // debugger;
     var participatingTeams = [],
         opponent,
         winner,
@@ -84,27 +85,30 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       this.send('openModal', 'modals/join_tournament')
     },
     startTournament: function() {
+      this.get('model').start();
       var thisController = this,
-          matchupUpdatesRef;
-      $.ajax({
-        method: 'PATCH',
-        url: '/tournaments/' + thisController.get('id'),
-        data: { start: true },
-        success: function(data) {
-          if (data.errors) {
-            Gameway.flashController.pushObject({message: data.errors, type: 'alert-danger'});
-          } else {
-            Gameway.flashController.pushObject({message: "Tournament started!", type: 'alert-info'})
-            thisController.store.pushPayload('tournament', data);
-            matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/' +
-                                             thisController.get('bracket.id') +
-                                             '/matchup_updates')
-            matchupUpdatesRef.on('child_changed', function(snapshot) {
-              thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
-            })
-          }
-        }
-      })
+          matchupUpdatesRef,
+          bracket = this.store.createRecord('bracket', { tournament: this.get('model'), silly: this.get('generateCode') });
+      bracket.save()
+      // $.ajax({
+      //   method: 'PATCH',
+      //   url: '/tournaments/' + thisController.get('id'),
+      //   data: { start: true },
+      //   success: function(data) {
+      //     if (data.errors) {
+      //       Gameway.flashController.pushObject({message: data.errors, type: 'alert-danger'});
+      //     } else {
+      //       Gameway.flashController.pushObject({message: "Tournament started!", type: 'alert-info'})
+      //       thisController.store.pushPayload('tournament', data);
+      //       matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/' +
+      //                                        thisController.get('bracket.id') +
+      //                                        '/matchup_updates')
+      //       matchupUpdatesRef.on('child_changed', function(snapshot) {
+      //         thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
+      //       })
+      //     }
+      //   }
+      // })
     },
     manualAdvance: function(matchup) {
       var nextMatchupId = matchup.get('match.nextMatchupId'),

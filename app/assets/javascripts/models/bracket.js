@@ -25,7 +25,7 @@ Gameway.Bracket = DS.Model.extend({
     this.buildRounds();
     this.fillFilterRound();
     this.fillFilteredRound();
-    this.reload();
+    this.save()
   },
 
   roundCount: function() {
@@ -45,19 +45,23 @@ Gameway.Bracket = DS.Model.extend({
   buildRounds: function() {
     // The winner match isn't actually a match -- it's just a holding cell for the winner
     var winnerMatchup = this.store.createRecord('matchup', { top: true }),
-        winnerMatch = this.store.createRecord('match', { matchups: matchups }),
-        winnerRound = this.store.createRecord('round', { index: this.roundCount(), matches: matches }),
-        roundCount =  this.roundCount();
+        winnerMatch = this.store.createRecord('match'),
+        winnerRound = this.store.createRecord('round', { index: this.roundCount() }),
+        roundCount =  this.roundCount(),
         roundIndex,
         matches;
+    winnerMatchup.save();
     winnerMatch.get('matchups').pushObject(winnerMatchup);
+    winnerMatch.save();
     winnerRound.get('matches').pushObject(winnerMatch);
+    winnerRound.save();
     this.get('rounds').pushObject(winnerRound);
     for (var reverseIndex = 0; reverseIndex < roundCount; reverseIndex++) {
       roundIndex = roundCount - reverseIndex - 1;
       round = this.store.createRecord('round', { index: roundIndex });
-      matches = buildMatches(reverseIndex);
+      matches = this.buildMatches(reverseIndex);
       round.get('matches').pushObjects(matches);
+      round.save()
       this.get('rounds').pushObject(round);
     }
   },
@@ -73,22 +77,24 @@ Gameway.Bracket = DS.Model.extend({
         matches = [];
 
     for (matchIndex = 0; matchIndex < matchCount; matchIndex++) {
-      isMatchIndexEven = matchIndex % 2 ? null : true;
-      nextMatchIndex = matchIndex/2;
-      nextRoundIndex = roundCount - reverseIndex;
+      isMatchIndexEven = matchIndex % 2 ? undefined : true;
+      nextMatchIndex = Math.floor(matchIndex/2);
+      nextRoundIndex = this.roundCount() - reverseIndex;
       nextMatch = this.get('rounds').findBy('index', nextRoundIndex).get('matches').objectAt(nextMatchIndex);
       nextMatchup = nextMatch.get('matchups').findBy('top', isMatchIndexEven);
       matchups = [this.store.createRecord('matchup', { top: true }), this.store.createRecord('matchup')];
+      matchups.forEach(function(mu) { mu.save(); })
       match = this.store.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id') });
       match.get('matchups').pushObjects(matchups);
-      matches.push(match)
+      match.save();
+      matches.push(match);
     }
     return matches
   },
 
   fillFilterRound: function() {
     var filterRoundParticipants = this.get('participants').slice(0, this.filterRoundParticipantCount()),
-        pair, match;
+        pair, match, self = this;
 
     for (var eachSliceCount = 0, length = this.filterRoundParticipantCount(), matchIndex = 0;
          eachSliceCount < length;
@@ -96,10 +102,12 @@ Gameway.Bracket = DS.Model.extend({
 
       pair = filterRoundParticipants.slice(eachSliceCount, eachSliceCount + 2);
       match = this.get('rounds').findBy('index', 0).get('matches').findBy('index', matchIndex);
+
       match.get('matchups').forEach(function(matchup, matchupIndex) {
-        matchup.set(this.get('mode') + 'Id', pair[matchIndex].get('id'))
-        matchup.set('top', matchIndex % 2 ? null : true);
+        matchup.set(self.get('mode'), pair[matchIndex])
+        matchup.set('top', matchIndex % 2 ? undefined : true);
         matchup.set('origin', true);
+        matchup.save()
       })
     }
   },
@@ -107,23 +115,25 @@ Gameway.Bracket = DS.Model.extend({
   fillFilteredRound: function() {
     var remainingParticipants = this.get('participants').slice(this.filterRoundParticipantCount(), this.get('participants').length),
         filteredRoundMatches,
-        matchRange = this.filterRoundParticipantCount()/4
+        matchRange = Math.floor(this.filterRoundParticipantCount()/4),
         firstFilteredMatch;
     if (Ember.isEmpty(remainingParticipants)) {
-      return;
+      return null;
     }
     filteredRoundMatches = this.get('rounds').objectAt(1).get('matches').sortBy('index').slice(matchRange, this.get('rounds').objectAt(1).get('matches').length);
     filteredRoundMatches.forEach(function(match) {
       if (remainingParticipants.length % 2 == 1) {
-        firstFilteredMatch = match.get('matchups').filterBy('top', null);
-        firstFilteredMatch.set(this.get('mode') + 'Id', remainingParticipants.shift().get('id'));
-        firstFilteredMatch.set('origin', true);
+        firstFilteredMatchup = match.get('matchups').filterBy('top', undefined);
+        firstFilteredMatchup.set(this.get('mode'), remainingParticipants.shift());
+        firstFilteredMatchup.set('origin', true);
+        firstFilteredMatchup.save()
         return;
       }
       match.get('matchups').forEach(function(matchup, index) {
-        matchup.set(this.get('mode') + 'Id', remainingParticipants.shift().get('id'))
-        matchup.set('top', index % 2 ? null : true);
+        matchup.set(this.get('mode'), remainingParticipants.shift())
+        matchup.set('top', index % 2 ? undefined : true);
         matchup.set('origin', true);
+        matchup.save()
       })
     })
   }

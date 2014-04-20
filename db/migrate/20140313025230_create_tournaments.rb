@@ -4,11 +4,12 @@ class CreateTournaments < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.date :starts_at # Will I need Sidekiq for this?
-      t.boolean :started
-      t.boolean :ended
+      t.boolean :started, default: false
+      t.boolean :ended, default: false
       t.integer :user_id
       t.string :lol_region
       t.integer :game_id
+      t.string :bracket_id # This id is a string because it corresponds to a bracket stored in Firebase
 
       t.timestamps
     end

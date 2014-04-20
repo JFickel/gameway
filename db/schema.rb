@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140417205827) do
     t.integer  "user_id"
     t.string   "lol_region"
     t.integer  "game_id"
+    t.string   "bracket_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

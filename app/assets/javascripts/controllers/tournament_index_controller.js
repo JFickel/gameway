@@ -1,7 +1,6 @@
 Gameway.TournamentIndexController = Gameway.ObjectController.extend({
   needs: ['application'],
   participatingTeams: function(model) {
-    // debugger;
     var participatingTeams = [],
         opponent,
         winner,
@@ -23,7 +22,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
 
     if (this.get('started') && this.get('currentUser')) {
       this.get('teams').forEach(function(team, index){
-        if (thisController.get('currentUser.teams').contains(team)) {
+        if (thisController.get('currentUser.teams').contains(team) && thisController.get('bracket')) {
           reversedRounds = thisController.get('bracket.rounds.content').slice().reverse();
 
           // Searches through the latest rounds to find the latest matchup
@@ -86,10 +85,8 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
     },
     startTournament: function() {
       this.get('model').start();
-      var thisController = this,
-          matchupUpdatesRef,
-          bracket = this.store.createRecord('bracket', { tournament: this.get('model'), silly: this.get('generateCode') });
-      bracket.save()
+      // var thisController = this,
+          // matchupUpdatesRef
       // $.ajax({
       //   method: 'PATCH',
       //   url: '/tournaments/' + thisController.get('id'),

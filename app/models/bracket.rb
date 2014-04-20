@@ -73,7 +73,7 @@ class Bracket < ActiveRecord::Base
     return if remaining_participants.empty?
     filtered_round_matches = rounds[1].matches[filtered_round_participants_count/4..-1]
     filtered_round_matches.each do |match|
-      if remaining_participants.present? && remaining_participants.odd?
+      if remaining_participants.present? && remaining_participants.count.odd?
         match.matchups.find_by(top: nil).update_attributes({ "#{mode}_id".to_sym => remaining_participants.shift.id, origin: true })
         next
       end

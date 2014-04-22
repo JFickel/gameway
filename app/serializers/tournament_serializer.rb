@@ -4,5 +4,4 @@ class TournamentSerializer < ApplicationSerializer
 
   has_one :user
   has_many :teams
-  # has_one :bracket
 end

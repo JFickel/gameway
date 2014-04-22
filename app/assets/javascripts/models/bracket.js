@@ -6,8 +6,10 @@ function shuffle(o){
 };
 
 Gameway.Bracket = DS.Model.extend({
-  tournament: DS.belongsTo('tournament'),
-  rounds: DS.hasMany('round'),
+  // tournamnetId formatting wasn't being picked up for some reason by the serializer
+  // it looks like i'll have to refer to it in this format
+  tournament_id: attr('number'),
+  rounds: DS.hasMany('round', { async: true }),
   mode: attr('string'),
   game: attr('string'),
 
@@ -18,18 +20,21 @@ Gameway.Bracket = DS.Model.extend({
     this.set('participants', shuffle(options.participants.content));
     this.set('mode', this.get('participants').get('firstObject').constructor.toString().split('.').get('lastObject').toLowerCase());
     this.set('game', options.game);
+    this.set('tournamentId', options.tournament.get('id'));
     this.construct();
   },
 
   construct: function() {
     this.buildRounds();
-    this.fillFilterRound();
-    this.fillFilteredRound();
-    this.save()
+    // this.fillFilterRound();
+    // this.fillFilteredRound();
+    // this.save()
   },
 
   roundCount: function() {
-    return Math.ceil(Math.log2(this.get('participants').length));
+    var roundCountApproximation = Math.log(this.get('participants').length) / Math.log(2);
+    // debugger;
+    return Math.ceil(roundCountApproximation);
   },
 
   filterRoundParticipantCount: function() {
@@ -44,36 +49,63 @@ Gameway.Bracket = DS.Model.extend({
 
   buildRounds: function() {
     // The winner match isn't actually a match -- it's just a holding cell for the winner
-    var winnerMatchup = this.store.createRecord('matchup', { top: true }),
-        winnerMatch = this.store.createRecord('match'),
-        winnerRound = this.store.createRecord('round', { index: this.roundCount() }),
+    var thisBracket = this,
+        winnerRound = this.store.createRecord('round', { index: this.roundCount(), bracket: this }),
+        winnerMatch = this.store.createRecord('match', { round: winnerRound, index: 0  }),
+        winnerMatchup = this.store.createRecord('matchup', { top: true, match: winnerMatch }),
         roundCount =  this.roundCount(),
+        round,
         roundIndex,
         matches;
-    winnerMatchup.save();
-    winnerMatch.get('matchups').pushObject(winnerMatchup);
-    winnerMatch.save();
-    winnerRound.get('matches').pushObject(winnerMatch);
+
     winnerRound.save();
-    this.get('rounds').pushObject(winnerRound);
-    for (var reverseIndex = 0; reverseIndex < roundCount; reverseIndex++) {
-      roundIndex = roundCount - reverseIndex - 1;
-      round = this.store.createRecord('round', { index: roundIndex });
-      matches = this.buildMatches(reverseIndex);
-      round.get('matches').pushObjects(matches);
-      round.save()
-      this.get('rounds').pushObject(round);
-    }
+    winnerMatch.save();
+    winnerMatchup.save();
+
+    winnerMatch.get('matchups').then(function(matchups) {
+      matchups.pushObject(winnerMatchup);
+      winnerMatch.save();
+    })
+
+    winnerRound.get('matches').then(function(matches) {
+      matches.pushObject(winnerMatch);
+      winnerRound.save();
+    })
+
+    thisBracket.get('rounds').then(function(rounds) {
+      rounds.pushObject(winnerRound);
+      thisBracket.save();
+    });
+
+
+    // winnerRound.get('matches').pushObject(winnerMatch);
+    // winnerRound.save();
+
+    // winnerRound.get('matches')
+    // winnerRound.save();
+    // winnerMatch.save();
+
+
+    // winnerMatchup.save();
+    // for (var reverseIndex = 0; reverseIndex < roundCount; reverseIndex++) {
+    //   roundIndex = roundCount - reverseIndex - 1;
+    //   round = this.store.createRecord('round', { index: roundIndex, bracket: this });
+    //   round.save()
+    //   this.buildMatches(reverseIndex, round);
+    // }
   },
 
 
-  buildMatches: function(reverseIndex) {
+  buildMatches: function(reverseIndex, round) {
     var matchCount = Math.pow(2, (reverseIndex + 1))/2,
         matchIndex,
-        nextRoundIndex,
+        isMatchIndexEven,
         nextMatchIndex,
+        nextRoundIndex,
         nextMatch,
-        isMatchIndexEven
+        nextMatchup,
+        matchups,
+        match,
         matches = [];
 
     for (matchIndex = 0; matchIndex < matchCount; matchIndex++) {
@@ -82,14 +114,12 @@ Gameway.Bracket = DS.Model.extend({
       nextRoundIndex = this.roundCount() - reverseIndex;
       nextMatch = this.get('rounds').findBy('index', nextRoundIndex).get('matches').objectAt(nextMatchIndex);
       nextMatchup = nextMatch.get('matchups').findBy('top', isMatchIndexEven);
-      matchups = [this.store.createRecord('matchup', { top: true }), this.store.createRecord('matchup')];
-      matchups.forEach(function(mu) { mu.save(); })
-      match = this.store.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id') });
-      match.get('matchups').pushObjects(matchups);
+      // if (Ember.isEmpty(nextMatchup)) { debugger; }
+      match = this.store.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id'), round: round });
       match.save();
-      matches.push(match);
+      this.store.createRecord('matchup', { top: true, match: match }).save(),
+      this.store.createRecord('matchup', { match: match }).save();
     }
-    return matches
   },
 
   fillFilterRound: function() {

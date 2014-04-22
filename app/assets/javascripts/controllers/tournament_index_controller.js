@@ -1,6 +1,7 @@
 Gameway.TournamentIndexController = Gameway.ObjectController.extend({
   needs: ['application'],
   participatingTeams: function(model) {
+    // debugger;
     var participatingTeams = [],
         opponent,
         winner,
@@ -8,17 +9,14 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         thisController = this,
         code = "",
         matchupUpdatesRef;
-    if (this.get('started')) {
-      matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/brackets/' +
-                                       thisController.get('bracket.id') +
-                                       '/matchup_updates/')
 
-      console.log('https://gameway.firebaseio.com/brackets/' + thisController.get('bracket.id') + '/matchup_updates/')
-      matchupUpdatesRef.on('child_changed', function(snapshot) {
-        console.log("FIRED")
-        thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
-      })
-    }
+    if (this.get('started') && this.get('currentUser')) {
+      // matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/brackets/' +
+      //                                  thisController.get('bracket.id') +
+      //                                  '/matchup_updates/')
+      // matchupUpdatesRef.on('child_changed', function(snapshot) {
+      //   thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
+      // })
 
     if (this.get('started') && this.get('currentUser')) {
       this.get('teams').forEach(function(team, index){

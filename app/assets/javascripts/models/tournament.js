@@ -6,9 +6,9 @@ Gameway.Tournament = DS.Model.extend({
   bracket: function() {
     this.store.find('bracket', this.get('bracketId')).then(function(bracket) {
       // debugger;
-      bracket.get('rounds').then(function(rounds) {
-        debugger;
-      })
+      // bracket.get('rounds').then(function(rounds) {
+        // debugger;
+      // })
       return bracket
 
     }, function(error) {

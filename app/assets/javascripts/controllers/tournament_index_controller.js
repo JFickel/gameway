@@ -11,14 +11,6 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
         matchupUpdatesRef;
 
     if (this.get('started') && this.get('currentUser')) {
-      // matchupUpdatesRef = new Firebase('https://gameway.firebaseio.com/brackets/' +
-      //                                  thisController.get('bracket.id') +
-      //                                  '/matchup_updates/')
-      // matchupUpdatesRef.on('child_changed', function(snapshot) {
-      //   thisController.store.pushPayload('matchup', { matchup: snapshot.val() });
-      // })
-
-    if (this.get('started') && this.get('currentUser')) {
       this.get('teams').forEach(function(team, index){
         if (thisController.get('currentUser.teams').contains(team) && thisController.get('bracket')) {
           reversedRounds = thisController.get('bracket.rounds.content').slice().reverse();
@@ -59,7 +51,7 @@ Gameway.TournamentIndexController = Gameway.ObjectController.extend({
       })
       return participatingTeams
     }
-  }.property('currentUser', 'bracket.rounds.@each.matches.@each.matchups.@each.team'),
+  }.property('currentUser', 'bracket.rounds.@each.matches.@each.matchups.@each'),
   generateCode: function makeid() {
     var text = "";
     var possible = "abcdefghijklmnpqrstuvwxyz";

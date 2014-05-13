@@ -100,7 +100,8 @@ Gameway.Bracket = DS.Model.extend({
         nextRoundIndex,
         nextMatch,
         nextMatchup,
-        fuck = [],
+        thisStore = this.store,
+        builtMatches = [],
         match;
 
     for (matchIndex = 0; matchIndex < matchCount; matchIndex++) {
@@ -108,20 +109,32 @@ Gameway.Bracket = DS.Model.extend({
       nextMatchIndex = Math.floor(matchIndex/2);
       nextRoundIndex = this.roundCount() - reverseIndex;
       builtRounds.findBy('index', nextRoundIndex).get('matches').then(function(matches) {
-        nextMatch = matches.findBy('index', nextMatchIndex);
+        return matches.findBy('index', nextMatchIndex);
+      }).then(function(nextMatch) {
+        if (typeof nextMatch === "undefined") { debugger; }
+        nextMatch.get('matchups').then(function(matchups) {
+          nextMatchup = matchups.findBy('top', isMatchIndexEven);
+          match = thisStore.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id'), round: round });
+          match.save();
+          builtMatches.push(match);
+          return match
+        }).then(function(match) {
+          topMatchup = thisStore.createRecord('matchup', { top: true, match: match });
+          bottomMatchup = thisStore.createRecord('matchup', { match: match });
+          topMatchup.save();
+          bottomMatchup.save();
+          match.get('matchups').then(function(matchups) {
+            matchups.pushObject(topMatchup);
+            matchups.pushObject(bottomMatchup);
+            match.save();
+          });
+        })
       })
-      debugger;
-      nextMatchup = nextMatch.get('matchups').findBy('top', isMatchIndexEven);
-      match = this.store.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id'), round: round });
-      match.save();
-      topMatchup = this.store.createRecord('matchup', { top: true, match: match }).save(),
-      bottomMatchup = this.store.createRecord('matchup', { match: match }).save();
-      match.get('matchups').then(function(matchups) {
-        matchups.pushObject(topMatchup);
-        matchups.pushObject(bottomMatchup);
-        match.save();
-      });
     }
+    round.get('matches').then(function(matches) {
+      matches.pushObjects(builtMatches);
+      round.save()
+    })
   },
 
   fillFilterRound: function() {

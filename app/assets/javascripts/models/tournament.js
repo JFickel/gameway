@@ -3,18 +3,11 @@ attr = DS.attr;
 Gameway.Tournament = DS.Model.extend({
   name: attr('string'),
   bracketId: attr('string'),
-  bracket: function() {
-    this.store.find('bracket', this.get('bracketId')).then(function(bracket) {
-      // debugger;
-      // bracket.get('rounds').then(function(rounds) {
-        // debugger;
-      // })
-      return bracket
-
-    }, function(error) {
-      throw error
-    });
-  }.property('bracketId'),
+  // bracket: function() {
+    // this.store.find('bracket', this.get('bracketId')).then(function(bracket) {
+      // return bracket
+    // }, function(er) { debugger; });
+  // }.property('bracketId'),
   description: attr('string'),
   user: DS.belongsTo('user'),
   teams: DS.hasMany('team'),

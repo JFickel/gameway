@@ -4,9 +4,9 @@ Gameway.Tournament = DS.Model.extend({
   name: attr('string'),
   bracketId: attr('string'),
   // bracket: function() {
-    // this.store.find('bracket', this.get('bracketId')).then(function(bracket) {
-      // return bracket
-    // }, function(er) { debugger; });
+  //   this.store.find('bracket', this.get('bracketId')).then(function(bracket) {
+  //     return bracket
+  //   }, function(er) { debugger; });
   // }.property('bracketId'),
   description: attr('string'),
   user: DS.belongsTo('user'),

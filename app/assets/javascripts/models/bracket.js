@@ -59,38 +59,51 @@ Gameway.Bracket = DS.Model.extend({
         roundIndex,
         matches;
 
-    winnerRound.save();
-    winnerMatch.save();
-    winnerMatchup.save();
+    var promise = new Ember.RSVP.Promise(function(resolve) {
 
-    winnerMatch.get('matchups').then(function(matchups) {
-      matchups.pushObject(winnerMatchup);
-      winnerMatch.save();
-    });
-
-    winnerRound.get('matches').then(function(matches) {
-      matches.pushObject(winnerMatch);
       winnerRound.save();
+      winnerMatch.save();
+      winnerMatchup.save();
+
+      winnerMatch.get('matchups').then(function(matchups) {
+        matchups.pushObject(winnerMatchup);
+        winnerMatch.save();
+      });
+
+      winnerRound.get('matches').then(function(matches) {
+        matches.pushObject(winnerMatch);
+        winnerRound.save();
+      });
+
+      builtRounds.push(winnerRound);
+
+      resolve(0);
     });
 
-    builtRounds.push(winnerRound);
+    var _this = this;
 
-    for (var reverseIndex = 0; reverseIndex < roundCount; reverseIndex++) {
+    var iteration = function(reverseIndex) {
       roundIndex = roundCount - reverseIndex - 1;
-      round = this.store.createRecord('round', { index: roundIndex, bracket: this });
-      round.save()
-      builtRounds.push(round)
-      this.buildMatches(reverseIndex, round, builtRounds);
-    }
+      round = _this.store.createRecord('round', { index: roundIndex, bracket: _this });
+      round.save();
+      builtRounds.push(round);
+      _this.buildMatches(reverseIndex, round, builtRounds);
+
+      if (reverseIndex < roundCount) {
+        promise = promise.then(iteration);
+      }
+
+      return reverseIndex + 1;
+    };
+
+    promise = promise.then(iteration);
 
     thisBracket.get('rounds').then(function(rounds) {
       rounds.pushObject(winnerRound);
       rounds.pushObjects(builtRounds)
       thisBracket.save();
     });
-
   },
-
 
   buildMatches: function(reverseIndex, round, builtRounds) {
     var matchCount = Math.pow(2, (reverseIndex + 1))/2,
@@ -102,16 +115,25 @@ Gameway.Bracket = DS.Model.extend({
         nextMatchup,
         thisStore = this.store,
         builtMatches = [],
+        settled = false,
         match;
 
     for (matchIndex = 0; matchIndex < matchCount; matchIndex++) {
       isMatchIndexEven = matchIndex % 2 ? undefined : true;
       nextMatchIndex = Math.floor(matchIndex/2);
       nextRoundIndex = this.roundCount() - reverseIndex;
+      debugger;
       builtRounds.findBy('index', nextRoundIndex).get('matches').then(function(matches) {
+        reverseIndex, round, builtRounds, nextRoundIndex;
+        debugger;
+        // if (typeof matches.findBy('index', nextMatchIndex) === "undefined") {
+          // builtRounds.findBy('index', 4).get('matches').then(function(matches) {
+            // reverseIndex, round, builtRounds, nextRoundIndex;
+          // })
+        // }
+
         return matches.findBy('index', nextMatchIndex);
       }).then(function(nextMatch) {
-        if (typeof nextMatch === "undefined") { debugger; }
         nextMatch.get('matchups').then(function(matchups) {
           nextMatchup = matchups.findBy('top', isMatchIndexEven);
           match = thisStore.createRecord('match', { index: matchIndex, nextMatchupId: nextMatchup.get('id'), round: round });
